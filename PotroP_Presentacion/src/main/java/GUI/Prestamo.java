@@ -42,8 +42,8 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        regresar = new javax.swing.JButton();
+        bttComprobar = new javax.swing.JButton();
+        bttRegresar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
 
@@ -92,20 +92,20 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
 
-        jButton1.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        jButton1.setText("Comprobar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 100, 30));
+        bttComprobar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        bttComprobar.setText("Comprobar");
+        bttComprobar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(bttComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 100, 30));
 
-        regresar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        regresar.setText("Regresar");
-        regresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        regresar.addActionListener(new java.awt.event.ActionListener() {
+        bttRegresar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        bttRegresar.setText("Regresar");
+        bttRegresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bttRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarActionPerformed(evt);
+                bttRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 100, 30));
+        jPanel1.add(bttRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 100, 30));
 
         jButton3.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jButton3.setText("Solicitar Prestamo");
@@ -136,13 +136,13 @@ public class Prestamo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+    private void bttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegresarActionPerformed
         // TODO add your handling code here:
          Menu menu = new Menu();
 
         menu.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_regresarActionPerformed
+    }//GEN-LAST:event_bttRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +180,8 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bttComprobar;
+    private javax.swing.JButton bttRegresar;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -197,6 +198,5 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 }

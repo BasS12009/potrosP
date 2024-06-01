@@ -48,8 +48,8 @@ public class LogIn extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jLabel2.setText("ID:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 60, 30));
+        jLabel2.setText("Correo:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 80, 30));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 210, 30));
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
