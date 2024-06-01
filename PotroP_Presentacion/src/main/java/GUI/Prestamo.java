@@ -105,7 +105,7 @@ public class Prestamo extends javax.swing.JFrame {
                 regresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 100, 30));
+        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 100, 30));
 
         jButton3.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jButton3.setText("Solicitar Prestamo");
@@ -115,7 +115,7 @@ public class Prestamo extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 140, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 140, 30));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 680, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
