@@ -24,9 +24,9 @@ public class VehiculoDAO implements IVehiculoDAO {
     }
 
     @Override
-    public void eliminar(String id) throws DAOException {
-        Vehiculo vehiculo = buscarPorId(id);
-        if (vehiculo != null) {
+    public void eliminar(Vehiculo vehiculo) throws DAOException {
+        Vehiculo vehiculos = buscarPorId(vehiculo.getId());
+        if (vehiculos != null) {
             lista.remove(vehiculo);
         } else {
             throw new DAOException("Vehiculo no encontrado");
@@ -45,9 +45,9 @@ public class VehiculoDAO implements IVehiculoDAO {
     }
 
     @Override
-    public Vehiculo buscarPorId(String id) throws DAOException {
+    public Vehiculo buscarPorId(int id) throws DAOException {
         for (Vehiculo vehiculo : lista) {
-            if (vehiculo.getId().equals(id)) {
+            if (vehiculo.getId() == id) {
                 return vehiculo;
             }
         }

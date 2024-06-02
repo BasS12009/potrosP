@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -9,32 +9,48 @@ package DTO;
  * @author diana
  */
 public class AdministradorDTO {
-    private String correo;
-    private String contrasena;
+    
+    private String idDTO;
+    private String correoDTO;
+    private String contraseñaDTO;
 
     public AdministradorDTO() {
     }
 
-    public AdministradorDTO(String correo, String contrasena) {
-        this.correo = correo;
-        this.contrasena = contrasena;
+    public AdministradorDTO(String correoDTO, String contraseñaDTO) {
+        this.correoDTO = correoDTO;
+        this.contraseñaDTO = contraseñaDTO;
     }
 
-    public String getCorreo() {
-        return correo;
+    public AdministradorDTO(String idDTO, String correoDTO, String contraseñaDTO) {
+        this.idDTO = idDTO;
+        this.correoDTO = correoDTO;
+        this.contraseñaDTO = contraseñaDTO;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public String getIdDTO() {
+        return idDTO;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public void setIdDTO(String idDTO) {
+        this.idDTO = idDTO;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public String getCorreoDTO() {
+        return correoDTO;
     }
-    
+
+    public void setCorreoDTO(String correoDTO) {
+        this.correoDTO = correoDTO;
+    }
+
+    public String getContraseñaDTO() {
+        return contraseñaDTO;
+    }
+
+    public void setContraseñaDTO(String contraseñaDTO) {
+        this.contraseñaDTO = contraseñaDTO;
+    }
+
     
 }

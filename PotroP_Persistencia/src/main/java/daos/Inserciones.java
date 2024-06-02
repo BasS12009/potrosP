@@ -27,11 +27,11 @@ public class Inserciones {
             IAdministradorDAO administradorDAO = new AdministradorDAO();
 
             // Crear y agregar ejemplos de vehículos
-            Vehiculo vehiculo1 = new Vehiculo("1", "Toyota", "Corolla", 2020, "WIN2", "Sedan");
-            Vehiculo vehiculo2 = new Vehiculo("2", "Honda", "Civic", 2019, "ASD33", "Sedan");
-            Vehiculo vehiculo3 = new Vehiculo("3", "Ford", "Focus", 2018, "WWWWAAA", "Hatchback");
-            Vehiculo vehiculo4 = new Vehiculo("4", "Chevrolet", "Cruze", 2021, "WWWFFF", "Sedan");
-            Vehiculo vehiculo5 = new Vehiculo("5", "Tesla", "Model S", 2022, "FKU2", "Electric");
+            Vehiculo vehiculo1 = new Vehiculo(1, "Toyota", "Corolla", 2020, "WIN2", "Sedan");
+            Vehiculo vehiculo2 = new Vehiculo(2, "Honda", "Civic", 2019, "ASD33", "Sedan");
+            Vehiculo vehiculo3 = new Vehiculo(3, "Ford", "Focus", 2018, "WWWWAAA", "Hatchback");
+            Vehiculo vehiculo4 = new Vehiculo(4, "Chevrolet", "Cruze", 2021, "WWWFFF", "Sedan");
+            Vehiculo vehiculo5 = new Vehiculo(5, "Tesla", "Model S", 2022, "FKU2", "Electric");
             vehiculoDAO.agregar(vehiculo1);
             vehiculoDAO.agregar(vehiculo2);
             vehiculoDAO.agregar(vehiculo3);
@@ -39,11 +39,11 @@ public class Inserciones {
             vehiculoDAO.agregar(vehiculo5);
 
             // Crear y agregar ejemplos de administradores
-            Administrador admin1 = new Administrador("1", "admin1@ejem.com", "asd23");
-            Administrador admin2 = new Administrador("2", "admin2@ejem.com", "fff12344");
-            Administrador admin3 = new Administrador("3", "admin3@ejem.com", "ggez4me");
-            Administrador admin4 = new Administrador("4", "admin4@ejem.com", "333333fff");
-            Administrador admin5 = new Administrador("5", "admin5@ejem.com", "vvvaasss22");
+            Administrador admin1 = new Administrador(1, "admin1@ejem.com", "asd23");
+            Administrador admin2 = new Administrador(2, "admin2@ejem.com", "fff12344");
+            Administrador admin3 = new Administrador(3, "admin3@ejem.com", "ggez4me");
+            Administrador admin4 = new Administrador(4, "admin4@ejem.com", "333333fff");
+            Administrador admin5 = new Administrador(5, "admin5@ejem.com", "vvvaasss22");
             administradorDAO.agregar(admin1);
             administradorDAO.agregar(admin2);
             administradorDAO.agregar(admin3);
@@ -60,11 +60,11 @@ public class Inserciones {
             calendar.add(Calendar.DAY_OF_YEAR, 7);
             Date fechaFin3 = calendar.getTime();
 
-            Prestamo prestamo1 = new Prestamo("1", "Mantenimiento", fechaInicio, fechaFin1, vehiculo1, vehiculo1);
-            Prestamo prestamo2 = new Prestamo("2", "Negocios", fechaInicio, fechaFin2, vehiculo2, vehiculo2);
-            Prestamo prestamo3 = new Prestamo("3", "Excusrsion", fechaInicio, fechaFin3, vehiculo3, vehiculo3);
-            Prestamo prestamo4 = new Prestamo("4", "Me lo robe", fechaInicio, fechaFin3, vehiculo3, vehiculo3);
-            Prestamo prestamo5 = new Prestamo("5", "Vacaciones", fechaInicio, fechaFin3, vehiculo3, vehiculo3);
+            Prestamo prestamo1 = new Prestamo(1, "Mantenimiento", fechaInicio, fechaFin1, vehiculo1, vehiculo1);
+            Prestamo prestamo2 = new Prestamo(2, "Negocios", fechaInicio, fechaFin2, vehiculo2, vehiculo2);
+            Prestamo prestamo3 = new Prestamo(3, "Excusrsion", fechaInicio, fechaFin3, vehiculo3, vehiculo3);
+            Prestamo prestamo4 = new Prestamo(4, "Me lo robe", fechaInicio, fechaFin3, vehiculo3, vehiculo3);
+            Prestamo prestamo5 = new Prestamo(5, "Vacaciones", fechaInicio, fechaFin3, vehiculo3, vehiculo3);
             prestamoDAO.agregar(prestamo1);
             prestamoDAO.agregar(prestamo2);
             prestamoDAO.agregar(prestamo3);

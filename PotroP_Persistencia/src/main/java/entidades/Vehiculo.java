@@ -9,7 +9,7 @@ package entidades;
  * @author caarl
  */
 public class Vehiculo {
-    private String id;
+    private int id;
     private String marca;
     private String modelo;
     private int año;
@@ -27,7 +27,7 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
-    public Vehiculo(String id, String marca, String modelo, int año, String placa, String tipo) {
+    public Vehiculo(int id, String marca, String modelo, int año, String placa, String tipo) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -37,11 +37,11 @@ public class Vehiculo {
     }
 
     // Getters y Setters
-    public String getId() {
+    public int getId() {
         return id;
     }
     
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     

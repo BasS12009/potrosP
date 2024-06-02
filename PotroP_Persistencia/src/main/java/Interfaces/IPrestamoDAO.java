@@ -14,8 +14,8 @@ import java.util.List;
 
 public interface IPrestamoDAO {
     void agregar(Prestamo prestamo) throws DAOException;
-    void eliminar(String id) throws DAOException;
+    void eliminar(Prestamo prestamo) throws DAOException;
     void actualizar(Prestamo prestamo) throws DAOException;
-    Prestamo buscarPorId(String id) throws DAOException;
+    Prestamo buscarPorId(int id) throws DAOException;
     List<Prestamo> listaPrestamos() throws DAOException;
 }

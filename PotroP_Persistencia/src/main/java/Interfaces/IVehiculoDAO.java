@@ -14,8 +14,8 @@ import java.util.List;
 
 public interface IVehiculoDAO {
     void agregar(Vehiculo vehiculo) throws DAOException;
-    void eliminar(String id) throws DAOException;
+    void eliminar(Vehiculo vehiculo) throws DAOException;
     void actualizar(Vehiculo vehiculo) throws DAOException;
-    Vehiculo buscarPorId(String id) throws DAOException;
+    Vehiculo buscarPorId(int id) throws DAOException;
     List<Vehiculo> listaVehiculos() throws DAOException;
 }

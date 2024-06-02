@@ -11,54 +11,81 @@ import java.util.Date;
  * @author diana
  */
 public class PrestamoDTO {
-    private String motivoSolicitud;
-    private String id;
-    private Date fechaInicio;
-    private Date fechaFin;
-    private String tipoVehiculo;
+    
+    private String idDTO;
+    private String motivoDTO;
+    private Date fechaInicioDTO;
+    private Date fechaFinDTO;
+    private VehiculoDTO vechiculoDTO;
+    private VehiculoDTO vehiculoDTO;
 
     public PrestamoDTO() {
     }
 
-    public String getMotivoSolicitud() {
-        return motivoSolicitud;
+    public PrestamoDTO(String motivoDTO, Date fechaInicioDTO, Date fechaFinDTO, VehiculoDTO vechiculoDTO, VehiculoDTO vehiculoDTO) {
+        this.motivoDTO = motivoDTO;
+        this.fechaInicioDTO = fechaInicioDTO;
+        this.fechaFinDTO = fechaFinDTO;
+        this.vechiculoDTO = vechiculoDTO;
+        this.vehiculoDTO = vehiculoDTO;
     }
 
-    public void setMotivoSolicitud(String motivoSolicitud) {
-        this.motivoSolicitud = motivoSolicitud;
+    public PrestamoDTO(String idDTO, String motivoDTO, Date fechaInicioDTO, Date fechaFinDTO, VehiculoDTO vechiculoDTO, VehiculoDTO vehiculoDTO) {
+        this.idDTO = idDTO;
+        this.motivoDTO = motivoDTO;
+        this.fechaInicioDTO = fechaInicioDTO;
+        this.fechaFinDTO = fechaFinDTO;
+        this.vechiculoDTO = vechiculoDTO;
+        this.vehiculoDTO = vehiculoDTO;
     }
 
-    public String getId() {
-        return id;
+    public String getIdDTO() {
+        return idDTO;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdDTO(String idDTO) {
+        this.idDTO = idDTO;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public String getMotivoDTO() {
+        return motivoDTO;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setMotivoDTO(String motivoDTO) {
+        this.motivoDTO = motivoDTO;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
+    public Date getFechaInicioDTO() {
+        return fechaInicioDTO;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaInicioDTO(Date fechaInicioDTO) {
+        this.fechaInicioDTO = fechaInicioDTO;
     }
 
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
+    public Date getFechaFinDTO() {
+        return fechaFinDTO;
     }
 
-    public void setTipoVehiculo(String tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
+    public void setFechaFinDTO(Date fechaFinDTO) {
+        this.fechaFinDTO = fechaFinDTO;
     }
-    
+
+    public VehiculoDTO getVechiculoDTO() {
+        return vechiculoDTO;
+    }
+
+    public void setVechiculoDTO(VehiculoDTO vechiculoDTO) {
+        this.vechiculoDTO = vechiculoDTO;
+    }
+
+    public VehiculoDTO getVehiculoDTO() {
+        return vehiculoDTO;
+    }
+
+    public void setVehiculoDTO(VehiculoDTO vehiculoDTO) {
+        this.vehiculoDTO = vehiculoDTO;
+    }
+
     
 }

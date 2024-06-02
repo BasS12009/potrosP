@@ -13,7 +13,7 @@ import java.util.Date;
  * @author caarl
  */
 public class Prestamo {
-    private String id;
+    private int id;
     private String motivo;
     private Date fechaInicio;
     private Date fechaFin;
@@ -31,7 +31,7 @@ public class Prestamo {
         this.vehiculo = vehiculo;
     }
 
-    public Prestamo(String id, String motivo, Date fechaInicio, Date fechaFin, Vehiculo vechiculo, Vehiculo vehiculo) {
+    public Prestamo(int id, String motivo, Date fechaInicio, Date fechaFin, Vehiculo vechiculo, Vehiculo vehiculo) {
         this.id = id;
         this.motivo = motivo;
         this.fechaInicio = fechaInicio;
@@ -40,11 +40,11 @@ public class Prestamo {
         this.vehiculo = vehiculo;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

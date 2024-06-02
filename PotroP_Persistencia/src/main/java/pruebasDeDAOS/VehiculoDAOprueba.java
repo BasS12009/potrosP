@@ -21,13 +21,13 @@ public class VehiculoDAOprueba {
             IVehiculoDAO vehiculoDAO = new VehiculoDAO();
 
             // Crear y agregar vehículos
-            Vehiculo vehiculo1 = new Vehiculo("1", "Toyota", "Corolla", 2020, "ccccssserrrr3333", "Sedan");
-            Vehiculo vehiculo2 = new Vehiculo("2", "Honda", "Civic", 2019, "olsd13444", "Sedan");
+            Vehiculo vehiculo1 = new Vehiculo(1, "Toyota", "Corolla", 2020, "ccccssserrrr3333", "Sedan");
+            Vehiculo vehiculo2 = new Vehiculo(2, "Honda", "Civic", 2019, "olsd13444", "Sedan");
             vehiculoDAO.agregar(vehiculo1);
             vehiculoDAO.agregar(vehiculo2);
 
             // Buscar y mostrar vehículo
-            Vehiculo encontrado = vehiculoDAO.buscarPorId("1");
+            Vehiculo encontrado = vehiculoDAO.buscarPorId(1);
             System.out.println("Vehículo encontrado: " + encontrado.getMarca() + " " + encontrado.getModelo());
 
             // Listar todos los vehículos
@@ -39,7 +39,7 @@ public class VehiculoDAOprueba {
             vehiculoDAO.actualizar(vehiculo1);
 
             // Eliminar vehículo
-            vehiculoDAO.eliminar("1");
+            //vehiculoDAO.eliminar(1);
 
         } catch (DAOException e) {
             System.err.println("Error: " + e.getMessage());

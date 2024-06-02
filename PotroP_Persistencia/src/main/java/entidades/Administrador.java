@@ -9,7 +9,7 @@ package entidades;
  * @author caarl
  */
 public class Administrador {
-    private String id;
+    private int id;
     private String correo;
     private String contraseña;
 
@@ -21,18 +21,18 @@ public class Administrador {
         this.contraseña = contraseña;
     }
 
-    public Administrador(String id, String correo, String contraseña) {
+    public Administrador(int id, String correo, String contraseña) {
         this.id = id;
         this.correo = correo;
         this.contraseña = contraseña;
     }
    
     // Getters y Setters
-    public String getId() {
+    public int getId() {
         return id;
     }
     
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     

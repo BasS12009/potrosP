@@ -24,9 +24,9 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     @Override
-    public void eliminar(String id) throws DAOException {
-        Prestamo prestamo = buscarPorId(id);
-        if (prestamo != null) {
+    public void eliminar(Prestamo prestamo) throws DAOException {
+        Prestamo prestamos = buscarPorId(prestamo.getId());
+        if (prestamos != null) {
             lista.remove(prestamo);
         } else {
             throw new DAOException("Prestamo no encontrado");
@@ -45,9 +45,9 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     @Override
-    public Prestamo buscarPorId(String id) throws DAOException {
+    public Prestamo buscarPorId(int id) throws DAOException {
         for (Prestamo prestamo : lista) {
-            if (prestamo.getId().equals(id)) {
+            if (prestamo.getId() == (id)) {
                 return prestamo;
             }
         }
