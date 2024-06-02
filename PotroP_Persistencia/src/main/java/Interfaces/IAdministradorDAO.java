@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author caarl
  */
+
 public interface IAdministradorDAO {
     
     public void agregar(Administrador administrador) throws DAOException;

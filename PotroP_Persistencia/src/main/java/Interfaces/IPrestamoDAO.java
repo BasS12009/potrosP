@@ -4,10 +4,18 @@
  */
 package Interfaces;
 
+import entidades.Prestamo;
+import excepciones.DAOException;
+import java.util.List;
 /**
  *
  * @author caarl
  */
+
 public interface IPrestamoDAO {
-    
+    void agregar(Prestamo prestamo) throws DAOException;
+    void eliminar(String id) throws DAOException;
+    void actualizar(Prestamo prestamo) throws DAOException;
+    Prestamo buscarPorId(String id) throws DAOException;
+    List<Prestamo> listaPrestamos() throws DAOException;
 }
