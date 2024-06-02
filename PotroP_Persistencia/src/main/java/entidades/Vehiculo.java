@@ -15,18 +15,20 @@ public class Vehiculo {
     private int año;
     private String placa;
     private String tipo;
-    private Chofer chofer;
+    
     
     // Constructores
-    public Vehiculo(String id, String marca, String modelo, int año, String placa, String tipo, Chofer chofer) {
+    public Vehiculo(String id, String marca, String modelo, int año, String placa, String tipo) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.año = año;
         this.placa = placa;
         this.tipo = tipo;
-        this.chofer = chofer;
+        
     }
+
+    
 
     public Vehiculo() {
     }
@@ -82,11 +84,5 @@ public class Vehiculo {
         this.tipo = tipo;
     }
     
-    public Chofer getChofer() {
-        return chofer;
-    }
     
-    public void setChofer(Chofer chofer) {
-        this.chofer = chofer;
-    }
 }
