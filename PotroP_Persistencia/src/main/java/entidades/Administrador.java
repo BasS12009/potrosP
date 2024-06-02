@@ -12,19 +12,21 @@ public class Administrador {
     private String id;
     private String correo;
     private String contraseña;
-    
-    // Constructores
+
+    public Administrador() {
+    }
+
+    public Administrador(String correo, String contraseña) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+    }
+
     public Administrador(String id, String correo, String contraseña) {
         this.id = id;
         this.correo = correo;
         this.contraseña = contraseña;
     }
-
-    public Administrador() {
-    }
-    
-    
-    
+   
     // Getters y Setters
     public String getId() {
         return id;

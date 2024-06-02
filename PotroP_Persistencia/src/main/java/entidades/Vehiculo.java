@@ -15,9 +15,18 @@ public class Vehiculo {
     private int año;
     private String placa;
     private String tipo;
-    
-    
-    // Constructores
+
+    public Vehiculo() {
+    }
+
+    public Vehiculo(String marca, String modelo, int año, String placa, String tipo) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.año = año;
+        this.placa = placa;
+        this.tipo = tipo;
+    }
+
     public Vehiculo(String id, String marca, String modelo, int año, String placa, String tipo) {
         this.id = id;
         this.marca = marca;
@@ -25,16 +34,8 @@ public class Vehiculo {
         this.año = año;
         this.placa = placa;
         this.tipo = tipo;
-        
     }
 
-    
-
-    public Vehiculo() {
-    }
-    
-    
-    
     // Getters y Setters
     public String getId() {
         return id;

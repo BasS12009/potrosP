@@ -4,7 +4,9 @@
  */
 package entidades;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
+
 
 /**
  *
@@ -13,93 +15,77 @@ import java.time.LocalDate;
 public class Prestamo {
     private String id;
     private String motivo;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
-    private String tipoVehiculo;
-    private String nombreSolicitante;
-    private String rutSolicitante;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private Vehiculo vechiculo;
     private Vehiculo vehiculo;
-    
-    // Constructores
-    public Prestamo(String id, String motivo, LocalDate fechaInicio, LocalDate fechaFin,
-                    String tipoVehiculo, String nombreSolicitante, String rutSolicitante, Vehiculo vehiculo) {
-        this.id = id;
-        this.motivo = motivo;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.tipoVehiculo = tipoVehiculo;
-        this.nombreSolicitante = nombreSolicitante;
-        this.rutSolicitante = rutSolicitante;
-        this.vehiculo = vehiculo;
-    }
 
     public Prestamo() {
     }
-    
-    
-    
-    // Getters y Setters
+
+    public Prestamo(String motivo, Date fechaInicio, Date fechaFin, Vehiculo vechiculo, Vehiculo vehiculo) {
+        this.motivo = motivo;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.vechiculo = vechiculo;
+        this.vehiculo = vehiculo;
+    }
+
+    public Prestamo(String id, String motivo, Date fechaInicio, Date fechaFin, Vehiculo vechiculo, Vehiculo vehiculo) {
+        this.id = id;
+        this.motivo = motivo;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.vechiculo = vechiculo;
+        this.vehiculo = vehiculo;
+    }
+
     public String getId() {
         return id;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public String getMotivo() {
         return motivo;
     }
-    
+
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
-    
-    public LocalDate getFechaInicio() {
+
+    public Date getFechaInicio() {
         return fechaInicio;
     }
-    
-    public void setFechaInicio(LocalDate fechaInicio) {
+
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
-    
-    public LocalDate getFechaFin() {
+
+    public Date getFechaFin() {
         return fechaFin;
     }
-    
-    public void setFechaFin(LocalDate fechaFin) {
+
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
+
+    public Vehiculo getVechiculo() {
+        return vechiculo;
     }
-    
-    public void setTipoVehiculo(String tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
+
+    public void setVechiculo(Vehiculo vechiculo) {
+        this.vechiculo = vechiculo;
     }
-    
-    public String getNombreSolicitante() {
-        return nombreSolicitante;
-    }
-    
-    public void setNombreSolicitante(String nombreSolicitante) {
-        this.nombreSolicitante = nombreSolicitante;
-    }
-    
-    public String getRutSolicitante() {
-        return rutSolicitante;
-    }
-    
-    public void setRutSolicitante(String rutSolicitante) {
-        this.rutSolicitante = rutSolicitante;
-    }
-    
+
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-    
+
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
+    
 }
