@@ -4,53 +4,90 @@
  */
 package BO;
 
+import Converters.PrestamoCVR;
 import DTO.PrestamoDTO;
 import Exceptions.BisnessException;
 import Interfaces.IPrestamoDAO;
 import daos.PrestamoDAO;
 import entidades.Prestamo;
 import excepciones.DAOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Esta clase implementa los elementos de IPrestamoDAO para su uso en capas
+ * posteriores.
  * @author diana
  */
 public class PrestamoBO {
     
-    private IPrestamoDAO prestamoDAO = new PrestamoDAO();
+    //inicializamos varibles de clase 
+    private IPrestamoDAO prestamoDAO; //instancia de la clase DAO
+    private PrestamoCVR prestamoCVR; //instancia de la clase de convertidores
 
+    /**
+     * Constructor que inicializa las variables de la clase.
+     */
+    public PrestamoBO() {
+        this.prestamoDAO = new PrestamoDAO();
+        this.prestamoCVR = new PrestamoCVR();
+    }
     
-    
-    public void agregar(Prestamo prestamo) throws BisnessException {
+    /**
+     * Metodo para agregar un nuevo prestamo.
+     * 
+     * @param prestamoDTO Objeto de tipo PrestamoDTO que deseamos agregar.
+     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
+     */
+    public void agregar(PrestamoDTO prestamoDTO) throws BisnessException {
        try{
-         this.prestamoDAO.agregar(prestamo);
+         // agregamos un prestamo convirtiendolo de DTO a Entidad.
+         this.prestamoDAO.agregar(prestamoCVR.convetir_Prestamo(prestamoDTO));
        }
        catch(DAOException e){
                throw  new BisnessException(e.getMessage());
        }
     }
 
-    
-    public void eliminar(Prestamo prestamo) throws BisnessException {
+    /**
+     * Metodo para eliminar un prestamo.
+     * 
+     * @param prestamoDTO Objeto de tipo PrestamoDTO que deseamos eliminar.
+     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
+     */
+    public void eliminar(PrestamoDTO prestamoDTO) throws BisnessException {
        try{
-         this.prestamoDAO.eliminar(prestamo);
+         //eliminamos un prestamo convirtiendolo de DTO a Entidad.
+         this.prestamoDAO.eliminar(prestamoCVR.convetir_Prestamo(prestamoDTO));
+       }
+       catch(DAOException e){
+               throw  new BisnessException(e.getMessage());
+       }
+    }
+ 
+    /**
+     * Metodo para actualizar un Prestamo.
+     * 
+     * @param prestamoDTO Objeto de tipo PrestamoDTO que deseamos actualizar.
+     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
+     */
+    public void actualizar(PrestamoDTO prestamoDTO) throws BisnessException {
+       try{
+        //actualizamos un prestamo convirtiendolo de DTO a Entidad.   
+        this.prestamoDAO.actualizar(prestamoCVR.convetir_Prestamo(prestamoDTO));
        }
        catch(DAOException e){
                throw  new BisnessException(e.getMessage());
        }
     }
 
-    public void actualizar(Prestamo prestamo) throws BisnessException {
-       try{
-        this.prestamoDAO.actualizar(prestamo);
-       }
-       catch(DAOException e){
-               throw  new BisnessException(e.getMessage());
-       }
-    }
-
-    
+    /**
+     * Metodo que nos permite obtener un prestamo buscandolo mediante su id.
+     * 
+     * @param id id del prestamo a buscar.
+     * @return Retorna un objeto de tipo Prestamo.
+     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
+     */
     public Prestamo buscarPorId(int id) throws BisnessException {
        try{
          return this.prestamoDAO.buscarPorId(id);
@@ -60,11 +97,25 @@ public class PrestamoBO {
        }
     }
 
-    
+    /**
+     * Metodo para obtener una lista de todos los prestamos echos.
+     * 
+     * @return Retorna una lista de objetos de tipo prestamo
+     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
+     */
     public List<PrestamoDTO> listaPrestamos() throws BisnessException {
         
-        for () {
-            
+        List<PrestamoDTO> lista = new ArrayList();
+        try{
+        List<Prestamo> listaPrestamos = prestamoDAO.listaPrestamos();
+        
+            for (int i = 0; i < listaPrestamos.size(); i++) {
+                lista.add(prestamoCVR.convertir_DTO(listaPrestamos.get(i)));
+            }
+        return lista;
+        }
+        catch(DAOException e){
+            throw new BisnessException(e.getMessage());
         }
     }
 

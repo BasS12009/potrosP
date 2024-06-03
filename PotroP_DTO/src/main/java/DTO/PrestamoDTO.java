@@ -4,7 +4,7 @@
  */
 package DTO;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -12,38 +12,35 @@ import java.util.Date;
  */
 public class PrestamoDTO {
     
-    private String idDTO;
+    private int idDTO;
     private String motivoDTO;
-    private Date fechaInicioDTO;
-    private Date fechaFinDTO;
+    private LocalDate InicioDTO;
+    private LocalDate FinDTO;
     private VehiculoDTO vechiculoDTO;
-    private VehiculoDTO vehiculoDTO;
 
     public PrestamoDTO() {
     }
 
-    public PrestamoDTO(String motivoDTO, Date fechaInicioDTO, Date fechaFinDTO, VehiculoDTO vechiculoDTO, VehiculoDTO vehiculoDTO) {
+    public PrestamoDTO(String motivoDTO, LocalDate InicioDTO, LocalDate FinDTO, VehiculoDTO vechiculoDTO) {
         this.motivoDTO = motivoDTO;
-        this.fechaInicioDTO = fechaInicioDTO;
-        this.fechaFinDTO = fechaFinDTO;
+        this.InicioDTO = InicioDTO;
+        this.FinDTO = FinDTO;
         this.vechiculoDTO = vechiculoDTO;
-        this.vehiculoDTO = vehiculoDTO;
     }
 
-    public PrestamoDTO(String idDTO, String motivoDTO, Date fechaInicioDTO, Date fechaFinDTO, VehiculoDTO vechiculoDTO, VehiculoDTO vehiculoDTO) {
+    public PrestamoDTO(int idDTO, String motivoDTO, LocalDate InicioDTO, LocalDate FinDTO, VehiculoDTO vechiculoDTO) {
         this.idDTO = idDTO;
         this.motivoDTO = motivoDTO;
-        this.fechaInicioDTO = fechaInicioDTO;
-        this.fechaFinDTO = fechaFinDTO;
+        this.InicioDTO = InicioDTO;
+        this.FinDTO = FinDTO;
         this.vechiculoDTO = vechiculoDTO;
-        this.vehiculoDTO = vehiculoDTO;
     }
 
-    public String getIdDTO() {
+    public int getIdDTO() {
         return idDTO;
     }
 
-    public void setIdDTO(String idDTO) {
+    public void setIdDTO(int idDTO) {
         this.idDTO = idDTO;
     }
 
@@ -55,20 +52,20 @@ public class PrestamoDTO {
         this.motivoDTO = motivoDTO;
     }
 
-    public Date getFechaInicioDTO() {
-        return fechaInicioDTO;
+    public LocalDate getInicioDTO() {
+        return InicioDTO;
     }
 
-    public void setFechaInicioDTO(Date fechaInicioDTO) {
-        this.fechaInicioDTO = fechaInicioDTO;
+    public void setInicioDTO(LocalDate InicioDTO) {
+        this.InicioDTO = InicioDTO;
     }
 
-    public Date getFechaFinDTO() {
-        return fechaFinDTO;
+    public LocalDate getFinDTO() {
+        return FinDTO;
     }
 
-    public void setFechaFinDTO(Date fechaFinDTO) {
-        this.fechaFinDTO = fechaFinDTO;
+    public void setFinDTO(LocalDate FinDTO) {
+        this.FinDTO = FinDTO;
     }
 
     public VehiculoDTO getVechiculoDTO() {
@@ -77,14 +74,6 @@ public class PrestamoDTO {
 
     public void setVechiculoDTO(VehiculoDTO vechiculoDTO) {
         this.vechiculoDTO = vechiculoDTO;
-    }
-
-    public VehiculoDTO getVehiculoDTO() {
-        return vehiculoDTO;
-    }
-
-    public void setVehiculoDTO(VehiculoDTO vehiculoDTO) {
-        this.vehiculoDTO = vehiculoDTO;
     }
 
     

@@ -21,6 +21,8 @@ public class AdministradorCVR {
     
     public AdministradorDTO convertir_DTO(Administrador administrador){
         int id = administrador.getId();
-        
+        String correo = administrador.getCorreo();
+        String contraseña = administrador.getContraseña();
+        return new AdministradorDTO(id, correo, contraseña);
     }
 }

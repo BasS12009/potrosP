@@ -9,12 +9,12 @@ package DTO;
  * @author diana
  */
 public class VehiculoDTO {
-    private String idDTO;
+    private int idDTO;
     private String marcaDTO;
     private String modeloDTO;
     private int añoDTO;
     private String placaDTO;
-    private String tipoDTO;
+    
 
     public VehiculoDTO() {
     }
@@ -24,23 +24,21 @@ public class VehiculoDTO {
         this.modeloDTO = modeloDTO;
         this.añoDTO = añoDTO;
         this.placaDTO = placaDTO;
-        this.tipoDTO = tipoDTO;
     }
 
-    public VehiculoDTO(String idDTO, String marcaDTO, String modeloDTO, int añoDTO, String placaDTO, String tipoDTO) {
+    public VehiculoDTO(int idDTO, String marcaDTO, String modeloDTO, int añoDTO, String placaDTO) {
         this.idDTO = idDTO;
         this.marcaDTO = marcaDTO;
         this.modeloDTO = modeloDTO;
         this.añoDTO = añoDTO;
         this.placaDTO = placaDTO;
-        this.tipoDTO = tipoDTO;
     }
 
-    public String getIdDTO() {
+    public int getIdDTO() {
         return idDTO;
     }
 
-    public void setIdDTO(String idDTO) {
+    public void setIdDTO(int idDTO) {
         this.idDTO = idDTO;
     }
 
@@ -74,14 +72,6 @@ public class VehiculoDTO {
 
     public void setPlacaDTO(String placaDTO) {
         this.placaDTO = placaDTO;
-    }
-
-    public String getTipoDTO() {
-        return tipoDTO;
-    }
-
-    public void setTipoDTO(String tipoDTO) {
-        this.tipoDTO = tipoDTO;
     }
 
 }

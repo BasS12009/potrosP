@@ -10,7 +10,7 @@ package DTO;
  */
 public class AdministradorDTO {
     
-    private String idDTO;
+    private int idDTO;
     private String correoDTO;
     private String contraseñaDTO;
 
@@ -22,17 +22,17 @@ public class AdministradorDTO {
         this.contraseñaDTO = contraseñaDTO;
     }
 
-    public AdministradorDTO(String idDTO, String correoDTO, String contraseñaDTO) {
+    public AdministradorDTO(int idDTO, String correoDTO, String contraseñaDTO) {
         this.idDTO = idDTO;
         this.correoDTO = correoDTO;
         this.contraseñaDTO = contraseñaDTO;
     }
 
-    public String getIdDTO() {
+    public int getIdDTO() {
         return idDTO;
     }
 
-    public void setIdDTO(String idDTO) {
+    public void setIdDTO(int idDTO) {
         this.idDTO = idDTO;
     }
 

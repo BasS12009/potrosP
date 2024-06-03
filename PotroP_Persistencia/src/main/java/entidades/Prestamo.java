@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -15,28 +16,25 @@ import java.util.Date;
 public class Prestamo {
     private int id;
     private String motivo;
-    private Date fechaInicio;
-    private Date fechaFin;
-    private Vehiculo vechiculo;
+    private LocalDate Inicio;
+    private LocalDate Fin;
     private Vehiculo vehiculo;
 
     public Prestamo() {
     }
 
-    public Prestamo(String motivo, Date fechaInicio, Date fechaFin, Vehiculo vechiculo, Vehiculo vehiculo) {
+    public Prestamo(String motivo, LocalDate Inicio, LocalDate Fin, Vehiculo vehiculo) {
         this.motivo = motivo;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.vechiculo = vechiculo;
+        this.Inicio = Inicio;
+        this.Fin = Fin;
         this.vehiculo = vehiculo;
     }
 
-    public Prestamo(int id, String motivo, Date fechaInicio, Date fechaFin, Vehiculo vechiculo, Vehiculo vehiculo) {
+    public Prestamo(int id, String motivo, LocalDate Inicio, LocalDate Fin, Vehiculo vehiculo) {
         this.id = id;
         this.motivo = motivo;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.vechiculo = vechiculo;
+        this.Inicio = Inicio;
+        this.Fin = Fin;
         this.vehiculo = vehiculo;
     }
 
@@ -56,28 +54,20 @@ public class Prestamo {
         this.motivo = motivo;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public LocalDate getFechaInicio() {
+        return Inicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.Inicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
+    public LocalDate getFechaFin() {
+        return Fin;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public Vehiculo getVechiculo() {
-        return vechiculo;
-    }
-
-    public void setVechiculo(Vehiculo vechiculo) {
-        this.vechiculo = vechiculo;
+    public void setFechaFin(LocalDate fechaFin) {
+        this.Fin = fechaFin;
     }
 
     public Vehiculo getVehiculo() {

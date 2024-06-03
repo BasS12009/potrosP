@@ -27,8 +27,8 @@ public class PrestamoDAOprueba {
             IVehiculoDAO vehiculoDAO = new VehiculoDAO();
 
             // Crear y agregar vehículos
-            Vehiculo vehiculo1 = new Vehiculo(1, "Toyota", "Corolla", 2020, "ccccssserrrr3333", "Sedan");
-            Vehiculo vehiculo2 = new Vehiculo(2, "Honda", "Civic", 2019, "olsd13444", "Sedan");
+            Vehiculo vehiculo1 = new Vehiculo(1, "Toyota", "Corolla", 2020, "ccccssser3333");
+            Vehiculo vehiculo2 = new Vehiculo(2, "Honda", "Civic", 2019, "olsd13444");
             vehiculoDAO.agregar(vehiculo1);
             vehiculoDAO.agregar(vehiculo2);
 
@@ -37,10 +37,10 @@ public class PrestamoDAOprueba {
             Date fechaInicio = calendar.getTime();
             calendar.add(Calendar.DAY_OF_YEAR, 7); // Añadir 7 días
             Date fechaFin = calendar.getTime();
-            Prestamo prestamo1 = new Prestamo(1, "Viaje", fechaInicio, fechaFin, vehiculo1, vehiculo1);
-            Prestamo prestamo2 = new Prestamo(2, "Negocios", fechaInicio, fechaFin, vehiculo2, vehiculo2);
-            prestamoDAO.agregar(prestamo1);
-            prestamoDAO.agregar(prestamo2);
+            //Prestamo prestamo1 = new Prestamo(1, "Viaje", fechaInicio, fechaFin, vehiculo1);
+            //Prestamo prestamo2 = new Prestamo(2, "Negocios", fechaInicio, fechaFin, vehiculo2);
+            //prestamoDAO.agregar(prestamo1);
+            //prestamoDAO.agregar(prestamo2);
 
             // Buscar y mostrar préstamo
             Prestamo encontrado = prestamoDAO.buscarPorId(1);
@@ -55,8 +55,8 @@ public class PrestamoDAOprueba {
             }
 
             // Actualizar préstamo
-            prestamo1.setMotivo("Vacaciones");
-            prestamoDAO.actualizar(prestamo1);
+            //prestamo1.setMotivo("Vacaciones");
+            //prestamoDAO.actualizar(prestamo1);
 
             // Eliminar préstamo
             //prestamoDAO.eliminar(2);

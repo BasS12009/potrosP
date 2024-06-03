@@ -21,8 +21,8 @@ public class VehiculoDAOprueba {
             IVehiculoDAO vehiculoDAO = new VehiculoDAO();
 
             // Crear y agregar vehículos
-            Vehiculo vehiculo1 = new Vehiculo(1, "Toyota", "Corolla", 2020, "ccccssserrrr3333", "Sedan");
-            Vehiculo vehiculo2 = new Vehiculo(2, "Honda", "Civic", 2019, "olsd13444", "Sedan");
+            Vehiculo vehiculo1 = new Vehiculo(1, "Toyota", "Corolla", 2020, "ccccssserrrr3333");
+            Vehiculo vehiculo2 = new Vehiculo(2, "Honda", "Civic", 2019, "olsd13444");
             vehiculoDAO.agregar(vehiculo1);
             vehiculoDAO.agregar(vehiculo2);
 

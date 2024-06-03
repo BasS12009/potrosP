@@ -14,26 +14,23 @@ public class Vehiculo {
     private String modelo;
     private int año;
     private String placa;
-    private String tipo;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String marca, String modelo, int año, String placa, String tipo) {
+    public Vehiculo(String marca, String modelo, int año, String placa) {
         this.marca = marca;
         this.modelo = modelo;
         this.año = año;
         this.placa = placa;
-        this.tipo = tipo;
     }
 
-    public Vehiculo(int id, String marca, String modelo, int año, String placa, String tipo) {
+    public Vehiculo(int id, String marca, String modelo, int año, String placa) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.año = año;
         this.placa = placa;
-        this.tipo = tipo;
     }
 
     // Getters y Setters
@@ -76,14 +73,5 @@ public class Vehiculo {
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-    
-    public String getTipo() {
-        return tipo;
-    }
-    
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
     
 }
