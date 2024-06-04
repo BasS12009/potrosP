@@ -15,6 +15,8 @@ public class HistorialPrestamo extends javax.swing.JFrame {
      */
     public HistorialPrestamo() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        this.setSize(670, 550);
     }
 
     /**
