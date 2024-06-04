@@ -34,7 +34,7 @@ public class LogIn extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        bttIniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,10 +57,15 @@ public class LogIn extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
         jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 210, 30));
 
-        jButton1.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jButton1.setText("Iniciar Sesion");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 150, 30));
+        bttIniciarSesion.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        bttIniciarSesion.setText("Iniciar Sesion");
+        bttIniciarSesion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bttIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttIniciarSesionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bttIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 150, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoPotroSinFondo (1).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 150, 170));
@@ -78,6 +83,13 @@ public class LogIn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIniciarSesionActionPerformed
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bttIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,7 +127,7 @@ public class LogIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bttIniciarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

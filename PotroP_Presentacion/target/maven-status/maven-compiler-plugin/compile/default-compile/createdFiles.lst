@@ -8,6 +8,7 @@ GUI\Menu$2.class
 GUI\HistorialPrestamo$2.class
 GUI\Prestamo$3.class
 GUI\Prestamo.class
+GUI\LogIn$2.class
 GUI\Choferes$1.class
 GUI\AgregarVehiculo$1.class
 GUI\Traslado.class
@@ -21,4 +22,3 @@ GUI\LogIn.class
 GUI\Choferes.class
 GUI\Menu$1.class
 GUI\Menu.class
-com\mycompany\cuvehiculo_preseentacion\CUVehiculo_Preseentacion.class
