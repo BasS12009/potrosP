@@ -42,9 +42,9 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        bttComprobar = new javax.swing.JButton();
-        bttRegresar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnComprobar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnSolicitarPrestamo = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,30 +92,30 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
 
-        bttComprobar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        bttComprobar.setText("Comprobar");
-        bttComprobar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(bttComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 100, 30));
+        btnComprobar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        btnComprobar.setText("Comprobar");
+        btnComprobar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(btnComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 100, 30));
 
-        bttRegresar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        bttRegresar.setText("Regresar");
-        bttRegresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        bttRegresar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttRegresarActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(bttRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 100, 30));
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 130, 30));
 
-        jButton3.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        jButton3.setText("Solicitar Prestamo");
-        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSolicitarPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        btnSolicitarPrestamo.setText("Solicitar Prestamo");
+        btnSolicitarPrestamo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnSolicitarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSolicitarPrestamoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 140, 30));
+        jPanel1.add(btnSolicitarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 140, 30));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 680, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,23 +126,23 @@ public class Prestamo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSolicitarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarPrestamoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnSolicitarPrestamoActionPerformed
 
-    private void bttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegresarActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
          Menu menu = new Menu();
 
         menu.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_bttRegresarActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,9 +180,9 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttComprobar;
-    private javax.swing.JButton bttRegresar;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnComprobar;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnSolicitarPrestamo;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;

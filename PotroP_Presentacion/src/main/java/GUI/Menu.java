@@ -30,13 +30,15 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        bttPrestamo = new javax.swing.JButton();
-        bttTraslado = new javax.swing.JButton();
-        bttDevolucionPrestamo = new javax.swing.JButton();
-        bttDevolucionTraslado = new javax.swing.JButton();
-        bttAgregarVehiculo = new javax.swing.JButton();
-        bttConsultarChoferes = new javax.swing.JButton();
+        btnPrestamo = new javax.swing.JButton();
+        btnSolicitarTraslado = new javax.swing.JButton();
+        btnDevolucionPrestamo = new javax.swing.JButton();
+        btnDevolucionTraslado = new javax.swing.JButton();
+        btnAgregarVehiculo = new javax.swing.JButton();
+        btnConsultarChoferes = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        btnDisponibilidad1 = new javax.swing.JButton();
+        btnHistorialPrestamos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,37 +47,81 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 36)); // NOI18N
         jLabel1.setText("Menu");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
 
-        bttPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        bttPrestamo.setText("Solicitar Prestamo");
-        bttPrestamo.addActionListener(new java.awt.event.ActionListener() {
+        btnPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnPrestamo.setText("Solicitar Prestamo");
+        btnPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttPrestamoActionPerformed(evt);
+                btnPrestamoActionPerformed(evt);
             }
         });
-        jPanel1.add(bttPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 210, 50));
+        jPanel1.add(btnPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 210, 50));
 
-        bttTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        bttTraslado.setText("Solicitar Traslado");
-        jPanel1.add(bttTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 210, 50));
+        btnSolicitarTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnSolicitarTraslado.setText("Solicitar Traslado");
+        btnSolicitarTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitarTrasladoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSolicitarTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 210, 50));
 
-        bttDevolucionPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        bttDevolucionPrestamo.setText("Devolucion Prestamo");
-        jPanel1.add(bttDevolucionPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, 50));
+        btnDevolucionPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnDevolucionPrestamo.setText("Devolucion Prestamo");
+        btnDevolucionPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolucionPrestamoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDevolucionPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, 50));
 
-        bttDevolucionTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        bttDevolucionTraslado.setText("Devolucion Traslado");
-        jPanel1.add(bttDevolucionTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 210, 50));
+        btnDevolucionTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnDevolucionTraslado.setText("Devolucion Traslado");
+        jPanel1.add(btnDevolucionTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 210, 50));
 
-        bttAgregarVehiculo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        bttAgregarVehiculo.setText("Agregar Vehiculo");
-        jPanel1.add(bttAgregarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 210, 50));
+        btnAgregarVehiculo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnAgregarVehiculo.setText("Agregar Vehiculo");
+        btnAgregarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarVehiculoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 210, 50));
 
-        bttConsultarChoferes.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        bttConsultarChoferes.setText("Consultar Choferes");
-        jPanel1.add(bttConsultarChoferes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 210, 50));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 670, 40));
+        btnConsultarChoferes.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnConsultarChoferes.setText("Consultar Choferes");
+        btnConsultarChoferes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarChoferesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConsultarChoferes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 210, 50));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 670, 40));
+
+        btnDisponibilidad1.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        btnDisponibilidad1.setForeground(new java.awt.Color(255, 255, 255));
+        btnDisponibilidad1.setText("Disponibilidad");
+        btnDisponibilidad1.setBorder(null);
+        btnDisponibilidad1.setContentAreaFilled(false);
+        btnDisponibilidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisponibilidad1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDisponibilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 30));
+
+        btnHistorialPrestamos.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        btnHistorialPrestamos.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorialPrestamos.setText("Historial Prestamos");
+        btnHistorialPrestamos.setBorder(null);
+        btnHistorialPrestamos.setContentAreaFilled(false);
+        btnHistorialPrestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialPrestamosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnHistorialPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,13 +137,64 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bttPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPrestamoActionPerformed
+    private void btnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestamoActionPerformed
         // TODO add your handling code here:
        Prestamo prestamo = new Prestamo();
 
         prestamo.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_bttPrestamoActionPerformed
+    }//GEN-LAST:event_btnPrestamoActionPerformed
+
+    private void btnDevolucionPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionPrestamoActionPerformed
+        // TODO add your handling code here:
+        DevolucionPrestamo devolucionPrestamo = new DevolucionPrestamo();
+        
+        devolucionPrestamo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDevolucionPrestamoActionPerformed
+
+    private void btnSolicitarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarTrasladoActionPerformed
+        // TODO add your handling code here:
+        Traslado traslado = new Traslado();
+       
+        traslado.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSolicitarTrasladoActionPerformed
+
+    private void btnAgregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculoActionPerformed
+        // TODO add your handling code here:
+        
+        AgregarVehiculo agregarVehiculo = new AgregarVehiculo();
+        
+        agregarVehiculo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarVehiculoActionPerformed
+
+    private void btnConsultarChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarChoferesActionPerformed
+        // TODO add your handling code here:
+       Choferes choferes = new Choferes();
+       
+       choferes.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_btnConsultarChoferesActionPerformed
+
+    private void btnHistorialPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialPrestamosActionPerformed
+        // TODO add your handling code here:
+
+        HistorialPrestamo historialPrestamo = new HistorialPrestamo();
+        
+        historialPrestamo.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnHistorialPrestamosActionPerformed
+
+    private void btnDisponibilidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidad1ActionPerformed
+        // TODO add your handling code here:
+        Disponibilidad disponibilidad = new Disponibilidad();
+        
+        disponibilidad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDisponibilidad1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,12 +232,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttAgregarVehiculo;
-    private javax.swing.JButton bttConsultarChoferes;
-    private javax.swing.JButton bttDevolucionPrestamo;
-    private javax.swing.JButton bttDevolucionTraslado;
-    private javax.swing.JButton bttPrestamo;
-    private javax.swing.JButton bttTraslado;
+    private javax.swing.JButton btnAgregarVehiculo;
+    private javax.swing.JButton btnConsultarChoferes;
+    private javax.swing.JButton btnDevolucionPrestamo;
+    private javax.swing.JButton btnDevolucionTraslado;
+    private javax.swing.JButton btnDisponibilidad1;
+    private javax.swing.JButton btnHistorialPrestamos;
+    private javax.swing.JButton btnPrestamo;
+    private javax.swing.JButton btnSolicitarTraslado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
