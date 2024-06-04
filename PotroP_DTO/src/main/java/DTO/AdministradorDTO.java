@@ -10,47 +10,41 @@ package DTO;
  */
 public class AdministradorDTO {
     
-    private int idDTO;
-    private String correoDTO;
-    private String contraseñaDTO;
+    private int id;
+    private String correo;
+    private String contraseña;
 
     public AdministradorDTO() {
     }
 
-    public AdministradorDTO(String correoDTO, String contraseñaDTO) {
-        this.correoDTO = correoDTO;
-        this.contraseñaDTO = contraseñaDTO;
+    public AdministradorDTO(int id, String correo, String contraseña) {
+        this.id = id;
+        this.correo = correo;
+        this.contraseña = contraseña;
     }
 
-    public AdministradorDTO(int idDTO, String correoDTO, String contraseñaDTO) {
-        this.idDTO = idDTO;
-        this.correoDTO = correoDTO;
-        this.contraseñaDTO = contraseñaDTO;
+    public int getId() {
+        return id;
     }
 
-    public int getIdDTO() {
-        return idDTO;
+    public void setId(int idDTO) {
+        this.id = id;
     }
 
-    public void setIdDTO(int idDTO) {
-        this.idDTO = idDTO;
+    public String getCorreo() {
+        return correo;
     }
 
-    public String getCorreoDTO() {
-        return correoDTO;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public void setCorreoDTO(String correoDTO) {
-        this.correoDTO = correoDTO;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public String getContraseñaDTO() {
-        return contraseñaDTO;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
-
-    public void setContraseñaDTO(String contraseñaDTO) {
-        this.contraseñaDTO = contraseñaDTO;
-    }
-
-    
 }
+    
