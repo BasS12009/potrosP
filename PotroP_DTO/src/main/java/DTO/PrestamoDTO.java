@@ -12,60 +12,54 @@ import java.time.LocalDate;
  */
 public class PrestamoDTO {
     
-    private int idDTO;
-    private String motivoDTO;
-    private LocalDate InicioDTO;
-    private LocalDate FinDTO;
+    private int id;
+    private String motivo;
+    private LocalDate Inicio;
+    private LocalDate Fin;
     private VehiculoDTO vechiculoDTO;
 
     public PrestamoDTO() {
     }
 
-    public PrestamoDTO(String motivoDTO, LocalDate InicioDTO, LocalDate FinDTO, VehiculoDTO vechiculoDTO) {
-        this.motivoDTO = motivoDTO;
-        this.InicioDTO = InicioDTO;
-        this.FinDTO = FinDTO;
+    public PrestamoDTO(int id, String motivo, LocalDate Inicio, LocalDate Fin, VehiculoDTO vechiculoDTO) {
+        this.id = id;
+        this.motivo = motivo;
+        this.Inicio = Inicio;
+        this.Fin = Fin;
         this.vechiculoDTO = vechiculoDTO;
     }
+    
 
-    public PrestamoDTO(int idDTO, String motivoDTO, LocalDate InicioDTO, LocalDate FinDTO, VehiculoDTO vechiculoDTO) {
-        this.idDTO = idDTO;
-        this.motivoDTO = motivoDTO;
-        this.InicioDTO = InicioDTO;
-        this.FinDTO = FinDTO;
-        this.vechiculoDTO = vechiculoDTO;
+    public int getId() {
+        return id;
     }
 
-    public int getIdDTO() {
-        return idDTO;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setIdDTO(int idDTO) {
-        this.idDTO = idDTO;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public String getMotivoDTO() {
-        return motivoDTO;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
-    public void setMotivoDTO(String motivoDTO) {
-        this.motivoDTO = motivoDTO;
+    public LocalDate getInicio() {
+        return Inicio;
     }
 
-    public LocalDate getInicioDTO() {
-        return InicioDTO;
+    public void setInicio(LocalDate Inicio) {
+        this.Inicio = Inicio;
     }
 
-    public void setInicioDTO(LocalDate InicioDTO) {
-        this.InicioDTO = InicioDTO;
+    public LocalDate getFin() {
+        return Fin;
     }
 
-    public LocalDate getFinDTO() {
-        return FinDTO;
-    }
-
-    public void setFinDTO(LocalDate FinDTO) {
-        this.FinDTO = FinDTO;
+    public void setFin(LocalDate Fin) {
+        this.Fin = Fin;
     }
 
     public VehiculoDTO getVechiculoDTO() {
@@ -76,5 +70,4 @@ public class PrestamoDTO {
         this.vechiculoDTO = vechiculoDTO;
     }
 
-    
 }

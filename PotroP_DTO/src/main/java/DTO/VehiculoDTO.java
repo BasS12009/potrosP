@@ -9,69 +9,63 @@ package DTO;
  * @author diana
  */
 public class VehiculoDTO {
-    private int idDTO;
-    private String marcaDTO;
-    private String modeloDTO;
-    private int añoDTO;
-    private String placaDTO;
+    private int id;
+    private String marca;
+    private String modelo;
+    private int año;
+    private String placa;
     
 
     public VehiculoDTO() {
     }
 
-    public VehiculoDTO(String marcaDTO, String modeloDTO, int añoDTO, String placaDTO, String tipoDTO) {
-        this.marcaDTO = marcaDTO;
-        this.modeloDTO = modeloDTO;
-        this.añoDTO = añoDTO;
-        this.placaDTO = placaDTO;
+    public VehiculoDTO(int id, String marca, String modelo, int año, String placa) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.año = año;
+        this.placa = placa;
     }
 
-    public VehiculoDTO(int idDTO, String marcaDTO, String modeloDTO, int añoDTO, String placaDTO) {
-        this.idDTO = idDTO;
-        this.marcaDTO = marcaDTO;
-        this.modeloDTO = modeloDTO;
-        this.añoDTO = añoDTO;
-        this.placaDTO = placaDTO;
+    public int getId() {
+        return id;
     }
 
-    public int getIdDTO() {
-        return idDTO;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setIdDTO(int idDTO) {
-        this.idDTO = idDTO;
+    public String getMarca() {
+        return marca;
     }
 
-    public String getMarcaDTO() {
-        return marcaDTO;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public void setMarcaDTO(String marcaDTO) {
-        this.marcaDTO = marcaDTO;
+    public String getModelo() {
+        return modelo;
     }
 
-    public String getModeloDTO() {
-        return modeloDTO;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
-    public void setModeloDTO(String modeloDTO) {
-        this.modeloDTO = modeloDTO;
+    public int getAño() {
+        return año;
     }
 
-    public int getAñoDTO() {
-        return añoDTO;
+    public void setAño(int año) {
+        this.año = año;
     }
 
-    public void setAñoDTO(int añoDTO) {
-        this.añoDTO = añoDTO;
+    public String getPlaca() {
+        return placa;
     }
 
-    public String getPlacaDTO() {
-        return placaDTO;
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
-    public void setPlacaDTO(String placaDTO) {
-        this.placaDTO = placaDTO;
-    }
-
+   
 }
