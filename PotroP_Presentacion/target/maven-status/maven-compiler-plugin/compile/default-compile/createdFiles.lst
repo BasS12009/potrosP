@@ -1,10 +1,10 @@
-GUI\Prestamo$7.class
 GUI\HistorialPrestamo$3.class
 GUI\HistorialPrestamo.class
 GUI\LogIn$1.class
 GUI\DevolucionPrestamo.class
 GUI\Disponibilidad$3.class
 GUI\Prestamo$2.class
+prueba\NewMain.class
 GUI\Prestamo$5.class
 GUI\DevolucionTraslado.class
 GUI\Menu$4.class
@@ -18,7 +18,6 @@ GUI\LogIn$2.class
 GUI\Menu$5.class
 GUI\Choferes$1.class
 GUI\AgregarVehiculo$1.class
-GUI\Prestamo$6.class
 GUI\Traslado.class
 GUI\DevolucionPrestamo$1.class
 GUI\Prestamo$1.class

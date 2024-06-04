@@ -14,44 +14,32 @@ import java.awt.event.KeyEvent;
  * @author diana
  */
 public class Prestamo extends javax.swing.JFrame {
+    
 
+
+    
     /**
      * Creates new form Prestamo
      */
     public Prestamo() {
         initComponents();
+     ocultartabla();
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);
-         // Inicialmente ocultar la tabla
-        jPanel2.setVisible(false);
 
-        // Agregar el evento al botón Comprobar
-        btnComprobar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showTable();
-            }
-        });
+       
+    }
 
-        // Agregar el evento al campo de texto para esconder la tabla cuando se ingresa un ID
-        btnID.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                checkInput();
-            }
-        });
+    private void ocultartabla() {
+          scrolLTBLDATOS.setVisible(false);
+        tblDATOS.setVisible(false);
     }
 
     private void showTable() {
-        jPanel2.setVisible(true);
+        tblDATOS.setVisible(true);
+        scrolLTBLDATOS.setVisible(true);
     }
 
-    private void checkInput() {
-        String input = btnID.getText();
-        if (!input.isEmpty()) {
-            jPanel2.setVisible(false);
-        }
-    }
                 
 
     /**
@@ -74,20 +62,17 @@ public class Prestamo extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        btnID = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
         btnComprobar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnSolicitarPrestamo = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaDatos = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
+        scrolLTBLDATOS = new javax.swing.JScrollPane();
+        tblDATOS = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(670, 550));
 
         jPanel1.setBackground(new java.awt.Color(65, 164, 205));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,20 +107,25 @@ public class Prestamo extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
 
-        jLabel8.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jLabel8.setText("ID:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+        lblID.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        lblID.setText("ID:");
+        jPanel1.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
 
-        btnID.addActionListener(new java.awt.event.ActionListener() {
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIDActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
-        jPanel1.add(btnID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
 
         btnComprobar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnComprobar.setText("Comprobar");
         btnComprobar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprobarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 100, 30));
 
         btnRegresar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
@@ -160,52 +150,33 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 680, 40));
 
         jLabel9.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jLabel9.setText("Comprobante de identidad");
+        jLabel9.setText("Comprobante de identidad:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(65, 164, 205));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+        tblDATOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Rol"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class
-            };
+        ));
+        scrolLTBLDATOS.setViewportView(tblDATOS);
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(TablaDatos);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 310, 220));
-
-        jLabel7.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jLabel7.setText("Comprobante de identidad:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel1.add(scrolLTBLDATOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 290, 200));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -223,9 +194,20 @@ public class Prestamo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIDActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIDActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
+        // TODO add your handling code here:
+        
+        //dentro del IF
+        txtID.setVisible(false);
+        lblID.setVisible(false);
+        btnComprobar.setVisible(false);
+        
+        showTable();
+    }//GEN-LAST:event_btnComprobarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,9 +245,7 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaDatos;
     private javax.swing.JButton btnComprobar;
-    private javax.swing.JTextField btnID;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSolicitarPrestamo;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -277,13 +257,13 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JScrollPane scrolLTBLDATOS;
+    private javax.swing.JTable tblDATOS;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
