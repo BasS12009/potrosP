@@ -13,12 +13,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>PotroP_DTO</artifactId>
+            <artifactId>itson</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>itson</artifactId>
+            <artifactId>PotroP_DTO</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

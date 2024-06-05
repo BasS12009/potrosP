@@ -17,6 +17,11 @@ public class AdministradorDTO {
     public AdministradorDTO() {
     }
 
+    public AdministradorDTO(String correo, String contraseña) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+    }
+
     public AdministradorDTO(int id, String correo, String contraseña) {
         this.id = id;
         this.correo = correo;

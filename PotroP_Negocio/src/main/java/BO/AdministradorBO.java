@@ -2,67 +2,75 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package BO;
 
 import Converters.AdministradorCVR;
 import DTO.AdministradorDTO;
+import Excepcion.PersistenciaException;
 import Exceptions.BisnessException;
-import Interfaces.IAdministradorDAO;
-import daos.AdministradorDAO;
-import entidades.Administrador;
-import excepciones.DAOException;
-import java.util.ArrayList;
-import java.util.List;
+import dao.AdministradorDAO;
+import interfaces.IAdministradorBO;
+import interfaces.IAdministradorDAO;
 
 /**
  * Esta clase implementa los elementos de IAdministradorDAO para su uso en capas
  * posteriores.
  * @author skevi
  */
-public class AdministradorBO {
+public class AdministradorBO implements IAdministradorBO{
     
     //Inicializamos las variables de la clase.
-    private IAdministradorDAO administradorDAO;
-    private AdministradorCVR administradorCVR;
+    private final IAdministradorDAO administradorDAO;
+    private final AdministradorCVR administradorCVR;
 
     //Constructor de la clase.
     public AdministradorBO() {
         this.administradorDAO = new AdministradorDAO();
         this.administradorCVR = new AdministradorCVR();      
     }
-    
+
     /**
-     * Metodo para agregar un nuevo Administrador.
      * 
-     * @param administradorDTO objeto de tipo AdministradorDTO a agregar.
-     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
+     * @param administradorDTO
+     * @throws BisnessException 
      */
-    public void agregar(AdministradorDTO administradorDTO) throws BisnessException{
+    @Override
+    public void registrar(AdministradorDTO administradorDTO) throws BisnessException {
         try{
-            this.administradorDAO.agregar(this.administradorCVR.convertir_Entidad(administradorDTO));
-        }
-        catch(DAOException e){
-            throw new BisnessException(e.getMessage());
-        }
-    }
-    
-    /**
-     * Metodo que nos devuelve una lista con todos los administradores.
-     * 
-     * @return Lista de administradores.
-     * @throws BisnessException arroja una excepcion proveniente de la clase DAO
-     */
-    public List<AdministradorDTO> listaAdministradores()throws BisnessException{
-        List<AdministradorDTO> listaDTO = new ArrayList();
-        try{
-            List<Administrador> lista = this.administradorDAO.listaAdministradores();
-            for (int i = 0; i < lista.size(); i++) {
-                listaDTO.add(this.administradorCVR.convertir_DTO(lista.get(i)));
+            if (administradorDTO == null) {
+                throw new BisnessException("Administrador nulo");
             }
-            return listaDTO;
+            else{
+                this.administradorDAO.registrar(this.administradorCVR.convertir_Entidad(administradorDTO));
+            } 
         }
-        catch(DAOException e){
+        catch(PersistenciaException e){
             throw new BisnessException(e.getMessage());
         }
     }
+
+    /**
+     * 
+     * @param administradorDTO
+     * @return
+     * @throws BisnessException 
+     */
+    @Override
+    public boolean existe(AdministradorDTO administradorDTO) throws BisnessException {
+        try{
+            if (administradorDTO == null) {
+                throw new BisnessException("Administrador nulo");
+            }
+            else{
+                return this.administradorDAO.existe(this.administradorCVR.convertir_Entidad(administradorDTO));
+            }
+        }
+        catch(PersistenciaException e){
+             throw new BisnessException(e.getMessage());
+        }
+    }
+    
+   
+    
 }

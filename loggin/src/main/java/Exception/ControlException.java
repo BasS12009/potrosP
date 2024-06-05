@@ -8,24 +8,24 @@ package Exception;
  *
  * @author skevi
  */
-public class LogginException extends Exception{
+public class ControlException extends Exception{
 
-    public LogginException() {
+    public ControlException() {
     }
 
-    public LogginException(String message) {
+    public ControlException(String message) {
         super(message);
     }
 
-    public LogginException(String message, Throwable cause) {
+    public ControlException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public LogginException(Throwable cause) {
+    public ControlException(Throwable cause) {
         super(cause);
     }
 
-    public LogginException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public ControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
     
