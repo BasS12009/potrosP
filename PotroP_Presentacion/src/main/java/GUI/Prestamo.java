@@ -4,20 +4,43 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author diana
  */
 public class Prestamo extends javax.swing.JFrame {
+    
 
+
+    
     /**
      * Creates new form Prestamo
      */
     public Prestamo() {
         initComponents();
+     ocultartabla();
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);
+
+       
     }
+
+    private void ocultartabla() {
+          scrolLTBLDATOS.setVisible(false);
+        tblDATOS.setVisible(false);
+    }
+
+    private void showTable() {
+        tblDATOS.setVisible(true);
+        scrolLTBLDATOS.setVisible(true);
+    }
+
+                
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,16 +62,17 @@ public class Prestamo extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
         btnComprobar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnSolicitarPrestamo = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        scrolLTBLDATOS = new javax.swing.JScrollPane();
+        tblDATOS = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(670, 550));
 
         jPanel1.setBackground(new java.awt.Color(65, 164, 205));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,18 +107,25 @@ public class Prestamo extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
 
-        jLabel7.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jLabel7.setText("Comprobante de identidad");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        lblID.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        lblID.setText("ID:");
+        jPanel1.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        jLabel8.setText("ID:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
 
         btnComprobar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnComprobar.setText("Comprobar");
         btnComprobar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprobarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 100, 30));
 
         btnRegresar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
@@ -118,11 +149,30 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(btnSolicitarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 140, 30));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 680, 40));
 
+        jLabel9.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        jLabel9.setText("Comprobante de identidad:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+
+        tblDATOS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrolLTBLDATOS.setViewportView(tblDATOS);
+
+        jPanel1.add(scrolLTBLDATOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 290, 200));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,6 +193,21 @@ public class Prestamo extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
+        // TODO add your handling code here:
+        
+        //dentro del IF
+        txtID.setVisible(false);
+        lblID.setVisible(false);
+        btnComprobar.setVisible(false);
+        
+        showTable();
+    }//GEN-LAST:event_btnComprobarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,11 +257,13 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JScrollPane scrolLTBLDATOS;
+    private javax.swing.JTable tblDATOS;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

@@ -121,7 +121,7 @@ public class Menu extends javax.swing.JFrame {
                 btnHistorialPrestamosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHistorialPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, 30));
+        jPanel1.add(btnHistorialPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
