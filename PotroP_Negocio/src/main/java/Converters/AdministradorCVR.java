@@ -14,8 +14,8 @@ import entidades.Administrador;
 public class AdministradorCVR {
     
     public Administrador convertir_Entidad(AdministradorDTO administradorDTO){
-        String correo = administradorDTO.getCorreoDTO();
-        String contraseña = administradorDTO.getCorreoDTO();
+        String correo = administradorDTO.getCorreo();
+        String contraseña = administradorDTO.getCorreo();
         return new Administrador(correo, contraseña);
     }
     

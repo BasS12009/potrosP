@@ -24,9 +24,9 @@ public class PrestamoCVR {
     }
     
     public Prestamo convetir_Prestamo(PrestamoDTO prestamoDTO){
-        String motivo = prestamoDTO.getMotivoDTO();
-        LocalDate Inicio = prestamoDTO.getInicioDTO();
-        LocalDate Fin = prestamoDTO.getFinDTO();
+        String motivo = prestamoDTO.getMotivo();
+        LocalDate Inicio = prestamoDTO.getInicio();
+        LocalDate Fin = prestamoDTO.getFin();
         //convertimos utilizando el convertidor de vehiculos a entidad vehiculo
         Vehiculo vehiculo = this.vehiculoCVR.convertir_Entidad(prestamoDTO.getVechiculoDTO());
         return new Prestamo(motivo, Inicio, Fin, vehiculo);

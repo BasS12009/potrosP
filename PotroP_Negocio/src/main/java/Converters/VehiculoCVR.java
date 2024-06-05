@@ -14,10 +14,10 @@ import entidades.Vehiculo;
 public class VehiculoCVR {
     
     public Vehiculo convertir_Entidad(VehiculoDTO vehiculoDTO){
-        String marca =  vehiculoDTO.getMarcaDTO();
-        String modelo = vehiculoDTO.getModeloDTO();
-        int año = vehiculoDTO.getAñoDTO();
-        String placa = vehiculoDTO.getPlacaDTO();
+        String marca =  vehiculoDTO.getMarca();
+        String modelo = vehiculoDTO.getModelo();
+        int año = vehiculoDTO.getAño();
+        String placa = vehiculoDTO.getPlaca();
         return new Vehiculo(marca, modelo, año, placa);
     }
     
