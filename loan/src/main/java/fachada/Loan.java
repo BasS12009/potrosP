@@ -12,7 +12,6 @@ import interfaces.IPrestamoBO;
 import interfaz.ILoan;
 import java.time.LocalDate;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -66,17 +65,12 @@ public class Loan implements ILoan{
     }
 
     @Override
-    public void llenarCBX(JComboBox comboBox) throws LoanException {
-        
-    }
-
-    @Override
-    public void llenarTablaAdmin(JComboBox comboBox) throws LoanException {
-        
-    }
-
-    @Override
     public boolean validarDisponibilidad(LocalDate begin, LocalDate end) throws LoanException {
+        return true;
+    }
+
+    @Override
+    public boolean validarDatos(PrestamoDTO prestamoDTO) throws LoanException {
         return true;
     }
     

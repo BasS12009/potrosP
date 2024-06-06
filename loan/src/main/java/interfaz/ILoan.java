@@ -7,7 +7,6 @@ package interfaz;
 import DTO.PrestamoDTO;
 import excepcion.LoanException;
 import java.time.LocalDate;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -20,9 +19,8 @@ public interface ILoan {
     
     public void llenarTablaHistorial(JTable tabla) throws LoanException;
     
-    public void llenarCBX(JComboBox comboBox) throws LoanException;
-   
-    public void llenarTablaAdmin(JComboBox comboBox) throws LoanException;
-    
     public boolean validarDisponibilidad(LocalDate begin, LocalDate end) throws LoanException;
+    
+    public boolean validarDatos (PrestamoDTO prestamoDTO) throws LoanException;
+    
 }
