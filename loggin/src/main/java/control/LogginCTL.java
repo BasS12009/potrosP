@@ -5,10 +5,10 @@
 package control;
 
 import BO.AdministradorBO;
-import DTO.AdministradorDTO;
 import Exceptions.BisnessException;
+import dtos.AdministradorDTO;
 import interfaces.IAdministradorBO;
-import Exception.ControlException;
+import exception.ControlException;
 
 /**
  *

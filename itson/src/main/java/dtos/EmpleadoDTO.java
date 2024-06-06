@@ -2,29 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entidades;
+package dtos;
 
 /**
  *
  * @author skevi
  */
-public class Administrador {
+public class EmpleadoDTO {
+    
     private int id;
     private String correo;
     private String contraseña;
+    private String tipo;
 
-    public Administrador() {
+    public EmpleadoDTO() {
     }
 
-    public Administrador(String correo, String contraseña) {
-        this.correo = correo;
-        this.contraseña = contraseña;
-    }
-
-    public Administrador(int id, String correo, String contraseña) {
+    public EmpleadoDTO(int id, String correo, String contraseña) {
         this.id = id;
         this.correo = correo;
         this.contraseña = contraseña;
+    }
+    
+    public EmpleadoDTO(String correo, String contraseña, String tipo) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.tipo = tipo;
+    }
+
+    public EmpleadoDTO(int id, String correo, String contraseña, String tipo) {
+        this.id = id;
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -50,6 +60,15 @@ public class Administrador {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     
     
 }

@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import Exception.FachadaException;
+import exception.FachadaException;
 
 /**
  *

@@ -15,10 +15,15 @@ import java.util.List;
  */
 public interface IEmpleadoDAO {
     
-    public void registrar(Empleado empleado) throws PersistenciaException;
+    public void registrarEmpleado(Empleado empleado) throws PersistenciaException;
     
-    public Empleado buscarPorID(int id)throws PersistenciaException;
+    public void registrarAdministrador(Empleado empleado) throws PersistenciaException;
+    
+    public void registrarChofer(Empleado empleado) throws PersistenciaException;
+    
+    public Empleado buscarEmpleado(int id)throws PersistenciaException;
     
     public List<Empleado> ListaEmpleados(int offset, int limit)throws PersistenciaException;
-
+    
+    public boolean existenciaAdmin(Empleado empleado)throws PersistenciaException;
 }

@@ -2,30 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Exception;
+package Excepcion;
 
 /**
  *
  * @author skevi
  */
-public class ControlException extends Exception{
+public class NegocioException extends Exception {
 
-    public ControlException() {
+    public NegocioException() {
     }
 
-    public ControlException(String message) {
+    public NegocioException(String message) {
         super(message);
     }
 
-    public ControlException(String message, Throwable cause) {
+    public NegocioException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ControlException(Throwable cause) {
+    public NegocioException(Throwable cause) {
         super(cause);
     }
 
-    public ControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public NegocioException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
     
