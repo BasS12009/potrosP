@@ -11,6 +11,7 @@ import Interfaces.IPrestamoDAO;
 import daos.PrestamoDAO;
 import entidades.Prestamo;
 import excepciones.DAOException;
+import interfaces.IPrestamoBO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,11 @@ import java.util.List;
  * posteriores.
  * @author diana
  */
-public class PrestamoBO {
+public class PrestamoBO implements IPrestamoBO{
     
     //inicializamos varibles de clase 
-    private IPrestamoDAO prestamoDAO; //instancia de la clase DAO
-    private PrestamoCVR prestamoCVR; //instancia de la clase de convertidores
+    private final IPrestamoDAO prestamoDAO; //instancia de la clase DAO
+    private final PrestamoCVR prestamoCVR; //instancia de la clase de convertidores
 
     /**
      * Constructor que inicializa las variables de la clase.
@@ -39,6 +40,7 @@ public class PrestamoBO {
      * @param prestamoDTO Objeto de tipo PrestamoDTO que deseamos agregar.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public void agregar(PrestamoDTO prestamoDTO) throws BisnessException {
        try{
          // agregamos un prestamo convirtiendolo de DTO a Entidad.
@@ -55,6 +57,7 @@ public class PrestamoBO {
      * @param prestamoDTO Objeto de tipo PrestamoDTO que deseamos eliminar.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public void eliminar(PrestamoDTO prestamoDTO) throws BisnessException {
        try{
          //eliminamos un prestamo convirtiendolo de DTO a Entidad.
@@ -71,6 +74,7 @@ public class PrestamoBO {
      * @param prestamoDTO Objeto de tipo PrestamoDTO que deseamos actualizar.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public void actualizar(PrestamoDTO prestamoDTO) throws BisnessException {
        try{
         //actualizamos un prestamo convirtiendolo de DTO a Entidad.   
@@ -88,6 +92,7 @@ public class PrestamoBO {
      * @return Retorna un objeto de tipo Prestamo.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public Prestamo buscarPorId(int id) throws BisnessException {
        try{
          return this.prestamoDAO.buscarPorId(id);
@@ -103,6 +108,7 @@ public class PrestamoBO {
      * @return Retorna una lista de objetos de tipo prestamo
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public List<PrestamoDTO> listaPrestamos() throws BisnessException {
         
         List<PrestamoDTO> lista = new ArrayList();

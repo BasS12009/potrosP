@@ -4,18 +4,13 @@
 
 package fachada;
 
-import DTO.AdministradorDTO;
-import exception.ControlException;
 import control.LogginCTL;
-import exception.FachadaException;
-import interfaz.ILoggin;
-
 
 /**
  *
  * @author skevi
  */
-public class Loggin implements ILoggin{
+public class Loggin {
 
     private LogginCTL login;
 
@@ -23,6 +18,13 @@ public class Loggin implements ILoggin{
         this.login = new LogginCTL();
     }
 
+    /**
+     * 
+     * @param correo
+     * @param contraseña
+     * @return
+     * @throws FachadaException 
+     
     @Override
     public boolean existe(String correo, String contraseña) throws FachadaException {
         if (correo.isEmpty()) {
@@ -39,6 +41,6 @@ public class Loggin implements ILoggin{
             throw new FachadaException("Error en correo o contraseña");
         }
     }
-    
+    */
     
 }

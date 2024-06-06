@@ -4,10 +4,6 @@
  */
 package control;
 
-import BO.AdministradorBO;
-import Exceptions.BisnessException;
-import dtos.AdministradorDTO;
-import interfaces.IAdministradorBO;
 import exception.ControlException;
 
 /**
@@ -16,13 +12,13 @@ import exception.ControlException;
  */
 public class LogginCTL {
     
-    private IAdministradorBO administradorBO;
+   // private IAdministradorBO administradorBO;
 
     /**
      * 
      */
     public LogginCTL() {
-        this.administradorBO = new AdministradorBO();
+     //   this.administradorBO = new AdministradorBO();
     }
     
     /**
@@ -30,7 +26,7 @@ public class LogginCTL {
      * @param administradorDTO
      * @return
      * @throws LogginException 
-     */
+     
     public boolean existe(AdministradorDTO administradorDTO) throws ControlException{
         try{
             return this.administradorBO.existe(administradorDTO);
@@ -39,5 +35,5 @@ public class LogginCTL {
             throw new ControlException(e.getMessage());
         }
     }
-  
+    */
 }

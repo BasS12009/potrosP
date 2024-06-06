@@ -4,10 +4,25 @@
  */
 package interfaces;
 
+import DTO.PrestamoDTO;
+import Exceptions.BisnessException;
+import entidades.Prestamo;
+import java.util.List;
+
 /**
  *
  * @author skevi
  */
 public interface IPrestamoBO {
+    
+    public void agregar(PrestamoDTO prestamoDTO) throws BisnessException;
+    
+    public void eliminar(PrestamoDTO prestamoDTO) throws BisnessException;
+    
+    public void actualizar(PrestamoDTO prestamoDTO) throws BisnessException;
+    
+    public Prestamo buscarPorId(int id) throws BisnessException;
+     
+    public List<PrestamoDTO> listaPrestamos() throws BisnessException;
     
 }

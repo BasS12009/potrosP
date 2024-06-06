@@ -16,19 +16,28 @@ public class PrestamoDTO {
     private String motivo;
     private LocalDate Inicio;
     private LocalDate Fin;
-    private VehiculoDTO vechiculoDTO;
+    private String placaVehiculo;
+    private String correoEmpleado;
 
     public PrestamoDTO() {
     }
 
-    public PrestamoDTO(int id, String motivo, LocalDate Inicio, LocalDate Fin, VehiculoDTO vechiculoDTO) {
+    public PrestamoDTO(String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
+        this.motivo = motivo;
+        this.Inicio = Inicio;
+        this.Fin = Fin;
+        this.placaVehiculo = placaVehiculo;
+        this.correoEmpleado = correoEmpleado;
+    }
+
+    public PrestamoDTO(int id, String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
         this.Inicio = Inicio;
         this.Fin = Fin;
-        this.vechiculoDTO = vechiculoDTO;
+        this.placaVehiculo = placaVehiculo;
+        this.correoEmpleado = correoEmpleado;
     }
-    
 
     public int getId() {
         return id;
@@ -62,12 +71,21 @@ public class PrestamoDTO {
         this.Fin = Fin;
     }
 
-    public VehiculoDTO getVechiculoDTO() {
-        return vechiculoDTO;
+    public String getPlacaVehiculo() {
+        return placaVehiculo;
     }
 
-    public void setVechiculoDTO(VehiculoDTO vechiculoDTO) {
-        this.vechiculoDTO = vechiculoDTO;
+    public void setPlacaVehiculo(String placaVehiculo) {
+        this.placaVehiculo = placaVehiculo;
     }
 
+    public String getCorreoEmpleado() {
+        return correoEmpleado;
+    }
+
+    public void setCorreoEmpleado(String correoEmpleado) {
+        this.correoEmpleado = correoEmpleado;
+    }
+
+    
 }

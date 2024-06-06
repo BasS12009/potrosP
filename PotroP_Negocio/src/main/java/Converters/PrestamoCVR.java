@@ -28,17 +28,19 @@ public class PrestamoCVR {
         LocalDate Inicio = prestamoDTO.getInicio();
         LocalDate Fin = prestamoDTO.getFin();
         //convertimos utilizando el convertidor de vehiculos a entidad vehiculo
-        Vehiculo vehiculo = this.vehiculoCVR.convertir_Entidad(prestamoDTO.getVechiculoDTO());
-        return new Prestamo(motivo, Inicio, Fin, vehiculo);
+        String placa = prestamoDTO.getPlacaVehiculo();
+        String correo = prestamoDTO.getCorreoEmpleado();
+        return new Prestamo(motivo, Inicio, Fin, placa, correo);
     }
     
     public PrestamoDTO convertir_DTO(Prestamo prestamo){
         int id  = prestamo.getId();
         String motivo = prestamo.getMotivo();
-        LocalDate inicio= prestamo.getFechaInicio();
-        LocalDate fin = prestamo.getFechaFin();
-        VehiculoDTO vehiculoDTO = this.vehiculoCVR.convertir_DTO(prestamo.getVehiculo());
-        return new PrestamoDTO(id, motivo, inicio, fin, vehiculoDTO);
+        LocalDate inicio= prestamo.getInicio();
+        LocalDate fin = prestamo.getFin();
+        String placa = prestamo.getPlacaVehiculo();
+        String correo = prestamo.getCorreoEmpleado();
+        return new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
     }
     
 }

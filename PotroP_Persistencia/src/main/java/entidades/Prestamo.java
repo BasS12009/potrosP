@@ -18,24 +18,27 @@ public class Prestamo {
     private String motivo;
     private LocalDate Inicio;
     private LocalDate Fin;
-    private Vehiculo vehiculo;
+    private String placaVehiculo;
+    private String correoEmpleado;
 
     public Prestamo() {
     }
 
-    public Prestamo(String motivo, LocalDate Inicio, LocalDate Fin, Vehiculo vehiculo) {
+    public Prestamo(String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.motivo = motivo;
         this.Inicio = Inicio;
         this.Fin = Fin;
-        this.vehiculo = vehiculo;
+        this.placaVehiculo = placaVehiculo;
+        this.correoEmpleado = correoEmpleado;
     }
 
-    public Prestamo(int id, String motivo, LocalDate Inicio, LocalDate Fin, Vehiculo vehiculo) {
+    public Prestamo(int id, String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
         this.Inicio = Inicio;
         this.Fin = Fin;
-        this.vehiculo = vehiculo;
+        this.placaVehiculo = placaVehiculo;
+        this.correoEmpleado = correoEmpleado;
     }
 
     public int getId() {
@@ -54,28 +57,38 @@ public class Prestamo {
         this.motivo = motivo;
     }
 
-    public LocalDate getFechaInicio() {
+    public LocalDate getInicio() {
         return Inicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.Inicio = fechaInicio;
+    public void setInicio(LocalDate Inicio) {
+        this.Inicio = Inicio;
     }
 
-    public LocalDate getFechaFin() {
+    public LocalDate getFin() {
         return Fin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
-        this.Fin = fechaFin;
+    public void setFin(LocalDate Fin) {
+        this.Fin = Fin;
     }
 
-    public Vehiculo getVehiculo() {
-        return vehiculo;
+    public String getPlacaVehiculo() {
+        return placaVehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setPlacaVehiculo(String placaVehiculo) {
+        this.placaVehiculo = placaVehiculo;
     }
+
+    public String getCorreoEmpleado() {
+        return correoEmpleado;
+    }
+
+    public void setCorreoEmpleado(String correoEmpleado) {
+        this.correoEmpleado = correoEmpleado;
+    }
+
+    
     
 }
