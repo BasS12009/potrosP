@@ -16,7 +16,7 @@ import interfaces.IEmpleadoDAO;
    */
     public class EmpleadoDAO implements IEmpleadoDAO{
 
-    private static List<Empleado> listaEmpleados = new ArrayList();
+    public static List<Empleado> listaEmpleados = new ArrayList();
     private static List<Empleado> listaAministradores = new ArrayList();
     private static List<Empleado> listaChoferes = new ArrayList();
     
