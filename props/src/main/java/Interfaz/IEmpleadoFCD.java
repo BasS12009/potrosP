@@ -4,10 +4,15 @@
  */
 package Interfaz;
 
+import excepcion.PropsException;
+import javax.swing.JTable;
+
 /**
  *
  * @author skevi
  */
 public interface IEmpleadoFCD {
+    
+    public void tablaEmpleado(JTable table, int id) throws PropsException;
     
 }

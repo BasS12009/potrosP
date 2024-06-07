@@ -5,7 +5,6 @@
 package entidades;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 
@@ -16,8 +15,8 @@ import java.util.Date;
 public class Prestamo {
     private int id;
     private String motivo;
-    private LocalDate Inicio;
-    private LocalDate Fin;
+    private LocalDate inicio;
+    private LocalDate fin;
     private String placaVehiculo;
     private String correoEmpleado;
 
@@ -26,8 +25,8 @@ public class Prestamo {
 
     public Prestamo(String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.motivo = motivo;
-        this.Inicio = Inicio;
-        this.Fin = Fin;
+        this.inicio = Inicio;
+        this.fin = Fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
     }
@@ -35,8 +34,8 @@ public class Prestamo {
     public Prestamo(int id, String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
-        this.Inicio = Inicio;
-        this.Fin = Fin;
+        this.inicio = Inicio;
+        this.fin = Fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
     }
@@ -58,19 +57,19 @@ public class Prestamo {
     }
 
     public LocalDate getInicio() {
-        return Inicio;
+        return inicio;
     }
 
     public void setInicio(LocalDate Inicio) {
-        this.Inicio = Inicio;
+        this.inicio = Inicio;
     }
 
     public LocalDate getFin() {
-        return Fin;
+        return fin;
     }
 
     public void setFin(LocalDate Fin) {
-        this.Fin = Fin;
+        this.fin = Fin;
     }
 
     public String getPlacaVehiculo() {
@@ -89,6 +88,4 @@ public class Prestamo {
         this.correoEmpleado = correoEmpleado;
     }
 
-    
-    
 }

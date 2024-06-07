@@ -4,11 +4,10 @@
  */
 package fachada;
 
-import BO.PrestamoBO;
 import DTO.PrestamoDTO;
 import Exceptions.BisnessException;
+import control.LoanCTL;
 import excepcion.LoanException;
-import interfaces.IPrestamoBO;
 import interfaz.ILoan;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Loan implements ILoan{
 
-    private IPrestamoBO prestamoBO;
+    private LoanCTL control;
 
     public Loan() {
-        this.prestamoBO = new PrestamoBO();
+        this.control = new LoanCTL();
     }
     
     @Override
@@ -33,10 +32,10 @@ public class Loan implements ILoan{
     }
 
     @Override
-    public void llenarTablaHistorial(JTable tabla) throws LoanException {
+    public void llenarTablaHistorial(JTable tabla, int offset, int limit) throws LoanException {
         try {
             
-            List<PrestamoDTO> libros = prestamoBO.listaPrestamos();
+            List<PrestamoDTO> libros = control.listaPaginada(offset, limit);
 
             // Definir columnas
             String[] columnNames = {"ID", "Inicio", "Fin", "Placa Vehiculo", "Correo Empleado"};
@@ -65,7 +64,7 @@ public class Loan implements ILoan{
     }
 
     @Override
-    public boolean validarDisponibilidad(LocalDate begin, LocalDate end) throws LoanException {
+    public boolean validarDisponibilidad(LocalDate begin, LocalDate end, String correo) throws LoanException {
         return true;
     }
 

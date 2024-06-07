@@ -8,6 +8,7 @@ import BO.PrestamoBO;
 import DTO.PrestamoDTO;
 import Exceptions.BisnessException;
 import interfaces.IPrestamoBO;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -23,13 +24,14 @@ public class LoanCTL {
     }
     
     public void agregar(PrestamoDTO prestamoDTO) throws BisnessException{
-    //    try{
-            
-        //}
-      //  catch()
+        prestamoBO.agregar(prestamoDTO);
     }
     
-    //public List<PrestamoDTO> listaPrestamos() throws BisnessException{
-        
-    //}
+    public List<PrestamoDTO> listaPaginada(int offset, int limit)throws BisnessException{
+        return prestamoBO.listaPaginda(offset, limit);
+    }
+    
+    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException{
+        return prestamoBO.listaPorFechas(begin, end);
+    }
  }   

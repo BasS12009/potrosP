@@ -7,8 +7,6 @@ package GUI;
 import exception.FachadaException;
 import fachada.LogginFCD;
 import interfaz.ILogginFCD;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -101,6 +99,9 @@ public class LogIn extends javax.swing.JFrame {
 
         // Convertir el arreglo de caracteres a una cadena
         String contraseña = new String(passwordChars);
+        
+        // Limpiar el arreglo de caracteres para mayor seguridad
+        java.util.Arrays.fill(passwordChars, '\0');
         
         try {
             if (login.validar(correo, contraseña)) {

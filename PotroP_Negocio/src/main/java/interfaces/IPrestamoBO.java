@@ -7,6 +7,7 @@ package interfaces;
 import DTO.PrestamoDTO;
 import Exceptions.BisnessException;
 import entidades.Prestamo;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -24,5 +25,9 @@ public interface IPrestamoBO {
     public Prestamo buscarPorId(int id) throws BisnessException;
      
     public List<PrestamoDTO> listaPrestamos() throws BisnessException;
+    
+    public List<PrestamoDTO> listaPaginda(int offset, int limit) throws BisnessException;
+    
+    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException;
     
 }

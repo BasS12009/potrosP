@@ -12,6 +12,7 @@ import daos.PrestamoDAO;
 import entidades.Prestamo;
 import excepciones.DAOException;
 import interfaces.IPrestamoBO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,7 +126,60 @@ public class PrestamoBO implements IPrestamoBO{
         }
     }
 
-   
-    
+    /**
+     * 
+     * @param offset
+     * @param limit
+     * @return
+     * @throws BisnessException 
+     */
+    @Override
+    public List<PrestamoDTO> listaPaginda(int offset, int limit) throws BisnessException {
+    if (offset < 0 || limit < 0) {
+        throw new BisnessException("Offset y limit deben ser mayores o iguales a 0.");
+    }
+
+    try {
+        List<PrestamoDTO> listaBO = new ArrayList<>();
+        List<Prestamo> listaDAO = prestamoDAO.listaPaginda(offset, limit);
+        
+        for (Prestamo prestamo : listaDAO) {
+            listaBO.add(prestamoCVR.convertir_DTO(prestamo));
+        }
+        
+        return listaBO;
+        
+    } catch (DAOException ex) {
+        throw new BisnessException(ex.getMessage());
+    }
+    } 
+
+    /**
+     * 
+     * @param begin
+     * @param end
+     * @return
+     * @throws BisnessException 
+     */
+    @Override
+    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException {
+    if (begin == null || end == null) {
+        throw new IllegalArgumentException("Las fechas no pueden ser nulas.");
+    } else {
+        try {
+            List<PrestamoDTO> listaBO = new ArrayList<>();
+            List<Prestamo> listaDAO = prestamoDAO.listaPorFechas(begin, end);
+            
+            for (int i = 0; i < listaDAO.size(); i++) {
+                listaBO.add(prestamoCVR.convertir_DTO(listaDAO.get(i)));
+            }
+            
+            return listaBO;
+            
+        } catch (DAOException ex) {
+            throw new BisnessException(ex.getMessage());
+        }
+    }
+}
     
 }

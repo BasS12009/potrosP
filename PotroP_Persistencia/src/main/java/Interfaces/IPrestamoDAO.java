@@ -21,11 +21,12 @@ public interface IPrestamoDAO {
     
     void actualizar(Prestamo prestamo) throws DAOException;
     
-    Prestamo buscarPorId(int id) throws DAOException;
+    public Prestamo buscarPorId(int id) throws DAOException;
     
-    List<Prestamo> listaPaginda(int offset, int limit) throws DAOException;
+    public List<Prestamo> listaPaginda(int offset, int limit) throws DAOException;
     
     public List<Prestamo> listaPrestamos() throws DAOException;
-  
     
+    public List<Prestamo> listaPorFechas(LocalDate begin, LocalDate end) throws DAOException;
+  
 }

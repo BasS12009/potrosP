@@ -17,9 +17,9 @@ public interface ILoan {
     
     public void agregar(PrestamoDTO prestamoDTO) throws LoanException;
     
-    public void llenarTablaHistorial(JTable tabla) throws LoanException;
+    public void llenarTablaHistorial(JTable tabla, int offset, int limit) throws LoanException;
     
-    public boolean validarDisponibilidad(LocalDate begin, LocalDate end) throws LoanException;
+    public boolean validarDisponibilidad(LocalDate begin, LocalDate end, String correo) throws LoanException;
     
     public boolean validarDatos (PrestamoDTO prestamoDTO) throws LoanException;
    

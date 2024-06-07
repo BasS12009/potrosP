@@ -4,10 +4,25 @@
  */
 package control;
 
+import Excepcion.NegocioException;
+import Negocio.EmpleadoBO;
+import dtos.EmpleadoDTO;
+import interfaces.IEmpleadoBO;
+
 /**
  *
  * @author skevi
  */
 public class EmpleadoCTL {
+    
+    IEmpleadoBO empleadoBO;
+
+    public EmpleadoCTL() {
+        this.empleadoBO = new EmpleadoBO();
+    }
+    
+    public EmpleadoDTO buscarPorID(int id) throws NegocioException{
+        return this.empleadoBO.buscarEmpleado(id);
+    }
     
 }

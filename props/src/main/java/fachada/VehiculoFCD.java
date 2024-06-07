@@ -9,8 +9,6 @@ import Exceptions.BisnessException;
 import Interfaz.IVehiculoFCD;
 import control.VehiculoCTL;
 import excepcion.PropsException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 
 /**
