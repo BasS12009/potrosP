@@ -13,17 +13,26 @@ public class VehiculoDTO {
     private String marca;
     private String modelo;
     private int año;
+    private String tipo;
     private String placa;
-    
 
     public VehiculoDTO() {
     }
 
-    public VehiculoDTO(int id, String marca, String modelo, int año, String placa) {
+    public VehiculoDTO(String marca, String modelo, int año, String tipo, String placa) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.año = año;
+        this.tipo = tipo;
+        this.placa = placa;
+    }
+
+    public VehiculoDTO(int id, String marca, String modelo, int año, String tipo, String placa) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.año = año;
+        this.tipo = tipo;
         this.placa = placa;
     }
 
@@ -59,6 +68,14 @@ public class VehiculoDTO {
         this.año = año;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getPlaca() {
         return placa;
     }
@@ -67,5 +84,10 @@ public class VehiculoDTO {
         this.placa = placa;
     }
 
-   
+    @Override
+    public String toString() {
+        return  marca + ", " + modelo + ", " + tipo ;
+    }
+    
+    
 }

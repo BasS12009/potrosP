@@ -8,6 +8,6 @@ package fachada;
  *
  * @author skevi
  */
-public class AdministradorFCD {
+public class EmpleadoFCD {
     
 }

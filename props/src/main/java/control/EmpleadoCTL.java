@@ -8,6 +8,6 @@ package control;
  *
  * @author skevi
  */
-public class AdminCTL {
+public class EmpleadoCTL {
     
 }

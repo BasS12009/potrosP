@@ -11,6 +11,7 @@ import Interfaces.IVehiculoDAO;
 import daos.VehiculoDAO;
 import entidades.Vehiculo;
 import excepciones.DAOException;
+import interfaces.IVehiculoBO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +21,11 @@ import java.util.List;
  * 
  * @author diana
  */
-public class VehiculoBO {
+public class VehiculoBO implements IVehiculoBO{
     
     //inicializamos varibles de clase 
-    private IVehiculoDAO vehiculoDAO; //instancia de la clase DAO
-    private VehiculoCVR vehiculoCVR; // intancia de la clase de convertidores
+    private final IVehiculoDAO vehiculoDAO; //instancia de la clase DAO
+    private final VehiculoCVR vehiculoCVR; // intancia de la clase de convertidores
 
     /**
      * Constructor que inicializa las variables de la clase.
@@ -41,6 +42,7 @@ public class VehiculoBO {
      * @param vehiculoDTO Objeto de tipo Vehiculo a agregar.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public void agregar(VehiculoDTO vehiculoDTO) throws BisnessException {
         try{
             //agregamos un vehiculo convirtiendolo de DTO a Entidad.
@@ -57,6 +59,7 @@ public class VehiculoBO {
      * @param vehiculoDTO Objeto de tipo Vehiculo a eliminar.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public void eliminar(VehiculoDTO vehiculoDTO) throws BisnessException {
         try{
             //eliminamos un vehiculo convirtiendolo de DTO a Entidad.
@@ -73,6 +76,7 @@ public class VehiculoBO {
      * @param vehiculoDTO Objeto de tipo Vehiculo a actualizar.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public void actualizar(VehiculoDTO vehiculoDTO) throws BisnessException {
         try{
             //eliminamos un vehiculo convirtiendolo de DTO a Entidad.
@@ -90,6 +94,7 @@ public class VehiculoBO {
      * @return retorna el vehiculo buscado.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public Vehiculo buscarPorId(int id) throws BisnessException {
         try{
            return this.vehiculoDAO. buscarPorId(id);
@@ -105,6 +110,7 @@ public class VehiculoBO {
      * @return Lista de Vehiculos.
      * @throws BisnessException arroja una excepcion proveniente de la clase DAO
      */
+    @Override
     public List<VehiculoDTO> listaVehiculos() throws BisnessException {
         List<VehiculoDTO> listaDTO = new ArrayList(); 
         try{

@@ -4,15 +4,10 @@
  */
 package Interfaz;
 
-import excepcion.PropsException;
-import javax.swing.JComboBox;
-
 /**
  *
  * @author skevi
  */
-public interface IAdministradorFCD {
-
-    public void llenarTablaAdmin(JComboBox comboBox) throws PropsException;
+public interface IEmpleadoFCD {
     
 }
