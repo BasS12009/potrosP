@@ -4,7 +4,11 @@
  */
 package control;
 
+import Excepcion.NegocioException;
+import Negocio.EmpleadoBO;
+import dtos.EmpleadoDTO;
 import exception.ControlException;
+import interfaces.IEmpleadoBO;
 
 /**
  *
@@ -12,28 +16,28 @@ import exception.ControlException;
  */
 public class LogginCTL {
     
-   // private IAdministradorBO administradorBO;
+    private IEmpleadoBO empleadoBO;
 
     /**
      * 
      */
     public LogginCTL() {
-     //   this.administradorBO = new AdministradorBO();
+       this.empleadoBO = new EmpleadoBO();
     }
     
     /**
      * 
-     * @param administradorDTO
+     * @param empleadoDTO
      * @return
-     * @throws LogginException 
-     
-    public boolean existe(AdministradorDTO administradorDTO) throws ControlException{
+     * @throws ControlException 
+     */
+    public boolean existe(EmpleadoDTO empleadoDTO) throws ControlException{
         try{
-            return this.administradorBO.existe(administradorDTO);
+            return this.empleadoBO.existenciaAdmin(empleadoDTO);
         }
-        catch(BisnessException e){
+        catch(NegocioException e){
             throw new ControlException(e.getMessage());
         }
     }
-    */
+    
 }

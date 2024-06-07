@@ -6,6 +6,7 @@ package Interfaces;
 
 import entidades.Prestamo;
 import excepciones.DAOException;
+import java.time.LocalDate;
 import java.util.List;
 /**
  *
@@ -13,9 +14,18 @@ import java.util.List;
  */
 
 public interface IPrestamoDAO {
+    
     void agregar(Prestamo prestamo) throws DAOException;
+    
     void eliminar(Prestamo prestamo) throws DAOException;
+    
     void actualizar(Prestamo prestamo) throws DAOException;
+    
     Prestamo buscarPorId(int id) throws DAOException;
-    List<Prestamo> listaPrestamos() throws DAOException;
+    
+    List<Prestamo> listaPaginda(int offset, int limit) throws DAOException;
+    
+    public List<Prestamo> listaPrestamos() throws DAOException;
+  
+    
 }

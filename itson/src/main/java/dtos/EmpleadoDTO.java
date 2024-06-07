@@ -23,6 +23,11 @@ public class EmpleadoDTO {
         this.correo = correo;
         this.contraseña = contraseña;
     }
+
+    public EmpleadoDTO(String correo, String contraseña) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+    }
     
     public EmpleadoDTO(String correo, String contraseña, String tipo) {
         this.correo = correo;

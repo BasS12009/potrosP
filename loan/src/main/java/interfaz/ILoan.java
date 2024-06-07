@@ -22,5 +22,6 @@ public interface ILoan {
     public boolean validarDisponibilidad(LocalDate begin, LocalDate end) throws LoanException;
     
     public boolean validarDatos (PrestamoDTO prestamoDTO) throws LoanException;
-    
+   
+            
 }

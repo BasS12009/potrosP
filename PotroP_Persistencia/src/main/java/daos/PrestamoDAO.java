@@ -11,6 +11,7 @@ package daos;
 import Interfaces.IPrestamoDAO;
 import entidades.Prestamo;
 import excepciones.DAOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,5 +58,15 @@ public class PrestamoDAO implements IPrestamoDAO {
     @Override
     public List<Prestamo> listaPrestamos() throws DAOException {
         return new ArrayList<>(lista);
+    }
+
+    @Override
+    public List<Prestamo> listaPaginada(int offset, int limit) throws DAOException {
+        
+    }
+
+    @Override
+    public boolean listaPorFechas(LocalDate begin, LocalDate end) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

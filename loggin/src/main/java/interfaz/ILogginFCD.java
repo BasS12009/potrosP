@@ -10,8 +10,9 @@ import exception.FachadaException;
  *
  * @author skevi
  */
-public interface ILoggin {
+public interface ILogginFCD {
     
     public boolean existe(String correo, String contraseña) throws FachadaException;
             
+    public boolean validar(String correo, String contraseña) throws FachadaException;
 }

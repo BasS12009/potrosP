@@ -4,6 +4,13 @@
  */
 package GUI;
 
+import exception.FachadaException;
+import fachada.LogginFCD;
+import interfaz.ILogginFCD;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author diana
@@ -31,9 +38,9 @@ public class LogIn extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtContraseña = new javax.swing.JPasswordField();
         bttIniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
@@ -50,12 +57,12 @@ public class LogIn extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel2.setText("Correo:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 80, 30));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 210, 30));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 210, 30));
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel3.setText("Contraseña:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 210, 30));
+        jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 210, 30));
 
         bttIniciarSesion.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         bttIniciarSesion.setText("Iniciar Sesion");
@@ -85,10 +92,28 @@ public class LogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIniciarSesionActionPerformed
-        // TODO add your handling code here:
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        this.dispose();
+        ILogginFCD login = new LogginFCD();
+        
+        String correo = txtCorreo.getText();
+        
+        // Obtener la contraseña como un arreglo de caracteres
+        char[] passwordChars = txtContraseña.getPassword();
+
+        // Convertir el arreglo de caracteres a una cadena
+        String contraseña = new String(passwordChars);
+        
+        try {
+            if (login.validar(correo, contraseña)) {
+                if (login.existe(correo, contraseña)) {
+                    Menu menu = new Menu();
+                    menu.setVisible(true);
+                    this.dispose();
+                }
+            }
+        } catch (FachadaException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+   
     }//GEN-LAST:event_bttIniciarSesionActionPerformed
 
     /**
@@ -133,7 +158,7 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }
