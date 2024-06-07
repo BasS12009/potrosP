@@ -10,17 +10,34 @@ package guardar;
  */
 public class Guardar {
 
+    private static int idEmpleado;
     private static int idAdministrador;
+    private static int idChofer;
     private static int idVehiculo;
     private static int idPrestamo;
 
-    
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        Guardar.idEmpleado = idEmpleado;
+    }
+
     public int getIdAdministrador() {
         return idAdministrador;
     }
 
     public void setIdAdministrador(int idAdministrador) {
         Guardar.idAdministrador = idAdministrador;
+    }
+
+    public int getIdChofer() {
+        return idChofer;
+    }
+
+    public void setIdChofer(int idChofer) {
+        Guardar.idChofer = idChofer;
     }
 
     public int getIdVehiculo() {
@@ -38,6 +55,6 @@ public class Guardar {
     public void setIdPrestamo(int idPrestamo) {
         Guardar.idPrestamo = idPrestamo;
     }
+
     
-      
 }

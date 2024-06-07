@@ -4,6 +4,18 @@
  */
 package GUI;
 
+import Interfaz.IEmpleadoFCD;
+import Interfaz.IVehiculoFCD;
+import excepcion.PropsException;
+import fachada.EmpleadoFCD;
+import fachada.LoanFCD;
+import fachada.VehiculoFCD;
+import guardar.Guardar;
+import interfaz.ILoanFCD;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author diana
@@ -18,20 +30,35 @@ public class Prestamo extends javax.swing.JFrame {
      */
     public Prestamo() {
         initComponents();
-     ocultartabla();
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);
 
-       
+        //cargamos las configuraciones iniciales de la pantalla
+        configuracionInicial();
+        
     }
 
-    private void ocultartabla() {
+    private void configuracionInicial() {
+          IVehiculoFCD vehiculo = new VehiculoFCD(); 
+        
+          //centramos la pantalla
+          this.setLocationRelativeTo(this);
+          //configuramos las dimenciones de la pantalla
+          this.setSize(670, 550);
+          
+          //ocultamos la tabla
           scrolLTBLDATOS.setVisible(false);
-        tblDATOS.setVisible(false);
+          tblEmpleado.setVisible(false);
+          try{
+              vehiculo.llenarCBX(cbxVehiculo);
+          }
+          catch(PropsException e){
+              System.out.println("problemas al cargar el combobox");
+          }
     }
 
     private void showTable() {
-        tblDATOS.setVisible(true);
+        tblEmpleado.setVisible(true);
         scrolLTBLDATOS.setVisible(true);
     }
 
@@ -49,23 +76,23 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txfMotivo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dcFin = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dcInicio = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        ComboBoxTipo = new javax.swing.JComboBox<>();
+        cbxVehiculo = new javax.swing.JComboBox<>();
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         btnComprobar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        btnSolicitarPrestamo = new javax.swing.JButton();
+        btnSolicitar = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         scrolLTBLDATOS = new javax.swing.JScrollPane();
-        tblDATOS = new javax.swing.JTable();
+        tblEmpleado = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,12 +106,12 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel2.setText("Motivo de la solicitud:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 200, 60));
+        jPanel1.add(txfMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 200, 60));
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel3.setText("Periodo de prestamo:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
+        jPanel1.add(dcFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jLabel4.setText("Inicio");
@@ -93,14 +120,14 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jLabel5.setText("Fin");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
+        jPanel1.add(dcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel6.setText("Tipo de vehiculo:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
-        ComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca", "Modelo ", "Tipo" }));
-        jPanel1.add(ComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
+        cbxVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca", "Modelo ", "Tipo" }));
+        jPanel1.add(cbxVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
 
         lblID.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         lblID.setText("ID:");
@@ -133,22 +160,22 @@ public class Prestamo extends javax.swing.JFrame {
         });
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 130, 30));
 
-        btnSolicitarPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        btnSolicitarPrestamo.setText("Solicitar Prestamo");
-        btnSolicitarPrestamo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnSolicitarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+        btnSolicitar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        btnSolicitar.setText("Solicitar Prestamo");
+        btnSolicitar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnSolicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolicitarPrestamoActionPerformed(evt);
+                btnSolicitarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSolicitarPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 140, 30));
+        jPanel1.add(btnSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 140, 30));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 680, 40));
 
         jLabel9.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel9.setText("Comprobante de identidad:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
 
-        tblDATOS.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -159,7 +186,7 @@ public class Prestamo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scrolLTBLDATOS.setViewportView(tblDATOS);
+        scrolLTBLDATOS.setViewportView(tblEmpleado);
 
         jPanel1.add(scrolLTBLDATOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 290, 200));
 
@@ -177,13 +204,22 @@ public class Prestamo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSolicitarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarPrestamoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSolicitarPrestamoActionPerformed
+    private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
+        //aqui sucede la magia ojito de aqui en adelante que no explico dos veces
+        
+        //primero instanciamos las clases que necesitemos
+        //como las clases 
+        ILoanFCD prestamo = new LoanFCD();//la unica que necesitamos es la de prestamo me vi bien menso 
+        
+        // declaremos las variables necesarias que obtendremos de las pantallas
+        
+        //comenzaremos con la aplicacion de filtros 
+    }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
-         Menu menu = new Menu();
+        // esta es la logica para regresar de pantalla todos la entendemos
+        // ni pa que la explico  
+        Menu menu = new Menu();
 
         menu.setVisible(true);
         this.dispose();
@@ -194,12 +230,32 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
-        // TODO add your handling code here:
         
-        //dentro del IF
-        txtID.setVisible(false);
-        lblID.setVisible(false);
-        btnComprobar.setVisible(false);
+        IEmpleadoFCD empleado = new EmpleadoFCD();
+
+        int id = Integer.parseInt(txtID.getText());
+        
+        try {
+            
+            //mostramos la tabla con la informacion del empleado
+            empleado.tablaEmpleado(tblEmpleado, id);
+            
+            //ocultamos los botones 
+            txtID.setVisible(false);
+            lblID.setVisible(false);
+            btnComprobar.setVisible(false);
+            
+            //mostramos la tabla 
+            tblEmpleado.setVisible(true);
+            scrolLTBLDATOS.setVisible(true);
+            
+            //guardamos el id del empleado
+            Guardar guardar = new Guardar();
+            guardar.getIdEmpleado();
+        
+        } catch (PropsException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
         
         showTable();
     }//GEN-LAST:event_btnComprobarActionPerformed
@@ -240,12 +296,12 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboBoxTipo;
     private javax.swing.JButton btnComprobar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton btnSolicitarPrestamo;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JButton btnSolicitar;
+    private javax.swing.JComboBox<String> cbxVehiculo;
+    private com.toedter.calendar.JDateChooser dcFin;
+    private com.toedter.calendar.JDateChooser dcInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -254,11 +310,11 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblID;
     private javax.swing.JScrollPane scrolLTBLDATOS;
-    private javax.swing.JTable tblDATOS;
+    private javax.swing.JTable tblEmpleado;
+    private javax.swing.JTextField txfMotivo;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
