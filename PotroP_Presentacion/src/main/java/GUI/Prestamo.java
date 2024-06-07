@@ -4,11 +4,6 @@
  */
 package GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 /**
  *
  * @author diana
@@ -61,7 +56,7 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboBoxTipo = new javax.swing.JComboBox<>();
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         btnComprobar = new javax.swing.JButton();
@@ -104,8 +99,8 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel6.setText("Tipo de vehiculo:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
+        ComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca", "Modelo ", "Tipo" }));
+        jPanel1.add(ComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
 
         lblID.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         lblID.setText("ID:");
@@ -245,10 +240,10 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBoxTipo;
     private javax.swing.JButton btnComprobar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSolicitarPrestamo;
-    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
