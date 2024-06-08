@@ -1,6 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * VehiculoBO.java
+ * 
+ * Esta clase se encarga de gestionar la lógica de negocio relacionada con los vehículos,
+ * incluyendo operaciones como agregar, eliminar, actualizar y buscar vehículos en la base de datos;
+ * Además, proporciona métodos para obtener listas de vehículos almacenados en la base de datos;
+ * 
+ * Esta clase se comunica con la capa de acceso a datos (DAO) y utiliza un convertidor de DTO a entidad
+ * para convertir los objetos de transferencia de datos (DTO) a objetos de entidad y viceversa.
+ * 
  */
 package BO;
 
@@ -16,10 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta clase implementa los elementos de IVehiculosDAO para su uso en capas
- * posteriores.
- * 
- * @author diana
+ * @author/(s):
+ * Diana Sofia Bastidas Osuna - 245804,
+ * Carlos Damian Garcia Bernal - 247614,
+ * Kevin Jared Sánchez Figueroa - 240798,
+ * Daniel Alejandro Castro Félix - 235294.
  */
 public class VehiculoBO implements IVehiculoBO{
     

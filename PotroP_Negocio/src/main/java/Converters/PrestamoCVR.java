@@ -1,28 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * PrestamoCVR.java
+ * 
+ * Esta clase proporciona métodos para convertir entre objetos de tipo 
+ * PrestamoDTO y Prestamo, permitiendo la transferencia de datos entre 
+ * capas de la aplicación.
  */
 package Converters;
 
 import DTO.PrestamoDTO;
-import DTO.VehiculoDTO;
 import entidades.Prestamo;
-import entidades.Vehiculo;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
- *
- * @author skevi
+ * @author/(s):
+ * Diana Sofia Bastidas Osuna - 245804,
+ * Carlos Damian Garcia Bernal - 247614,
+ * Kevin Jared Sánchez Figueroa - 240798,
+ * Daniel Alejandro Castro Félix - 235294.
  */
 public class PrestamoCVR {
     
     VehiculoCVR vehiculoCVR;
 
+    /**
+     * Constructor de la clase PrestamoCVR.
+     * 
+     * Inicializa un objeto de tipo VehiculoCVR para su uso en las conversiones.
+     */
     public PrestamoCVR() {
         this.vehiculoCVR = new VehiculoCVR();
     }
     
+    /**
+     * Convierte un objeto de tipo PrestamoDTO en un objeto de tipo Prestamo.
+     * 
+     * @param prestamoDTO El objeto PrestamoDTO a convertir.
+     * @return El objeto Prestamo resultante de la conversión.
+     */
     public Prestamo convetir_Prestamo(PrestamoDTO prestamoDTO){
         String motivo = prestamoDTO.getMotivo();
         LocalDate Inicio = prestamoDTO.getInicio();
@@ -33,6 +47,12 @@ public class PrestamoCVR {
         return new Prestamo(motivo, Inicio, Fin, placa, correo);
     }
     
+    /**
+     * Convierte un objeto de tipo Prestamo en un objeto de tipo PrestamoDTO.
+     * 
+     * @param prestamo El objeto Prestamo a convertir.
+     * @return El objeto PrestamoDTO resultante de la conversión.
+     */
     public PrestamoDTO convertir_DTO(Prestamo prestamo){
         int id  = prestamo.getId();
         String motivo = prestamo.getMotivo();
@@ -42,5 +62,4 @@ public class PrestamoCVR {
         String correo = prestamo.getCorreoEmpleado();
         return new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
     }
-    
 }

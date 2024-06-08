@@ -1,7 +1,7 @@
 /**
  * VehiculoDTO.java
- * 
-* Clase que representa un vehículo.
+ *
+ * Clase que representa un vehículo.
  */
 package DTO;
 
@@ -13,6 +13,7 @@ package DTO;
  * Daniel Alejandro Castro Félix - 235294.
  */
 public class VehiculoDTO {
+
     private int id;
     private String marca;
     private String modelo;
@@ -20,16 +21,16 @@ public class VehiculoDTO {
     private String tipo;
     private String placa;
 
-   /**
+    /**
      * Constructor por omisión de la clase VehiculoDTO.
      */
     public VehiculoDTO() {
     }
 
     /**
-     * Constructor de la clase VehiculoDTO que inicializa todos los atributos 
+     * Constructor de la clase VehiculoDTO que inicializa todos los atributos
      * excepto el id del vehículo.
-     * 
+     *
      * @param marca La marca del vehículo.
      * @param modelo El modelo del vehículo.
      * @param año El año de fabricación del vehículo.
@@ -47,7 +48,7 @@ public class VehiculoDTO {
     /**
      * Constructor de la clase VehiculoDTO que inicializa todos los atributos
      * del vehículo.
-     * 
+     *
      * @param id El identificador único del vehículo.
      * @param marca La marca del vehículo.
      * @param modelo El modelo del vehículo.
@@ -66,7 +67,7 @@ public class VehiculoDTO {
 
     /**
      * Método getter para el atributo id.
-     * 
+     *
      * @return El identificador único del vehículo.
      */
     public int getId() {
@@ -75,19 +76,109 @@ public class VehiculoDTO {
 
     /**
      * Método setter para el atributo id.
-     * 
+     *
      * @param id El identificador único del vehículo.
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    // Los mismos métodos getter y setter se repiten para los demás atributos de la clase
+    /**
+     * Devuelve la marca del vehículo.
+     *
+     * @return La marca del vehículo.
+     */
+    public String getMarca() {
+        return marca;
+    }
 
     /**
-     * Método que proporciona una representación en forma de cadena de caracteres del objeto VehiculoDTO.
-     * 
-     * @return Una cadena que representa el vehículo, incluyendo la marca, el modelo y el tipo.
+     * Establece la marca del vehículo.
+     *
+     * @param marca La nueva marca del vehículo.
+     */
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    /**
+     * Devuelve el modelo del vehículo.
+     *
+     * @return El modelo del vehículo.
+     */
+    public String getModelo() {
+        return modelo;
+    }
+
+    /**
+     * Establece el modelo del vehículo.
+     *
+     * @param modelo El nuevo modelo del vehículo.
+     */
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    /**
+     * Devuelve el año de fabricación del vehículo.
+     *
+     * @return El año de fabricación del vehículo.
+     */
+    public int getAño() {
+        return año;
+    }
+
+    /**
+     * Establece el año de fabricación del vehículo.
+     *
+     * @param año El nuevo año de fabricación del vehículo.
+     */
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    /**
+     * Devuelve el tipo de vehículo.
+     *
+     * @return El tipo de vehículo.
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * Establece el tipo de vehículo.
+     *
+     * @param tipo El nuevo tipo de vehículo.
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * Devuelve la placa del vehículo.
+     *
+     * @return La placa del vehículo.
+     */
+    public String getPlaca() {
+        return placa;
+    }
+
+    /**
+     * Establece la placa del vehículo.
+     *
+     * @param placa La nueva placa del vehículo.
+     */
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    /**
+     * Método que proporciona una representación en forma de cadena de
+     * caracteres del objeto VehiculoDTO.
+     *
+     * @return Una cadena que representa el vehículo, incluyendo la marca, el
+     * modelo y el tipo.
      */
     @Override
     public String toString() {
