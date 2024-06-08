@@ -1,21 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+/**
+ * NewMain.java
+ * 
+ * Clase de prueba para la clase EmpleadoDAO.
  */
 package newpackage;
 
 /**
- *
- * @author caarl
+ * @author/(s):
+ * Diana Sofia Bastidas Osuna - 245804,
+ * Carlos Damian Garcia Bernal - 247614,
+ * Kevin Jared Sánchez Figueroa - 240798,
+ * Daniel Alejandro Castro Félix - 235294.
  */
 import Excepcion.PersistenciaException;
 import dao.EmpleadoDAO;
 import entidades.Empleado;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,16 @@ class EmpleadoDAOTest {
     private EmpleadoDAO empleadoDAO;
 
 
+   /**
+     * Configura el entorno para las pruebas.
+     */
     void setUp() {
         empleadoDAO = new EmpleadoDAO();
     }
 
-
+    /**
+     * Prueba el método ListaEmpleados de EmpleadoDAO.
+     */
     void testListaEmpleados() {
         try {
             Empleado empleado1 = new Empleado(1, "juan@example.com", "password123", "EMPLEADO");
@@ -49,7 +53,9 @@ class EmpleadoDAOTest {
         }
     }
 
-
+    /**
+     * Prueba el método buscarEmpleado de EmpleadoDAO.
+     */
     void testBuscarEmpleado() {
         try {
             Empleado empleado1 = new Empleado(1, "juan@example.com", "password123", "EMPLEADO");
@@ -72,7 +78,9 @@ class EmpleadoDAOTest {
         }
     }
 
- 
+    /**
+     * Prueba el método existenciaAdmin de EmpleadoDAO.
+     */
     void testExistenciaAdmin() {
         try {
             Empleado empleado1 = new Empleado(1, "juan@example.com", "password123", "EMPLEADO");
@@ -101,7 +109,9 @@ class EmpleadoDAOTest {
         }
     }
 
- 
+    /**
+     * Prueba el método registrarEmpleado de EmpleadoDAO.
+     */
     void testRegistrarEmpleado() {
         try {
             Empleado empleado1 = new Empleado(1, "juan@example.com", "password123", "EMPLEADO");
