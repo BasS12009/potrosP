@@ -1,6 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+/**
+ * Prestamo.java
+ *
+ * Pantalla de presentación que permite la funcionalidad de gestionar las
+ * solicitudes de los préstamos de vehículos.
  */
 package GUI;
 
@@ -22,17 +24,19 @@ import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author diana
+/** 
+ * @author/(s):
+ * Diana Sofia Bastidas Osuna - 245804,
+ * Carlos Damian Garcia Bernal - 247614,
+ * Kevin Jared Sánchez Figueroa - 240798,
+ * Daniel Alejandro Castro Félix - 235294.
  */
 public class Prestamo extends javax.swing.JFrame {
-    
 
-
-    
     /**
-     * Creates new form Prestamo
+     * Constructor creado por el compilador que permite inicializar los
+     * componentes de la pantalla y se agregaron 2 métodos para alinear el frame
+     * con la pantalla y asignarle un tamaño.
      */
     public Prestamo() {
         initComponents();
@@ -41,51 +45,69 @@ public class Prestamo extends javax.swing.JFrame {
 
         //cargamos las configuraciones iniciales de la pantalla
         configuracionInicial();
-        
+
     }
 
+    /**
+     * Realiza la configuración inicial de la interfaz de usuario. Inicializa un
+     * objeto IVehiculoFCD y lo utiliza para llenar un JComboBox con vehículos.
+     * Configura las dimensiones y la ubicación de la pantalla. Oculta la tabla
+     * tblEmpleado y el JScrollPane scrolLTBLDATOS.
+     */
     private void configuracionInicial() {
-          IVehiculoFCD vehiculo = new VehiculoFCD(); 
-        
-          //centramos la pantalla
-          this.setLocationRelativeTo(this);
-          //configuramos las dimenciones de la pantalla
-          this.setSize(670, 550);
-          
-          //ocultamos la tabla
-          scrolLTBLDATOS.setVisible(false);
-          tblEmpleado.setVisible(false);
-          try{
-              vehiculo.llenarCBX(cbxVehiculo);
-          }
-          catch(PropsException e){
-              System.out.println("problemas al cargar el combobox");
-          }
+        IVehiculoFCD vehiculo = new VehiculoFCD();
+
+        // Centra la pantalla
+        this.setLocationRelativeTo(this);
+        // Configura las dimensiones de la pantalla
+        this.setSize(670, 550);
+
+        // Oculta la tabla
+        scrolLTBLDATOS.setVisible(false);
+        tblEmpleado.setVisible(false);
+        try {
+            // Llena el JComboBox cbxVehiculo con los vehículos obtenidos a través del IVehiculoFCD
+            vehiculo.llenarCBX(cbxVehiculo);
+        } catch (PropsException e) {
+            System.out.println("Problemas al cargar el combobox");
+        }
     }
 
+    /**
+     * Convierte la fecha seleccionada en un objeto LocalDate.
+     *
+     * @param dateChooser El JDateChooser que contiene la fecha seleccionada.
+     * @return La fecha seleccionada como un objeto LocalDate, o null si no se
+     * seleccionó ninguna fecha.
+     */
     public LocalDate convertir(JDateChooser dateChooser) {
-        try{
-        Date date = dateChooser.getDate();
-        if (date != null) {
-            return date.toInstant()
-                       .atZone(ZoneId.systemDefault())
-                       .toLocalDate();
-        }
-        return null;
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(this, "no se pudo convertir a local date");
+        try {
+            Date date = dateChooser.getDate();
+            if (date != null) {
+                return date.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+            }
+            return null;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No se pudo convertir a LocalDate");
         }
         return null;
     }
 
-    public String obtenerPlaca(JComboBox box){
+    /**
+     * Obtiene la placa del vehículo seleccionado en un JComboBox.
+     *
+     * @param box El JComboBox que contiene los vehículos.
+     * @return La placa del vehículo seleccionado en el JComboBox.
+     */
+    public String obtenerPlaca(JComboBox box) {
+        // Obtiene el vehículo seleccionado del JComboBox
         VehiculoDTO vehiculo = (VehiculoDTO) box.getSelectedItem();
+        // Obtiene la placa del vehículo seleccionado
         String placa = vehiculo.getPlaca();
         return placa;
     }
-
-                
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,29 +248,38 @@ public class Prestamo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Realiza las acciones correspondientes cuando se hace clic en el botón
+     * "Solicitar". Instancia las clases ILoanFCD y IEmpleadoFCD, declara
+     * variables necesarias, y crea un objeto PrestamoDTO. Valida los datos del
+     * préstamo y la disponibilidad del empleado y el vehículo. Si todo está
+     * correcto, agrega el préstamo utilizando el método agregar de ILoanFCD.
+     * Captura PropsException y LoanException y muestra un mensaje de error en
+     * caso de excepción.
+     *
+     * @param evt El evento que desencadenó esta acción.
+     */
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         //aqui sucede la magia ojito de aqui en adelante que no explico dos veces
-        
+
         //primero instanciamos las clases que necesitemos
         //como las clases 
         ILoanFCD prestamo = new LoanFCD();
         IEmpleadoFCD empleado = new EmpleadoFCD();
-        
+
         // declaremos las variables necesarias que obtendremos de las pantallas
         try {
-        int id = 1;
-        String motivo = txfMotivo.getText();
-        LocalDate inicio = convertir(dcInicio);
-        LocalDate fin = convertir(dcFin);
-        String placa = obtenerPlaca(cbxVehiculo);
-        String correo; 
-        correo = empleado.buscarPorID(id).getCorreo();
-            
-        PrestamoDTO loan = new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
-        
-       
-        //comenzaremos con la aplicacion de filtros 
+            int id = 1;
+            String motivo = txfMotivo.getText();
+            LocalDate inicio = convertir(dcInicio);
+            LocalDate fin = convertir(dcFin);
+            String placa = obtenerPlaca(cbxVehiculo);
+            String correo;
+            correo = empleado.buscarPorID(id).getCorreo();
+
+            PrestamoDTO loan = new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
+
+            //comenzaremos con la aplicacion de filtros 
             //validamos si los datos de prestamo son correctos
             if (prestamo.validarDatos(loan)) {
                 //validamos si el empleado esta disponible
@@ -260,13 +291,19 @@ public class Prestamo extends javax.swing.JFrame {
                     }
                 }
             }
-            
+
         } catch (PropsException | LoanException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
-    }//GEN-LAST:event_btnSolicitarActionPerformed
 
+    }//GEN-LAST:event_btnSolicitarActionPerformed
+    /**
+     * Realiza las acciones correspondientes cuando se hace clic en el botón
+     * "Regresar". Crea una instancia de la clase Menu, la hace visible y cierra
+     * la ventana actual.
+     *
+     * @param evt El evento que desencadenó esta acción.
+     */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // esta es la logica para regresar de pantalla todos la entendemos
         // ni pa que la explico  
@@ -275,35 +312,49 @@ public class Prestamo extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
-
+    /**
+     * Realiza las acciones correspondientes cuando se introduce texto en el
+     * campo de texto txtID. No realiza ninguna acción en este método. Se
+     * encuentra vacío.
+     *
+     * @param evt El evento que desencadenó esta acción.
+     */
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
-
+    /**
+     * Realiza las acciones correspondientes cuando se hace clic en el botón
+     * "Comprobar". Instancia la clase IEmpleadoFCD, obtiene el ID del empleado
+     * del campo de texto txtID. Muestra la información del empleado en una
+     * tabla, oculta ciertos componentes y guarda el ID del empleado. Captura
+     * PropsException y muestra un mensaje de error en caso de excepción.
+     *
+     * @param evt El evento que desencadenó esta acción.
+     */
     private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
-        
+
         IEmpleadoFCD empleado = new EmpleadoFCD();
 
         int id = Integer.parseInt(txtID.getText());
-        
+
         try {
-            
+
             //mostramos la tabla con la informacion del empleado
             empleado.tablaEmpleado(tblEmpleado, id);
-            
+
             //ocultamos los botones 
             txtID.setVisible(false);
             lblID.setVisible(false);
             btnComprobar.setVisible(false);
-            
+
             //mostramos la tabla 
             tblEmpleado.setVisible(true);
             scrolLTBLDATOS.setVisible(true);
-            
+
             //guardamos el id del empleado
             Guardar guardar = new Guardar();
             guardar.getIdEmpleado();
-        
+
         } catch (PropsException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }

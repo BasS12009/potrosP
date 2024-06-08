@@ -1,17 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+/**
+ * Choferes.java
+ * 
+ * Pantalla de presentación que permite la funcionalidad de gestionar
+ * a los choferes.
  */
 package GUI;
 
-/**
- *
- * @author diana
+/** 
+ * @author/(s):
+ * Diana Sofia Bastidas Osuna - 245804,
+ * Carlos Damian Garcia Bernal - 247614,
+ * Kevin Jared Sánchez Figueroa - 240798,
+ * Daniel Alejandro Castro Félix - 235294.
  */
 public class Choferes extends javax.swing.JFrame {
 
     /**
-     * Creates new form Choferes
+     * Constructor creado por el compilador que permite inicializar los
+     * componentes de la pantalla y se agregaron 2 métodos para alinear
+     * el frame con la pantalla y asignarle un tamaño.
      */
     public Choferes() {
         initComponents();
