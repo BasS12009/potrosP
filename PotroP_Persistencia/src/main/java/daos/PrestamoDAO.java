@@ -1,12 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * PrestamoDAO.java
+ * 
+ * Esta clase permite agregar, eliminar, actualizar y buscar préstamos en una 
+ * lista en memoria, utilizando una implementación de la interfaz IPrestamoDAO 
+ * que proporciona acceso a los datos de préstamos utilizando una lista en memoria;
  */
 package daos;
 
-/**
- *
- * @author caarl
+/** 
+ * @author/(s):
+ * Diana Sofia Bastidas Osuna - 245804,
+ * Carlos Damian Garcia Bernal - 247614,
+ * Kevin Jared Sánchez Figueroa - 240798,
+ * Daniel Alejandro Castro Félix - 235294.
  */
 import Interfaces.IPrestamoDAO;
 import entidades.Prestamo;
@@ -20,9 +26,10 @@ public class PrestamoDAO implements IPrestamoDAO {
     private static List<Prestamo> lista = new ArrayList<>();
 
     /**
+     * Agrega un préstamo a la lista.
      * 
-     * @param prestamo
-     * @throws DAOException 
+     * @param prestamo el préstamo a agregar.
+     * @throws DAOException si ocurre un error durante la operación.
      */
     @Override
     public void agregar(Prestamo prestamo) throws DAOException {
@@ -30,9 +37,10 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     /**
+     * Elimina un préstamo de la lista.
      * 
-     * @param prestamo
-     * @throws DAOException 
+     * @param prestamo el préstamo a eliminar.
+     * @throws DAOException si el préstamo no se encuentra en la lista.
      */
     @Override
     public void eliminar(Prestamo prestamo) throws DAOException {
@@ -45,9 +53,10 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     /**
+     * Actualiza un préstamo en la lista.
      * 
-     * @param prestamo
-     * @throws DAOException 
+     * @param prestamo el préstamo a actualizar.
+     * @throws DAOException si el préstamo no se encuentra en la lista.
      */
     @Override
     public void actualizar(Prestamo prestamo) throws DAOException {
@@ -61,10 +70,11 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     /**
+     * Busca un préstamo por su identificador único.
      * 
-     * @param id
-     * @return
-     * @throws DAOException 
+     * @param id el identificador único del préstamo a buscar.
+     * @return el préstamo encontrado.
+     * @throws DAOException si el préstamo no se encuentra en la lista.
      */
     @Override
     public Prestamo buscarPorId(int id) throws DAOException {
@@ -77,9 +87,10 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     /**
+     * Obtiene una lista de todos los préstamos almacenados.
      * 
-     * @return
-     * @throws DAOException 
+     * @return una lista de todos los préstamos almacenados.
+     * @throws DAOException si ocurre un error durante la operación.
      */
     @Override
     public List<Prestamo> listaPrestamos() throws DAOException {
@@ -87,33 +98,35 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     /**
+     * Obtiene una lista de préstamos que caen dentro de un rango de fechas dado.
      * 
-     * @param begin
-     * @param end
-     * @return
-     * @throws DAOException 
+     * @param begin la fecha de inicio del rango.
+     * @param end la fecha de fin del rango.
+     * @return una lista de préstamos que caen dentro del rango de fechas especificado.
+     * @throws DAOException si ocurre un error durante la operación.
      */
     @Override
     public List<Prestamo> listaPorFechas(LocalDate begin, LocalDate end) throws DAOException {
-    if (begin == null || end == null) {
-        throw new IllegalArgumentException("Las fechas no pueden ser nulas.");
-    }
-    List<Prestamo> prestamosEnRango = new ArrayList<>();
-    for (Prestamo prestamo : lista) {
-        if ((prestamo.getInicio().isEqual(begin) || prestamo.getInicio().isAfter(begin)) &&
-            (prestamo.getFin().isEqual(end) || prestamo.getFin().isBefore(end))) {
-            prestamosEnRango.add(prestamo);
+        if (begin == null || end == null) {
+            throw new IllegalArgumentException("Las fechas no pueden ser nulas.");
         }
-    }
-    return prestamosEnRango;
+        List<Prestamo> prestamosEnRango = new ArrayList<>();
+        for (Prestamo prestamo : lista) {
+            if ((prestamo.getInicio().isEqual(begin) || prestamo.getInicio().isAfter(begin)) &&
+                (prestamo.getFin().isEqual(end) || prestamo.getFin().isBefore(end))) {
+                prestamosEnRango.add(prestamo);
+            }
+        }
+        return prestamosEnRango;
     }
 
     /**
+     * Obtiene una lista de préstamos paginada.
      * 
-     * @param offset
-     * @param limit
-     * @return
-     * @throws DAOException 
+     * @param offset el índice de inicio de la página.
+     * @param limit el tamaño máximo de la página.
+     * @return una lista de préstamos paginada.
+     * @throws DAOException si ocurre un error durante la operación.
      */
     @Override
     public List<Prestamo> listaPaginda(int offset, int limit) throws DAOException {
