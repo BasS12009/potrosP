@@ -249,10 +249,13 @@ public class Prestamo extends javax.swing.JFrame {
         
        
         //comenzaremos con la aplicacion de filtros 
+            //validamos si los datos de prestamo son correctos
             if (prestamo.validarDatos(loan)) {
-                
+                //validamos si el empleado esta disponible
                 if (prestamo.disponibilidadEmpleado(fin, fin, correo)) {
+                    //validamos si el vehiculo esta disponible
                     if (prestamo.disponibilidadVehiculo(fin, fin, placa)) {
+                        //si todo esta correcto agregamos el prestamo
                         prestamo.agregar(loan);
                     }
                 }
