@@ -9,6 +9,8 @@ import Interfaz.IEmpleadoFCD;
 import control.EmpleadoCTL;
 import dtos.EmpleadoDTO;
 import excepcion.PropsException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,6 +49,15 @@ public class EmpleadoFCD implements IEmpleadoFCD{
         throw new PropsException("Error al obtener los datos del empleado.", e);
     }
 }
+
+    @Override
+    public EmpleadoDTO buscarPorID(int id) throws PropsException {
+        try {
+            return empleadoCTL.buscarPorID(id);
+        } catch (NegocioException ex) {
+           throw new PropsException(ex.getMessage());        
+        }
+    }
     
     
     

@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import dtos.EmpleadoDTO;
 import excepcion.PropsException;
 import javax.swing.JTable;
 
@@ -14,5 +15,7 @@ import javax.swing.JTable;
 public interface IEmpleadoFCD {
     
     public void tablaEmpleado(JTable table, int id) throws PropsException;
+    
+    public EmpleadoDTO buscarPorID(int id) throws PropsException;
     
 }

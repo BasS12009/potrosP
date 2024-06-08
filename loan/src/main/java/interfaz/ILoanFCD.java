@@ -24,6 +24,5 @@ public interface ILoanFCD {
     public boolean disponibilidadVehiculo(LocalDate begin, LocalDate end, String placa) throws LoanException;
     
     public boolean validarDatos (PrestamoDTO prestamoDTO) throws LoanException;
-   
-            
+          
 }

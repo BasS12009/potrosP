@@ -4,16 +4,22 @@
  */
 package GUI;
 
+import DTO.PrestamoDTO;
+import DTO.VehiculoDTO;
 import Interfaz.IEmpleadoFCD;
 import Interfaz.IVehiculoFCD;
+import com.toedter.calendar.JDateChooser;
+import excepcion.LoanException;
 import excepcion.PropsException;
 import fachada.EmpleadoFCD;
 import fachada.LoanFCD;
 import fachada.VehiculoFCD;
 import guardar.Guardar;
 import interfaz.ILoanFCD;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,9 +63,26 @@ public class Prestamo extends javax.swing.JFrame {
           }
     }
 
-    private void showTable() {
-        tblEmpleado.setVisible(true);
-        scrolLTBLDATOS.setVisible(true);
+    public LocalDate convertir(JDateChooser dateChooser) {
+        try{
+        Date date = dateChooser.getDate();
+        if (date != null) {
+            return date.toInstant()
+                       .atZone(ZoneId.systemDefault())
+                       .toLocalDate();
+        }
+        return null;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "no se pudo convertir a local date");
+        }
+        return null;
+    }
+
+    public String obtenerPlaca(JComboBox box){
+        VehiculoDTO vehiculo = (VehiculoDTO) box.getSelectedItem();
+        String placa = vehiculo.getPlaca();
+        return placa;
     }
 
                 
@@ -209,11 +232,36 @@ public class Prestamo extends javax.swing.JFrame {
         
         //primero instanciamos las clases que necesitemos
         //como las clases 
-        ILoanFCD prestamo = new LoanFCD();//la unica que necesitamos es la de prestamo me vi bien menso 
+        ILoanFCD prestamo = new LoanFCD();
+        IEmpleadoFCD empleado = new EmpleadoFCD();
         
         // declaremos las variables necesarias que obtendremos de las pantallas
+        try {
+        int id = 1;
+        String motivo = txfMotivo.getText();
+        LocalDate inicio = convertir(dcInicio);
+        LocalDate fin = convertir(dcFin);
+        String placa = obtenerPlaca(cbxVehiculo);
+        String correo; 
+        correo = empleado.buscarPorID(id).getCorreo();
+            
+        PrestamoDTO loan = new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
         
+       
         //comenzaremos con la aplicacion de filtros 
+            if (prestamo.validarDatos(loan)) {
+                
+                if (prestamo.disponibilidadEmpleado(fin, fin, correo)) {
+                    if (prestamo.disponibilidadVehiculo(fin, fin, placa)) {
+                        prestamo.agregar(loan);
+                    }
+                }
+            }
+            
+        } catch (PropsException | LoanException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -256,8 +304,6 @@ public class Prestamo extends javax.swing.JFrame {
         } catch (PropsException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
-        showTable();
     }//GEN-LAST:event_btnComprobarActionPerformed
 
     /**
