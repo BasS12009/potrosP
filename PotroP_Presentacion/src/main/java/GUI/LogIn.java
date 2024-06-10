@@ -8,6 +8,7 @@ package GUI;
 
 import exception.FachadaException;
 import fachada.LogginFCD;
+import insertar.Inserciones;
 import interfaz.ILogginFCD;
 import javax.swing.JOptionPane;
 
@@ -25,10 +26,18 @@ public class LogIn extends javax.swing.JFrame {
      * componentes de la pantalla y se agregaron 2 métodos para alinear
      * el frame con la pantalla y asignarle un tamaño.
      */
-    public LogIn() {
+    public LogIn(){
         initComponents();
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);
+        
+        Inserciones inserciones = new Inserciones();
+        try{
+        inserciones.insertar();
+        }
+        catch(Exception ex){
+            System.out.println("Los datos no fueron agregados correctamente");
+        }
     }
 
     /**

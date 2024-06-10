@@ -18,8 +18,8 @@ public class PrestamoDTO {
     
     private int id;
     private String motivo;
-    private LocalDate Inicio;
-    private LocalDate Fin;
+    private LocalDate inicio;
+    private LocalDate fin;
     private String placaVehiculo;
     private String correoEmpleado;
 
@@ -34,15 +34,15 @@ public class PrestamoDTO {
      * del préstamo.
      * 
      * @param motivo El motivo del préstamo.
-     * @param Inicio La fecha de inicio del préstamo.
-     * @param Fin La fecha de fin del préstamo.
+     * @param inicio La fecha de inicio del préstamo.
+     * @param fin La fecha de fin del préstamo.
      * @param placaVehiculo La placa del vehículo prestado.
      * @param correoEmpleado El correo del empleado que realiza el préstamo.
      */
-    public PrestamoDTO(String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
+    public PrestamoDTO(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
         this.motivo = motivo;
-        this.Inicio = Inicio;
-        this.Fin = Fin;
+        this.inicio = inicio;
+        this.fin = fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
     }
@@ -60,8 +60,8 @@ public class PrestamoDTO {
     public PrestamoDTO(int id, String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
-        this.Inicio = Inicio;
-        this.Fin = Fin;
+        this.inicio = Inicio;
+        this.fin = Fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
     }
@@ -108,7 +108,7 @@ public class PrestamoDTO {
      * @return La fecha de inicio del préstamo.
      */
     public LocalDate getInicio() {
-        return Inicio;
+        return inicio;
     }
 
     /**
@@ -117,7 +117,7 @@ public class PrestamoDTO {
      * @param Inicio La fecha de inicio del préstamo.
      */
     public void setInicio(LocalDate Inicio) {
-        this.Inicio = Inicio;
+        this.inicio = Inicio;
     }
 
     /**
@@ -126,7 +126,7 @@ public class PrestamoDTO {
      * @return La fecha de fin del préstamo.
      */
     public LocalDate getFin() {
-        return Fin;
+        return fin;
     }
 
     /**
@@ -135,7 +135,7 @@ public class PrestamoDTO {
      * @param Fin La fecha de fin del préstamo.
      */
     public void setFin(LocalDate Fin) {
-        this.Fin = Fin;
+        this.fin = Fin;
     }
 
     /**

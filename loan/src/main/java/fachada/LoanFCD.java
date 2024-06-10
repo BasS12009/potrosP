@@ -69,6 +69,7 @@ public class LoanFCD implements ILoanFCD{
 
     @Override
     public boolean disponibilidadEmpleado(LocalDate begin, LocalDate end, String correo) throws LoanException {
+        
         try {
             boolean disponible = true; // Inicializar como disponible
         

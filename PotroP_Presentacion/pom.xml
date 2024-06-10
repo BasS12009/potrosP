@@ -53,6 +53,11 @@
             <artifactId>PotroP_DTO</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>inserciones</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <name>PotroP_Presentacion</name>
 </project>

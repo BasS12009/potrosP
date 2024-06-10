@@ -15,10 +15,7 @@ GUI\Menu$7.class
 GUI\Prestamo$3.class
 GUI\Prestamo.class
 GUI\LogIn$2.class
-<<<<<<< Updated upstream
 GUI\Menu$5.class
-=======
->>>>>>> Stashed changes
 GUI\Choferes$1.class
 GUI\AgregarVehiculo$1.class
 GUI\Traslado.class

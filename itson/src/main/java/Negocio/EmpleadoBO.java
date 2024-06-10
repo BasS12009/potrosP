@@ -170,6 +170,7 @@ public class EmpleadoBO implements IEmpleadoBO{
     }
 
     /**
+     * 
      * Verifica la existencia de un administrador, recibiéndo como parámetro un
      * objeto EmpleadoDTO por medio del objeto empleadoDTO;
      * 
@@ -186,6 +187,7 @@ public class EmpleadoBO implements IEmpleadoBO{
      * @param empleadoDTO El objeto EmpleadoDTO que contiene los datos del administrador a verificar.
      * @return {@code true} si el administrador existe, {@code false} en caso contrario.
      * @throws NegocioException Si ocurre un error durante la verificación de la existencia del administrador.
+     * 
      */
     @Override
     public boolean existenciaAdmin(EmpleadoDTO empleadoDTO) throws NegocioException {
