@@ -24,7 +24,7 @@ import interfaces.IEmpleadoDAO;
     public class EmpleadoDAO implements IEmpleadoDAO{
 
     public static List<Empleado> listaEmpleados = new ArrayList();
-    private static List<Empleado> listaAministradores = new ArrayList();
+    private static List<Empleado> listaAdministradores = new ArrayList();
     private static List<Empleado> listaChoferes = new ArrayList();
     
     
@@ -106,14 +106,18 @@ import interfaces.IEmpleadoDAO;
         if (empleado == null) {
             throw new PersistenciaException("Administrador nulo");
         } else {
-            for (Empleado empleados : listaEmpleados) {
-                if (empleados.equals(empleado)) {
-                    return true;
+            for (int i = 0; i < listaAdministradores.size(); i++) {
+                if (listaAdministradores.get(i).getCorreo().equalsIgnoreCase(empleado.getCorreo())) {
+                    if (listaAdministradores.get(i).getContraseña().equalsIgnoreCase(empleado.getContraseña())) {
+                        return true;
+                    }
                 }
+                break;
             }
-        }
+            }
         return false;
-    }
+        }
+    
 
     /**
      * Registra un nuevo empleado;
@@ -183,7 +187,7 @@ import interfaces.IEmpleadoDAO;
         if (empleado == null) {
             throw new PersistenciaException("Chofer nulo");
         } else if (empleado.getTipo().equalsIgnoreCase("CHOFER")) {
-            listaEmpleados.add(empleado);
+            listaChoferes.add(empleado);
         }
     }
 }
