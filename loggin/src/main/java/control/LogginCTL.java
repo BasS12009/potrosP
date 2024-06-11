@@ -41,6 +41,7 @@ public class LogginCTL {
             return this.empleadoBO.existenciaAdmin(empleadoDTO);
         }
         catch(NegocioException e){
+            System.out.println("error en logginCTL");
             throw new ControlException(e.getMessage());
         }
     }

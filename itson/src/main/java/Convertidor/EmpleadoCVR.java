@@ -22,13 +22,14 @@ public class EmpleadoCVR {
     /**
      * Convierte un objeto de tipo EmpleadoDTO a un objeto de tipo Empleado.
      * 
-     * @param EmpleadoDTO El objeto de tipo EmpleadoDTO que se desea convertir.
+     * @param empleadoDTO El objeto de tipo EmpleadoDTO que se desea convertir.
      * @return Una instancia de Empleado con los datos del EmpleadoDTO proporcionado.
      */
-    public Empleado convertir_Entidad(EmpleadoDTO EmpleadoDTO) {
-        String correo = EmpleadoDTO.getCorreo();
-        String contraseña = EmpleadoDTO.getCorreo();
-        return new Empleado(correo, contraseña);
+    public Empleado convertir_Entidad(EmpleadoDTO empleadoDTO) {
+        String correo = empleadoDTO.getCorreo();
+        String contraseña = empleadoDTO.getCorreo();
+        String tipo = empleadoDTO.getTipo();
+        return new Empleado(correo, contraseña, tipo);
     }
 
     /**
@@ -41,6 +42,7 @@ public class EmpleadoCVR {
         int id = empleado.getId();
         String correo = empleado.getCorreo();
         String contraseña = empleado.getContraseña();
-        return new EmpleadoDTO(id, correo, contraseña);
+        String tipo = empleado.getTipo();
+        return new EmpleadoDTO(id, correo, contraseña, tipo);
     }
 }

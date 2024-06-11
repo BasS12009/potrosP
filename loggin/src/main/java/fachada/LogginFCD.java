@@ -44,6 +44,7 @@ public class LogginFCD implements ILogginFCD{
            return login.existe(new EmpleadoDTO(correo, contraseña));
         }
         catch(ControlException e){
+            System.out.println("error en logginFCD");
             throw new FachadaException("Error en correo o contraseña");
         }
     }

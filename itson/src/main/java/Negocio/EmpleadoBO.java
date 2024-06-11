@@ -198,6 +198,7 @@ public class EmpleadoBO implements IEmpleadoBO{
                 return this.empleadoDAO.existenciaAdmin(this.empleadoCVR.convertir_Entidad(empleadoDTO));
             }
         } catch (PersistenciaException e) {
+            System.out.println("fallo en empleadoBO");
             throw new NegocioException(e.getMessage());
         }
     }
