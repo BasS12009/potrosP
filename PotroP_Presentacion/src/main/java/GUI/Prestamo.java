@@ -11,7 +11,6 @@ import DTO.VehiculoDTO;
 import Interfaz.IEmpleadoFCD;
 import Interfaz.IVehiculoFCD;
 import com.toedter.calendar.JDateChooser;
-import excepcion.ControlExceptionException;
 import excepcion.PropsException;
 import fachada.EmpleadoFCD;
 import fachada.LoanFCD;
@@ -109,6 +108,22 @@ public class Prestamo extends javax.swing.JFrame {
         return placa;
     }
 
+    /**
+     * 
+     * 
+     * @return 
+     */
+    public String obtenerCorreo() {
+        Object celda = tblEmpleado.getValueAt(0, 1);
+        if (celda instanceof String) {
+            return (String) celda;
+        } 
+        else {
+            // Manejar el caso donde el valor no es un String
+            return null; // O lanzar una excepción, mostrar un mensaje, etc.
+    }
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,6 +264,7 @@ public class Prestamo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
+     * 
      * Realiza las acciones correspondientes cuando se hace clic en el botón
      * "Solicitar". Instancia las clases ILoanFCD y IEmpleadoFCD, declara
      * variables necesarias, y crea un objeto PrestamoDTO. Valida los datos del
@@ -267,32 +283,22 @@ public class Prestamo extends javax.swing.JFrame {
         ILoanFCD prestamo = new LoanFCD();
         IEmpleadoFCD empleado = new EmpleadoFCD();
 
-        // declaremos las variables necesarias que obtendremos de las pantallas
+        //declaremos las variables necesarias que obtendremos de las pantallas
         try {
             int id = 1;
             String motivo = txfMotivo.getText();
             LocalDate inicio = convertir(dcInicio);
             LocalDate fin = convertir(dcFin);
             String placa = obtenerPlaca(cbxVehiculo);
-            String correo;
-            correo = empleado.buscarPorID(id).getCorreo();
+            String correo = obtenerCorreo();
 
             PrestamoDTO loan = new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
 
-            //comenzaremos con la aplicacion de filtros 
-            //validamos si los datos de prestamo son correctos
-            if (prestamo.validarDatos(loan)) {
-                //validamos si el empleado esta disponible
-                if (prestamo.disponibilidadEmpleado(fin, fin, correo)) {
-                    //validamos si el vehiculo esta disponible
-                    if (prestamo.disponibilidadVehiculo(fin, fin, placa)) {
-                        //si todo esta correcto agregamos el prestamo
-                        prestamo.agregar(loan);
-                    }
-                }
-            }
+            //agregamos el prestamo
+            prestamo.agregar(loan);
+            
 
-        } catch (PropsException | ControlExceptionException ex) {
+        } catch (excepcion.FachadaException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 
@@ -312,6 +318,7 @@ public class Prestamo extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+   
     /**
      * Realiza las acciones correspondientes cuando se introduce texto en el
      * campo de texto txtID. No realiza ninguna acción en este método. Se
@@ -322,6 +329,7 @@ public class Prestamo extends javax.swing.JFrame {
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
+    
     /**
      * Realiza las acciones correspondientes cuando se hace clic en el botón
      * "Comprobar". Instancia la clase IEmpleadoFCD, obtiene el ID del empleado

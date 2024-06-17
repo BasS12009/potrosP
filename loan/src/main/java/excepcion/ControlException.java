@@ -8,24 +8,24 @@ package excepcion;
  *
  * @author skevi
  */
-public class ControlExceptionException extends Exception{
+public class ControlException extends Exception{
 
-    public ControlExceptionException() {
+    public ControlException() {
     }
 
-    public ControlExceptionException(String message) {
+    public ControlException(String message) {
         super(message);
     }
 
-    public ControlExceptionException(String message, Throwable cause) {
+    public ControlException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ControlExceptionException(Throwable cause) {
+    public ControlException(Throwable cause) {
         super(cause);
     }
 
-    public ControlExceptionException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public ControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
     

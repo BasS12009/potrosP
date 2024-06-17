@@ -5,14 +5,12 @@
 package fachada;
 
 import DTO.PrestamoDTO;
-import exceptions.BisnessException;
 import control.LoanCTL;
-import excepcion.ControlExceptionException;
-import java.time.LocalDate;
-import java.util.List;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import excepcion.ControlException;
+import excepcion.FachadaException;
 import interfaz.ILoanFCD;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,128 +23,33 @@ public class LoanFCD implements ILoanFCD{
     public LoanFCD() {
         this.control = new LoanCTL();
     }
-    
-    @Override
-    public void agregar(PrestamoDTO prestamoDTO) throws ControlExceptionException {
-        try {
-            control.agregar(prestamoDTO);
-        } catch (BisnessException ex) {
-            System.out.println(ex.getMessage());;
-        }
-    }
 
     @Override
-    public void llenarTablaHistorial(JTable tabla, int offset, int limit) throws ControlExceptionException {
-        try {
+    public void agregar(PrestamoDTO prestamoDTO) throws FachadaException {
+        try{
             
-            List<PrestamoDTO> libros = control.listaPaginada(offset, limit);
-
-            // Definir columnas
-            String[] columnNames = {"ID", "Inicio", "Fin", "Placa Vehiculo", "Correo Empleado"};
+            LocalDate inicio = prestamoDTO.getInicio();
+            LocalDate fin = prestamoDTO.getFin(); 
+            String correo = prestamoDTO.getCorreoEmpleado();
+            String placa = prestamoDTO.getPlacaVehiculo();
             
-            // Crear modelo de la tabla
-            DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-
-            // Llenar la tabla con los datos de libros
-            for (PrestamoDTO prestamo : libros) {
-                Object[] rowData = {
-                    prestamo.getId(),
-                    prestamo.getInicio(),
-                    prestamo.getInicio(),
-                    prestamo.getFin(),
-                    prestamo.getPlacaVehiculo(),
-                    prestamo.getCorreoEmpleado()
-                };
-                tableModel.addRow(rowData);
-            }
-
-            // Establecer el modelo de la tabla
-            tabla.setModel(tableModel);
-        } catch (BisnessException ex) {
-            System.out.println(ex.getMessage());;
-        }
-    }
-
-    @Override
-    public boolean disponibilidadEmpleado(LocalDate begin, LocalDate end, String correo) throws ControlExceptionException {
-        
-        try {
-            boolean disponible = true; // Inicializar como disponible
-        
-            List<PrestamoDTO> lista = control.listaPorFechas(begin, end);
-        
-            for (PrestamoDTO prestamo : lista) {
-                if (prestamo.getCorreoEmpleado().equalsIgnoreCase(correo)) {
-                    disponible = false; // Si hay algún préstamo en el rango de fechas para el correo, no está disponible
-                    break; // No es necesario seguir buscando
+           //comenzaremos con la aplicacion de filtros 
+               //validamos si los datos de prestamo son correctos
+               if (control.validarDatos(prestamoDTO)) {
+                   //validamos si el empleado esta disponible
+                   if (control.disponibilidadEmpleado(inicio, fin, correo)) {
+                       //validamos si el vehiculo esta disponible
+                       if (control.disponibilidadVehiculo(inicio, fin, placa)) {
+                           //si todo esta correcto agregamos el prestamo
+                           control.agregar(prestamoDTO);
+                           JOptionPane.showMessageDialog(null, "¡Prestamo agregado con exito!");
+                    }
+                }
             }
         }
-        
-        return disponible;
-        
-    } catch (BisnessException ex) {
-        System.out.println(ex.getMessage());
-        throw new ControlExceptionException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
-    }
-    }
-
-
-    @Override
-    public boolean validarDatos(PrestamoDTO prestamoDTO) throws ControlExceptionException {
-       String correo = prestamoDTO.getCorreoEmpleado().trim();
-       String motivo = prestamoDTO.getMotivo().trim();
-       LocalDate inicio = prestamoDTO.getInicio();
-       LocalDate fin = prestamoDTO.getFin();
-       String placaVehiculo = prestamoDTO.getPlacaVehiculo().trim();
-
-       LocalDate hoy = LocalDate.now();
-
-       if (correo.isEmpty()) {
-          throw new ControlExceptionException("Por favor, llene el campo de correo.");
-       }
-       if (motivo.isEmpty()) {
-          throw new ControlExceptionException("Por favor, llene el campo del motivo.");
-       }
-       if (inicio == null) {
-          throw new ControlExceptionException("Por favor, seleccione una fecha de inicio.");
-       }
-       if (fin == null) {
-          throw new ControlExceptionException("Por favor, seleccione una fecha de regreso.");
-       }
-       if (inicio.isBefore(hoy)) {
-          throw new ControlExceptionException("La fecha de inicio no puede ser anterior a la fecha actual.");
-       }
-       if (fin.isBefore(inicio)) {
-          throw new ControlExceptionException("La fecha de regreso no puede ser anterior a la fecha de inicio.");
-       }
-       if (placaVehiculo.isEmpty()) {
-          throw new ControlExceptionException("Por favor, seleccione un vehículo.");
-       }
-       
-       return true;
-}
-
-
-    @Override
-    public boolean disponibilidadVehiculo(LocalDate begin, LocalDate end, String placa) throws ControlExceptionException {
-        try {
-            boolean disponible = true; // Inicializar como disponible
-        
-            List<PrestamoDTO> lista = control.listaPorFechas(begin, end);
-        
-            for (PrestamoDTO prestamo : lista) {
-                if (prestamo.getPlacaVehiculo().equalsIgnoreCase(placa)) {
-                    disponible = false; // Si hay algún préstamo en el rango de fechas para el correo, no está disponible
-                    break; // No es necesario seguir buscando
-            }
+        catch(ControlException ex){
+            throw new FachadaException(ex.getMessage()); 
         }
-        
-           return disponible;
-        
-       } catch (BisnessException ex) {
-           System.out.println(ex.getMessage());
-           throw new ControlExceptionException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
-       }
     }
     
 }
