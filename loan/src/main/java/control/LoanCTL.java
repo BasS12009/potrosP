@@ -30,7 +30,7 @@ public class LoanCTL {
         try {
             prestamoBO.agregar(prestamoDTO);
         } catch (BisnessException ex) {
-            System.out.println(ex.getMessage());;
+            System.out.println(ex.getMessage());
         }
     }
     
