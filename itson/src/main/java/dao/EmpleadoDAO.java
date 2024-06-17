@@ -26,8 +26,37 @@ import interfaces.IEmpleadoDAO;
     public static List<Empleado> listaEmpleados = new ArrayList();
     private static List<Empleado> listaAdministradores = new ArrayList();
     private static List<Empleado> listaChoferes = new ArrayList();
+
+    public EmpleadoDAO() {
+        //insertamos nuevos empleados
+    Empleado empleado1 = new Empleado(1, "kevin@gmail.com", "kevin123", "EMPLEADO");
+    Empleado empleado2 = new Empleado(2, "diana@gmail.com", "diana123", "EMPLEADO");
+    Empleado empleado3 = new Empleado(3, "carlos@gmail.com", "carlos123", "EMPLEADO");
+    Empleado empleado4 = new Empleado(4, "daniel@gmail.com", "daniel123", "EMPLEADO");
     
+    //insertamos nuevos choferes 
+    Empleado chofer1 = new Empleado(6, "panfilo@gmail.com", "panfilo123", "CHOFER");
+    Empleado chofer2 = new Empleado(7, "joshua@gmail.com", "joshua123", "CHOFER");
+    Empleado chofer3 = new Empleado(8, "panfilo@gmail.com", "panfilo123", "CHOFER");
     
+    //insertamos nuevos administradores
+    Empleado administrador1 = new Empleado(11, "arnoldo@gmail.com", "arnoldo123", "ADMINISTRADOR");
+    Empleado administrador2 = new Empleado(12, "damian@gmail.com", "damian123", "ADMINISTRADOR");
+ 
+    
+    listaEmpleados.add(empleado1);
+    listaEmpleados.add(empleado2);
+    listaEmpleados.add(empleado3);
+    listaEmpleados.add(empleado4);
+    
+    listaChoferes.add(chofer1);
+    listaChoferes.add(chofer2);
+    listaChoferes.add(chofer3);
+    
+    listaAdministradores.add(administrador1);
+    listaAdministradores.add(administrador2);
+        
+    }
     /**
      * Obtiene una lista paginada de empleados a partir de un desplazamiento 
      * (offset) y un límite (limit).
@@ -138,7 +167,7 @@ import interfaces.IEmpleadoDAO;
     public void registrarEmpleado(Empleado empleado) throws PersistenciaException {
         if (empleado == null) {
             throw new PersistenciaException("Empleado nulo");
-        } else if (empleado.getTipo().equalsIgnoreCase("EMPLEADO")) {
+        } else {
             listaEmpleados.add(empleado);
         }
     }
@@ -162,8 +191,8 @@ import interfaces.IEmpleadoDAO;
     public void registrarAdministrador(Empleado empleado) throws PersistenciaException {
         if (empleado == null) {
             throw new PersistenciaException("Administrador nulo");
-        } else if (empleado.getTipo().equalsIgnoreCase("ADMINISTRADOR")) {
-            listaEmpleados.add(empleado);
+        } else {
+            listaAdministradores.add(empleado);
         }
     }
 
@@ -186,7 +215,7 @@ import interfaces.IEmpleadoDAO;
     public void registrarChofer(Empleado empleado) throws PersistenciaException {
         if (empleado == null) {
             throw new PersistenciaException("Chofer nulo");
-        } else if (empleado.getTipo().equalsIgnoreCase("CHOFER")) {
+        } else {
             listaChoferes.add(empleado);
         }
     }

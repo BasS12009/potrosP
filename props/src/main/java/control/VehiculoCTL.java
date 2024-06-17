@@ -7,9 +7,9 @@
  */
 package control;
 
-import BO.VehiculoBO;
+import bo.VehiculoBO;
 import DTO.VehiculoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import interfaces.IVehiculoBO;
 import java.util.List;
 

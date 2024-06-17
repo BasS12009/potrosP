@@ -14,7 +14,7 @@
  * Esta excepción puede ser utilizada en conjunto con otras clases y métodos relacionados con la lógica de negocio
  * para manejar y propagar errores de manera consistente en toda la aplicación.
  */
-package Exceptions;
+package exceptions;
 
 /**
  * @author/(s):

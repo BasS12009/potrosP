@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class VehiculoDAO implements IVehiculoDAO {
 
-    private static final List<Vehiculo> lista = new ArrayList<>();
+    private static List<Vehiculo> lista = new ArrayList<>();
 
     /**
      * Agrega un vehículo a la lista.

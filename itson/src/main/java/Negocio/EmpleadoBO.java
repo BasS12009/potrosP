@@ -199,7 +199,7 @@ public class EmpleadoBO implements IEmpleadoBO{
             }
         } catch (PersistenciaException e) {
             System.out.println("fallo en empleadoBO");
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException();
         }
     }
 }

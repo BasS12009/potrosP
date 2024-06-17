@@ -9,11 +9,11 @@
  * para convertir los objetos de transferencia de datos (DTO) a objetos de entidad y viceversa.
  * 
  */
-package BO;
+package bo;
 
-import Converters.VehiculoCVR;
+import converters.VehiculoCVR;
 import DTO.VehiculoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import Interfaces.IVehiculoDAO;
 import daos.VehiculoDAO;
 import entidades.Vehiculo;

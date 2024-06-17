@@ -11,7 +11,7 @@ import DTO.VehiculoDTO;
 import Interfaz.IEmpleadoFCD;
 import Interfaz.IVehiculoFCD;
 import com.toedter.calendar.JDateChooser;
-import excepcion.LoanException;
+import excepcion.ControlExceptionException;
 import excepcion.PropsException;
 import fachada.EmpleadoFCD;
 import fachada.LoanFCD;
@@ -292,7 +292,7 @@ public class Prestamo extends javax.swing.JFrame {
                 }
             }
 
-        } catch (PropsException | LoanException ex) {
+        } catch (PropsException | ControlExceptionException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 

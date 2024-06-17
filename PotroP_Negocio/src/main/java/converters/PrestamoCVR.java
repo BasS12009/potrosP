@@ -5,7 +5,7 @@
  * PrestamoDTO y Prestamo, permitiendo la transferencia de datos entre 
  * capas de la aplicación.
  */
-package Converters;
+package converters;
 
 import DTO.PrestamoDTO;
 import entidades.Prestamo;

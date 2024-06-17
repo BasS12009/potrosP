@@ -7,7 +7,7 @@
  * VehiculoDTO y Vehiculo, permitiendo la transferencia de datos entre capas 
  * de la aplicación.
  */
-package Converters;
+package converters;
 
 import DTO.VehiculoDTO;
 import entidades.Vehiculo;

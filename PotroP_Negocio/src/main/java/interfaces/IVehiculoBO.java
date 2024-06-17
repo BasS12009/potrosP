@@ -13,7 +13,7 @@
 package interfaces;
 
 import DTO.VehiculoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import entidades.Vehiculo;
 import java.util.List;
 

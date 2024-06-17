@@ -7,11 +7,11 @@
  * y obtener préstamos, así como obtener listas de préstamos según diferentes
  * criterios.
  */
-package BO;
+package bo;
 
-import Converters.PrestamoCVR;
+import converters.PrestamoCVR;
 import DTO.PrestamoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import Interfaces.IPrestamoDAO;
 import daos.PrestamoDAO;
 import entidades.Prestamo;
@@ -125,7 +125,7 @@ public class PrestamoBO implements IPrestamoBO {
             List<Prestamo> listaPrestamos = prestamoDAO.listaPrestamos();
 
             for (int i = 0; i < listaPrestamos.size(); i++) {
-                lista.add(prestamoCVR.convertir_DTO(listaPrestamos.get(i)));
+                lista.add(prestamoCVR.convertir_DTO(listaPrestamos.get(i)));    
             }
             return lista;
         } catch (DAOException e) {

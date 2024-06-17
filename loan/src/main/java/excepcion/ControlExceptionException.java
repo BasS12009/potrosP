@@ -8,24 +8,24 @@ package excepcion;
  *
  * @author skevi
  */
-public class LoanException extends Exception{
+public class ControlExceptionException extends Exception{
 
-    public LoanException() {
+    public ControlExceptionException() {
     }
 
-    public LoanException(String message) {
+    public ControlExceptionException(String message) {
         super(message);
     }
 
-    public LoanException(String message, Throwable cause) {
+    public ControlExceptionException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public LoanException(Throwable cause) {
+    public ControlExceptionException(Throwable cause) {
         super(cause);
     }
 
-    public LoanException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public ControlExceptionException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
     

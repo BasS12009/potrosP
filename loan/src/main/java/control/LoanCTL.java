@@ -4,9 +4,9 @@
  */
 package control;
 
-import BO.PrestamoBO;
+import bo.PrestamoBO;
 import DTO.PrestamoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import interfaces.IPrestamoBO;
 import java.time.LocalDate;
 import java.util.List;

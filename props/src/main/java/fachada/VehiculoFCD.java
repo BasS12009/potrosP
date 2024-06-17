@@ -10,7 +10,7 @@
 package fachada;
 
 import DTO.VehiculoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import Interfaz.IVehiculoFCD;
 import control.VehiculoCTL;
 import excepcion.PropsException;

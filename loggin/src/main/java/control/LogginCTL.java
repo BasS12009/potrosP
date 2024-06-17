@@ -40,9 +40,29 @@ public class LogginCTL {
         try{
             return this.empleadoBO.existenciaAdmin(empleadoDTO);
         }
-        catch(NegocioException e){
-            System.out.println("error en logginCTL");
-            throw new ControlException(e.getMessage());
+        catch(NegocioException ex){
+                throw new ControlException(ex.getMessage());
+        }
+    }
+    
+    
+    /**
+     * Valida si los campos de correo y contraseña no están vacíos.
+     * 
+     * @param correo El correo a validar.
+     * @param contraseña La contraseña a validar.
+     * @return true si ambos campos no están vacíos, false en caso contrario.
+     * @throws ControlException Si alguno de los campos está vacío.
+     */
+    public boolean validar(String correo, String contraseña) throws ControlException{
+        if (correo.isEmpty()) {
+            throw new ControlException("Por favor, llene el campo de correo");
+        }
+        else if (contraseña.isEmpty()) {
+            throw new ControlException("Por favor, llene el campo de contraseña");
+        }
+        else{
+            return true;
         }
     }
     

@@ -6,11 +6,13 @@
 
 package fachada;
 
+import Excepcion.NegocioException;
 import control.LogginCTL;
 import dtos.EmpleadoDTO;
 import exception.ControlException;
 import exception.FachadaException;
 import interfaz.ILogginFCD;
+import javax.swing.JOptionPane;
 
 /**
  * @author/(s):
@@ -39,34 +41,18 @@ public class LogginFCD implements ILogginFCD{
      * @throws FachadaException Si ocurre un error en la fachada durante la verificación.
      */
     @Override
-    public boolean existe(String correo, String contraseña) throws FachadaException {      
-        try{ 
-           return login.existe(new EmpleadoDTO(correo, contraseña));
+    public boolean existe(String correo, String contraseña) throws FachadaException {   
+        try{
+        EmpleadoDTO empleado = new EmpleadoDTO(correo, contraseña);
+        
+        if (login.validar(correo, contraseña)) {
+            if (login.existe(empleado)) {
+            return true; 
         }
-        catch(ControlException e){
-            System.out.println("error en logginFCD");
-            throw new FachadaException("Error en correo o contraseña");
+        } 
+        }catch(ControlException ex){
+            throw new FachadaException(ex.getMessage());
         }
-    }
-
-    /**
-     * Valida si los campos de correo y contraseña no están vacíos.
-     * 
-     * @param correo El correo a validar.
-     * @param contraseña La contraseña a validar.
-     * @return true si ambos campos no están vacíos, false en caso contrario.
-     * @throws FachadaException Si alguno de los campos está vacío.
-     */
-    @Override
-    public boolean validar(String correo, String contraseña) throws FachadaException {
-        if (correo.isEmpty()) {
-            throw new FachadaException("Por favor, llene el campo de correo");
-        }
-        else if (contraseña.isEmpty()) {
-            throw new FachadaException("Por favor, llene el campo de contraseña");
-        }
-        else{
-            return true;
-        }
+        return false;
     }
 }

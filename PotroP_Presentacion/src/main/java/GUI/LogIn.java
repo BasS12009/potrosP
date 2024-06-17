@@ -110,39 +110,35 @@ public class LogIn extends javax.swing.JFrame {
     private void bttIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttIniciarSesionActionPerformed
         ILogginFCD login = new LogginFCD();
 
-String correo = txtCorreo.getText();
+        String correo = txtCorreo.getText();
 
-// Obtener la contraseña como un arreglo de caracteres
-char[] passwordChars = txtContraseña.getPassword();
+        // Obtener la contraseña como un arreglo de caracteres
+        char[] passwordChars = txtContraseña.getPassword();
 
-try {
-    // Convertir el arreglo de caracteres a una cadena solo si es necesario
-    String contraseña = new String(passwordChars);
+        try {
+            // Convertir el arreglo de caracteres a una cadena
+            String contraseña = new String(passwordChars);
 
-    // Limpiar el arreglo de caracteres para mayor seguridad
-    java.util.Arrays.fill(passwordChars, '\0');
-    
-    // Validar las credenciales
-    if (login.validar(correo, contraseña)) {
-        System.out.println("primer validacion pasada");
-        if (login.existe(correo, contraseña)) {
-            System.out.println("segunda validacion pasada");
-            Menu menu = new Menu();
-            menu.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "El usuario no existe.");
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Credenciales inválidas.");
-    }
-} catch (FachadaException ex) {
-    JOptionPane.showMessageDialog(this, ex.getMessage());
-} finally {
-    // Asegurarse de limpiar la cadena de la contraseña
+            // Limpiar el arreglo de caracteres para mayor seguridad
+            java.util.Arrays.fill(passwordChars, '\0');
 
+            // Validar las credenciales
+            if (login.existe(correo, contraseña)) {
+                Menu menu = new Menu();
+                menu.setVisible(true);
+            }
+            
+
+            // Limpiar la cadena de la contraseña (difícil debido a la inmutabilidad de las cadenas)
+            contraseña = null;
+        } 
+        catch (FachadaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } 
+        finally {
+            // Asegurarse de que la contraseña se limpie incluso si ocurre una excepción
+            java.util.Arrays.fill(passwordChars, '\0');
 }
-
    
     }//GEN-LAST:event_bttIniciarSesionActionPerformed
 

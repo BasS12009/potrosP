@@ -5,9 +5,9 @@
 package fachada;
 
 import DTO.PrestamoDTO;
-import Exceptions.BisnessException;
+import exceptions.BisnessException;
 import control.LoanCTL;
-import excepcion.LoanException;
+import excepcion.ControlExceptionException;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JTable;
@@ -27,7 +27,7 @@ public class LoanFCD implements ILoanFCD{
     }
     
     @Override
-    public void agregar(PrestamoDTO prestamoDTO) throws LoanException {
+    public void agregar(PrestamoDTO prestamoDTO) throws ControlExceptionException {
         try {
             control.agregar(prestamoDTO);
         } catch (BisnessException ex) {
@@ -36,7 +36,7 @@ public class LoanFCD implements ILoanFCD{
     }
 
     @Override
-    public void llenarTablaHistorial(JTable tabla, int offset, int limit) throws LoanException {
+    public void llenarTablaHistorial(JTable tabla, int offset, int limit) throws ControlExceptionException {
         try {
             
             List<PrestamoDTO> libros = control.listaPaginada(offset, limit);
@@ -68,7 +68,7 @@ public class LoanFCD implements ILoanFCD{
     }
 
     @Override
-    public boolean disponibilidadEmpleado(LocalDate begin, LocalDate end, String correo) throws LoanException {
+    public boolean disponibilidadEmpleado(LocalDate begin, LocalDate end, String correo) throws ControlExceptionException {
         
         try {
             boolean disponible = true; // Inicializar como disponible
@@ -86,13 +86,13 @@ public class LoanFCD implements ILoanFCD{
         
     } catch (BisnessException ex) {
         System.out.println(ex.getMessage());
-        throw new LoanException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
+        throw new ControlExceptionException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
     }
     }
 
 
     @Override
-    public boolean validarDatos(PrestamoDTO prestamoDTO) throws LoanException {
+    public boolean validarDatos(PrestamoDTO prestamoDTO) throws ControlExceptionException {
        String correo = prestamoDTO.getCorreoEmpleado().trim();
        String motivo = prestamoDTO.getMotivo().trim();
        LocalDate inicio = prestamoDTO.getInicio();
@@ -102,25 +102,25 @@ public class LoanFCD implements ILoanFCD{
        LocalDate hoy = LocalDate.now();
 
        if (correo.isEmpty()) {
-          throw new LoanException("Por favor, llene el campo de correo.");
+          throw new ControlExceptionException("Por favor, llene el campo de correo.");
        }
        if (motivo.isEmpty()) {
-          throw new LoanException("Por favor, llene el campo del motivo.");
+          throw new ControlExceptionException("Por favor, llene el campo del motivo.");
        }
        if (inicio == null) {
-          throw new LoanException("Por favor, seleccione una fecha de inicio.");
+          throw new ControlExceptionException("Por favor, seleccione una fecha de inicio.");
        }
        if (fin == null) {
-          throw new LoanException("Por favor, seleccione una fecha de regreso.");
+          throw new ControlExceptionException("Por favor, seleccione una fecha de regreso.");
        }
        if (inicio.isBefore(hoy)) {
-          throw new LoanException("La fecha de inicio no puede ser anterior a la fecha actual.");
+          throw new ControlExceptionException("La fecha de inicio no puede ser anterior a la fecha actual.");
        }
        if (fin.isBefore(inicio)) {
-          throw new LoanException("La fecha de regreso no puede ser anterior a la fecha de inicio.");
+          throw new ControlExceptionException("La fecha de regreso no puede ser anterior a la fecha de inicio.");
        }
        if (placaVehiculo.isEmpty()) {
-          throw new LoanException("Por favor, seleccione un vehículo.");
+          throw new ControlExceptionException("Por favor, seleccione un vehículo.");
        }
        
        return true;
@@ -128,7 +128,7 @@ public class LoanFCD implements ILoanFCD{
 
 
     @Override
-    public boolean disponibilidadVehiculo(LocalDate begin, LocalDate end, String placa) throws LoanException {
+    public boolean disponibilidadVehiculo(LocalDate begin, LocalDate end, String placa) throws ControlExceptionException {
         try {
             boolean disponible = true; // Inicializar como disponible
         
@@ -145,7 +145,7 @@ public class LoanFCD implements ILoanFCD{
         
        } catch (BisnessException ex) {
            System.out.println(ex.getMessage());
-           throw new LoanException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
+           throw new ControlExceptionException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
        }
     }
     
