@@ -40,6 +40,14 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+<<<<<<< Updated upstream
+=======
+            <artifactId>PotroP_Persistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+>>>>>>> Stashed changes
             <artifactId>loan</artifactId>
             <version>${project.version}</version>
         </dependency>

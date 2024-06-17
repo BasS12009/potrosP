@@ -5,7 +5,7 @@
 package GUI;
 
 import insertar.Inserciones;
-
+1
 /**
  *
  * @author skevi
