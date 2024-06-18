@@ -129,9 +129,9 @@ public class LogIn extends javax.swing.JFrame {
                 this.dispose();
             }
             
-
             // Limpiar la cadena de la contraseña (difícil debido a la inmutabilidad de las cadenas)
             contraseña = null;
+            
         } 
         catch (FachadaException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

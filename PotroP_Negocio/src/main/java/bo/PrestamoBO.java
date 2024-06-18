@@ -144,10 +144,7 @@ public class PrestamoBO implements IPrestamoBO {
      */
     @Override
     public List<PrestamoDTO> listaPaginda(int offset, int limit) throws BisnessException {
-        if (offset < 0 || limit < 0) {
-            throw new BisnessException("Offset y limit deben ser mayores o iguales a 0.");
-        }
-
+        
         try {
             List<PrestamoDTO> listaBO = new ArrayList<>();
             List<Prestamo> listaDAO = prestamoDAO.listaPaginda(offset, limit);
@@ -177,9 +174,7 @@ public class PrestamoBO implements IPrestamoBO {
      */
     @Override
     public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException {
-        if (begin == null || end == null) {
-            throw new IllegalArgumentException("Las fechas no pueden ser nulas.");
-        } else {
+        
             try {
                 List<PrestamoDTO> listaBO = new ArrayList<>();
                 List<Prestamo> listaDAO = prestamoDAO.listaPorFechas(begin, end);
@@ -193,6 +188,7 @@ public class PrestamoBO implements IPrestamoBO {
             } catch (DAOException ex) {
                 throw new BisnessException(ex.getMessage());
             }
-        }
     }
+    
 }
+

@@ -33,7 +33,12 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public void agregar(Prestamo prestamo) throws DAOException {
+        try{
         lista.add(prestamo);
+        }
+        catch(Exception e){
+            throw new DAOException("Error interno al agregar el prestamo");
+        }
     }
 
     /**
@@ -44,11 +49,14 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public void eliminar(Prestamo prestamo) throws DAOException {
-        Prestamo prestamos = buscarPorId(prestamo.getId());
-        if (prestamos != null) {
+        try{
+            //buscamos el prestamo a eliminar
+            Prestamo prestamos = buscarPorId(prestamo.getId());
+        
             lista.remove(prestamo);
-        } else {
-            throw new DAOException("Prestamo no encontrado");
+        }
+        catch(Exception e){
+            throw new DAOException("Error al eliminar el prestamo");
         }
     }
 
@@ -60,12 +68,13 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public void actualizar(Prestamo prestamo) throws DAOException {
-        Prestamo prestamoExistente = buscarPorId(prestamo.getId());
-        if (prestamoExistente != null) {
+        try{
+            Prestamo prestamoExistente = buscarPorId(prestamo.getId());
             int index = lista.indexOf(prestamoExistente);
             lista.set(index, prestamo);
-        } else {
-            throw new DAOException("Prestamo no encontrado");
+        } 
+        catch(Exception e){
+            throw new DAOException("Error al actualizar el prestamo");
         }
     }
 
@@ -78,12 +87,25 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public Prestamo buscarPorId(int id) throws DAOException {
+        try{
+        boolean existe;
+        
         for (Prestamo prestamo : lista) {
             if (prestamo.getId() == id) {
+                existe = true;
                 return prestamo;
             }
         }
-        throw new DAOException("Prestamo no encontrado");
+        
+        if (existe = false) {
+            throw new DAOException("El preatamo con el id proporcionado no existe");
+        }
+        
+        }
+        catch(Exception e){
+            throw new DAOException("Error al obtener el prestamo");      
+        }
+        return null;
     }
 
     /**
@@ -94,7 +116,12 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public List<Prestamo> listaPrestamos() throws DAOException {
-        return new ArrayList<>(lista);
+        try{
+            return new ArrayList<>(lista);
+        }
+        catch(Exception e){
+            throw new DAOException("Error al obtener la lista de prestamos");
+        }
     }
 
     /**
@@ -107,10 +134,10 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public List<Prestamo> listaPorFechas(LocalDate begin, LocalDate end) throws DAOException {
-        if (begin == null || end == null) {
-            throw new IllegalArgumentException("Las fechas no pueden ser nulas.");
-        }
+        try{
+            
         List<Prestamo> prestamosEnRango = new ArrayList<>();
+        
         for (Prestamo prestamo : lista) {
             if ((prestamo.getInicio().isEqual(begin) || prestamo.getInicio().isAfter(begin)) &&
                 (prestamo.getFin().isEqual(end) || prestamo.getFin().isBefore(end))) {
@@ -118,6 +145,11 @@ public class PrestamoDAO implements IPrestamoDAO {
             }
         }
         return prestamosEnRango;
+        
+        }
+        catch(Exception e){
+           throw new DAOException("Error al obtener la lista por fechas");
+        }   
     }
 
     /**
@@ -130,14 +162,18 @@ public class PrestamoDAO implements IPrestamoDAO {
      */
     @Override
     public List<Prestamo> listaPaginda(int offset, int limit) throws DAOException {
-        if (offset < 0 || limit < 0) {
-            throw new IllegalArgumentException("Offset y limit deben ser mayores o iguales a 0.");
-        }
+        try{
+            
         if (offset >= lista.size()) {
             return new ArrayList<>();
         }
-        return lista.subList(offset, Math.min(offset + limit, lista.size()));    }
-
+        return lista.subList(offset, Math.min(offset + limit, lista.size()));
+        }
+        
+        catch(Exception e){
+            throw new DAOException("Error al obtener la lista de prestamos");
+        }
+    }
 }
 
     
