@@ -8,15 +8,14 @@ package GUI;
 
 import DTO.PrestamoDTO;
 import DTO.VehiculoDTO;
-import Interfaz.IEmpleadoFCD;
-import Interfaz.IVehiculoFCD;
 import com.toedter.calendar.JDateChooser;
-import excepcion.PropsException;
-import fachada.EmpleadoFCD;
 import fachada.LoanFCD;
+import fachada.TablaFCD;
 import fachada.VehiculoFCD;
 import guardar.Guardar;
 import interfaz.ILoanFCD;
+import interfaz.ITablaFCD;
+import interfaz.IVehiculoFCD;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -64,11 +63,14 @@ public class Prestamo extends javax.swing.JFrame {
         // Oculta la tabla
         scrolLTBLDATOS.setVisible(false);
         tblEmpleado.setVisible(false);
+        
+        //llenamos el combo box de vehiculos 
         try {
             // Llena el JComboBox cbxVehiculo con los vehículos obtenidos a través del IVehiculoFCD
             vehiculo.llenarCBX(cbxVehiculo);
-        } catch (PropsException e) {
-            System.out.println("Problemas al cargar el combobox");
+            
+        } catch (excepciones.FachadaException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
 
@@ -281,7 +283,6 @@ public class Prestamo extends javax.swing.JFrame {
         //primero instanciamos las clases que necesitemos
         //como las clases 
         ILoanFCD prestamo = new LoanFCD();
-        IEmpleadoFCD empleado = new EmpleadoFCD();
 
         //declaremos las variables necesarias que obtendremos de las pantallas
         try {
@@ -341,14 +342,14 @@ public class Prestamo extends javax.swing.JFrame {
      */
     private void btnComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprobarActionPerformed
 
-        IEmpleadoFCD empleado = new EmpleadoFCD();
+        ITablaFCD tabla = new TablaFCD();
 
         int id = Integer.parseInt(txtID.getText());
 
         try {
 
             //mostramos la tabla con la informacion del empleado
-            empleado.tablaEmpleado(tblEmpleado, id);
+            tabla.tablaEmpleado(tblEmpleado, id);
 
             //ocultamos los botones 
             txtID.setVisible(false);
@@ -363,7 +364,7 @@ public class Prestamo extends javax.swing.JFrame {
             Guardar guardar = new Guardar();
             guardar.getIdEmpleado();
 
-        } catch (PropsException ex) {
+        } catch (excepciones.FachadaException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnComprobarActionPerformed

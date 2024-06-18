@@ -126,6 +126,7 @@ public class LogIn extends javax.swing.JFrame {
             if (login.existe(correo, contraseña)) {
                 Menu menu = new Menu();
                 menu.setVisible(true);
+                this.dispose();
             }
             
 

@@ -147,7 +147,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestamoActionPerformed
         // TODO add your handling code here:
-       Prestamo prestamo = new Prestamo();
+        Prestamo prestamo = new Prestamo();
 
         prestamo.setVisible(true);
         this.dispose();

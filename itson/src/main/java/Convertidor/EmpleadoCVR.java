@@ -26,10 +26,11 @@ public class EmpleadoCVR {
      * @return Una instancia de Empleado con los datos del EmpleadoDTO proporcionado.
      */
     public Empleado convertir_Entidad(EmpleadoDTO empleadoDTO) {
+        int id = empleadoDTO.getId();
         String correo = empleadoDTO.getCorreo();
         String contraseña = empleadoDTO.getCorreo();
         String tipo = empleadoDTO.getTipo();
-        return new Empleado(correo, contraseña, tipo);
+        return new Empleado(id, correo, contraseña, tipo);
     }
 
     /**

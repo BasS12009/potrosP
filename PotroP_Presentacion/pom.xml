@@ -30,11 +30,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>itson</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>PotroP_DTO</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -55,7 +50,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>props</artifactId>
+            <artifactId>vehiculo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tabla</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -14,6 +14,8 @@ import entidades.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import interfaces.IEmpleadoDAO;
+import java.util.stream.Collectors;
+
 /**
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -23,40 +25,14 @@ import interfaces.IEmpleadoDAO;
  */
     public class EmpleadoDAO implements IEmpleadoDAO{
 
-    public static List<Empleado> listaEmpleados = new ArrayList();
-    private static List<Empleado> listaAdministradores = new ArrayList();
-    private static List<Empleado> listaChoferes = new ArrayList();
+    public static List<Empleado> listaEmpleados = new ArrayList<>();
+    private static List<Empleado> listaAdministradores = new ArrayList<>();
+    private static List<Empleado> listaChoferes = new ArrayList<>();
 
     public EmpleadoDAO() {
-        //insertamos nuevos empleados
-    Empleado empleado1 = new Empleado(1, "kevin@gmail.com", "kevin123", "EMPLEADO");
-    Empleado empleado2 = new Empleado(2, "diana@gmail.com", "diana123", "EMPLEADO");
-    Empleado empleado3 = new Empleado(3, "carlos@gmail.com", "carlos123", "EMPLEADO");
-    Empleado empleado4 = new Empleado(4, "daniel@gmail.com", "daniel123", "EMPLEADO");
-    
-    //insertamos nuevos choferes 
-    Empleado chofer1 = new Empleado(6, "panfilo@gmail.com", "panfilo123", "CHOFER");
-    Empleado chofer2 = new Empleado(7, "joshua@gmail.com", "joshua123", "CHOFER");
-    Empleado chofer3 = new Empleado(8, "panfilo@gmail.com", "panfilo123", "CHOFER");
-    
-    //insertamos nuevos administradores
-    Empleado administrador1 = new Empleado(11, "arnoldo@gmail.com", "arnoldo123", "ADMINISTRADOR");
-    Empleado administrador2 = new Empleado(12, "damian@gmail.com", "damian123", "ADMINISTRADOR");
- 
-    
-    listaEmpleados.add(empleado1);
-    listaEmpleados.add(empleado2);
-    listaEmpleados.add(empleado3);
-    listaEmpleados.add(empleado4);
-    
-    listaChoferes.add(chofer1);
-    listaChoferes.add(chofer2);
-    listaChoferes.add(chofer3);
-    
-    listaAdministradores.add(administrador1);
-    listaAdministradores.add(administrador2);
         
     }
+    
     /**
      * Obtiene una lista paginada de empleados a partir de un desplazamiento 
      * (offset) y un límite (limit).
@@ -68,20 +44,10 @@ import interfaces.IEmpleadoDAO;
      */
     @Override
     public List<Empleado> ListaEmpleados(int offset, int limit) throws PersistenciaException {
-        List<Empleado> listaAlterna = new ArrayList<>();
-
-        for (Empleado empleado : listaEmpleados) {
-            if (empleado.getId() >= offset) {
-                listaAlterna.add(empleado);
-            }
-        }
-
-        List<Empleado> listaPaginada = new ArrayList<>();
-        for (int i = 0; i < limit && i < listaAlterna.size(); i++) {
-            listaPaginada.add(listaAlterna.get(i));
-        }
-
-        return listaPaginada;
+    return listaEmpleados.stream()
+            .filter(empleado -> empleado.getId() >= offset)
+            .limit(limit)
+            .collect(Collectors.toList());
     }
 
     /**
@@ -102,16 +68,7 @@ import interfaces.IEmpleadoDAO;
      */
     @Override
     public Empleado buscarEmpleado(int id) throws PersistenciaException {
-        if (id < 1) {
-            throw new PersistenciaException("El Empleado no existe");
-        } else {
-            for (Empleado empleado : listaEmpleados) {
-                if (empleado.getId() == id) {
-                    return empleado;
-                }
-            }
-        }
-        return null;
+        return new Empleado(1, "damian@gmail.com", "damian123", "EMPLEADO");
     }
 
     /**
@@ -132,20 +89,9 @@ import interfaces.IEmpleadoDAO;
      */
     @Override
     public boolean existenciaAdmin(Empleado empleado) throws PersistenciaException {
-        if (empleado == null) {
-            throw new PersistenciaException("Administrador nulo");
-        } else {
-            for (int i = 0; i < listaAdministradores.size(); i++) {
-                if (listaAdministradores.get(i).getCorreo().equalsIgnoreCase(empleado.getCorreo())) {
-                    if (listaAdministradores.get(i).getContraseña().equalsIgnoreCase(empleado.getContraseña())) {
-                        return true;
-                    }
-                }
-                break;
-            }
-            }
-        return false;
-        }
+        return true;
+    }
+
     
 
     /**

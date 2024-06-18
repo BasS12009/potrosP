@@ -148,4 +148,11 @@ public class Empleado {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "id=" + id + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", tipo=" + tipo + '}';
+    }
+    
+    
 }

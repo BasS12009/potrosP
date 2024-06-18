@@ -56,9 +56,9 @@ public class PersistenciaException extends Exception{
      * Constructor de la excepción PersistenciaException que recibe un mensaje de error, una causa,
      * una indicación para la supresión y una indicación para la pila.
      *
-     * @param message            El mensaje de error que describe la excepción.
-     * @param cause              La causa original de la excepción.
-     * @param enableSuppression  Si la supresión está habilitada o deshabilitada.
+     * @param message El mensaje de error que describe la excepción.
+     * @param cause La causa original de la excepción.
+     * @param enableSuppression Si la supresión está habilitada o deshabilitada.
      * @param writableStackTrace Si la pila debe ser escrita.
      */
     public PersistenciaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
