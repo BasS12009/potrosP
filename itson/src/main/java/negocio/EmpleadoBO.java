@@ -9,7 +9,7 @@ package negocio;
 
 
 
-import Convertido.EmpleadoCVR;
+import convertidor.EmpleadoCVR;
 import excepciones.NegocioException;
 import excepciones.PersistenciaException;
 import dao.EmpleadoDAO;

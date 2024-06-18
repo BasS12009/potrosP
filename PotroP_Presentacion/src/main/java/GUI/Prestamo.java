@@ -189,6 +189,11 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
         cbxVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca", "Modelo ", "Tipo" }));
+        cbxVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxVehiculoActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 200, 30));
 
         lblID.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
@@ -368,6 +373,10 @@ public class Prestamo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnComprobarActionPerformed
+
+    private void cbxVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxVehiculoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

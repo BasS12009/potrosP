@@ -4,15 +4,12 @@
 
 package insertar;
 
-import BO.PrestamoBO;
-import BO.VehiculoBO;
+
 import DTO.PrestamoDTO;
 import DTO.VehiculoDTO;
-import Excepcion.NegocioException;
-import Exceptions.BisnessException;
-import Negocio.EmpleadoBO;
-import dtos.EmpleadoDTO;
-import interfaces.IEmpleadoBO;
+import bo.PrestamoBO;
+import bo.VehiculoBO;
+import exceptions.BisnessException;
 import java.time.LocalDate;
 
 /**
@@ -23,40 +20,8 @@ public class Inserciones {
 
 
     
-    public void insertar() throws NegocioException, BisnessException{
-    
-        
-    //insertamos nuevos empleados
-    EmpleadoDTO empleado1 = new EmpleadoDTO(1, "kevin@gmail.com", "kevin123", "EMPLEADO");
-    EmpleadoDTO empleado2 = new EmpleadoDTO(2, "diana@gmail.com", "diana123", "EMPLEADO");
-    EmpleadoDTO empleado3 = new EmpleadoDTO(3, "carlos@gmail.com", "carlos123", "EMPLEADO");
-    EmpleadoDTO empleado4 = new EmpleadoDTO(4, "daniel@gmail.com", "daniel123", "EMPLEADO");
-    
-    //insertamos nuevos choferes 
-    EmpleadoDTO chofer1 = new EmpleadoDTO(6, "panfilo@gmail.com", "panfilo123", "CHOFER");
-    EmpleadoDTO chofer2 = new EmpleadoDTO(7, "joshua@gmail.com", "joshua123", "CHOFER");
-    EmpleadoDTO chofer3 = new EmpleadoDTO(8, "panfilo@gmail.com", "panfilo123", "CHOFER");
-    
-    //insertamos nuevos administradores
-    EmpleadoDTO administrador1 = new EmpleadoDTO(11, "arnoldo@gmail.com", "arnoldo123", "ADMINISTRADOR");
-    EmpleadoDTO administrador2 = new EmpleadoDTO(12, "damian@gmail.com", "damian123", "ADMINISTRADOR");
-    
-    
-    IEmpleadoBO empleado = new EmpleadoBO();
-    
-    empleado.registrarEmpleado(empleado1);
-    empleado.registrarEmpleado(empleado2);
-    empleado.registrarEmpleado(empleado3);
-    empleado.registrarEmpleado(empleado4);
-    
-    empleado.registrarChofer(chofer1);
-    empleado.registrarChofer(chofer2);
-    empleado.registrarChofer(chofer3);
-    
-    empleado.registrarAdministrador(administrador1);
-    empleado.registrarAdministrador(administrador2);
-    
-    
+    public void insertar() throws BisnessException {
+  
     //declaramos los vehiculos 
     VehiculoDTO vehiculo1 = new VehiculoDTO(1, "AUDI", "RXZ", 2014, "COMUN", "WAP-2A-312");
     VehiculoDTO vehiculo2 = new VehiculoDTO(1, "CHEVROLET", "CAMARO", 2020, "DEPORTIVO", "WAP-2A-312");

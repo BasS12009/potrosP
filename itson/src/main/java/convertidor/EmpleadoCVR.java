@@ -5,7 +5,7 @@
  * Proporciona métodos para convertir instancias de EmpleadoDTO a Empleado
  * y viceversa.
  */
-package Convertido;
+package convertidor;
 
 import dtos.EmpleadoDTO;
 import entidad.Empleado;
