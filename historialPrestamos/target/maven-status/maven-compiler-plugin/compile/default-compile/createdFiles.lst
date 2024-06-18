@@ -1,0 +1,5 @@
+fachada\HistorialFCD.class
+excepciones\ControlException.class
+control\HistorialCTL.class
+excepciones\FachadaException.class
+interfaz\IHistorialFCD.class
