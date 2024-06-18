@@ -9,12 +9,18 @@
  */
 package dao;
 
-import Excepcion.PersistenciaException;
-import entidades.Empleado;
-import java.util.ArrayList;
+import excepciones.PersistenciaException;
+import conexion.ConexionBD;
+import entidad.Empleado;
+import interfaces.IConexionBD;
 import java.util.List;
 import interfaces.IEmpleadoDAO;
-import java.util.stream.Collectors;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 /**
  * @author/(s):
@@ -25,144 +31,110 @@ import java.util.stream.Collectors;
  */
     public class EmpleadoDAO implements IEmpleadoDAO{
 
-    public static List<Empleado> listaEmpleados = new ArrayList<>();
-    private static List<Empleado> listaAdministradores = new ArrayList<>();
-    private static List<Empleado> listaChoferes = new ArrayList<>();
+    IConexionBD conexion;
 
     public EmpleadoDAO() {
-        
+        this.conexion = new ConexionBD();
     }
     
-    /**
-     * Obtiene una lista paginada de empleados a partir de un desplazamiento 
-     * (offset) y un límite (limit).
-     * 
-     * @param offset El desplazamiento inicial de la lista.
-     * @param limit La cantidad máxima de empleados a retornar.
-     * @return Una lista de objetos {@link Empleado}.
-     * @throws PersistenciaException Si ocurre un error durante la obtención de los empleados.
-     */
+    
+
+    
     @Override
     public List<Empleado> ListaEmpleados(int offset, int limit) throws PersistenciaException {
-    return listaEmpleados.stream()
-            .filter(empleado -> empleado.getId() >= offset)
-            .limit(limit)
-            .collect(Collectors.toList());
-    }
+                List<Empleado> empleados = new ArrayList<>();
+        String query = "SELECT * FROM Empleados LIMIT ? OFFSET ?";
 
-    /**
-     * Busca un empleado por su ID, recibiéndo como parámetro el ID por medio de
-     * un valor entero;
-     * 
-     * Si el ID es menor a 1, significa que el empleado seleccionado no existe 
-     * en la base de datos; por lo tanto, mandará una excepción de tipo 
-     * PersistenciaException indicando que el empleado no existe;
-     * 
-     * En caso de que el ID seleccionado sea mayor que 1, se recorrerá la lista
-     * de empleados por medio de un Objeto tipo Empleado, recorriendo la lista
-     * existente hasta encontrar al empleado buscado en el parámetro.
-     * 
-     * @param id El ID del empleado a buscar.
-     * @return El objeto Empleado correspondiente al empleado encontrado.
-     * @throws PersistenciaException Si el ID es inválido o el empleado no existe.
-     */
-    @Override
-    public Empleado buscarEmpleado(int id) throws PersistenciaException {
-        return new Empleado(1, "damian@gmail.com", "damian123", "EMPLEADO");
-    }
+        try (Connection conn = conexion.crearConexion();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-    /**
-     * Verifica la existencia de un administrador, recibiéndo como parámetro un
-     * objeto Empleado por medio de la instancia empleado;
-     * 
-     * Si el objeto empleado es nulo, significa que el empleado seleccionado no existe 
-     * en la base de datos; por lo tanto, mandará una excepción de tipo 
-     * PersistenciaException indicando que el empleado no existe;
-     * 
-     * En caso de que la instancia empleado no sea nulo, se recorrerá la lista,
-     * recorriendo la lista existente hasta encontrar al empleado buscado en el 
-     * parámetro.
-     * 
-     * @param empleado El objeto Empleado que contiene los datos del administrador a verificar.
-     * @return true si el administrador existe, false en caso contrario.
-     * @throws PersistenciaException Si el objeto empleado es nulo.
-     */
-    @Override
-    public boolean existenciaAdmin(Empleado empleado) throws PersistenciaException {
-        return true;
+            stmt.setInt(1, limit);
+            stmt.setInt(2, offset);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Empleado empleado = new Empleado(
+                    rs.getInt("id"),
+                    rs.getString("correo"),
+                    rs.getString("contraseña"),
+                    rs.getString("tipo")
+                );
+                empleados.add(empleado);
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al obtener la lista de empleados", e);
+        }
+
+        return empleados;
     }
 
     
-
-    /**
-     * Registra un nuevo empleado;
-     * 
-     * Si el empleado recibido como parámetro del objeto tipo Empleado es nulo,
-     * entonces se mandará a llamar a una excepción de persistencia, indicando
-     * con un mensaje que el Empleado es nulo;
-     * 
-     * En caso de que el empleado recibido en el parámetro no sea nulo, entonces
-     * se mandará a llamar un método de instancia de la clase entidad Empleado
-     * que obtendrá su tipo sin importar mayúsculas o minúsculas, lo filtrará y
-     * se agregará a una lista de empleados.
-     * 
-     * @param empleado El objeto Empleado que contiene los datos del empleado a registrar.
-     * @throws PersistenciaException Si el objeto empleado es nulo.
-     */
+    
     @Override
-    public void registrarEmpleado(Empleado empleado) throws PersistenciaException {
-        if (empleado == null) {
-            throw new PersistenciaException("Empleado nulo");
-        } else {
-            listaEmpleados.add(empleado);
+    public Empleado buscarEmpleado(int id) throws PersistenciaException {
+         if (id < 1) {
+            throw new PersistenciaException("ID inválido");
         }
+
+        String query = "SELECT * FROM Empleados WHERE id = ?";
+        Empleado empleado = null;
+
+        try (Connection conn = conexion.crearConexion();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                empleado = new Empleado(
+                    rs.getInt("id"),
+                    rs.getString("correo"),
+                    rs.getString("contraseña"),
+                    rs.getString("tipo")
+                );
+            } else {
+                throw new PersistenciaException("Empleado no encontrado");
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al buscar el empleado", e);
+        }
+
+        return empleado;
     }
 
-    /**
-     * Registra un nuevo administrador.
-     * 
-     * Si el empleado recibido como parámetro del objeto tipo Empleado es nulo,
-     * entonces se mandará a llamar a una excepción de persistencia, indicando
-     * con un mensaje que el administrador es nulo;
-     * 
-     * En caso de que el empleado recibido en el parámetro no sea nulo, entonces
-     * se mandará a llamar un método de instancia de la clase entidad Empleado
-     * que obtendrá su tipo sin importar mayúsculas o minúsculas, lo filtrará y
-     * se agregará a una lista de empleados como administrador.
-     * 
-     * @param empleado El objeto Empleado que contiene los datos del administrador a registrar.
-     * @throws PersistenciaException Si el objeto empleado es nulo.
-     */
+    
+    
     @Override
-    public void registrarAdministrador(Empleado empleado) throws PersistenciaException {
+    public boolean existenciaAdmin(Empleado empleado) throws PersistenciaException {
         if (empleado == null) {
-            throw new PersistenciaException("Administrador nulo");
-        } else {
-            listaAdministradores.add(empleado);
+        throw new PersistenciaException("El objeto empleado es nulo");
         }
+
+        String query = "SELECT COUNT(*) FROM Empleados WHERE correo = ? AND contraseña = ?";
+         boolean existe = false;
+
+        try (Connection conn = conexion.crearConexion();
+            PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, empleado.getCorreo());
+            stmt.setString(2, empleado.getContraseña());
+
+            ResultSet rs = stmt.executeQuery();
+        if (rs.next() && rs.getInt(1) > 0) {
+            existe = true;
+        } else {
+            throw new PersistenciaException("credenciales invalidas");
+        }
+
+    } catch (SQLException e) {
+        throw new PersistenciaException("Error al verificar las credenciales del administrador", e);
     }
 
-    /**
-     * Registra un nuevo chofer.
-     * 
-     * Si el empleado recibido como parámetro del objeto tipo Empleado es nulo,
-     * entonces se mandará a llamar a una excepción de persistencia, indicando
-     * con un mensaje que el chofer es nulo;
-     * 
-     * En caso de que el empleado recibido en el parámetro no sea nulo, entonces
-     * se mandará a llamar un método de instancia de la clase entidad Empleado
-     * que obtendrá su tipo sin importar mayúsculas o minúsculas, lo filtrará y
-     * se agregará a una lista de empleados como chofer.
-     * 
-     * @param empleado El objeto Empleado que contiene los datos del chofer a registrar.
-     * @throws PersistenciaException Si el objeto empleado es nulo.
-     */
-    @Override
-    public void registrarChofer(Empleado empleado) throws PersistenciaException {
-        if (empleado == null) {
-            throw new PersistenciaException("Chofer nulo");
-        } else {
-            listaChoferes.add(empleado);
-        }
+       return existe;
     }
+    
 }
+
+  

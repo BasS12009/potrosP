@@ -4,7 +4,7 @@
  * Clase de excepción personalizada para manejar errores de persistencia en la aplicación;
  * Brinda múltiples constructores para diferentes escenarios de error.
  */
-package Excepcion;
+package excepciones;
 
 /**
  * @author/(s):

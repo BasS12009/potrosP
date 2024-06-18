@@ -6,7 +6,7 @@
  */
 package interfaces;
 
-import Excepcion.NegocioException;
+import excepciones.NegocioException;
 import dtos.EmpleadoDTO;
 import java.util.List;
 
@@ -19,29 +19,6 @@ import java.util.List;
  */
 public interface IEmpleadoBO {
     
-    /**
-     * Registra un nuevo empleado.
-     * 
-     * @param empleadoDTO El DTO del empleado a registrar.
-     * @throws NegocioException Si ocurre un error de negocio durante el registro.
-     */
-    public void registrarEmpleado(EmpleadoDTO empleadoDTO) throws NegocioException;
-    
-    /**
-     * Registra un nuevo administrador.
-     * 
-     * @param empleadoDTO El DTO del administrador a registrar.
-     * @throws NegocioException Si ocurre un error de negocio durante el registro.
-     */
-    public void registrarAdministrador(EmpleadoDTO empleadoDTO) throws NegocioException;
-    
-    /**
-     * Registra un nuevo chofer.
-     * 
-     * @param empleadoDTO El DTO del chofer a registrar.
-     * @throws NegocioException Si ocurre un error de negocio durante el registro.
-     */
-    public void registrarChofer(EmpleadoDTO empleadoDTO) throws NegocioException;
     
     /**
      * Busca un empleado por su ID.

@@ -6,8 +6,8 @@
  */
 package interfaces;
 
-import Excepcion.PersistenciaException;
-import entidades.Empleado;
+import excepciones.PersistenciaException;
+import entidad.Empleado;
 import java.util.List;
 
 
@@ -20,29 +20,6 @@ import java.util.List;
  */
 public interface IEmpleadoDAO {
     
-    /**
-     * Registra un nuevo empleado.
-     * 
-     * @param empleado El empleado a registrar.
-     * @throws PersistenciaException Si ocurre un error de persistencia durante el registro.
-     */
-    public void registrarEmpleado(Empleado empleado) throws PersistenciaException;
-    
-    /**
-     * Registra un nuevo administrador.
-     * 
-     * @param empleado El administrador a registrar.
-     * @throws PersistenciaException Si ocurre un error de persistencia durante el registro.
-     */
-    public void registrarAdministrador(Empleado empleado) throws PersistenciaException;
-    
-    /**
-     * Registra un nuevo chofer.
-     * 
-     * @param empleado El chofer a registrar.
-     * @throws PersistenciaException Si ocurre un error de persistencia durante el registro.
-     */
-    public void registrarChofer(Empleado empleado) throws PersistenciaException;
     
     /**
      * Busca un empleado por su ID.

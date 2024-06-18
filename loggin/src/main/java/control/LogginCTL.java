@@ -5,8 +5,8 @@
  */
 package control;
 
-import Excepcion.NegocioException;
-import Negocio.EmpleadoBO;
+import excepciones.NegocioException;
+import negocio.EmpleadoBO;
 import dtos.EmpleadoDTO;
 import exception.ControlException;
 import interfaces.IEmpleadoBO;

@@ -5,16 +5,16 @@
  * Proporciona métodos para registrar, buscar y listar empleados, 
  * así como verificar la existencia de administradores.
  */
-package Negocio;
+package negocio;
 
 
 
-import Convertidor.EmpleadoCVR;
-import Excepcion.NegocioException;
-import Excepcion.PersistenciaException;
+import Convertido.EmpleadoCVR;
+import excepciones.NegocioException;
+import excepciones.PersistenciaException;
 import dao.EmpleadoDAO;
 import dtos.EmpleadoDTO;
-import entidades.Empleado;
+import entidad.Empleado;
 import interfaces.IEmpleadoBO;
 import interfaces.IEmpleadoDAO;
 import java.util.ArrayList;
@@ -62,81 +62,6 @@ public class EmpleadoBO implements IEmpleadoBO{
             
             return listaPaginada;
         
-        } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
-        }
-    }
-
-    /**
-     * Registra un nuevo empleado, recibiendo como parámetro un objeto de tipo
-     * EmpleadoDTO recibiéndolo como parámetro empleadoDTO;
-     * 
-     * Evalúa si el empleado recibido es nulo, entonces lanza una excepción de
-     * tipo Negocio, que permite explicar que el registro del empleado es nulo; En caso
-     * contrario, efectuará el método de la clase EmpleadoDTO de registrar
-     * empleado.
-     * 
-     * @param empleadoDTO El objeto EmpleadoDTO que contiene los datos del empleado a registrar.
-     * @throws NegocioException Si ocurre un error durante el registro del empleado.
-     */
-    @Override
-    public void registrarEmpleado(EmpleadoDTO empleadoDTO) throws NegocioException {
-        try {
-            if (empleadoDTO == null) {
-                throw new NegocioException("Empleado nulo");
-            } else {
-                this.empleadoDAO.registrarEmpleado(this.empleadoCVR.convertir_Entidad(empleadoDTO));
-            } 
-        } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
-        }    
-    }
-
-    /**
-     * Registra un nuevo administrador, recibiendo como parámetro un objeto de tipo
-     * EmpleadoDTO recibiéndolo como parámetro empleadoDTO;
-     * 
-     * Evalúa si el empleado recibido es nulo, entonces lanza una excepción de
-     * tipo Negocio, que permite explicar que el registro del administrador es nulo; En caso
-     * contrario, efectuará el método de la clase EmpleadoDTO de registrar
-     * administrador.
-     * 
-     * @param empleadoDTO El objeto EmpleadoDTO que contiene los datos del administrador a registrar.
-     * @throws NegocioException Si ocurre un error durante el registro del administrador.
-     */
-    @Override
-    public void registrarAdministrador(EmpleadoDTO empleadoDTO) throws NegocioException {
-        try {
-            if (empleadoDTO == null) {
-                throw new NegocioException("Administrador nulo");
-            } else {
-                this.empleadoDAO.registrarAdministrador(this.empleadoCVR.convertir_Entidad(empleadoDTO));
-            } 
-        } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
-        }    
-    }
-
-    /**
-     * Registra un nuevo chofer, recibiendo como parámetro un objeto de tipo
-     * EmpleadoDTO recibiéndolo como parámetro empleadoDTO;
-     * 
-     * Evalúa si el empleado recibido es nulo, entonces lanza una excepción de
-     * tipo Negocio, que permite explicar que el registro del chofer es nulo; En caso
-     * contrario, efectuará el método de la clase EmpleadoDTO de registrar
-     * chofer.
-     * 
-     * @param empleadoDTO El objeto EmpleadoDTO que contiene los datos del chofer a registrar.
-     * @throws NegocioException Si ocurre un error durante el registro del chofer.
-     */
-    @Override
-    public void registrarChofer(EmpleadoDTO empleadoDTO) throws NegocioException {
-        try {
-            if (empleadoDTO == null) {
-                throw new NegocioException("Chofer nulo");
-            } else {
-                this.empleadoDAO.registrarChofer(this.empleadoCVR.convertir_Entidad(empleadoDTO));
-            } 
         } catch (PersistenciaException e) {
             throw new NegocioException(e.getMessage());
         }
@@ -192,14 +117,11 @@ public class EmpleadoBO implements IEmpleadoBO{
     @Override
     public boolean existenciaAdmin(EmpleadoDTO empleadoDTO) throws NegocioException {
         try {
-            if (empleadoDTO == null) {
-                throw new NegocioException("Administrador nulo");
-            } else {
-                return this.empleadoDAO.existenciaAdmin(this.empleadoCVR.convertir_Entidad(empleadoDTO));
-            }
+            
+            return this.empleadoDAO.existenciaAdmin(this.empleadoCVR.convertir_Entidad(empleadoDTO));
+           
         } catch (PersistenciaException e) {
-            System.out.println("fallo en empleadoBO");
-            throw new NegocioException();
+            throw new NegocioException(e.getMessage());
         }
     }
 }

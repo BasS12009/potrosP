@@ -4,7 +4,7 @@
  * Clase Empleado que representa a un empleado con sus respectivos atributos y
  * proporciona métodos para acceder y modificar los datos del empleado.
  */
-package entidades;
+package entidad;
 
 /**
  * @author/(s):

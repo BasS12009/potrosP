@@ -5,10 +5,10 @@
  * Proporciona métodos para convertir instancias de EmpleadoDTO a Empleado
  * y viceversa.
  */
-package Convertidor;
+package Convertido;
 
 import dtos.EmpleadoDTO;
-import entidades.Empleado;
+import entidad.Empleado;
 
 /**
  * @author/(s):

@@ -6,7 +6,7 @@
 
 package fachada;
 
-import Excepcion.NegocioException;
+import excepciones.NegocioException;
 import control.LogginCTL;
 import dtos.EmpleadoDTO;
 import exception.ControlException;
