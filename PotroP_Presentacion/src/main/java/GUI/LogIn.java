@@ -119,6 +119,7 @@ public class LogIn extends javax.swing.JFrame {
             // Convertir el arreglo de caracteres a una cadena
             String contraseña = new String(passwordChars);
 
+            System.out.println(correo + " " + contraseña);
             // Limpiar el arreglo de caracteres para mayor seguridad
             java.util.Arrays.fill(passwordChars, '\0');
 

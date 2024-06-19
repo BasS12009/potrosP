@@ -77,7 +77,7 @@ import java.util.ArrayList;
             throw new PersistenciaException("ID inválido");
         }
 
-        String query = "SELECT * FROM Empleados WHERE id = ?";
+        String query = "SELECT * FROM empleados WHERE id = ?";
         Empleado empleado = null;
 
         try (Connection conn = conexion.crearConexion();
@@ -90,7 +90,7 @@ import java.util.ArrayList;
                 empleado = new Empleado(
                     rs.getInt("id"),
                     rs.getString("correo"),
-                    rs.getString("contraseña"),
+                    rs.getString("contrasena"),
                     rs.getString("tipo")
                 );
             } else {
@@ -98,7 +98,7 @@ import java.util.ArrayList;
             }
 
         } catch (SQLException e) {
-            throw new PersistenciaException("Error al buscar el empleado", e);
+            throw new PersistenciaException("Error al buscar el empleado");
         }
 
         return empleado;
@@ -112,8 +112,8 @@ import java.util.ArrayList;
         throw new PersistenciaException("El objeto empleado es nulo");
         }
 
-        String query = "SELECT COUNT(*) FROM Empleados WHERE correo = ? AND contraseña = ?";
-         boolean existe = false;
+        String query = "SELECT COUNT(*) FROM Empleados WHERE correo = ? AND contrasena = ?";
+        
 
         try (Connection conn = conexion.crearConexion();
             PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -123,18 +123,14 @@ import java.util.ArrayList;
 
             ResultSet rs = stmt.executeQuery();
         if (rs.next() && rs.getInt(1) > 0) {
-            existe = true;
+            return true;
         } else {
             throw new PersistenciaException("credenciales invalidas");
         }
 
     } catch (SQLException e) {
-        throw new PersistenciaException("Error al verificar las credenciales del administrador", e);
+        throw new PersistenciaException("Error al verificar las credenciales del administrador");
+    }
     }
 
-       return existe;
-    }
-    
 }
-
-  

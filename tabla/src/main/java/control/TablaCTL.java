@@ -4,11 +4,9 @@
  */
 package control;
 
-import Excepcion.NegocioException;
-import Negocio.EmpleadoBO;
 import dtos.EmpleadoDTO;
 import excepciones.ControlException;
-import interfaces.IEmpleadoBO;
+import interfaces.IEmpleadoCTL;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TablaCTL {
     
-    IEmpleadoBO empleadoBO;
+    IEmpleadoCTL empleadoBO;
 
     public TablaCTL() {
-        this.empleadoBO = new EmpleadoBO();
+        this.empleadoBO = new EmpleadoCTL();
     }
     
     
@@ -45,7 +43,7 @@ public class TablaCTL {
             // Establecer el modelo de la tabla
             table.setModel(tableModel);
         } 
-        catch (NegocioException e) {
+        catch (ControlException e) {
             // Lanzar una PropsException si ocurre un error al obtener los datos del empleado
             throw new ControlException(e.getMessage());
         }

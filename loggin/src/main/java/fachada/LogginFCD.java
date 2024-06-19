@@ -6,13 +6,11 @@
 
 package fachada;
 
-import excepciones.NegocioException;
 import control.LogginCTL;
 import dtos.EmpleadoDTO;
 import exception.ControlException;
 import exception.FachadaException;
 import interfaz.ILogginFCD;
-import javax.swing.JOptionPane;
 
 /**
  * @author/(s):
@@ -48,7 +46,7 @@ public class LogginFCD implements ILogginFCD{
         if (login.validar(correo, contraseña)) {
             if (login.existe(empleado)) {
             return true; 
-        }
+            }
         } 
         }catch(ControlException ex){
             throw new FachadaException(ex.getMessage());

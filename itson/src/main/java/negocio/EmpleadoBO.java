@@ -117,8 +117,10 @@ public class EmpleadoBO implements IEmpleadoBO{
     @Override
     public boolean existenciaAdmin(EmpleadoDTO empleadoDTO) throws NegocioException {
         try {
-            
-            return this.empleadoDAO.existenciaAdmin(this.empleadoCVR.convertir_Entidad(empleadoDTO));
+            String correo = empleadoDTO.getCorreo();
+            String contraseña = empleadoDTO.getContraseña();
+            Empleado empleado = new Empleado(correo, contraseña);
+            return this.empleadoDAO.existenciaAdmin(empleado);
            
         } catch (PersistenciaException e) {
             throw new NegocioException(e.getMessage());
