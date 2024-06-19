@@ -6,6 +6,8 @@
  */
 package GUI;
 
+import GUI.devolucionTraslado.BusquedaTraslado;
+
 /** 
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -86,6 +88,11 @@ public class Menu extends javax.swing.JFrame {
 
         btnDevolucionTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         btnDevolucionTraslado.setText("Devolucion Traslado");
+        btnDevolucionTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolucionTrasladoActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDevolucionTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 210, 50));
 
         btnAgregarVehiculo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
@@ -203,6 +210,11 @@ public class Menu extends javax.swing.JFrame {
         disponibilidad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDisponibilidad1ActionPerformed
+
+    private void btnDevolucionTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionTrasladoActionPerformed
+        BusquedaTraslado busqueda = new BusquedaTraslado();
+        busqueda.setVisible(true);
+    }//GEN-LAST:event_btnDevolucionTrasladoActionPerformed
 
     /**
      * @param args the command line arguments
