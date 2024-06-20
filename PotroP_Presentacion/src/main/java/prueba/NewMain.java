@@ -6,6 +6,7 @@
 package prueba;
 
 import GUI.Prestamo;
+import GUI.frmPrestampTrasladoProfes;
 
 /** 
  * @author/(s):
@@ -19,12 +20,14 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+     public static void main(String[] args) {
+       
+        frmPrestampTrasladoProfes n = new frmPrestampTrasladoProfes();
         
-        Prestamo prestamo = new Prestamo();
+        n.setVisible(true);
         
-        prestamo.setVisible(true);
+        
     }
-    
 }
+    
+

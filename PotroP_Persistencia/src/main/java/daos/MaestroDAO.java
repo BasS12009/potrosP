@@ -8,42 +8,73 @@ package daos;
  *
  * @author caarl
  */
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.UpdateResult;
+
 import entidades.Maestro;
-import org.bson.types.ObjectId;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MaestroDAO {
-    private final MongoCollection<Maestro> collection;
-
-    public MaestroDAO(MongoDatabase database) {
-        this.collection = database.getCollection("maestros", Maestro.class);
+    private Connection conexion;
+    
+    // Constructor que recibe la conexión
+    public MaestroDAOImpl(Connection conexion) {
+        this.conexion = conexion;
     }
 
-    public void insert(Maestro maestro) {
-        collection.insertOne(maestro);
+    @Override
+    public Maestro obtenerMaestroPorId(int id) {
+        String query = "SELECT * FROM maestros WHERE id = ?";
+        try (PreparedStatement pstmt = conexion.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return crearMaestroDesdeResultSet(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public Maestro findById(ObjectId id) {
-        return collection.find(Filters.eq("_id", id)).first();
-    }
-
-    public List<Maestro> findAll() {
+    @Override
+    public List<Maestro> obtenerTodosMaestros() {
         List<Maestro> maestros = new ArrayList<>();
-        collection.find().into(maestros);
+        String query = "SELECT * FROM maestros";
+        try (Statement stmt = conexion.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                maestros.add(crearMaestroDesdeResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return maestros;
     }
 
-    public void update(Maestro maestro) {
-        UpdateResult result = collection.replaceOne(Filters.eq("_id", maestro.getId()), maestro);
+    @Override
+    public List<Maestro> buscarMaestroPorNombre(String nombre) {
+        List<Maestro> maestros = new ArrayList<>();
+        String query = "SELECT * FROM maestros WHERE nombre LIKE ?";
+        try (PreparedStatement pstmt = conexion.prepareStatement(query)) {
+            pstmt.setString(1, "%" + nombre + "%");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    maestros.add(crearMaestroDesdeResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maestros;
     }
 
-    public void delete(ObjectId id) {
-        DeleteResult result = collection.deleteOne(Filters.eq("_id", id));
+    private Maestro crearMaestroDesdeResultSet(ResultSet rs) throws SQLException {
+        Maestro maestro = new Maestro();
+        maestro.setId(rs.getInt("id"));
+        maestro.setNombre(rs.getString("nombre"));
+        // Asigna otros atributos según la estructura de tu tabla
+        return maestro;
     }
 }

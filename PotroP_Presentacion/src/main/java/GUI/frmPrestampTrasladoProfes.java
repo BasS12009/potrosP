@@ -53,7 +53,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         cmbMotivo = new javax.swing.JComboBox<>();
         calFechaPrestamo = new com.toedter.calendar.JCalendar();
         jLabel4 = new javax.swing.JLabel();
-        cmbCantPersonas = new javax.swing.JComboBox<>();
+        cmbVehiculo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         cmbPlantelOrigen = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
@@ -72,6 +72,8 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         cbmDepartamentosProfes = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cmbCantPersonas1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,16 +112,16 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         jPanel1.add(cmbMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, -1));
         jPanel1.add(calFechaPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        jLabel4.setText("Cantidad de personas:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+        jLabel4.setText("Vehiculo");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
-        cmbCantPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "1", "2", "3", "4", "5" }));
-        cmbCantPersonas.addActionListener(new java.awt.event.ActionListener() {
+        cmbVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "1", "2", "3", "4", "5" }));
+        cmbVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCantPersonasActionPerformed(evt);
+                cmbVehiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbCantPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 130, -1));
+        jPanel1.add(cmbVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 130, -1));
 
         jLabel5.setText("Plantel de origen:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
@@ -224,7 +226,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         });
         jPanel1.add(cmbPlantelDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 130, -1));
 
-        cbmDepartamentosProfes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Matemáticas", "Ingeniería en software", "Mecatrónica", "Turismo", "Contabilidad" }));
+        cbmDepartamentosProfes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "MATEMATICAS", "INGENIERIA EN SOFTWARE", "MECATRONICA", "TURISMO", "CONTABILIDAD" }));
         cbmDepartamentosProfes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbmDepartamentosProfesActionPerformed(evt);
@@ -237,6 +239,17 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
 
         jLabel11.setText("Filtrar por:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, -1, -1));
+
+        jLabel12.setText("Cantidad de personas:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+
+        cmbCantPersonas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "1", "2", "3", "4", "5" }));
+        cmbCantPersonas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCantPersonas1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbCantPersonas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,7 +280,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbMotivoActionPerformed
 
-    private void cmbCantPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCantPersonasActionPerformed
+    private void cmbVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVehiculoActionPerformed
        // Bloquear todos los campos de texto de "Acompañantes"
     txtCorreoResponsable.setEditable(false);
     txtAcompaniante1.setEditable(false);
@@ -276,7 +289,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     txtAcompaniante4.setEditable(false);
 
     // Obtener la opción seleccionada en el combo box
-    String selectedOption = (String) cmbCantPersonas.getSelectedItem();
+    String selectedOption = (String) cmbVehiculo.getSelectedItem();
 
     switch (selectedOption) {
         case "<None>":
@@ -313,7 +326,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
             txtAcompaniante4.setEditable(true);
             break;
     }
-    }//GEN-LAST:event_cmbCantPersonasActionPerformed
+    }//GEN-LAST:event_cmbVehiculoActionPerformed
 
     private void cmbPlantelOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPlantelOrigenActionPerformed
        String selectedOrigen = (String) cmbPlantelOrigen.getSelectedItem();
@@ -410,6 +423,10 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbmDepartamentosProfesActionPerformed
 
+    private void cmbCantPersonas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCantPersonas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCantPersonas1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -421,13 +438,15 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     private javax.swing.JButton btnSolicitar;
     private com.toedter.calendar.JCalendar calFechaPrestamo;
     private javax.swing.JComboBox<String> cbmDepartamentosProfes;
-    private javax.swing.JComboBox<String> cmbCantPersonas;
+    private javax.swing.JComboBox<String> cmbCantPersonas1;
     private javax.swing.JComboBox<String> cmbMotivo;
     private javax.swing.JComboBox<String> cmbPlantelDestino;
     private javax.swing.JComboBox<String> cmbPlantelOrigen;
+    private javax.swing.JComboBox<String> cmbVehiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

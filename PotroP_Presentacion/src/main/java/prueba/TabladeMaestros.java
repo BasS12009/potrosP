@@ -10,25 +10,46 @@ package prueba;
  */
 
 import javax.swing.table.AbstractTableModel;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TabladeMaestros extends AbstractTableModel {
-private String[] columnNames = {"ID", "Nombre", "Correo", "Departamento"};
-    private Object[][] data = {
-        {"1", "Juan Pérez", "juan.perez@email.com", "Matemáticas"},
-        {"2", "María García", "maria.garcia@email.com", "Matemáticas"},
-        {"3", "Carlos Rodríguez", "carlos.rodriguez@email.com", "Ingeniería en software"},
-        {"4", "Ana López", "ana.lopez@email.com", "Ingeniería en software"},
-        {"5", "Pedro Ramírez", "pedro.ramirez@email.com", "Mecatrónica"},
-        {"6", "Lucía Torres", "lucia.torres@email.com", "Mecatrónica"},
-        {"7", "Javier Sánchez", "javier.sanchez@email.com", "Turismo"},
-        {"8", "Sofía Guzmán", "sofia.guzman@email.com", "Turismo"},
-        {"9", "Alejandro Flores", "alejandro.flores@email.com", "Contabilidad"},
-        {"10", "Fernanda Martínez", "fernanda.martinez@email.com", "Contabilidad"}
-    };
+    private String[] columnNames = {"ID", "Nombre", "Correo", "Departamento"};
+    private List<Object[]> data = new ArrayList<>();
+
+    public TabladeMaestros() {
+        // Conectar a la base de datos y cargar datos
+        loadDataFromDatabase();
+    }
+
+    private void loadDataFromDatabase() {
+        String url = "jdbc:mysql://localhost:3306/itson"; // URL de la base de datos
+        String username = "root";
+        String password = "Bi0log1a1";
+
+        String query = "SELECT id, nombre, correo, departamento FROM maestros";
+
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                Object[] row = new Object[4];
+                row[0] = resultSet.getInt("id");
+                row[1] = resultSet.getString("nombre");
+                row[2] = resultSet.getString("correo");
+                row[3] = resultSet.getString("departamento");
+                data.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public int getRowCount() {
-        return data.length;
+        return data.size();
     }
 
     @Override
@@ -38,7 +59,7 @@ private String[] columnNames = {"ID", "Nombre", "Correo", "Departamento"};
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return data[rowIndex][columnIndex];
+        return data.get(rowIndex)[columnIndex];
     }
 
     @Override
