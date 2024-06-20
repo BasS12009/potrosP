@@ -16,8 +16,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TablaCTL {
     
+    //atributo de la clase 
     IEmpleadoCTL empleadoBO;
 
+    /**
+     * constructor de la clase
+     */
     public TablaCTL() {
         this.empleadoBO = new EmpleadoCTL();
     }

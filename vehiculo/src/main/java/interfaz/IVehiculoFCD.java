@@ -8,11 +8,19 @@ import excepciones.FachadaException;
 import javax.swing.JComboBox;
 
 /**
- *
- * @author skevi
+ * Interfaz IVehiculoFCD que define el contrato para las fachadas de vehículos.
+ * 
+ * Autor: skevi
  */
 public interface IVehiculoFCD {
     
+    /**
+     * Método para llenar un JComboBox con datos de vehículos.
+     * 
+     * @param comboBox El JComboBox donde se llenarán los datos.
+     * @throws FachadaException Si ocurre un error específico de fachada al llenar el JComboBox.
+     */
     public void llenarCBX(JComboBox comboBox) throws FachadaException;
     
 }
+

@@ -5,11 +5,10 @@
  */
 package control;
 
-import excepciones.NegocioException;
-import negocio.EmpleadoBO;
 import dtos.EmpleadoDTO;
-import exception.ControlException;
-import interfaces.IEmpleadoBO;
+import excepciones.ControlException;
+import exception.CtlException;
+import interfaces.IEmpleadoCTL;
 
 /**
  * @author/(s):
@@ -20,13 +19,13 @@ import interfaces.IEmpleadoBO;
  */
 public class LogginCTL {
     
-    private IEmpleadoBO empleadoBO;
+    private IEmpleadoCTL empleadoBO;
 
     /**
      * Constructor de la clase LogginCTL que inicializa el objeto empleadoBO.
      */
     public LogginCTL() {
-       this.empleadoBO = new EmpleadoBO();
+       this.empleadoBO = new EmpleadoCTL();
     }
     
     /**
@@ -34,14 +33,14 @@ public class LogginCTL {
      * 
      * @param empleadoDTO El DTO del empleado a verificar.
      * @return true si el empleado existe, false en caso contrario.
-     * @throws ControlException Si ocurre un error de control durante la verificación.
+     * @throws CtlException Si ocurre un error de control durante la verificación.
      */
-    public boolean existe(EmpleadoDTO empleadoDTO) throws ControlException{
+    public boolean existe(EmpleadoDTO empleadoDTO) throws CtlException {
         try{
             return this.empleadoBO.existenciaAdmin(empleadoDTO);
         }
-        catch(NegocioException ex){
-                throw new ControlException(ex.getMessage());
+        catch(ControlException ex){
+                throw new CtlException(ex.getMessage());
         }
     }
     
@@ -52,14 +51,14 @@ public class LogginCTL {
      * @param correo El correo a validar.
      * @param contraseña La contraseña a validar.
      * @return true si ambos campos no están vacíos, false en caso contrario.
-     * @throws ControlException Si alguno de los campos está vacío.
+     * @throws CtlException Si alguno de los campos está vacío.
      */
-    public boolean validar(String correo, String contraseña) throws ControlException{
+    public boolean validar(String correo, String contraseña) throws CtlException{
         if (correo.isEmpty()) {
-            throw new ControlException("Por favor, llene el campo de correo");
+            throw new CtlException("Por favor, llene el campo de correo");
         }
         else if (contraseña.isEmpty()) {
-            throw new ControlException("Por favor, llene el campo de contraseña");
+            throw new CtlException("Por favor, llene el campo de contraseña");
         }
         else{
             return true;

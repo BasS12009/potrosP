@@ -12,12 +12,12 @@ package exception;
  * Kevin Jared Sánchez Figueroa - 240798,
  * Daniel Alejandro Castro Félix - 235294.
  */
-public class ControlException extends Exception{
+public class CtlException extends Exception{
 
     /**
      * Constructor sin parámetros de ControlException.
      */
-    public ControlException() {
+    public CtlException() {
     }
 
     /**
@@ -25,7 +25,7 @@ public class ControlException extends Exception{
      * 
      * @param message El mensaje de error.
      */
-    public ControlException(String message) {
+    public CtlException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class ControlException extends Exception{
      * @param message El mensaje de error.
      * @param cause La causa del error.
      */
-    public ControlException(String message, Throwable cause) {
+    public CtlException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -44,7 +44,7 @@ public class ControlException extends Exception{
      * 
      * @param cause La causa del error.
      */
-    public ControlException(Throwable cause) {
+    public CtlException(Throwable cause) {
         super(cause);
     }
 
@@ -57,7 +57,7 @@ public class ControlException extends Exception{
      * @param enableSuppression Habilitar supresión.
      * @param writableStackTrace Habilitar rastreo de pila.
      */
-    public ControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public CtlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
     

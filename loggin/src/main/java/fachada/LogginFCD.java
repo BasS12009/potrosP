@@ -8,7 +8,7 @@ package fachada;
 
 import control.LogginCTL;
 import dtos.EmpleadoDTO;
-import exception.ControlException;
+import exception.CtlException;
 import exception.FachadaException;
 import interfaz.ILogginFCD;
 
@@ -48,7 +48,7 @@ public class LogginFCD implements ILogginFCD{
             return true; 
             }
         } 
-        }catch(ControlException ex){
+        }catch(CtlException ex){
             throw new FachadaException(ex.getMessage());
         }
         return false;
