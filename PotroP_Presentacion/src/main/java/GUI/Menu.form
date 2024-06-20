@@ -139,7 +139,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Sitka Text" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Consultar Choferes"/>
+            <Property name="text" type="java.lang.String" value="Traslado de maestro"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarChoferesActionPerformed"/>

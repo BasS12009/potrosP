@@ -98,7 +98,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(btnAgregarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 210, 50));
 
         btnConsultarChoferes.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        btnConsultarChoferes.setText("Consultar Choferes");
+        btnConsultarChoferes.setText("Traslado de maestro");
         btnConsultarChoferes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarChoferesActionPerformed(evt);
@@ -180,7 +180,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnConsultarChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarChoferesActionPerformed
         // TODO add your handling code here:
-       Choferes choferes = new Choferes();
+       frmPrestampTrasladoProfes choferes = new frmPrestampTrasladoProfes();
        
        choferes.setVisible(true);
        this.dispose();
