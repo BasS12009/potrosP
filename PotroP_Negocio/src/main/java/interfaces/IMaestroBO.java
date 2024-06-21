@@ -4,20 +4,22 @@
  */
 package interfaces;
 
-import entidades.Maestro;
+import DTO.MaestroDTO;
+import exceptions.BisnessException;
 import java.util.List;
 
 /**
  *
  * @author caarl
  */
+
+
 public interface IMaestroBO {
- Maestro buscarPorId(int id);
-    Maestro buscarPorNombre(String nombre);
-    List<Maestro> buscarTodos();
-    Maestro guardar(Maestro maestro);
-    void actualizar(Maestro maestro);
-    void eliminar(int id);
-    List<Maestro> buscarPorDepartamento(String departamento);
-    Maestro buscarPorCorreo(String correo);   
+    MaestroDTO buscarPorId(int id) throws BisnessException;
+    List<MaestroDTO> buscarTodos() throws BisnessException;
+    MaestroDTO guardar(MaestroDTO maestroDTO) throws BisnessException;
+    void actualizar(MaestroDTO maestroDTO) throws BisnessException;
+    void eliminar(int id) throws BisnessException;
+    List<MaestroDTO> buscarPorDepartamento(String departamento) throws BisnessException;
+    MaestroDTO buscarPorCorreo(String correo) throws BisnessException;
 }

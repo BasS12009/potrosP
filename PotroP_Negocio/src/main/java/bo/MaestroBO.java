@@ -4,18 +4,17 @@
  */
 package bo;
 
+import converters.MaestroCVR;
+import DTO.MaestroDTO;
+import exceptions.BisnessException;
 import Interfaces.IMaestroDAO;
 import daos.MaestroDAO;
 import entidades.Maestro;
 import excepciones.DAOException;
-import exceptions.BisnessException;
 import interfaces.IMaestroBO;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author caarl
- */
 public class MaestroBO implements IMaestroBO {
 
     private final IMaestroDAO maestroDAO;
@@ -27,44 +26,80 @@ public class MaestroBO implements IMaestroBO {
     }
 
     @Override
-    public Maestro buscarPorId(Long id) throws BisnessException {
+    public MaestroDTO buscarPorId(int id) throws BisnessException {
         try {
-            return this.maestroDAO.buscarPorId(id);
+            Maestro maestro = maestroDAO.buscarPorId(id);
+            return maestroCVR.convertir_DTO(maestro);
         } catch (DAOException e) {
-            throw new BisnessException(e.getMessage());
+            throw new BisnessException("Error al buscar maestro por ID: " + e.getMessage());
         }
     }
 
     @Override
-    public List<MaestroDTO> listaMaestros() throws BisnessException {
-        List<MaestroDTO> lista = new ArrayList<>();
+    public List<MaestroDTO> buscarTodos() throws BisnessException {
         try {
-            List<Maestro> listaMaestros = maestroDAO.listaMaestros();
-
-            for (Maestro maestro : listaMaestros) {
-                lista.add(maestroCVR.convertir_DTO(maestro));    
+            List<Maestro> maestros = maestroDAO.buscarTodos();
+            List<MaestroDTO> maestrosDTO = new ArrayList<>();
+            for (Maestro maestro : maestros) {
+                maestrosDTO.add(maestroCVR.convertir_DTO(maestro));
             }
-            return lista;
+            return maestrosDTO;
         } catch (DAOException e) {
-            throw new BisnessException(e.getMessage());
+            throw new BisnessException("Error al buscar todos los maestros: " + e.getMessage());
         }
     }
 
     @Override
-    public List<MaestroDTO> buscarPorNombre(String nombre) throws BisnessException {
+    public MaestroDTO guardar(MaestroDTO maestroDTO) throws BisnessException {
         try {
-            List<MaestroDTO> listaBO = new ArrayList<>();
-            List<Maestro> listaDAO = maestroDAO.buscarPorNombre(nombre);
-
-            for (Maestro maestro : listaDAO) {
-                listaBO.add(maestroCVR.convertir_DTO(maestro));
-            }
-
-            return listaBO;
-        } catch (DAOException ex) {
-            throw new BisnessException(ex.getMessage());
+            Maestro maestro = maestroCVR.convertir_Maestro(maestroDTO);
+            Maestro maestroGuardado = maestroDAO.guardar(maestro);
+            return maestroCVR.convertir_DTO(maestroGuardado);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al guardar maestro: " + e.getMessage());
         }
     }
 
-    
+    @Override
+    public void actualizar(MaestroDTO maestroDTO) throws BisnessException {
+        try {
+            Maestro maestro = maestroCVR.convertir_Maestro(maestroDTO);
+            maestroDAO.actualizar(maestro);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al actualizar maestro: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminar(int id) throws BisnessException {
+        try {
+            maestroDAO.eliminar(id);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al eliminar maestro: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<MaestroDTO> buscarPorDepartamento(String departamento) throws BisnessException {
+        try {
+            List<Maestro> maestros = maestroDAO.buscarPorDepartamento(departamento);
+            List<MaestroDTO> maestrosDTO = new ArrayList<>();
+            for (Maestro maestro : maestros) {
+                maestrosDTO.add(maestroCVR.convertir_DTO(maestro));
+            }
+            return maestrosDTO;
+        } catch (DAOException e) {
+            throw new BisnessException("Error al buscar maestros por departamento: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public MaestroDTO buscarPorCorreo(String correo) throws BisnessException {
+        try {
+            Maestro maestro = maestroDAO.buscarPorCorreo(correo);
+            return maestroCVR.convertir_DTO(maestro);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al buscar maestro por correo: " + e.getMessage());
+        }
+    }
 }

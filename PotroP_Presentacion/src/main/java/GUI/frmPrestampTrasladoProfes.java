@@ -4,7 +4,6 @@
  */
 package GUI;
 
-
 import java.awt.BorderLayout;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -272,7 +271,8 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
-       frmTicketTrasladoProfes d = new frmTicketTrasladoProfes();
+   
+        frmTicketTrasladoProfes d = new frmTicketTrasladoProfes();
        d.setVisible(true);
     }//GEN-LAST:event_btnSolicitarActionPerformed
 

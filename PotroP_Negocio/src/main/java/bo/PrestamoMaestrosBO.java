@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
  *
  * @author caarl
  */
-public class PrestamoMaestrosBOImpl implements IPrestamoMaestrosBO {
+public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
 
     private final IPrestamoMaestrosDAO prestamoMaestrosDAO;
 
-    public PrestamoMaestrosBOImpl(IPrestamoMaestrosDAO prestamoMaestrosDAO) {
+    public PrestamoMaestrosBO(IPrestamoMaestrosDAO prestamoMaestrosDAO) {
         this.prestamoMaestrosDAO = prestamoMaestrosDAO;
     }
 
