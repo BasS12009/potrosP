@@ -23,6 +23,8 @@ public class Guardar {
     private static int idChofer;
     private static int idVehiculo;
     private static int idPrestamo;
+    private static int numDevolucion;
+    private static String correoAdmin;
 
     /**
      * Obtiene el identificador del empleado guardado.
@@ -112,6 +114,22 @@ public class Guardar {
      */
     public void setIdPrestamo(int idPrestamo) {
         Guardar.idPrestamo = idPrestamo;
+    }
+
+    public int getNumDevolucion() {
+        return numDevolucion;
+    }
+
+    public void setNumDevolucion(int numDevolucion) {
+        Guardar.numDevolucion = numDevolucion;
+    }
+
+    public String getCorreoAdmin() {
+        return correoAdmin;
+    }
+
+    public void setCorreoAdmin(String correoAdmin) {
+        Guardar.correoAdmin = correoAdmin;
     }
 
 }

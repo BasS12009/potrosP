@@ -1,20 +1,16 @@
-/**
- * TrasladoDTO.java
- * 
- * 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package entidades;
 
 import java.time.LocalDateTime;
 
 /**
- * @author/(s):
- * Diana Sofia Bastidas Osuna - 245804,
- * Carlos Damian Garcia Bernal - 247614,
- * Kevin Jared Sánchez Figueroa - 240798,
- * Daniel Alejandro Castro Félix - 235294.
+ *
+ * @author skevi
  */
-public class TrasladoDTO {
+public class Traslado {
     
     private int id;
     private int numTraslado;
@@ -31,10 +27,10 @@ public class TrasladoDTO {
     private String correoChofer;
     private boolean estado;
 
-    public TrasladoDTO() {
+    public Traslado() {
     }
 
-    public TrasladoDTO(int numTraslado, String destino, int personas, 
+    public Traslado(int numTraslado, String destino, int personas, 
             LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
             String motivo, String carroceria, String llantas, int combustible, 
             String placa, String correoEmpleado, String correoChofer, boolean estado) {
@@ -53,7 +49,7 @@ public class TrasladoDTO {
         this.estado = estado;
     }
 
-    public TrasladoDTO(int id, int numTraslado, String destino, int personas, 
+    public Traslado(int id, int numTraslado, String destino, int personas, 
             LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
             String motivo, String carroceria, String llantas, int combustible, 
             String placa, String correoEmpleado, String correoChofer, boolean estado) {
@@ -185,5 +181,6 @@ public class TrasladoDTO {
         this.estado = estado;
     }
 
+    
     
 }
