@@ -5,8 +5,9 @@
  */
 package prueba;
 
-import GUI.Prestamo;
+
 import GUI.frmPrestampTrasladoProfes;
+import excepciones.DAOException;
 
 /** 
  * @author/(s):
@@ -20,7 +21,7 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-     public static void main(String[] args) {
+     public static void main(String[] args) throws DAOException {
        
         frmPrestampTrasladoProfes n = new frmPrestampTrasladoProfes();
         

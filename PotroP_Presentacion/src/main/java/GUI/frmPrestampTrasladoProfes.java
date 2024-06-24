@@ -1,10 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
+
+import DTO.PrestamoMaestrosDTO;
+import excepcion.FachadaException;
+import excepciones.DAOException;
+import fachada.PrestamoMaestrosFCD;
+import interfaz.IPrestamoMaestrosFCD;
 import java.awt.BorderLayout;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -21,11 +28,13 @@ import prueba.TabladeMaestros;
  */
 public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PrestampTrasladoProfes
-     */
-    public frmPrestampTrasladoProfes() {
-    initComponents();
+  private IPrestamoMaestrosFCD fachada;
+
+    
+    public frmPrestampTrasladoProfes() throws DAOException {      
+        initComponents();
+         this.fachada = new PrestamoMaestrosFCD();
+        cargarDatosIniciales();
 
     // Bloquear inicialmente todos los campos de texto de "Acompañantes"
     txtCorreoResponsable.setEditable(false);
@@ -34,7 +43,76 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     txtAcompaniante3.setEditable(false);
     txtAcompaniante4.setEditable(false);
 }
+    
+    private void cargarDatosIniciales() {
+        try {
+            List<PrestamoMaestrosDTO> prestamos = fachada.listaPrestamosMaestros();
+            // Aquí puedes cargar los datos en una tabla o lista en la interfaz
+        } catch (FachadaException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
+private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentException {
+    // Obtener la fecha del calendario
+    LocalDate fechaPrestamo = calFechaPrestamo.getDate().toInstant()
+            .atZone(ZoneId.systemDefault()).toLocalDate();
+
+    // Obtener el departamento seleccionado
+    String departamento = (String) cbmDepartamentosProfes.getSelectedItem();
+
+    // Obtener la cantidad de personas
+    int cantidadPersonas = Integer.parseInt((String) cmbCantPersonas1.getSelectedItem());
+
+    // Obtener el motivo
+    String motivo = (String) cmbMotivo.getSelectedItem();
+
+    // Obtener el plantel de origen y destino
+    String plantelOrigen = (String) cmbPlantelOrigen.getSelectedItem();
+    String plantelDestino = (String) cmbPlantelDestino.getSelectedItem();
+
+    // Obtener el vehículo
+    String vehiculo = (String) cmbVehiculo.getSelectedItem();
+
+    // Obtener el correo del responsable
+    String correoResponsable = txtCorreoResponsable.getText().trim();
+
+    // Obtener la lista de acompañantes
+    List<String> acompaniantes = new ArrayList<>();
+    if (!txtAcompaniante1.getText().trim().isEmpty()) {
+        acompaniantes.add(txtAcompaniante1.getText().trim());
+    }
+    if (!txtAcompaniante2.getText().trim().isEmpty()) {
+        acompaniantes.add(txtAcompaniante2.getText().trim());
+    }
+    if (!txtAcompaniante3.getText().trim().isEmpty()) {
+        acompaniantes.add(txtAcompaniante3.getText().trim());
+    }
+    if (!txtAcompaniante4.getText().trim().isEmpty()) {
+        acompaniantes.add(txtAcompaniante4.getText().trim());
+    }
+
+    // Validar los datos
+    if (fechaPrestamo == null || departamento.isEmpty() || motivo.isEmpty() ||
+        plantelOrigen.isEmpty() || plantelDestino.isEmpty() || vehiculo.isEmpty() ||
+        correoResponsable.isEmpty()) {
+        throw new IllegalArgumentException("Todos los campos obligatorios deben estar llenos");
+    }
+
+    // Crear y devolver el DTO
+    return new PrestamoMaestrosDTO(
+        0, // El ID se asignará en la capa DAO
+        fechaPrestamo,
+        departamento,
+        cantidadPersonas,
+        motivo,
+        plantelOrigen,
+        plantelDestino,
+        vehiculo,
+        correoResponsable,
+        acompaniantes
+    );
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +151,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cmbCantPersonas1 = new javax.swing.JComboBox<>();
+        btnListaPrestamos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +199,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
                 cmbVehiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 130, -1));
+        jPanel1.add(cmbVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 130, -1));
 
         jLabel5.setText("Plantel de origen:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
@@ -248,7 +327,15 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
                 cmbCantPersonas1ActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbCantPersonas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 130, -1));
+        jPanel1.add(cmbCantPersonas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 130, -1));
+
+        btnListaPrestamos.setText("Lista de prestamos");
+        btnListaPrestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaPrestamosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnListaPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,6 +351,25 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+// Método para limpiar el formulario después de agregar un préstamo
+
+private void mostrarPrestamosEnConsola() {
+    try {
+        List<PrestamoMaestrosDTO> prestamos = fachada.listaPrestamosMaestros();
+        for (PrestamoMaestrosDTO prestamo : prestamos) {
+            System.out.println("ID: " + prestamo.getId());
+            System.out.println("Fecha: " + prestamo.getFechaPrestamo());
+            System.out.println("Departamento: " + prestamo.getDepartamento());
+            // ... Imprime más detalles según tus necesidades
+            System.out.println("--------------------");
+        }
+    } catch (FachadaException ex) {
+        System.err.println("Error al obtener los préstamos: " + ex.getMessage());
+    }
+}
+
+
+
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
        
 
@@ -271,9 +377,30 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
-   
-        frmTicketTrasladoProfes d = new frmTicketTrasladoProfes();
-       d.setVisible(true);
+try {
+        PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
+        fachada.agregar(nuevoPrestamo);
+        JOptionPane.showMessageDialog(this, "Préstamo agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        // Mostrar todas las características del nuevo préstamo en la consola
+        System.out.println("Nuevo préstamo agregado:");
+        System.out.println("ID: " + nuevoPrestamo.getId());
+        System.out.println("Fecha: " + nuevoPrestamo.getFechaPrestamo());
+        System.out.println("Departamento: " + nuevoPrestamo.getDepartamento());
+        System.out.println("Cantidad de personas: " + nuevoPrestamo.getCantidadPersonas());
+        System.out.println("Motivo: " + nuevoPrestamo.getMotivo());
+        System.out.println("Plantel origen: " + nuevoPrestamo.getPlantelOrigen());
+        System.out.println("Plantel destino: " + nuevoPrestamo.getPlantelDestino());
+        System.out.println("Vehículo: " + nuevoPrestamo.getVehiculo());
+        System.out.println("Correo responsable: " + nuevoPrestamo.getCorreoResponsable());
+        System.out.println("Acompañantes: " + nuevoPrestamo.getAcompaniantes());
+        System.out.println("--------------------");
+
+        cargarDatosIniciales();
+    } catch (FachadaException e) {
+        JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void cmbMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMotivoActionPerformed
@@ -427,6 +554,11 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCantPersonas1ActionPerformed
 
+    private void btnListaPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPrestamosActionPerformed
+     JButton btnMostrarPrestamos = new JButton("Mostrar Préstamos");
+btnMostrarPrestamos.addActionListener(e -> mostrarPrestamosEnConsola());
+    }//GEN-LAST:event_btnListaPrestamosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -435,6 +567,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnListaMaestros;
+    private javax.swing.JButton btnListaPrestamos;
     private javax.swing.JButton btnSolicitar;
     private com.toedter.calendar.JCalendar calFechaPrestamo;
     private javax.swing.JComboBox<String> cbmDepartamentosProfes;
@@ -464,3 +597,4 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreoResponsable;
     // End of variables declaration//GEN-END:variables
 }
+

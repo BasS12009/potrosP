@@ -5,38 +5,28 @@
     <artifactId>PotroP_Persistencia</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <dependencies>
-             <!-- MongoDB Driver -->
+<dependencies>
+    <!-- MongoDB Driver (incluye el módulo de POJOs) -->
     <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongodb-driver-sync</artifactId>
         <version>4.10.2</version>
     </dependency>
     
-    <!-- MongoDB BSON -->
+    <!-- MongoDB BSON para codecs -->
     <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>bson</artifactId>
-        <version>5.1.1</version>
-      <type>jar</type>
-    </dependency>
-    
-    <!-- MongoDB Driver Core -->
-    <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongodb-driver-core</artifactId>
         <version>4.10.2</version>
     </dependency>
-       
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
-            <version>3.10.2</version>
-            <type>jar</type>
-        </dependency>
-        
-        
-    </dependencies>
+    
+    <!-- SLF4J para logging (ya la tienes incluida) -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.30</version>
+    </dependency>
+</dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>

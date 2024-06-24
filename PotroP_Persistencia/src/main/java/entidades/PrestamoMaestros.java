@@ -3,71 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entidades;
-
 import java.time.LocalDate;
 import java.util.List;
 
-
-/**
- *
- * @author caarl
- */
-
-
-
-
-
 public class PrestamoMaestros {
-    private String id; // Para MongoDB, usualmente se usa String para el ID
-    private Maestro responsable;
-    private String correoResponsable;
+    private int id;
+    private LocalDate fechaPrestamo;
+    private String departamento;
     private int cantidadPersonas;
-    private List<String> acompaniantes;
-    private String vehiculo;
+    private String motivo;
     private String plantelOrigen;
     private String plantelDestino;
-    private LocalDate fecha;
-    private String Motivo;
+    private String vehiculo;
+    private String correoResponsable;
+    private List<String> acompaniantes;
 
-    // Constructor por defecto
+    // Constructor, getters y setters
     public PrestamoMaestros() {
     }
 
-    // Constructor con todos los campos
-    public PrestamoMaestros(String id, Maestro responsable, String correoResponsable, 
-                            int cantidadPersonas, List<String> acompaniantes, 
-                            String vehiculo, String plantelOrigen, 
-                            String plantelDestino, LocalDate fecha,String Motivo) {
-        this.id = id;
-        this.responsable = responsable;
-        this.correoResponsable = correoResponsable;
+    public PrestamoMaestros(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.departamento = departamento;
         this.cantidadPersonas = cantidadPersonas;
-        this.acompaniantes = acompaniantes;
-        this.vehiculo = vehiculo;
+        this.motivo = motivo;
         this.plantelOrigen = plantelOrigen;
         this.plantelDestino = plantelDestino;
-        this.fecha = fecha;
-        this.Motivo=Motivo;
+        this.vehiculo = vehiculo;
+        this.correoResponsable = correoResponsable;
+        this.acompaniantes = acompaniantes;
     }
-    
 
-    // Getters y setters
-    
-    
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public Maestro getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(Maestro responsable) {
-        this.responsable = responsable;
     }
 
     public String getCorreoResponsable() {
@@ -78,28 +50,28 @@ public class PrestamoMaestros {
         this.correoResponsable = correoResponsable;
     }
 
-    public int getCantidadPersonas() {
-        return cantidadPersonas;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setCantidadPersonas(int cantidadPersonas) {
-        this.cantidadPersonas = cantidadPersonas;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
-    public List<String> getAcompaniantes() {
-        return acompaniantes;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setAcompaniantes(List<String> acompaniantes) {
-        this.acompaniantes = acompaniantes;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
-    public String getVehiculo() {
-        return vehiculo;
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
     }
 
-    public void setVehiculo(String vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 
     public String getPlantelOrigen() {
@@ -118,26 +90,31 @@ public class PrestamoMaestros {
         this.plantelDestino = plantelDestino;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public String getVehiculo() {
+        return vehiculo;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setVehiculo(String vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
-    public String getMotivo() {
-        return Motivo;
+    public int getCantidadPersonas() {
+        return cantidadPersonas;
     }
 
-    public void setMotivo(String Motivo) {
-        this.Motivo = Motivo;
+    public void setCantidadPersonas(int cantidadPersonas) {
+        this.cantidadPersonas = cantidadPersonas;
     }
 
-    @Override
-    public String toString() {
-        return "PrestamoMaestros{" + "id=" + id + ", responsable=" + responsable + ", correoResponsable=" + correoResponsable + ", cantidadPersonas=" + cantidadPersonas + ", acompaniantes=" + acompaniantes + ", vehiculo=" + vehiculo + ", plantelOrigen=" + plantelOrigen + ", plantelDestino=" + plantelDestino + ", fecha=" + fecha + ", Motivo=" + Motivo + '}';
+    public List<String> getAcompaniantes() {
+        return acompaniantes;
     }
+
+    public void setAcompaniantes(List<String> acompaniantes) {
+        this.acompaniantes = acompaniantes;
+    }
+
+   
 
     
 }

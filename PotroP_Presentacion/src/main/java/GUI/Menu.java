@@ -6,6 +6,10 @@
  */
 package GUI;
 
+import excepciones.DAOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /** 
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -180,7 +184,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnConsultarChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarChoferesActionPerformed
         // TODO add your handling code here:
-       frmPrestampTrasladoProfes choferes = new frmPrestampTrasladoProfes();
+       frmPrestampTrasladoProfes choferes = null;
+        try {
+            choferes = new frmPrestampTrasladoProfes();
+        } catch (DAOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
        choferes.setVisible(true);
        this.dispose();

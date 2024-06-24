@@ -26,7 +26,7 @@ public class TabladeMaestros extends AbstractTableModel {
     private void loadDataFromDatabase() {
         String url = "jdbc:mysql://localhost:3306/itson"; // URL de la base de datos
         String username = "root";
-        String password = "Bi0log1a1";
+        String password = "root";
 
         String query = "SELECT id, nombre, correo, departamento FROM maestros";
 

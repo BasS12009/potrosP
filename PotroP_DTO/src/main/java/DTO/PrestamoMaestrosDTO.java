@@ -4,55 +4,61 @@
  */
 package DTO;
 
-
 import java.time.LocalDate;
 import java.util.List;
-/**
- *
- * @author caarl
- */
 
-
-
+import java.util.List;
 
 public class PrestamoMaestrosDTO {
-    private String id;
-    private String nombreResponsable;
-    private String correoResponsable;
+    private int id;
+    private LocalDate fechaPrestamo;
+    private String departamento;
     private int cantidadPersonas;
-    private List<String> acompaniantes;
-    private String vehiculo;
+    private String motivo;
     private String plantelOrigen;
     private String plantelDestino;
-    private LocalDate fecha;
-    private String motivo;
+    private String vehiculo;
+    private String correoResponsable;
+    private List<String> acompaniantes;
 
-    // Constructor
+    // Constructor, getters y setters
     public PrestamoMaestrosDTO() {}
 
-    // Getters y setters
-    public String getId() {
+    public PrestamoMaestrosDTO(int id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.id = id;
+        this.fechaPrestamo = fechaPrestamo;
+        this.departamento = departamento;
+        this.cantidadPersonas = cantidadPersonas;
+        this.motivo = motivo;
+        this.plantelOrigen = plantelOrigen;
+        this.plantelDestino = plantelDestino;
+        this.vehiculo = vehiculo;
+        this.correoResponsable = correoResponsable;
+        this.acompaniantes = acompaniantes;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getNombreResponsable() {
-        return nombreResponsable;
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
     }
 
-    public void setNombreResponsable(String nombreResponsable) {
-        this.nombreResponsable = nombreResponsable;
+    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 
-    public String getCorreoResponsable() {
-        return correoResponsable;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setCorreoResponsable(String correoResponsable) {
-        this.correoResponsable = correoResponsable;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public int getCantidadPersonas() {
@@ -63,20 +69,12 @@ public class PrestamoMaestrosDTO {
         this.cantidadPersonas = cantidadPersonas;
     }
 
-    public List<String> getAcompaniantes() {
-        return acompaniantes;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setAcompaniantes(List<String> acompaniantes) {
-        this.acompaniantes = acompaniantes;
-    }
-
-    public String getVehiculo() {
-        return vehiculo;
-    }
-
-    public void setVehiculo(String vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
     public String getPlantelOrigen() {
@@ -95,19 +93,33 @@ public class PrestamoMaestrosDTO {
         this.plantelDestino = plantelDestino;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public String getVehiculo() {
+        return vehiculo;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setVehiculo(String vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public String getCorreoResponsable() {
+        return correoResponsable;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setCorreoResponsable(String correoResponsable) {
+        this.correoResponsable = correoResponsable;
     }
+
+    public List<String> getAcompaniantes() {
+        return acompaniantes;
+    }
+
+    public void setAcompaniantes(List<String> acompaniantes) {
+        this.acompaniantes = acompaniantes;
+    }
+
+    public List<String> getAcompanantes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
 }

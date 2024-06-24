@@ -4,110 +4,79 @@
  */
 package bo;
 
-import Interfaces.IPrestamoMaestrosDAO;
+import DTO.PrestamoMaestrosDTO;
+import converters.PrestamoMaestrosCVR;
+import daos.PrestamoMaestrosDAO;
 import entidades.PrestamoMaestros;
+import exceptions.BisnessException;
+import excepciones.DAOException;
 import interfaces.IPrestamoMaestrosBO;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import Interfaces.IPrestamoMaestrosDAO;
 
-/**
- *
- * @author caarl
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
 
     private final IPrestamoMaestrosDAO prestamoMaestrosDAO;
+    private final PrestamoMaestrosCVR prestamoMaestrosCVR;
 
-    public PrestamoMaestrosBO(IPrestamoMaestrosDAO prestamoMaestrosDAO) {
-        this.prestamoMaestrosDAO = prestamoMaestrosDAO;
+    public PrestamoMaestrosBO() throws DAOException {
+        this.prestamoMaestrosDAO = new PrestamoMaestrosDAO();
+        this.prestamoMaestrosCVR = new PrestamoMaestrosCVR();
     }
 
     @Override
-    public PrestamoMaestros obtenerPrestamoPorId(String id) {
-        return prestamoMaestrosDAO.findById(id);
+    public void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
+        try {
+            PrestamoMaestros entidad = prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO);
+            prestamoMaestrosDAO.agregar(entidad);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al agregar el préstamo de maestros: " + e.getMessage());
+        }
     }
 
     @Override
-    public List<PrestamoMaestros> obtenerTodosLosPrestamos() {
-        return prestamoMaestrosDAO.findAll();
+    public void eliminar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
+        try {
+            PrestamoMaestros entidad = prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO);
+            prestamoMaestrosDAO.eliminar(entidad);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al eliminar el préstamo de maestros: " + e.getMessage());
+        }
     }
 
     @Override
-    public void actualizarPrestamo(PrestamoMaestros prestamo) {
-        // Aquí puedes agregar validaciones antes de actualizar
-        prestamoMaestrosDAO.update(prestamo);
+    public void actualizar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
+        try {
+            PrestamoMaestros entidad = prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO);
+            prestamoMaestrosDAO.actualizar(entidad);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al actualizar el préstamo de maestros: " + e.getMessage());
+        }
     }
 
     @Override
-    public void eliminarPrestamo(String id) {
-        prestamoMaestrosDAO.delete(id);
+    public PrestamoMaestrosDTO buscarPorId(int id) throws BisnessException {
+        try {
+            PrestamoMaestros entidad = prestamoMaestrosDAO.buscarPorId(id);
+            return prestamoMaestrosCVR.convertir_DTO(entidad);
+        } catch (DAOException e) {
+            throw new BisnessException("Error al buscar el préstamo de maestros: " + e.getMessage());
+        }
     }
 
     @Override
-    public List<PrestamoMaestros> buscarPrestamosPorResponsable(String idResponsable) {
-        return obtenerTodosLosPrestamos().stream()
-                .filter(p -> p.getCorreoResponsable() .equals(idResponsable))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<PrestamoMaestros> buscarPrestamosPorFecha(LocalDate fecha) {
-        return obtenerTodosLosPrestamos().stream()
-                .filter(p -> p.getFecha().equals(fecha))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public String guardarPrestamo(PrestamoMaestros prestamo) {
-        // Validaciones
-        if (prestamo == null) {
-            throw new IllegalArgumentException("El préstamo no puede ser nulo");
+    public List<PrestamoMaestrosDTO> listaPrestamosMaestros() throws BisnessException {
+        try {
+            List<PrestamoMaestros> entidades = prestamoMaestrosDAO.listaPrestamosMaestros();
+            List<PrestamoMaestrosDTO> dtos = new ArrayList<>();
+            for (PrestamoMaestros entidad : entidades) {
+                dtos.add(prestamoMaestrosCVR.convertir_DTO(entidad));
+            }
+            return dtos;
+        } catch (DAOException e) {
+            throw new BisnessException("Error al obtener la lista de préstamos de maestros: " + e.getMessage());
         }
-        
-        if (prestamo.getResponsable() == null) {
-            throw new IllegalArgumentException("El préstamo debe tener un responsable");
-        }
-        
-        if (prestamo.getFecha() == null) {
-            throw new IllegalArgumentException("El préstamo debe tener una fecha");
-        }
-        
-        if (prestamo.getFecha().isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("La fecha del préstamo no puede ser anterior a la fecha actual");
-        }
-        
-        if (prestamo.getCantidadPersonas() <= 0) {
-            throw new IllegalArgumentException("La cantidad de personas debe ser mayor que cero");
-        }
-        
-        if (prestamo.getPlantelOrigen() == null || prestamo.getPlantelOrigen().isEmpty()) {
-            throw new IllegalArgumentException("El plantel de origen no puede estar vacío");
-        }
-        
-        if (prestamo.getPlantelDestino() == null || prestamo.getPlantelDestino().isEmpty()) {
-            throw new IllegalArgumentException("El plantel de destino no puede estar vacío");
-        }
-        
-        if (prestamo.getMotivo() == null || prestamo.getMotivo().isEmpty()) {
-            throw new IllegalArgumentException("El motivo del préstamo no puede estar vacío");
-        }
-
-        // Si el préstamo no tiene ID, generamos uno
-        if (prestamo.getId() == null || prestamo.getId().isEmpty()) {
-            prestamo.setId(UUID.randomUUID().toString());
-        }
-
-        // Lógica adicional si es necesaria
-        // Por ejemplo, podrías querer verificar si hay conflictos con otros préstamos en la misma fecha
-
-        // Guardar el préstamo
-        String id = prestamoMaestrosDAO.save(prestamo);
-
-        // Aquí podrías agregar lógica adicional post-guardado si fuera necesario
-        // Por ejemplo, enviar una notificación, actualizar estadísticas, etc.
-
-        return id;
     }
 }

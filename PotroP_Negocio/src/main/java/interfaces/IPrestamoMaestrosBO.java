@@ -4,20 +4,14 @@
  */
 package interfaces;
 
-import entidades.PrestamoMaestros;
-import java.time.LocalDate;
+import DTO.PrestamoMaestrosDTO;
+import exceptions.BisnessException;
 import java.util.List;
 
-/**
- *
- * @author caarl
- */
 public interface IPrestamoMaestrosBO {
-   String guardarPrestamo(PrestamoMaestros prestamo);
-    PrestamoMaestros obtenerPrestamoPorId(String id);
-    List<PrestamoMaestros> obtenerTodosLosPrestamos();
-    void actualizarPrestamo(PrestamoMaestros prestamo);
-    void eliminarPrestamo(String id);
-    List<PrestamoMaestros> buscarPrestamosPorResponsable(String idResponsable);
-    List<PrestamoMaestros> buscarPrestamosPorFecha(LocalDate fecha);  
+    void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
+    void eliminar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
+    void actualizar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
+    PrestamoMaestrosDTO buscarPorId(int id) throws BisnessException;
+    List<PrestamoMaestrosDTO> listaPrestamosMaestros() throws BisnessException;
 }

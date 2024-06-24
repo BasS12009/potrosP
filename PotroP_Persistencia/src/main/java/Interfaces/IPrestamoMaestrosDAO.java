@@ -4,19 +4,19 @@
  */
 package Interfaces;
 
-import entidades.PrestamoMaestros;
-import java.util.List;
 
 /**
  *
  * @author caarl
  */
-public interface IPrestamoMaestrosDAO {
-    String save(PrestamoMaestros prestamo);
-    PrestamoMaestros findById(String id);
-    List<PrestamoMaestros> findAll();
-    void update(PrestamoMaestros prestamo);
-    void delete(String id);
-    
+import entidades.PrestamoMaestros;
+import excepciones.DAOException;
+import java.util.List;
 
+public interface IPrestamoMaestrosDAO {
+    void agregar(PrestamoMaestros prestamoMaestros) throws DAOException;
+    void eliminar(PrestamoMaestros prestamoMaestros) throws DAOException;
+    void actualizar(PrestamoMaestros prestamoMaestros) throws DAOException;
+    PrestamoMaestros buscarPorId(int id) throws DAOException;
+    List<PrestamoMaestros> listaPrestamosMaestros() throws DAOException;
 }
