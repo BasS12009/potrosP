@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -555,8 +554,22 @@ try {
     }//GEN-LAST:event_cmbCantPersonas1ActionPerformed
 
     private void btnListaPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPrestamosActionPerformed
-     JButton btnMostrarPrestamos = new JButton("Mostrar Préstamos");
-btnMostrarPrestamos.addActionListener(e -> mostrarPrestamosEnConsola());
+   try {
+        // Supongamos que tienes una instancia de tu BO (Business Object) llamada "prestamoMaestrosBO"
+        List<PrestamoMaestrosDTO> listaPrestamos = fachada.listaPrestamosMaestros();
+
+        // Mostrar la lista en la consola
+        for (PrestamoMaestrosDTO prestamo : listaPrestamos) {
+            System.out.println("ID: " + prestamo.getId());
+            System.out.println("Fecha: " + prestamo.getFechaPrestamo());
+            System.out.println("Departamento: " + prestamo.getDepartamento());
+            // Agrega aquí las demás características que deseas mostrar
+            System.out.println("--------------------");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al obtener la lista de préstamos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_btnListaPrestamosActionPerformed
 
     /**
