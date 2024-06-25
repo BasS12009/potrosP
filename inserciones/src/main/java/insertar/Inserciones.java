@@ -58,6 +58,12 @@ public class Inserciones {
     vehiculo.agregar(vehiculo4);
     vehiculo.agregar(vehiculo5);
     
+        vehiculo.agregar(vehiculo6);
+    vehiculo.agregar(vehiculo7);
+    vehiculo.agregar(vehiculo8);
+    vehiculo.agregar(vehiculo9);
+    vehiculo.agregar(vehiculo10);
+    
     //agregamos los vehiculos
     PrestamoBO prestamo = new PrestamoBO();
     

@@ -26,6 +26,9 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
         this.prestamoMaestrosCVR = new PrestamoMaestrosCVR();
     }
 
+ 
+
+  
     @Override
     public void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
         try {

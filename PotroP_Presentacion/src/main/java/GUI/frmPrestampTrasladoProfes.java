@@ -3,6 +3,7 @@ package GUI;
 
 import DTO.PrestamoMaestrosDTO;
 import DTO.VehiculoDTO;
+import control.PrestamoMaestrosCTL;
 
 import excepcion.FachadaException;
 import excepciones.DAOException;
@@ -31,15 +32,18 @@ import prueba.TabladeMaestros;
  */
 public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
 
-  private IPrestamoMaestrosFCD fachada;
-
+private IPrestamoMaestrosFCD fachada;
+    private final PrestamoMaestrosCTL prestamoMaestrosCTL;
     
     public frmPrestampTrasladoProfes() throws DAOException {      
-        initComponents();
-         this.fachada = new PrestamoMaestrosFCD();
-        cargarDatosIniciales();
-        cargarVehiculosAutomovil();
-
+    initComponents();
+      
+            this.prestamoMaestrosCTL = new PrestamoMaestrosCTL();
+            this.fachada = new PrestamoMaestrosFCD();
+            cargarDatosIniciales();
+            cargarVehiculosAutomovil();
+       
+          
     // Bloquear inicialmente todos los campos de texto de "Acompañantes"
     txtCorreoResponsable.setEditable(false);
     txtAcompaniante1.setEditable(false);
@@ -61,8 +65,10 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     }
 }
     
-    private void cargarDatosIniciales() {
-        try {
+   private void cargarDatosIniciales() {
+      
+       
+       try {
             List<PrestamoMaestrosDTO> prestamos = fachada.listaPrestamosMaestros();
             // Aquí puedes cargar los datos en una tabla o lista en la interfaz
         } catch (FachadaException e) {
@@ -182,7 +188,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
 
         jLabel2.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel2.setText("Motivo de la solicitud:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel3.setText("Fecha del prestamo:");
@@ -204,8 +210,8 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
                 cmbMotivoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, -1));
-        jPanel1.add(calFechaPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        jPanel1.add(cmbMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, -1));
+        jPanel1.add(calFechaPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, 90));
 
         jLabel4.setText("Vehiculo");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));

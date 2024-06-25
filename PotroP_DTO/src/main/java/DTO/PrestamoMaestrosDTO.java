@@ -117,9 +117,7 @@ public class PrestamoMaestrosDTO {
         this.acompaniantes = acompaniantes;
     }
 
-    public List<String> getAcompanantes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
     
 }

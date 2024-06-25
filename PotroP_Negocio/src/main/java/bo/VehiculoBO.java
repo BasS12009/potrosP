@@ -144,7 +144,7 @@ public class VehiculoBO implements IVehiculoBO{
  * @throws BisnessException arroja una excepción proveniente de la clase DAO
  */
 @Override
-public List<VehiculoDTO> buscarPorTipo(String tipo) throws BisnessException {
+public  List<VehiculoDTO> buscarPorTipo(String tipo) throws BisnessException {
     List<VehiculoDTO> listaDTOPorTipo = new ArrayList<>();
     try {
         // Obtenemos la lista de vehículos del DAO
