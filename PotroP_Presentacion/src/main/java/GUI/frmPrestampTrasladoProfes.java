@@ -22,6 +22,7 @@ import excepciones.DAOException;
 import fachada.PrestamoMaestrosFCD;
 import fachada.PrestamoMaestrosFCDPDF;
 import fachada.VehiculoFCD;
+import guardar.Guardar;
 
 import interfaz.IPrestamoMaestrosFCD;
 import interfaz.IVehiculoFCD;
@@ -39,6 +40,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -81,8 +83,8 @@ private void configuracionInicial() {
 
         // Centra la pantalla
         this.setLocationRelativeTo(this);
-        // Configura las dimensiones de la pantalla
-        this.setSize(670, 550);
+        
+       
 
         // Llenamos el combo box de vehículos 
         try {
@@ -205,7 +207,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         txtAcompaniante2 = new javax.swing.JTextField();
         txtAcompaniante3 = new javax.swing.JTextField();
         txtAcompaniante4 = new javax.swing.JTextField();
-        btnGenerarPDF = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         cmbPlantelDestino = new javax.swing.JComboBox<>();
         cbmDepartamentosProfes = new javax.swing.JComboBox<>();
@@ -346,16 +347,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 110, -1));
 
-        btnGenerarPDF.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        btnGenerarPDF.setText("PDF");
-        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarPDFActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 120, 30));
-
         jLabel9.setText("Plantel destino::");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
 
@@ -444,51 +435,10 @@ private void mostrarPrestamosEnConsola() {
 
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-       
-
-           
+       Menu menu = new Menu();
+        menu.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
-
-    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
-   PrestamoMaestrosCTLPDF controller = new PrestamoMaestrosCTLPDF();
-    
-    // Obtener los datos necesarios de los campos de tu formulario
-    PrestamoMaestrosDTO prestamo = new PrestamoMaestrosDTO();
-    prestamo.setFechaPrestamo(calFechaPrestamo.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()); // Convertir de Date a LocalDate
-    
-    prestamo.setDepartamento(cbmDepartamentosProfes.getSelectedItem().toString());
-    prestamo.setCantidadPersonas(Integer.parseInt(cmbCant.getSelectedItem().toString())); // Convertir a Integer si es necesario
-    prestamo.setMotivo(cmbMotivo.getSelectedItem().toString());
-    prestamo.setPlantelOrigen(cmbPlantelOrigen.getSelectedItem().toString());
-    prestamo.setPlantelDestino(cmbPlantelDestino.getSelectedItem().toString());
-    prestamo.setVehiculo(cmbVehiculos.getSelectedItem().toString());
-    prestamo.setCorreoResponsable(txtCorreoResponsable.getText());
-    
-    List<String> acompaniantes = new ArrayList<>();
-    if (!txtAcompaniante1.getText().isEmpty()) {
-        acompaniantes.add(txtAcompaniante1.getText());
-    }
-    if (!txtAcompaniante2.getText().isEmpty()) {
-        acompaniantes.add(txtAcompaniante2.getText());
-    }
-    if (!txtAcompaniante3.getText().isEmpty()) {
-        acompaniantes.add(txtAcompaniante3.getText());
-    }
-    if (!txtAcompaniante4.getText().isEmpty()) {
-        acompaniantes.add(txtAcompaniante4.getText());
-    }
-    prestamo.setAcompaniantes(acompaniantes);
-    
-    try {
-        controller.generarPDF(prestamo, "ReportePrestamoMaestros.pdf");
-        JOptionPane.showMessageDialog(null, "Se ha generado el archivo 'ReportePrestamoMaestros.pdf'");
-    } catch (FachadaExceptionPDF e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-
-    }//GEN-LAST:event_btnGenerarPDFActionPerformed
 
     private void cmbMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMotivoActionPerformed
         // TODO add your handling code here:
@@ -657,36 +607,52 @@ private void mostrarPrestamosEnConsola() {
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al obtener la lista de préstamos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+  
+   
 
     }//GEN-LAST:event_btnListaPrestamosActionPerformed
 
     private void btnSolicitar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitar1ActionPerformed
 try {
-        PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
-        fachada.agregar(nuevoPrestamo);
+    Guardar guardar = new Guardar();
+    PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
+    fachada.agregar(nuevoPrestamo);
+    
+    // Guardar el nuevo préstamo en la clase Guardar
+    guardar.setPrestamoProfes(nuevoPrestamo);
+    
+    // Crear un mensaje con los detalles del préstamo
+    StringBuilder mensaje = new StringBuilder();
+    mensaje.append("Préstamo agregado con éxito:\n\n");
+    mensaje.append("Fecha: ").append(nuevoPrestamo.getFechaPrestamo()).append("\n");
+    mensaje.append("Departamento: ").append(nuevoPrestamo.getDepartamento()).append("\n");
+    mensaje.append("Cantidad de personas: ").append(nuevoPrestamo.getCantidadPersonas()).append("\n");
+    mensaje.append("Motivo: ").append(nuevoPrestamo.getMotivo()).append("\n");
+    mensaje.append("Plantel origen: ").append(nuevoPrestamo.getPlantelOrigen()).append("\n");
+    mensaje.append("Plantel destino: ").append(nuevoPrestamo.getPlantelDestino()).append("\n");
+    mensaje.append("Vehículo: ").append(nuevoPrestamo.getVehiculo()).append("\n");
+    mensaje.append("Correo responsable: ").append(nuevoPrestamo.getCorreoResponsable()).append("\n");
+    mensaje.append("Acompañantes: ").append(String.join(", ", nuevoPrestamo.getAcompaniantes()));
 
-        // Crear un mensaje con los detalles del préstamo
-        StringBuilder mensaje = new StringBuilder();
-        mensaje.append("Préstamo agregado con éxito:\n\n");
-        mensaje.append("Fecha: ").append(nuevoPrestamo.getFechaPrestamo()).append("\n");
-        mensaje.append("Departamento: ").append(nuevoPrestamo.getDepartamento()).append("\n");
-        mensaje.append("Cantidad de personas: ").append(nuevoPrestamo.getCantidadPersonas()).append("\n");
-        mensaje.append("Motivo: ").append(nuevoPrestamo.getMotivo()).append("\n");
-        mensaje.append("Plantel origen: ").append(nuevoPrestamo.getPlantelOrigen()).append("\n");
-        mensaje.append("Plantel destino: ").append(nuevoPrestamo.getPlantelDestino()).append("\n");
-        mensaje.append("Vehículo: ").append(nuevoPrestamo.getVehiculo()).append("\n");
-        mensaje.append("Correo responsable: ").append(nuevoPrestamo.getCorreoResponsable()).append("\n");
-        mensaje.append("Acompañantes: ").append(String.join(", ", nuevoPrestamo.getAcompaniantes()));
+    // Mostrar el mensaje en un JOptionPane
+    JOptionPane.showMessageDialog(this, mensaje.toString(), "Préstamo Agregado", JOptionPane.INFORMATION_MESSAGE);
 
-        // Mostrar el mensaje en un JOptionPane
-        JOptionPane.showMessageDialog(this, mensaje.toString(), "Préstamo Agregado", JOptionPane.INFORMATION_MESSAGE);
+    cargarDatosIniciales();
 
-        cargarDatosIniciales();
-    } catch (IllegalArgumentException e) {
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
-    } catch (FachadaException e) {
-        JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+    // Abrir el frame de ticket después de cerrar el JOptionPane
+    SwingUtilities.invokeLater(() -> {
+        frmTicketTrasladoProfes ticketFrame = new frmTicketTrasladoProfes();
+        ticketFrame.setVisible(true);
+        // Opcional: cerrar el frame actual si es necesario
+        // this.dispose();
+    });
+
+} catch (IllegalArgumentException e) {
+    JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
+} catch (FachadaException e) {
+    JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_btnSolicitar1ActionPerformed
 
     /**
@@ -696,7 +662,6 @@ try {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
-    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JButton btnListaMaestros;
     private javax.swing.JButton btnListaPrestamos;
     private javax.swing.JButton btnSolicitar1;

@@ -9,6 +9,8 @@
  */
 package guardar;
 
+import DTO.PrestamoMaestrosDTO;
+
 /** 
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -23,12 +25,24 @@ public class Guardar {
     private static int idChofer;
     private static int idVehiculo;
     private static int idPrestamo;
+    private static PrestamoMaestrosDTO prestamoProfes;
+
+    
+    
+    
+    public PrestamoMaestrosDTO getPrestamoProfes() {
+        return prestamoProfes;
+    }
 
     /**
      * Obtiene el identificador del empleado guardado.
      * 
      * @return El identificador del empleado.
      */
+    public void setPrestamoProfes(PrestamoMaestrosDTO prestamoProfes) {
+        Guardar.prestamoProfes = prestamoProfes;
+    }
+
     public int getIdEmpleado() {
         return idEmpleado;
     }
