@@ -11,15 +11,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
     private static final List<PrestamoMaestros> lista = new ArrayList<>();
     private static int nextId = 1;
 
-    public PrestamoMaestrosDAO() throws DAOException {
-        // Agregar algunos préstamos predeterminados
-        agregar(new PrestamoMaestros(LocalDate.now(), "Matemáticas", 2, "Conferencia", "Plantel A", "Plantel B", "Automóvil", "prof1@ejemplo.com", Arrays.asList("acomp1@ejemplo.com")));
-        agregar(new PrestamoMaestros(LocalDate.now().plusDays(1), "Física", 3, "Visita de campo", "Plantel B", "Plantel C", "Camioneta", "prof2@ejemplo.com", Arrays.asList("acomp2@ejemplo.com", "acomp3@ejemplo.com")));
+    public PrestamoMaestrosDAO() {
+        try {
+            // Agregar algunos préstamos predeterminados
+            agregar(new PrestamoMaestros(LocalDate.now(), "Matemáticas", 2, "Conferencia", "Plantel A", "Plantel B", "Automóvil", "prof1@ejemplo.com", Arrays.asList("acomp1@ejemplo.com")));
+            agregar(new PrestamoMaestros(LocalDate.now().plusDays(1), "Física", 3, "Visita de campo", "Plantel B", "Plantel C", "Camioneta", "prof2@ejemplo.com", Arrays.asList("acomp2@ejemplo.com", "acomp3@ejemplo.com")));
+        } catch (DAOException ex) {
+            Logger.getLogger(PrestamoMaestrosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

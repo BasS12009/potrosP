@@ -7,6 +7,7 @@
 package GUI;
 
 import exception.FachadaException;
+import exceptions.BisnessException;
 import fachada.LogginFCD;
 import insertar.Inserciones;
 import interfaz.ILogginFCD;
@@ -37,7 +38,7 @@ public class LogIn extends javax.swing.JFrame {
         inserciones.insertar();
             System.out.println("inserciones agregadas con exito");
         }
-        catch(Exception ex){
+        catch(BisnessException ex){
             System.out.println("Los datos no fueron agregados correctamente");
         }
     }
