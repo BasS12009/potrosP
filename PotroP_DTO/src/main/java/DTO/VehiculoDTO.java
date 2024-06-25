@@ -174,10 +174,13 @@ public class VehiculoDTO {
     }
 
     @Override
-   
+
+
     public String toString() {
-        return marca + " " + modelo + " (" + año + ") - " + placa;
+        return "VehiculoDTO{" + "id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", a\u00f1o=" + año + ", tipo=" + tipo + ", placa=" + placa + '}';
     }
+   
+    
 
     /**
      * Método que proporciona una representación en forma de cadena de

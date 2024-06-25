@@ -21,8 +21,10 @@ import excepcion.FachadaExceptionPDF;
 import excepciones.DAOException;
 import fachada.PrestamoMaestrosFCD;
 import fachada.PrestamoMaestrosFCDPDF;
+import fachada.VehiculoFCD;
 
 import interfaz.IPrestamoMaestrosFCD;
+import interfaz.IVehiculoFCD;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -58,9 +60,13 @@ private IPrestamoMaestrosFCD fachada;
       this.prestamoMaestrosDTO = new PrestamoMaestrosDTO();
             this.prestamoMaestrosCTL = new PrestamoMaestrosCTL();
             this.fachada = new PrestamoMaestrosFCD();
-//            cargarDatosIniciales();
-//            cargarVehiculosAutomovil();
-       
+            
+        this.setLocationRelativeTo(this);
+        this.setSize(670, 550);
+
+        // Cargar las configuraciones iniciales de la pantalla
+        configuracionInicial();
+
           
     // Bloquear inicialmente todos los campos de texto de "Acompañantes"
     txtCorreoResponsable.setEditable(false);
@@ -70,18 +76,22 @@ private IPrestamoMaestrosFCD fachada;
     txtAcompaniante4.setEditable(false);
 }
     
-//    private void cargarVehiculosAutomovil() {
-//    try {
-//        List<VehiculoDTO> vehiculos = fachada.buscarVehiculosPorTipo("Automovil");
-//        cmbVehiculos.removeAllItems();
-//        cmbVehiculos.addItem("<None>");
-//        for (VehiculoDTO vehiculo : vehiculos) {
-//            cmbVehiculos.addItem(vehiculo.toString());
-//        }
-//    } catch (FachadaException e) {
-//        JOptionPane.showMessageDialog(this, "Error al cargar los vehículos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//    }
-//}
+private void configuracionInicial() {
+        IVehiculoFCD vehiculo = new VehiculoFCD();
+
+        // Centra la pantalla
+        this.setLocationRelativeTo(this);
+        // Configura las dimensiones de la pantalla
+        this.setSize(670, 550);
+
+        // Llenamos el combo box de vehículos 
+        try {
+            // Llena el JComboBox cmbVehiculos con los vehículos obtenidos a través del IVehiculoFCD
+            vehiculo.llenarCBX(cmbVehiculos);
+        } catch (excepciones.FachadaException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     
    private void cargarDatosIniciales() {
       
@@ -95,7 +105,19 @@ private IPrestamoMaestrosFCD fachada;
     }
 
 private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentException {
-    // Obtener la fecha del calendario
+    
+// Suponiendo que tienes un JComboBox llamado cmbVehiculos
+    VehiculoDTO vehiculoSeleccionado = (VehiculoDTO) cmbVehiculos.getSelectedItem();
+
+    if (vehiculoSeleccionado != null) {
+        // Usa el objeto VehiculoDTO directamente
+        System.out.println("Vehículo seleccionado: " + vehiculoSeleccionado.getPlaca());
+        // Resto del código para manejar el vehículo seleccionado
+    } else {
+        System.out.println("No se seleccionó ningún vehículo.");
+    }
+
+// Obtener la fecha del calendario
     LocalDate fechaPrestamo = calFechaPrestamo.getDate().toInstant()
             .atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -113,7 +135,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
     String plantelDestino = (String) cmbPlantelDestino.getSelectedItem();
 
     // Obtener el vehículo
-    String vehiculo = (String) cmbVehiculos.getSelectedItem();
+    String vehiculo = (String) cmbVehiculos.getSelectedItem().toString();
 
     // Obtener el correo del responsable
     String correoResponsable = txtCorreoResponsable.getText().trim();
@@ -207,11 +229,11 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
 
         jLabel2.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel2.setText("Motivo de la solicitud:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel3.setText("Fecha del prestamo:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         btnAtras.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         btnAtras.setText("Atras");
@@ -229,11 +251,11 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
                 cmbMotivoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 120, -1));
-        jPanel1.add(calFechaPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, 90));
+        jPanel1.add(cmbMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 120, -1));
+        jPanel1.add(calFechaPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 330, 240));
 
         jLabel4.setText("Vehiculo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
 
         cmbCant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "1", "2", "3", "4", "5" }));
         cmbCant.addActionListener(new java.awt.event.ActionListener() {
@@ -241,10 +263,10 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
                 cmbCantActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 130, -1));
+        jPanel1.add(cmbCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 130, -1));
 
         jLabel5.setText("Plantel de origen:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
         cmbPlantelOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "Campus Obregón Centro", "Campus Náinari", "Campus Guaymas", "Campus Empalme", "Campus Navojoa Centro", "Campus Navojoa Sur" }));
         cmbPlantelOrigen.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +274,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
                 cmbPlantelOrigenActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbPlantelOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 130, -1));
+        jPanel1.add(cmbPlantelOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 130, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -336,7 +358,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jPanel1.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 120, 30));
 
         jLabel9.setText("Plantel destino::");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
 
         cmbPlantelDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "Campus Obregón Centro", "Campus Náinari", "Campus Guaymas", "Campus Empalme", "Campus Navojoa Centro", "Campus Navojoa Sur" }));
         cmbPlantelDestino.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +366,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
                 cmbPlantelDestinoActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbPlantelDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 130, -1));
+        jPanel1.add(cmbPlantelDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 130, -1));
 
         cbmDepartamentosProfes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "MATEMATICAS", "INGENIERIA EN SOFTWARE", "MECATRONICA", "TURISMO", "CONTABILIDAD" }));
         cbmDepartamentosProfes.addActionListener(new java.awt.event.ActionListener() {
@@ -361,15 +383,15 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, -1, -1));
 
         jLabel12.setText("Cantidad de personas:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
-        cmbVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "1", "dsd", " " }));
+        cmbVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>" }));
         cmbVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbVehiculosActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 130, -1));
+        jPanel1.add(cmbVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 130, -1));
 
         btnListaPrestamos.setText("Lista de prestamos");
         btnListaPrestamos.addActionListener(new java.awt.event.ActionListener() {
@@ -640,7 +662,9 @@ private void mostrarPrestamosEnConsola() {
     }//GEN-LAST:event_btnListaPrestamosActionPerformed
 
     private void btnSolicitar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitar1ActionPerformed
-       try {
+
+        
+        try {
         PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
         fachada.agregar(nuevoPrestamo);
         JOptionPane.showMessageDialog(this, "Préstamo agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
