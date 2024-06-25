@@ -3,39 +3,19 @@ package GUI;
 
 import DTO.PrestamoMaestrosDTO;
 import DTO.VehiculoDTO;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import control.PrestamoMaestrosCTL;
-import control.PrestamoMaestrosCTLPDF;
-
-
 import excepcion.FachadaException;
-import excepcion.FachadaExceptionPDF;
-import excepciones.DAOException;
 import fachada.PrestamoMaestrosFCD;
-import fachada.PrestamoMaestrosFCDPDF;
 import fachada.VehiculoFCD;
 import guardar.Guardar;
-
 import interfaz.IPrestamoMaestrosFCD;
 import interfaz.IVehiculoFCD;
 import java.awt.BorderLayout;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -43,7 +23,6 @@ import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableRowSorter;
 import prueba.TabladeMaestros;
 
@@ -53,15 +32,14 @@ import prueba.TabladeMaestros;
  */
 public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
 
-private IPrestamoMaestrosFCD fachada;
-    private final PrestamoMaestrosCTL prestamoMaestrosCTL;
+private final IPrestamoMaestrosFCD fachada;
+   
     private PrestamoMaestrosDTO prestamoMaestrosDTO;
     
-    public frmPrestampTrasladoProfes() throws DAOException {      
+    public frmPrestampTrasladoProfes() throws Exception {      
     initComponents();
-      this.prestamoMaestrosDTO = new PrestamoMaestrosDTO();
-            this.prestamoMaestrosCTL = new PrestamoMaestrosCTL();
-            this.fachada = new PrestamoMaestrosFCD();
+    
+    this.fachada = new PrestamoMaestrosFCD();
             
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);

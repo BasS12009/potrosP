@@ -32,7 +32,20 @@ Guardar guardar = new Guardar();
     }
     
     private void llenarCampos() {
-    if (prestamo != null) {
+    
+        txtCorreoResponsable.setEditable(false);
+        txtAcompaniante1.setEditable(false);
+        txtAcompaniante2.setEditable(false);
+        txtAcompaniante3.setEditable(false);
+        txtAcompaniante4.setEditable(false);
+        txtVehiculo.setEditable(false);
+        txtPlantelDestino.setEditable(false);
+        txtPlantelOrigen.setEditable(false);
+        txtCantPersonas.setEditable(false);
+        txtFecha.setEditable(false);
+        txtMotivo.setEditable(false);
+
+        if (prestamo != null) {
         txtFecha.setText(prestamo.getFechaPrestamo().toString());
         txtCantPersonas.setText(String.valueOf(prestamo.getCantidadPersonas()));
         txtMotivo.setText(prestamo.getMotivo());

@@ -6,7 +6,6 @@
  */
 package GUI;
 
-import excepciones.DAOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -187,7 +186,7 @@ public class Menu extends javax.swing.JFrame {
        frmPrestampTrasladoProfes choferes = null;
         try {
             choferes = new frmPrestampTrasladoProfes();
-        } catch (DAOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
        
