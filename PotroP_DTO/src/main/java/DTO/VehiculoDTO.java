@@ -173,6 +173,12 @@ public class VehiculoDTO {
         this.placa = placa;
     }
 
+    @Override
+   
+    public String toString() {
+        return marca + " " + modelo + " (" + año + ") - " + placa;
+    }
+
     /**
      * Método que proporciona una representación en forma de cadena de
      * caracteres del objeto VehiculoDTO.
@@ -180,8 +186,5 @@ public class VehiculoDTO {
      * @return Una cadena que representa el vehículo, incluyendo la marca, el
      * modelo y el tipo.
      */
-    @Override
-    public String toString() {
-        return marca + ", " + modelo + ", " + tipo;
-    }
+    
 }

@@ -117,7 +117,9 @@ public class PrestamoMaestrosDTO {
         this.acompaniantes = acompaniantes;
     }
 
-   
+    public void getAcompaniantes(List<String> acompaniantes) {
+        this.acompaniantes = acompaniantes;
+    }
     
     
 }
