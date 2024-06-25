@@ -95,4 +95,29 @@ public class VehiculoDAO implements IVehiculoDAO {
     public List<Vehiculo> listaVehiculos() throws DAOException {
         return new ArrayList<>(lista);
     }
+    
+    /**
+ * Busca vehículos por su tipo.
+ * 
+ * @param tipo el tipo de vehículo a buscar.
+ * @return una lista de vehículos del tipo especificado.
+ * @throws DAOException si ocurre un error durante la operación.
+ */
+@Override
+    public List<Vehiculo> buscarPorTipo(String tipo) throws DAOException {
+        List<Vehiculo> vehiculosEncontrados = new ArrayList<>();
+        
+        for (Vehiculo vehiculo : lista) {
+            if (vehiculo.getTipo().equalsIgnoreCase(tipo)) {
+                vehiculosEncontrados.add(vehiculo);
+            }
+        }
+        
+        if (vehiculosEncontrados.isEmpty()) {
+            throw new DAOException("No se encontraron vehículos del tipo: " + tipo);
+        }
+        
+        return vehiculosEncontrados;
+    }
+
 }

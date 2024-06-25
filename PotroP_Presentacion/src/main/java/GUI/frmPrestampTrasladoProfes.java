@@ -2,6 +2,8 @@ package GUI;
 
 
 import DTO.PrestamoMaestrosDTO;
+import DTO.VehiculoDTO;
+
 import excepcion.FachadaException;
 import excepciones.DAOException;
 import fachada.PrestamoMaestrosFCD;
@@ -11,6 +13,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -34,6 +38,7 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
         initComponents();
          this.fachada = new PrestamoMaestrosFCD();
         cargarDatosIniciales();
+        cargarVehiculosAutomovil();
 
     // Bloquear inicialmente todos los campos de texto de "Acompañantes"
     txtCorreoResponsable.setEditable(false);
@@ -41,6 +46,19 @@ public class frmPrestampTrasladoProfes extends javax.swing.JFrame {
     txtAcompaniante2.setEditable(false);
     txtAcompaniante3.setEditable(false);
     txtAcompaniante4.setEditable(false);
+}
+    
+    private void cargarVehiculosAutomovil() {
+    try {
+        List<VehiculoDTO> vehiculos = fachada.buscarVehiculosPorTipo("Automovil");
+        cmbVehiculos.removeAllItems();
+        cmbVehiculos.addItem("<None>");
+        for (VehiculoDTO vehiculo : vehiculos) {
+            cmbVehiculos.addItem(vehiculo.toString());
+        }
+    } catch (FachadaException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar los vehículos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }
     
     private void cargarDatosIniciales() {
@@ -61,7 +79,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
     String departamento = (String) cbmDepartamentosProfes.getSelectedItem();
 
     // Obtener la cantidad de personas
-    int cantidadPersonas = Integer.parseInt((String) cmbCantPersonas1.getSelectedItem());
+    int cantidadPersonas = Integer.parseInt((String) cmbVehiculos.getSelectedItem());
 
     // Obtener el motivo
     String motivo = (String) cmbMotivo.getSelectedItem();
@@ -149,7 +167,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cmbCantPersonas1 = new javax.swing.JComboBox<>();
+        cmbVehiculos = new javax.swing.JComboBox<>();
         btnListaPrestamos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -320,13 +338,13 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jLabel12.setText("Cantidad de personas:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
-        cmbCantPersonas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", "1", "2", "3", "4", "5" }));
-        cmbCantPersonas1.addActionListener(new java.awt.event.ActionListener() {
+        cmbVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<None>", " " }));
+        cmbVehiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCantPersonas1ActionPerformed(evt);
+                cmbVehiculosActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbCantPersonas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 130, -1));
+        jPanel1.add(cmbVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 130, -1));
 
         btnListaPrestamos.setText("Lista de prestamos");
         btnListaPrestamos.addActionListener(new java.awt.event.ActionListener() {
@@ -549,9 +567,13 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbmDepartamentosProfesActionPerformed
 
-    private void cmbCantPersonas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCantPersonas1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCantPersonas1ActionPerformed
+    private void cmbVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVehiculosActionPerformed
+       String selectedVehicle = (String) cmbVehiculos.getSelectedItem();
+    if (!"<None>".equals(selectedVehicle)) {
+        // Aquí puedes realizar acciones adicionales cuando se selecciona un vehículo
+        System.out.println("Vehículo seleccionado: " + selectedVehicle);
+    }
+    }//GEN-LAST:event_cmbVehiculosActionPerformed
 
     private void btnListaPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPrestamosActionPerformed
    try {
@@ -584,11 +606,11 @@ try {
     private javax.swing.JButton btnSolicitar;
     private com.toedter.calendar.JCalendar calFechaPrestamo;
     private javax.swing.JComboBox<String> cbmDepartamentosProfes;
-    private javax.swing.JComboBox<String> cmbCantPersonas1;
     private javax.swing.JComboBox<String> cmbMotivo;
     private javax.swing.JComboBox<String> cmbPlantelDestino;
     private javax.swing.JComboBox<String> cmbPlantelOrigen;
     private javax.swing.JComboBox<String> cmbVehiculo;
+    private javax.swing.JComboBox<String> cmbVehiculos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -63,4 +63,6 @@ public interface IVehiculoDAO {
      * @throws DAOException si ocurre un error durante la operación de obtener la lista.
      */
     List<Vehiculo> listaVehiculos() throws DAOException;
+    
+   List<Vehiculo> buscarPorTipo(String tipo) throws DAOException;
 }

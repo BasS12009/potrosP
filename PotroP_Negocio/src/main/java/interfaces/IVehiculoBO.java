@@ -67,4 +67,6 @@ public interface IVehiculoBO {
       */
      public List<VehiculoDTO> listaVehiculos() throws BisnessException;
      
+      List<VehiculoDTO> buscarPorTipo(String tipo) throws BisnessException;
+     
 }

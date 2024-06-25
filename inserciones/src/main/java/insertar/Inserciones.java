@@ -29,6 +29,16 @@ public class Inserciones {
     VehiculoDTO vehiculo4 = new VehiculoDTO(1, "MAZZERATI", "MARK1", 2021, "DEPORTIVO", "DAM-MN-SI");
     VehiculoDTO vehiculo5 = new VehiculoDTO(1, "NISSAN", "TSURU", 2009, "BESTIA", "13K-TH-ISM");
     
+    //declaramos los vehiculos tipo automovil
+    VehiculoDTO vehiculo6 = new VehiculoDTO(1, "TOYOTA", "COROLLA", 2022, "Automovil", "ABC-123");
+    VehiculoDTO vehiculo7 = new VehiculoDTO(2, "HONDA", "CIVIC", 2021, "Automovil", "DEF-456");
+    VehiculoDTO vehiculo8 = new VehiculoDTO(3, "FORD", "FOCUS", 2020, "Automovil", "GHI-789");
+    VehiculoDTO vehiculo9 = new VehiculoDTO(4, "VOLKSWAGEN", "GOLF", 2023, "Automovil", "JKL-012");
+    VehiculoDTO vehiculo10 = new VehiculoDTO(5, "HYUNDAI", "ELANTRA", 2022, "Automovil", "MNO-345");
+
+    
+    
+    
     LocalDate inicio;
     inicio = LocalDate.now();
     

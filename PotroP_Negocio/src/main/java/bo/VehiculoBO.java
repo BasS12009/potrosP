@@ -136,4 +136,30 @@ public class VehiculoBO implements IVehiculoBO{
         }
     }
     
+    /**
+ * Método para buscar vehículos por tipo.
+ * 
+ * @param tipo Tipo de vehículo a buscar.
+ * @return Lista de VehiculosDTO que coinciden con el tipo especificado.
+ * @throws BisnessException arroja una excepción proveniente de la clase DAO
+ */
+@Override
+public List<VehiculoDTO> buscarPorTipo(String tipo) throws BisnessException {
+    List<VehiculoDTO> listaDTOPorTipo = new ArrayList<>();
+    try {
+        // Obtenemos la lista de vehículos del DAO
+        List<Vehiculo> listaVehiculos = vehiculoDAO.buscarPorTipo(tipo);
+        
+        // Convertimos cada Vehiculo a VehiculoDTO y lo añadimos a la lista
+        for (Vehiculo vehiculo : listaVehiculos) {
+            listaDTOPorTipo.add(vehiculoCVR.convertir_DTO(vehiculo));
+        }
+        return listaDTOPorTipo;
+    } catch (DAOException e) {
+        throw new BisnessException("Error al buscar vehículos por tipo: " + e.getMessage());
+    }
+}
+    
+    
+    
 }
