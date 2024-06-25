@@ -105,39 +105,45 @@ private void configuracionInicial() {
     }
 
 private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentException {
-    
-// Suponiendo que tienes un JComboBox llamado cmbVehiculos
-    VehiculoDTO vehiculoSeleccionado = (VehiculoDTO) cmbVehiculos.getSelectedItem();
-
-    if (vehiculoSeleccionado != null) {
-        // Usa el objeto VehiculoDTO directamente
-        System.out.println("Vehículo seleccionado: " + vehiculoSeleccionado.getPlaca());
-        // Resto del código para manejar el vehículo seleccionado
-    } else {
-        System.out.println("No se seleccionó ningún vehículo.");
+    // Validación de campos vacíos
+    if (cbmDepartamentosProfes.getSelectedItem().equals("<None>") ||
+        cmbMotivo.getSelectedItem().equals("<None>") ||
+        cmbPlantelOrigen.getSelectedItem().equals("<None>") ||
+        cmbPlantelDestino.getSelectedItem().equals("<None>") ||
+        cmbVehiculos.getSelectedItem().equals("<None>") ||
+        txtCorreoResponsable.getText().trim().isEmpty()) {
+        throw new IllegalArgumentException("Todos los campos obligatorios deben estar llenos");
     }
 
-// Obtener la fecha del calendario
+    // Validación de la fecha de préstamo
     LocalDate fechaPrestamo = calFechaPrestamo.getDate().toInstant()
             .atZone(ZoneId.systemDefault()).toLocalDate();
+    if (fechaPrestamo.isBefore(LocalDate.now())) {
+        throw new IllegalArgumentException("La fecha del préstamo no puede ser anterior a la fecha actual.");
+    }
 
-    // Obtener el departamento seleccionado
-    String departamento = (String) cbmDepartamentosProfes.getSelectedItem();
-
-    // Obtener la cantidad de personas
+    // Validación de la cantidad de personas
     int cantidadPersonas = Integer.parseInt((String) cmbCant.getSelectedItem());
+    if (cantidadPersonas <= 0) {
+        throw new IllegalArgumentException("La cantidad de personas debe ser mayor que cero.");
+    }
 
-    // Obtener el motivo
-    String motivo = (String) cmbMotivo.getSelectedItem();
+    // Validación de la selección de vehículo
+    VehiculoDTO vehiculoSeleccionado = (VehiculoDTO) cmbVehiculos.getSelectedItem();
+    if (vehiculoSeleccionado == null) {
+        throw new IllegalArgumentException("Debe seleccionar un vehículo.");
+    }
 
-    // Obtener el plantel de origen y destino
+    // Validación de plantel origen y destino
     String plantelOrigen = (String) cmbPlantelOrigen.getSelectedItem();
     String plantelDestino = (String) cmbPlantelDestino.getSelectedItem();
+    if (plantelOrigen.equals(plantelDestino)) {
+        throw new IllegalArgumentException("El plantel de origen no puede ser el mismo que el de destino.");
+    }
 
-    // Obtener el vehículo
-    String vehiculo = (String) cmbVehiculos.getSelectedItem().toString();
-
-    // Obtener el correo del responsable
+    // Obtener el resto de los datos
+    String departamento = (String) cbmDepartamentosProfes.getSelectedItem();
+    String motivo = (String) cmbMotivo.getSelectedItem();
     String correoResponsable = txtCorreoResponsable.getText().trim();
 
     // Obtener la lista de acompañantes
@@ -155,13 +161,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         acompaniantes.add(txtAcompaniante4.getText().trim());
     }
 
-    // Validar los datos
-    if (fechaPrestamo == null || departamento.isEmpty() || motivo.isEmpty() ||
-        plantelOrigen.isEmpty() || plantelDestino.isEmpty() || vehiculo.isEmpty() ||
-        correoResponsable.isEmpty()) {
-        throw new IllegalArgumentException("Todos los campos obligatorios deben estar llenos");
-    }
-
     // Crear y devolver el DTO
     return new PrestamoMaestrosDTO(
         0, // El ID se asignará en la capa DAO
@@ -171,7 +170,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         motivo,
         plantelOrigen,
         plantelDestino,
-        vehiculo,
+        vehiculoSeleccionado.getPlaca(),
         correoResponsable,
         acompaniantes
     );
@@ -662,28 +661,29 @@ private void mostrarPrestamosEnConsola() {
     }//GEN-LAST:event_btnListaPrestamosActionPerformed
 
     private void btnSolicitar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitar1ActionPerformed
-
-        
-        try {
+try {
         PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
         fachada.agregar(nuevoPrestamo);
-        JOptionPane.showMessageDialog(this, "Préstamo agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-        // Mostrar todas las características del nuevo préstamo en la consola
-        System.out.println("Nuevo préstamo agregado:");
-        System.out.println("ID: " + nuevoPrestamo.getId());
-        System.out.println("Fecha: " + nuevoPrestamo.getFechaPrestamo());
-        System.out.println("Departamento: " + nuevoPrestamo.getDepartamento());
-        System.out.println("Cantidad de personas: " + nuevoPrestamo.getCantidadPersonas());
-        System.out.println("Motivo: " + nuevoPrestamo.getMotivo());
-        System.out.println("Plantel origen: " + nuevoPrestamo.getPlantelOrigen());
-        System.out.println("Plantel destino: " + nuevoPrestamo.getPlantelDestino());
-        System.out.println("Vehículo: " + nuevoPrestamo.getVehiculo());
-        System.out.println("Correo responsable: " + nuevoPrestamo.getCorreoResponsable());
-        System.out.println("Acompañantes: " + nuevoPrestamo.getAcompaniantes());
-        System.out.println("--------------------");
+        // Crear un mensaje con los detalles del préstamo
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("Préstamo agregado con éxito:\n\n");
+        mensaje.append("Fecha: ").append(nuevoPrestamo.getFechaPrestamo()).append("\n");
+        mensaje.append("Departamento: ").append(nuevoPrestamo.getDepartamento()).append("\n");
+        mensaje.append("Cantidad de personas: ").append(nuevoPrestamo.getCantidadPersonas()).append("\n");
+        mensaje.append("Motivo: ").append(nuevoPrestamo.getMotivo()).append("\n");
+        mensaje.append("Plantel origen: ").append(nuevoPrestamo.getPlantelOrigen()).append("\n");
+        mensaje.append("Plantel destino: ").append(nuevoPrestamo.getPlantelDestino()).append("\n");
+        mensaje.append("Vehículo: ").append(nuevoPrestamo.getVehiculo()).append("\n");
+        mensaje.append("Correo responsable: ").append(nuevoPrestamo.getCorreoResponsable()).append("\n");
+        mensaje.append("Acompañantes: ").append(String.join(", ", nuevoPrestamo.getAcompaniantes()));
+
+        // Mostrar el mensaje en un JOptionPane
+        JOptionPane.showMessageDialog(this, mensaje.toString(), "Préstamo Agregado", JOptionPane.INFORMATION_MESSAGE);
 
         cargarDatosIniciales();
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
     } catch (FachadaException e) {
         JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
