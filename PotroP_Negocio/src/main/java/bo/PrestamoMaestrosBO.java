@@ -21,7 +21,7 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
     private final IPrestamoMaestrosDAO prestamoMaestrosDAO;
     private final PrestamoMaestrosCVR prestamoMaestrosCVR;
 
-    public PrestamoMaestrosBO() throws DAOException {
+    public PrestamoMaestrosBO() throws BisnessException,DAOException {
         this.prestamoMaestrosDAO = new PrestamoMaestrosDAO();
         this.prestamoMaestrosCVR = new PrestamoMaestrosCVR();
     }

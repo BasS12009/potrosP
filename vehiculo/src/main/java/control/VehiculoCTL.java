@@ -33,7 +33,7 @@ public class VehiculoCTL {
      * @param comboBox El JComboBox que se desea llenar con los vehículos.
      * @throws ControlException Si ocurre un error relacionado con la obtención de datos de los vehículos.
      */
-    public void llenarCBX(JComboBox comboBox) throws ControlException {
+    public void llenarCBX(JComboBox comboBox) throws ControlException, BisnessException {
        try {
         List<VehiculoDTO> listaVehiculos = vehiculo.listaVehiculos();
         for (VehiculoDTO vehiculoDTO : listaVehiculos) {

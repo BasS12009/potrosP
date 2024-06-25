@@ -19,11 +19,6 @@
             <version>RELEASE210</version>
         </dependency>
         <dependency>
-    <groupId>org.mongodb</groupId>
-    <artifactId>mongodb-driver-sync</artifactId>
-    <version>4.9.1</version>
-</dependency>
-        <dependency>
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
@@ -37,6 +32,10 @@
                     <groupId>com.mycompany</groupId>
                     <artifactId>PotroP_Persistencia</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>PotroP_Negocio</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -48,6 +47,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>loan</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>PotroP_Negocio</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -63,6 +68,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>vehiculo</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>PotroP_Negocio</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -73,6 +84,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>PrestamoMaestrosSUB</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>PotroP_Negocio</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -82,6 +99,10 @@
                 <exclusion>
                     <groupId>com.mycompany</groupId>
                     <artifactId>PotroP_Persistencia</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>PotroP_Negocio</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
