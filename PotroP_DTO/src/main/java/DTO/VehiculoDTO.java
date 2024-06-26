@@ -173,12 +173,15 @@ public class VehiculoDTO {
         this.placa = placa;
     }
 
+ 
+
     @Override
-
-
     public String toString() {
-        return "VehiculoDTO{" + "id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", a\u00f1o=" + año + ", tipo=" + tipo + ", placa=" + placa + '}';
+        return  modelo +  placa ;
     }
+
+
+
    
     
 

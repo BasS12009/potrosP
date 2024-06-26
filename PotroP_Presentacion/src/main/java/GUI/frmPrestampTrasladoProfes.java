@@ -3,18 +3,23 @@ package GUI;
 
 import DTO.PrestamoMaestrosDTO;
 import DTO.VehiculoDTO;
-import control.PrestamoMaestrosCTL;
 import excepcion.FachadaException;
+import excepcion.FachadaExceptionPDF;
 import fachada.PrestamoMaestrosFCD;
+import fachada.PrestamoMaestrosFCDPDF;
 import fachada.VehiculoFCD;
-import guardar.Guardar;
 import interfaz.IPrestamoMaestrosFCD;
 import interfaz.IVehiculoFCD;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -591,45 +596,86 @@ private void mostrarPrestamosEnConsola() {
     }//GEN-LAST:event_btnListaPrestamosActionPerformed
 
     private void btnSolicitar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitar1ActionPerformed
-try {
-    Guardar guardar = new Guardar();
-    PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
-    fachada.agregar(nuevoPrestamo);
-    
-    // Guardar el nuevo préstamo en la clase Guardar
-    guardar.setPrestamoProfes(nuevoPrestamo);
-    
-    // Crear un mensaje con los detalles del préstamo
-    StringBuilder mensaje = new StringBuilder();
-    mensaje.append("Préstamo agregado con éxito:\n\n");
-    mensaje.append("Fecha: ").append(nuevoPrestamo.getFechaPrestamo()).append("\n");
-    mensaje.append("Departamento: ").append(nuevoPrestamo.getDepartamento()).append("\n");
-    mensaje.append("Cantidad de personas: ").append(nuevoPrestamo.getCantidadPersonas()).append("\n");
-    mensaje.append("Motivo: ").append(nuevoPrestamo.getMotivo()).append("\n");
-    mensaje.append("Plantel origen: ").append(nuevoPrestamo.getPlantelOrigen()).append("\n");
-    mensaje.append("Plantel destino: ").append(nuevoPrestamo.getPlantelDestino()).append("\n");
-    mensaje.append("Vehículo: ").append(nuevoPrestamo.getVehiculo()).append("\n");
-    mensaje.append("Correo responsable: ").append(nuevoPrestamo.getCorreoResponsable()).append("\n");
-    mensaje.append("Acompañantes: ").append(String.join(", ", nuevoPrestamo.getAcompaniantes()));
+                                          
+    try {
+        PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
+        
+        // Crear un mensaje con los detalles del préstamo
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("Detalles del préstamo:\n\n");
+        mensaje.append("Fecha: ").append(nuevoPrestamo.getFechaPrestamo()).append("\n");
+        mensaje.append("Departamento: ").append(nuevoPrestamo.getDepartamento()).append("\n");
+        mensaje.append("Cantidad de personas: ").append(nuevoPrestamo.getCantidadPersonas()).append("\n");
+        mensaje.append("Motivo: ").append(nuevoPrestamo.getMotivo()).append("\n");
+        mensaje.append("Plantel origen: ").append(nuevoPrestamo.getPlantelOrigen()).append("\n");
+        mensaje.append("Plantel destino: ").append(nuevoPrestamo.getPlantelDestino()).append("\n");
+        mensaje.append("Vehículo: ").append(nuevoPrestamo.getVehiculo()).append("\n");
+        mensaje.append("Correo responsable: ").append(nuevoPrestamo.getCorreoResponsable()).append("\n");
+        mensaje.append("Acompañantes: ").append(String.join(", ", nuevoPrestamo.getAcompaniantes()));
+        
+        // Mostrar el mensaje en un JOptionPane con botones "Cancelar" y "Solicitar"
+        int opcion = JOptionPane.showOptionDialog(this, 
+                mensaje.toString(), 
+                "Confirmar Préstamo", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.INFORMATION_MESSAGE, 
+                null, 
+                new Object[]{"Solicitar", "Cancelar"}, 
+                "Solicitar");
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            // El usuario seleccionó "Solicitar"
+            fachada.agregar(nuevoPrestamo);
+            
+            // Generar PDF
+            PrestamoMaestrosFCDPDF controller = new PrestamoMaestrosFCDPDF();
+            String pdfFileName = "TicketPrestamoMaestros.pdf";
+            controller.generarPDF(nuevoPrestamo, pdfFileName);
+            
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Préstamo agregado con éxito y PDF generado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Abrir el PDF generado
+            abrirPDF(pdfFileName);
 
-    // Mostrar el mensaje en un JOptionPane
-    JOptionPane.showMessageDialog(this, mensaje.toString(), "Préstamo Agregado", JOptionPane.INFORMATION_MESSAGE);
-
-    cargarDatosIniciales();
-
-    // Abrir el frame de ticket después de cerrar el JOptionPane
-    SwingUtilities.invokeLater(() -> {
-        frmTicketTrasladoProfes ticketFrame = new frmTicketTrasladoProfes();
-        ticketFrame.setVisible(true);
-        // Opcional: cerrar el frame actual si es necesario
-        // this.dispose();
-    });
-
-} catch (IllegalArgumentException e) {
-    JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
-} catch (FachadaException e) {
-    JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // El usuario seleccionó "Cancelar" o cerró el diálogo
+            JOptionPane.showMessageDialog(this, "Operación cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
+    } catch (FachadaException e) {
+        JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (FachadaExceptionPDF e) {
+        JOptionPane.showMessageDialog(this, "Error al generar el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }
+
+private void abrirPDF(String fileName) {
+    try {
+        File pdfFile = new File(fileName);
+        if (pdfFile.exists()) {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(pdfFile);
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "La apertura automática no está soportada en este sistema.\n" +
+                    "Por favor, abra el archivo manualmente: " + pdfFile.getAbsolutePath(),
+                    "No se puede abrir automáticamente", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "El archivo PDF no existe.",
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, 
+            "Error al abrir el archivo PDF: " + ex.getMessage(),
+            "Error", 
+            JOptionPane.ERROR_MESSAGE);
+    }
 
     }//GEN-LAST:event_btnSolicitar1ActionPerformed
 
