@@ -70,7 +70,7 @@ public class TrasladoDAO implements ITrasladoDAO {
             LocalDateTime fin = inicio.plus(2, ChronoUnit.DAYS);
             
             return new Traslado(1, 213, "Campus centro", 2, inicio, fin, "traslado",
-            "bien", "bien", 50, "WYZ-212-AS", "example@gmail.com", "chofer@gmail.com", false);
+            "EXCELENTE", "AIRE BAJO", 25, "WYZ-212-AS", "example@gmail.com", "chofer@gmail.com", false);
         }
         return null;
     }

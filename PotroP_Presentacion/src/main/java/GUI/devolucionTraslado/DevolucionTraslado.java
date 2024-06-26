@@ -273,19 +273,19 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Devolucion Traslado");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 330, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Combustible:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Estado carroceria:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Estado llantas:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -307,7 +307,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         jPanel1.add(btnDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, -1, -1));
 
         cbxLlantas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AIRE BAJO", "DESGASTADAS", "BUEN ESTADO " }));
-        jPanel1.add(cbxLlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, -1));
+        jPanel1.add(cbxLlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 180, -1));
 
         cbxCombustible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "25%", "50%", "75%", "100%" }));
         cbxCombustible.addActionListener(new java.awt.event.ActionListener() {
@@ -315,10 +315,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                 cbxCombustibleActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxCombustible, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 180, -1));
+        jPanel1.add(cbxCombustible, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, -1));
 
         cbxCarroceria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EXCELENTE", "REGULAR", "DAÑADA" }));
-        jPanel1.add(cbxCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 180, -1));
+        jPanel1.add(cbxCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Comentarios adicionales:");

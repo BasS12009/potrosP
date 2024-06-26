@@ -8,12 +8,12 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>PotroP_Persistencia</artifactId>
+            <artifactId>PotroP_DTO</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>PotroP_DTO</artifactId>
+            <artifactId>PotroP_Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
