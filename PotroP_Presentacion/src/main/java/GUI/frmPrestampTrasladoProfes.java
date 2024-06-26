@@ -18,14 +18,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
-import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
@@ -59,6 +56,7 @@ private final IPrestamoMaestrosFCD fachada;
     txtAcompaniante2.setEditable(false);
     txtAcompaniante3.setEditable(false);
     txtAcompaniante4.setEditable(false);
+    
 }
     
 private void configuracionInicial() {
