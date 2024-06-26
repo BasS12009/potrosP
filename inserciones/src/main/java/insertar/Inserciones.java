@@ -5,8 +5,8 @@
 package insertar;
 
 
-import DTO.PrestamoDTO;
-import DTO.VehiculoDTO;
+import dtos.PrestamoDTO;
+import dtos.VehiculoDTO;
 import bo.PrestamoBO;
 import bo.VehiculoBO;
 import exceptions.BisnessException;

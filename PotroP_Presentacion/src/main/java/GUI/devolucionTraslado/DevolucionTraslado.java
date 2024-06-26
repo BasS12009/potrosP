@@ -7,6 +7,13 @@
 package GUI.devolucionTraslado;
 
 import GUI.Menu;
+import dtos.TrasladoDTO;
+import fachada.DevolucionFCD;
+import guardar.Guardar;
+import interfaz.IDevolucionFCD;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /** 
@@ -18,6 +25,9 @@ import javax.swing.JOptionPane;
  */
 public class DevolucionTraslado extends javax.swing.JFrame {
 
+    IDevolucionFCD devolucionFCD;
+    Guardar guardar;
+   
     /**
      * Constructor creado por el compilador que permite inicializar los
      * componentes de la pantalla y se agregaron 2 métodos para alinear
@@ -25,10 +35,122 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      */
     public DevolucionTraslado() {
         initComponents();
+        
+        //inicializacion de las variables de clase
+        this.devolucionFCD = new DevolucionFCD();
+        this.guardar = new Guardar();
+        
+        //configuracion del frame
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);  
+        this.txfMotivo.setEditable(false);
+        
+        //cargamos la informacion del traslado
+        cargarInfo();
     }
 
+    /**
+     * Cargamos la informacion del traslado que se desea hacer la devolucion
+     * 
+     */
+    private void cargarInfo(){
+        try{
+        //buscamos el objeto traslado basandonos en su numero de traslado    
+        TrasladoDTO traslado = devolucionFCD.buscar(guardar.getNumDevolucion());
+        
+        lblPersonas.setText(String.valueOf(traslado.getPersonas()));
+        lblSalida.setText(convertir(traslado.getFechaHoraSalida()));
+        lblRegreso.setText(convertir(traslado.getFechaHoraRegreso()));
+        txfMotivo.setText(traslado.getMotivo());
+        lblPlaca.setText(traslado.getPlaca());
+        lblEmpleado.setText(traslado.getCorreoEmpleado());
+        lblChofer.setText(traslado.getCorreoChofer());
+        lblEstado.setText(Establecerestado(traslado.getEstado()));
+        
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    
+    /**
+     * A partir de un booleano nos devuelve un string indicando el estado
+     * 
+     * @param estado Booleano a convertir a un String
+     * @return String que nos indica el estado del prestamo
+     */
+    public String Establecerestado(boolean estado){
+        if (estado) {
+            return "Devuelto";
+        }
+        else{
+            return "Pendiente";
+        }
+    }
+    
+    /**
+     * 
+     * @param combo
+     * @return 
+     */
+    private int combustible(JComboBox combo){
+        String remover = (String) combo.getSelectedItem();
+        String combustible = eliminarCaracter(remover, '%');
+        return Integer.parseInt(combustible);
+    }
+    
+    /**
+     * 
+     * @param combo
+     * @return 
+     */
+    private String carroceria(JComboBox combo){
+        String carroceria = (String) combo.getSelectedItem();
+        return carroceria;
+    }
+     
+    /**
+     * 
+     * @param combo
+     * @return 
+     */
+    private String llantas(JComboBox combo){
+        String llantas = (String) combo.getSelectedItem();
+        return llantas;
+    }
+    
+    /**
+     * Convierte un String un objeto LocalDateTime a un String 
+     * 
+     * @param fechaHora Objeto LocalDateTime a convertir
+     * @return Un String del localDateTime del parametro
+     */
+    private String convertir(LocalDateTime fechaHora) {
+        
+        // Define el formato deseado
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        
+        // Convierte el LocalDateTime a String usando el formato definido
+        return fechaHora.format(formatter);
+        
+    }
+    
+     
+    /**
+     * Método que elimina un carácter específico de una cadena
+     * 
+     * @param cadena
+     * @param caracter
+     * @return 
+     */
+    public static String eliminarCaracter(String cadena, char caracter) {
+        // Reemplazar todas las ocurrencias del carácter con una cadena vacía
+        return cadena.replace(String.valueOf(caracter), "");
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,9 +183,9 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblSalida = new javax.swing.JLabel();
         lblPersonas = new javax.swing.JLabel();
-        lblLlegada = new javax.swing.JLabel();
+        lblRegreso = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        tfMotivo = new javax.swing.JTextField();
+        txfMotivo = new javax.swing.JTextField();
         lblPlaca = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -150,13 +272,13 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
         lblPersonas.setText("12");
 
-        lblLlegada.setText("jLabel16");
+        lblRegreso.setText("jLabel16");
 
         jLabel17.setText("Placa vehiculo: ");
 
-        tfMotivo.addActionListener(new java.awt.event.ActionListener() {
+        txfMotivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfMotivoActionPerformed(evt);
+                txfMotivoActionPerformed(evt);
             }
         });
 
@@ -202,11 +324,11 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(30, 30, 30))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -239,10 +361,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(lblLlegada))
+                    .addComponent(lblRegreso))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -280,7 +402,26 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionActionPerformed
-        JOptionPane.showMessageDialog(this, "¡Exito al realizar la devolucion!");
+        
+        try{
+        //definimos el traslado orinal    
+        TrasladoDTO original = devolucionFCD.buscar(guardar.getNumDevolucion());
+        
+        //definimos el traslado de devolucion
+        TrasladoDTO devolucion = original;
+        //modificamos la devolucion para que tenga los valores que se asignan
+        //en el frame 
+        devolucion.setCombustible(combustible(cbxCombustible));
+        devolucion.setCarroceria(carroceria(cbxCarroceria));
+        devolucion.setLlantas(llantas(cbxLlantas));
+        devolucion.setFechaHoraRegreso(LocalDateTime.now());
+        
+        //agregamos la devolucion
+        devolucionFCD.agregar(original, devolucion);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_btnDevolucionActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -293,9 +434,9 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxCombustibleActionPerformed
 
-    private void tfMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMotivoActionPerformed
+    private void txfMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfMotivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfMotivoActionPerformed
+    }//GEN-LAST:event_txfMotivoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -326,11 +467,11 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     private javax.swing.JLabel lblChofer;
     private javax.swing.JLabel lblEmpleado;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblLlegada;
     private javax.swing.JLabel lblPersonas;
     private javax.swing.JLabel lblPlaca;
+    private javax.swing.JLabel lblRegreso;
     private javax.swing.JLabel lblSalida;
     private javax.swing.JTextArea taComentarios;
-    private javax.swing.JTextField tfMotivo;
+    private javax.swing.JTextField txfMotivo;
     // End of variables declaration//GEN-END:variables
 }

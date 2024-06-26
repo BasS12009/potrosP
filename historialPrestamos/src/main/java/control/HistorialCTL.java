@@ -4,7 +4,7 @@
  */
 package control;
 
-import DTO.PrestamoDTO;
+import dtos.PrestamoDTO;
 import bo.PrestamoBO;
 import excepciones.ControlException;
 import exceptions.BisnessException;

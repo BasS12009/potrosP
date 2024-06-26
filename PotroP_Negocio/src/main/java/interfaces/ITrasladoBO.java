@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import DTO.TrasladoDTO;
+import dtos.TrasladoDTO;
 import exceptions.BisnessException;
 
 /**

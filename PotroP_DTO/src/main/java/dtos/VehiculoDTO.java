@@ -3,7 +3,7 @@
  *
  * Clase que representa un vehículo.
  */
-package DTO;
+package dtos;
 
 /**
  * @author/(s):

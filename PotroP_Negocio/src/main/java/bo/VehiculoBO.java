@@ -12,7 +12,7 @@
 package bo;
 
 import converters.VehiculoCVR;
-import DTO.VehiculoDTO;
+import dtos.VehiculoDTO;
 import exceptions.BisnessException;
 import Interfaces.IVehiculoDAO;
 import daos.VehiculoDAO;

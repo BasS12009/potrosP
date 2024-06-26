@@ -4,7 +4,7 @@
  */
 package converters;
 
-import DTO.TrasladoDTO;
+import dtos.TrasladoDTO;
 import entidades.Traslado;
 import java.time.LocalDateTime;
 

@@ -9,7 +9,7 @@
  */
 package converters;
 
-import DTO.VehiculoDTO;
+import dtos.VehiculoDTO;
 import entidades.Vehiculo;
 
 /**

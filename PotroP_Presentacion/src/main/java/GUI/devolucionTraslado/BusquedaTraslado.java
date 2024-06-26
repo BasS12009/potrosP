@@ -7,6 +7,11 @@
 package GUI.devolucionTraslado;
 
 import GUI.*;
+import excepcion.FachadaException;
+import fachada.DevolucionFCD;
+import guardar.Guardar;
+import interfaz.IDevolucionFCD;
+import javax.swing.JOptionPane;
 
 /** 
  * @author/(s):
@@ -93,16 +98,34 @@ public class BusquedaTraslado extends javax.swing.JFrame {
      * @param evt El evento que desencadenó esta acción.
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //instaciamos los frames 
+
+        try{
+        //instanciamos las clases que necesitamos    
+        IDevolucionFCD devolucionFCD = new DevolucionFCD();
+        Guardar guardar = new Guardar();
+        
+        //instanciamos los frames 
         DevolucionTraslado devolucion = new DevolucionTraslado();
         Menu menu = new Menu();
+            
+        //convertimos el campo de el numero de traslado a un interger
+        int numeroTraslado = Integer.parseInt(txfTraslado.getText());
         
-        //hacemos visible el frame de devolucion
-        devolucion.setVisible(true);
+        if(devolucionFCD.existe(numeroTraslado)){
+            //guardamos el numero de traslado
+            guardar.setNumDevolucion(numeroTraslado);
+
+            //hacemos visible el frame de devolucion
+            devolucion.setVisible(true);
         
-        //cerramos las ventanas abiertas
-        menu.dispose();
-        this.dispose();
+            //cerramos las ventanas abiertas
+            menu.dispose();
+            this.dispose();
+        }
+        }
+        catch(FachadaException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 

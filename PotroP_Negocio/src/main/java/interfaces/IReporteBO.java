@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import dtos.ReporteDTO;
 import exceptions.BisnessException;
 
 /**
@@ -12,6 +13,6 @@ import exceptions.BisnessException;
  */
 public interface IReporteBO {
     
-    public void agregar() throws BisnessException;
+    public void agregar(ReporteDTO reporteDTO) throws BisnessException;
     
 }

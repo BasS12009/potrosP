@@ -4,7 +4,7 @@
  */
 package fachada;
 
-import DTO.PrestamoDTO;
+import dtos.PrestamoDTO;
 import control.LoanCTL;
 import excepcion.ControlException;
 import excepcion.FachadaException;

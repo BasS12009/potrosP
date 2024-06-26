@@ -3,7 +3,7 @@
  * 
  * Clase que representa un préstamo de vehículo.
  */
-package DTO;
+package dtos;
 
 import java.time.LocalDate;
 

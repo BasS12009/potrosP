@@ -14,7 +14,7 @@
  */
 package interfaces;
 
-import DTO.PrestamoDTO;
+import dtos.PrestamoDTO;
 import exceptions.BisnessException;
 import entidades.Prestamo;
 import java.time.LocalDate;

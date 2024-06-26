@@ -10,6 +10,6 @@ package interfaces;
  */
 public interface IConexion {
     
-    void conectar();
+    public void conexion();
     
 }

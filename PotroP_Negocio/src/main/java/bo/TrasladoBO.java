@@ -4,7 +4,7 @@
  */
 package bo;
 
-import DTO.TrasladoDTO;
+import dtos.TrasladoDTO;
 import converters.TrasladoCVR;
 import daos.TrasladoDAO;
 import excepciones.DAOException;

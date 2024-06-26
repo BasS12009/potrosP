@@ -3,7 +3,7 @@
  * 
  * 
  */
-package DTO;
+package dtos;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  */
 public class TrasladoDTO {
     
-    private int id;
+    
     private int numTraslado;
     private String destino;
     private int personas;
@@ -51,34 +51,6 @@ public class TrasladoDTO {
         this.correoEmpleado = correoEmpleado;
         this.correoChofer = correoChofer;
         this.estado = estado;
-    }
-
-    public TrasladoDTO(int id, int numTraslado, String destino, int personas, 
-            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
-            String motivo, String carroceria, String llantas, int combustible, 
-            String placa, String correoEmpleado, String correoChofer, boolean estado) {
-        this.id = id;
-        this.numTraslado = numTraslado;
-        this.destino = destino;
-        this.personas = personas;
-        this.fechaHoraSalida = fechaHoraSalida;
-        this.fechaHoraRegreso = fechaHoraRegreso;
-        this.motivo = motivo;
-        this.carroceria = carroceria;
-        this.llantas = llantas;
-        this.combustible = combustible;
-        this.placa = placa;
-        this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
-        this.estado = estado;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getNumTraslado() {

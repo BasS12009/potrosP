@@ -4,7 +4,7 @@
  */
 package daos;
 
-import Conexion.Conexion;
+import conexion.Conexion;
 import excepciones.DAOException;
 import interfaces.IConexion;
 import interfaces.IReporteDAO;

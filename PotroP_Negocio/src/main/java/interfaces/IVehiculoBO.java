@@ -12,7 +12,7 @@
  */
 package interfaces;
 
-import DTO.VehiculoDTO;
+import dtos.VehiculoDTO;
 import exceptions.BisnessException;
 import entidades.Vehiculo;
 import java.util.List;

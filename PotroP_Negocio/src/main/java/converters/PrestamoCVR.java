@@ -7,7 +7,7 @@
  */
 package converters;
 
-import DTO.PrestamoDTO;
+import dtos.PrestamoDTO;
 import entidades.Prestamo;
 import java.time.LocalDate;
 

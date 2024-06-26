@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import DTO.PrestamoDTO;
+import dtos.PrestamoDTO;
 import excepcion.FachadaException;
 
 /**

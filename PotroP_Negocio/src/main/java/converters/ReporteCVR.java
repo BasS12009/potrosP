@@ -4,8 +4,8 @@
  */
 package converters;
 
-import DTO.ReporteDTO;
-import DTO.TrasladoDTO;
+import dtos.ReporteDTO;
+import dtos.TrasladoDTO;
 import entidades.Reporte;
 import entidades.Traslado;
 

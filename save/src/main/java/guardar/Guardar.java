@@ -19,102 +19,8 @@ package guardar;
 public class Guardar {
 
     private static int idEmpleado;
-    private static int idAdministrador;
-    private static int idChofer;
-    private static int idVehiculo;
-    private static int idPrestamo;
     private static int numDevolucion;
     private static String correoAdmin;
-
-    /**
-     * Obtiene el identificador del empleado guardado.
-     * 
-     * @return El identificador del empleado.
-     */
-    public int getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    /**
-     * Establece el identificador del empleado.
-     * 
-     * @param idEmpleado El identificador del empleado a establecer.
-     */
-    public void setIdEmpleado(int idEmpleado) {
-        Guardar.idEmpleado = idEmpleado;
-    }
-
-    /**
-     * Obtiene el identificador del administrador guardado.
-     * 
-     * @return El identificador del administrador.
-     */
-    public int getIdAdministrador() {
-        return idAdministrador;
-    }
-
-    /**
-     * Establece el identificador del administrador.
-     * 
-     * @param idAdministrador El identificador del administrador a establecer.
-     */
-    public void setIdAdministrador(int idAdministrador) {
-        Guardar.idAdministrador = idAdministrador;
-    }
-
-    /**
-     * Obtiene el identificador del chofer guardado.
-     * 
-     * @return El identificador del chofer.
-     */
-    public int getIdChofer() {
-        return idChofer;
-    }
-
-    /**
-     * Establece el identificador del chofer.
-     * 
-     * @param idChofer El identificador del chofer a establecer.
-     */
-    public void setIdChofer(int idChofer) {
-        Guardar.idChofer = idChofer;
-    }
-
-    /**
-     * Obtiene el identificador del vehículo guardado.
-     * 
-     * @return El identificador del vehículo.
-     */
-    public int getIdVehiculo() {
-        return idVehiculo;
-    }
-
-    /**
-     * Establece el identificador del vehículo.
-     * 
-     * @param idVehiculo El identificador del vehículo a establecer.
-     */
-    public void setIdVehiculo(int idVehiculo) {
-        Guardar.idVehiculo = idVehiculo;
-    }
-
-    /**
-     * Obtiene el identificador del préstamo guardado.
-     * 
-     * @return El identificador del préstamo.
-     */
-    public int getIdPrestamo() {
-        return idPrestamo;
-    }
-
-    /**
-     * Establece el identificador del préstamo.
-     * 
-     * @param idPrestamo El identificador del préstamo a establecer.
-     */
-    public void setIdPrestamo(int idPrestamo) {
-        Guardar.idPrestamo = idPrestamo;
-    }
 
     public int getNumDevolucion() {
         return numDevolucion;
@@ -128,8 +34,16 @@ public class Guardar {
         return correoAdmin;
     }
 
-    public void setCorreoAdmin(String correoAdmin) {
+    public  void setCorreoAdmin(String correoAdmin) {
         Guardar.correoAdmin = correoAdmin;
     }
 
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        Guardar.idEmpleado = idEmpleado;
+    }
+    
 }

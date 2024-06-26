@@ -6,8 +6,8 @@
  */
 package GUI;
 
-import DTO.PrestamoDTO;
-import DTO.VehiculoDTO;
+import dtos.PrestamoDTO;
+import dtos.VehiculoDTO;
 import com.toedter.calendar.JDateChooser;
 import fachada.LoanFCD;
 import fachada.TablaFCD;

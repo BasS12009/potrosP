@@ -4,7 +4,7 @@
  */
 package control;
 
-import DTO.VehiculoDTO;
+import dtos.VehiculoDTO;
 import bo.VehiculoBO;
 import excepciones.ControlException;
 import exceptions.BisnessException;

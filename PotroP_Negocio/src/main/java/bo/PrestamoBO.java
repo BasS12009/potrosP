@@ -10,7 +10,7 @@
 package bo;
 
 import converters.PrestamoCVR;
-import DTO.PrestamoDTO;
+import dtos.PrestamoDTO;
 import exceptions.BisnessException;
 import Interfaces.IPrestamoDAO;
 import daos.PrestamoDAO;
