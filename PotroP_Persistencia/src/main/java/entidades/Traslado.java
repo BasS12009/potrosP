@@ -12,24 +12,46 @@ import java.time.LocalDateTime;
  */
 public class Traslado {
     
-    private int id;
-    private int numTraslado;
-    private String destino;
-    private int personas;
-    private LocalDateTime fechaHoraSalida;
-    private LocalDateTime fechaHoraRegreso;
-    private String motivo;
-    private String carroceria;
-    private String llantas;
-    private int combustible;
-    private String placa;
-    private String correoEmpleado;
-    private String correoChofer;
-    private boolean estado;
+    // Atributos del traslado
+    private int id;                           // identificador del traslado
+    private int numTraslado;                  // Número de traslado
+    private String destino;                   // Destino del traslado
+    private int personas;                     // Número de personas en el traslado
+    private LocalDateTime fechaHoraSalida;    // Fecha y hora de salida del traslado
+    private LocalDateTime fechaHoraRegreso;   // Fecha y hora de regreso del traslado
+    private String motivo;                    // Motivo del traslado
+    private String carroceria;                // Descripción de la carrocería del vehículo
+    private String llantas;                   // Descripción de las llantas del vehículo
+    private int combustible;                  // Cantidad de combustible al momento del traslado
+    private String placa;                     // Placa del vehículo utilizado
+    private String correoEmpleado;            // Correo del empleado responsable
+    private String correoChofer;              // Correo del chofer
+    private boolean estado;                   // Estado del traslado (activo/inactivo)
 
+    /**
+     * Constructor por defecto.
+     */
     public Traslado() {
     }
 
+    /**
+     * Constructor con parámetros para inicializar todos los atributos 
+     * excepto el id.
+     * 
+     * @param numTraslado número de traslado.
+     * @param destino destino del traslado.
+     * @param personas número de personas en el traslado.
+     * @param fechaHoraSalida fecha y hora de salida del traslado.
+     * @param fechaHoraRegreso fecha y hora de regreso del traslado.
+     * @param motivo motivo del traslado.
+     * @param carroceria descripción de la carrocería del vehículo.
+     * @param llantas descripción de las llantas del vehículo.
+     * @param combustible cantidad de combustible.
+     * @param placa placa del vehículo.
+     * @param correoEmpleado correo del empleado responsable.
+     * @param correoChofer correo del chofer.
+     * @param estado estado del traslado.
+     */
     public Traslado(int numTraslado, String destino, int personas, 
             LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
             String motivo, String carroceria, String llantas, int combustible, 
@@ -49,8 +71,26 @@ public class Traslado {
         this.estado = estado;
     }
 
+    /**
+     * Constructor con parámetros para inicializar todos los atributos.
+     * 
+     * @param id identificador 
+     * @param numTraslado número de traslado.
+     * @param destino destino del traslado.
+     * @param personas número de personas en el traslado.
+     * @param fechaHoraSalida fecha y hora de salida del traslado.
+     * @param fechaHoraRegreso fecha y hora de regreso del traslado.
+     * @param motivo motivo del traslado.
+     * @param carroceria descripción de la carrocería del vehículo.
+     * @param llantas descripción de las llantas del vehículo.
+     * @param combustible cantidad de combustible.
+     * @param placa placa del vehículo.
+     * @param correoEmpleado correo del empleado responsable.
+     * @param correoChofer correo del chofer.
+     * @param estado estado del traslado.
+     */
     public Traslado(int id, int numTraslado, String destino, int personas, 
-            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
+            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso,
             String motivo, String carroceria, String llantas, int combustible, 
             String placa, String correoEmpleado, String correoChofer, boolean estado) {
         this.id = id;
@@ -68,7 +108,9 @@ public class Traslado {
         this.correoChofer = correoChofer;
         this.estado = estado;
     }
+    
 
+    // Métodos getter y setter para cada atributo
     public int getId() {
         return id;
     }

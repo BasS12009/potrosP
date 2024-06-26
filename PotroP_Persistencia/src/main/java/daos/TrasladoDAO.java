@@ -14,52 +14,76 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 /**
- *
- * @author skevi
+ * Clase que implementa la interfaz ITrasladoDAO y maneja la persistencia de datos de traslados.
+ * 
+ * @autor skevi
  */
-public class TrasladoDAO implements ITrasladoDAO{
+public class TrasladoDAO implements ITrasladoDAO {
 
+    // Atributo para manejar la conexión a la base de datos
     IConexion conexion;
 
+    /**
+     * Constructor por defecto que inicializa la conexión.
+     */
     public TrasladoDAO() {
         this.conexion = new Conexion();
     }
     
+    /**
+     * Método para agregar un nuevo traslado a la base de datos.
+     * Actualmente, este método está vacío y necesita ser implementado.
+     * 
+     * @param traslado El objeto Traslado que se desea agregar.
+     * @throws DAOException si ocurre un error al agregar el traslado.
+     */
     @Override
     public void agregar(Traslado traslado) throws DAOException {
-        
+        // Implementación pendiente
     }
 
+    /**
+     * Método para actualizar un traslado existente en la base de datos.
+     * 
+     * @param traslado El objeto Traslado con los nuevos datos.
+     * @throws DAOException si ocurre un error al actualizar el traslado.
+     */
     @Override
     public void actualizar(Traslado traslado) throws DAOException {
-        System.out.println("se actualizo con exito");
+        System.out.println("Se actualizó con éxito");
     }
 
+    /**
+     * Método para buscar un traslado en la base de datos por su número de traslado.
+     * 
+     * @param numTraslado El número del traslado que se desea buscar.
+     * @return El objeto Traslado si se encuentra, null en caso contrario.
+     * @throws DAOException si ocurre un error al buscar el traslado.
+     */
     @Override
     public Traslado buscar(int numTraslado) throws DAOException {
-        
         if (numTraslado == 213) {
-        // Variable que representa el día de hoy a las 11:30
-        LocalDateTime inicio = LocalDateTime.now()
-                                            .with(LocalTime.of(11, 30));
-        
-        // Variable que representa dos días después a la misma hora (11:30)
-        LocalDateTime fin = inicio.plus(2, ChronoUnit.DAYS);
-        
-        return new Traslado(1, 213, "Campus centro", 2, inicio, fin, "traslado",
-        "bien", "bien", 50, "WYZ-212-AS", "examle@gmail.com", "chofer@gmail.com", false);
+            // Variable que representa el día de hoy a las 11:30
+            LocalDateTime inicio = LocalDateTime.now().with(LocalTime.of(11, 30));
+            
+            // Variable que representa dos días después a la misma hora (11:30)
+            LocalDateTime fin = inicio.plus(2, ChronoUnit.DAYS);
+            
+            return new Traslado(1, 213, "Campus centro", 2, inicio, fin, "traslado",
+            "bien", "bien", 50, "WYZ-212-AS", "example@gmail.com", "chofer@gmail.com", false);
         }
         return null;
-     
     }
 
+    /**
+     * Método para verificar si existe un traslado en la base de datos por su número de traslado.
+     * 
+     * @param numTraslado El número del traslado que se desea verificar.
+     * @return true si el traslado existe, false en caso contrario.
+     * @throws DAOException si ocurre un error al verificar la existencia del traslado.
+     */
     @Override
     public boolean existe(int numTraslado) throws DAOException {
-        if (numTraslado == 213) {
-            return true;
-        }
-        return false;
+        return numTraslado == 213;
     }
-    
-    
 }

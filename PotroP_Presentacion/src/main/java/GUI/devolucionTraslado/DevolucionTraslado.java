@@ -90,9 +90,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     }
     
     /**
+     * Retorna el numero de porcentaje de la gasolina definido en el ComboBox
      * 
-     * @param combo
-     * @return 
+     * @param combo ComboBox del cual extraemos los datos
+     * @return porcentaje de combustible
      */
     private int combustible(JComboBox combo){
         String remover = (String) combo.getSelectedItem();
@@ -101,9 +102,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     }
     
     /**
+     * Retorna el estado de la carroceria definido en el ComboBox
      * 
-     * @param combo
-     * @return 
+     * @param combo ComboBox del cual extraemos los datos
+     * @return Estado del la carroceria en forma de String
      */
     private String carroceria(JComboBox combo){
         String carroceria = (String) combo.getSelectedItem();
@@ -111,9 +113,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     }
      
     /**
+     * Retorna el estado de la carroceria definido en el ComboBox
      * 
-     * @param combo
-     * @return 
+     * @param combo del cual extraemos los datos
+     * @return Estado del las llantas en forma de String
      */
     private String llantas(JComboBox combo){
         String llantas = (String) combo.getSelectedItem();
@@ -140,9 +143,9 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     /**
      * Método que elimina un carácter específico de una cadena
      * 
-     * @param cadena
-     * @param caracter
-     * @return 
+     * @param cadena cadena de la cual deseamos eliminar el caracter
+     * @param caracter caracter que se desaea eliminar
+     * @return retorna un String sin el caracter deseado
      */
     public static String eliminarCaracter(String cadena, char caracter) {
         // Reemplazar todas las ocurrencias del carácter con una cadena vacía

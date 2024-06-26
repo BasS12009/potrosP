@@ -8,7 +8,9 @@ package dtos;
 import java.time.LocalDateTime;
 
 /**
- * @author/(s):
+ * Clase que representa un traslado con sus respectivos atributos.
+ * 
+ * @author(s):
  * Diana Sofia Bastidas Osuna - 245804,
  * Carlos Damian Garcia Bernal - 247614,
  * Kevin Jared Sánchez Figueroa - 240798,
@@ -16,24 +18,44 @@ import java.time.LocalDateTime;
  */
 public class TrasladoDTO {
     
-    
-    private int numTraslado;
-    private String destino;
-    private int personas;
-    private LocalDateTime fechaHoraSalida;
-    private LocalDateTime fechaHoraRegreso;
-    private String motivo;
-    private String carroceria;
-    private String llantas;
-    private int combustible;
-    private String placa;
-    private String correoEmpleado;
-    private String correoChofer;
-    private boolean estado;
+    // Atributos del traslado
+    private int numTraslado;                  // Número de traslado
+    private String destino;                   // Destino del traslado
+    private int personas;                     // Número de personas en el traslado
+    private LocalDateTime fechaHoraSalida;    // Fecha y hora de salida del traslado
+    private LocalDateTime fechaHoraRegreso;   // Fecha y hora de regreso del traslado
+    private String motivo;                    // Motivo del traslado
+    private String carroceria;                // Descripción de la carrocería del vehículo
+    private String llantas;                   // Descripción de las llantas del vehículo
+    private int combustible;                  // Cantidad de combustible al momento del traslado
+    private String placa;                     // Placa del vehículo utilizado
+    private String correoEmpleado;            // Correo del empleado responsable
+    private String correoChofer;              // Correo del chofer
+    private boolean estado;                   // Estado del traslado (activo/inactivo)
 
+    /**
+     * Constructor por defecto.
+     */
     public TrasladoDTO() {
     }
 
+    /**
+     * Constructor con parámetros para inicializar todos los atributos.
+     * 
+     * @param numTraslado número de traslado.
+     * @param destino destino del traslado.
+     * @param personas número de personas en el traslado.
+     * @param fechaHoraSalida fecha y hora de salida del traslado.
+     * @param fechaHoraRegreso fecha y hora de regreso del traslado.
+     * @param motivo motivo del traslado.
+     * @param carroceria descripción de la carrocería del vehículo.
+     * @param llantas descripción de las llantas del vehículo.
+     * @param combustible cantidad de combustible.
+     * @param placa placa del vehículo.
+     * @param correoEmpleado correo del empleado responsable.
+     * @param correoChofer correo del chofer.
+     * @param estado estado del traslado.
+     */
     public TrasladoDTO(int numTraslado, String destino, int personas, 
             LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
             String motivo, String carroceria, String llantas, int combustible, 
@@ -53,6 +75,7 @@ public class TrasladoDTO {
         this.estado = estado;
     }
 
+    // Métodos getter y setter para cada atributo
     public int getNumTraslado() {
         return numTraslado;
     }
