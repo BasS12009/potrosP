@@ -143,11 +143,10 @@
         <Component class="javax.swing.JComboBox" name="cbxLlantas">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="3">
+                <StringItem index="0" value="AIRE BAJO"/>
+                <StringItem index="1" value="DESGASTADAS"/>
+                <StringItem index="2" value="BUEN ESTADO "/>
               </StringArray>
             </Property>
           </Properties>
@@ -164,10 +163,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="25%"/>
+                <StringItem index="1" value="50%"/>
+                <StringItem index="2" value="75%"/>
+                <StringItem index="3" value="100%"/>
               </StringArray>
             </Property>
           </Properties>
@@ -186,11 +185,10 @@
         <Component class="javax.swing.JComboBox" name="cbxCarroceria">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="3">
+                <StringItem index="0" value="EXCELENTE"/>
+                <StringItem index="1" value="REGULAR"/>
+                <StringItem index="2" value="DA&#xd1;ADA"/>
               </StringArray>
             </Property>
           </Properties>

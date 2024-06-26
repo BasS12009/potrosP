@@ -11,9 +11,11 @@ import dtos.TrasladoDTO;
 import fachada.DevolucionFCD;
 import guardar.Guardar;
 import interfaz.IDevolucionFCD;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /** 
@@ -27,6 +29,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
     IDevolucionFCD devolucionFCD;
     Guardar guardar;
+    
+    //instaciamos frames
+    Menu menu = new Menu();
+    BusquedaTraslado busquedaTraslado = new BusquedaTraslado();
    
     /**
      * Constructor creado por el compilador que permite inicializar los
@@ -44,6 +50,9 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);  
         this.txfMotivo.setEditable(false);
+        
+        //configuramos el contenedore motivo para que no sea editable
+        txfMotivo.setEditable(false);
         
         //cargamos la informacion del traslado
         cargarInfo();
@@ -67,12 +76,33 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         lblChofer.setText(traslado.getCorreoChofer());
         lblEstado.setText(Establecerestado(traslado.getEstado()));
         
+        //configuramos el estado
+        configEstado(lblEstado);
+        
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
     
+    /**
+     * Nos ayuda a configurar un estado para en caso de que este este devuelto 
+     * no nos bloquee el boton de devolucion y configura el label para que se 
+     * muestre en un color verde.
+     * En un caso contrario muestra el boton de color rojo permitiendonos 
+     * realizar la devolucion.
+     * 
+     * @param estado JLabel al cual le haremos los cambios.
+     */
+    private void configEstado(JLabel estado){
+        if (estado.getText().equalsIgnoreCase("DEVUELTO")) {
+            estado.setForeground(new Color(144, 238, 144));
+            btnDevolucion.setEnabled(false);
+        }
+        else{
+           estado.setForeground(new Color(255, 102, 102));
+       }
+    }
     
     /**
      * A partir de un booleano nos devuelve un string indicando el estado
@@ -82,10 +112,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      */
     public String Establecerestado(boolean estado){
         if (estado) {
-            return "Devuelto";
+            return "DEVUELTO";
         }
         else{
-            return "Pendiente";
+            return "PENDIENTE";
         }
     }
     
@@ -152,7 +182,44 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         return cadena.replace(String.valueOf(caracter), "");
     }
     
-    
+    private void devolucion(){
+        try{
+        //definimos el traslado orinal    
+        TrasladoDTO original = devolucionFCD.buscar(guardar.getNumDevolucion());
+        
+        //definimos el traslado de devolucion
+        TrasladoDTO devolucion = original;
+        //modificamos la devolucion para que tenga los valores que se asignan
+        //en el frame 
+        devolucion.setCombustible(combustible(cbxCombustible));
+        devolucion.setCarroceria(carroceria(cbxCarroceria));
+        devolucion.setLlantas(llantas(cbxLlantas));
+        devolucion.setFechaHoraRegreso(LocalDateTime.now());
+        
+        
+        //agregamos la devolucion
+        devolucionFCD.agregar(original, devolucion);
+        
+        //mostramos una ventana de confirmacion para preguntar si se desa hacer 
+        //otra devolucion
+        int opcion = JOptionPane.showConfirmDialog(null, 
+                "¿Desea realizar otra devolucion?", 
+                "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            busquedaTraslado.setVisible(true);
+            this.dispose();
+        }
+        else{
+            menu.setVisible(true);
+            this.dispose();
+        }
+        
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,10 +306,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         });
         jPanel1.add(btnDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, -1, -1));
 
-        cbxLlantas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxLlantas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AIRE BAJO", "DESGASTADAS", "BUEN ESTADO " }));
         jPanel1.add(cbxLlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, -1));
 
-        cbxCombustible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCombustible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "25%", "50%", "75%", "100%" }));
         cbxCombustible.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCombustibleActionPerformed(evt);
@@ -250,7 +317,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         });
         jPanel1.add(cbxCombustible, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 180, -1));
 
-        cbxCarroceria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCarroceria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EXCELENTE", "REGULAR", "DAÑADA" }));
         jPanel1.add(cbxCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -406,25 +473,14 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
     private void btnDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionActionPerformed
         
-        try{
-        //definimos el traslado orinal    
-        TrasladoDTO original = devolucionFCD.buscar(guardar.getNumDevolucion());
-        
-        //definimos el traslado de devolucion
-        TrasladoDTO devolucion = original;
-        //modificamos la devolucion para que tenga los valores que se asignan
-        //en el frame 
-        devolucion.setCombustible(combustible(cbxCombustible));
-        devolucion.setCarroceria(carroceria(cbxCarroceria));
-        devolucion.setLlantas(llantas(cbxLlantas));
-        devolucion.setFechaHoraRegreso(LocalDateTime.now());
-        
-        //agregamos la devolucion
-        devolucionFCD.agregar(original, devolucion);
-        }
-        catch(Exception ex){
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+        int opcion = JOptionPane.showConfirmDialog(null, 
+                "¿Estás seguro realizar la devolucion?", 
+                "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            devolucion();
+        } 
+    
     }//GEN-LAST:event_btnDevolucionActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
