@@ -111,11 +111,13 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         throw new IllegalArgumentException("La cantidad de personas debe ser mayor que cero.");
     }
 
-    // Validación de la selección de vehículo
     VehiculoDTO vehiculoSeleccionado = (VehiculoDTO) cmbVehiculos.getSelectedItem();
     if (vehiculoSeleccionado == null) {
         throw new IllegalArgumentException("Debe seleccionar un vehículo.");
     }
+
+    // Añade esta línea para validar la disponibilidad del vehículo
+    validarDisponibilidadVehiculo(vehiculoSeleccionado.getPlaca(), fechaPrestamo);
 
     // Validación de plantel origen y destino
     String plantelOrigen = (String) cmbPlantelOrigen.getSelectedItem();
@@ -412,6 +414,18 @@ private void mostrarPrestamosEnConsola() {
         System.err.println("Error al obtener los préstamos: " + ex.getMessage());
     }
 }
+private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws IllegalArgumentException {
+    try {
+        List<PrestamoMaestrosDTO> prestamos = fachada.listaPrestamosMaestros();
+        for (PrestamoMaestrosDTO prestamo : prestamos) {
+            if (prestamo.getVehiculo().equals(placa) && prestamo.getFechaPrestamo().equals(fecha)) {
+                throw new IllegalArgumentException("El vehículo seleccionado no está disponible para la fecha indicada.");
+            }
+        }
+    } catch (FachadaException e) {
+        throw new IllegalArgumentException("Error al verificar la disponibilidad del vehículo: " + e.getMessage());
+    }
+}
 
 
 
@@ -640,7 +654,7 @@ private void mostrarPrestamosEnConsola() {
             // El usuario seleccionó "Cancelar" o cerró el diálogo
             JOptionPane.showMessageDialog(this, "Operación cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
         }
-    } catch (IllegalArgumentException e) {
+     } catch (IllegalArgumentException e) {
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
     } catch (FachadaException e) {
         JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

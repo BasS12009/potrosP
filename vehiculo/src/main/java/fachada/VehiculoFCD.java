@@ -7,7 +7,10 @@ package fachada;
 import control.VehiculoCTL;
 import excepciones.ControlException;
 import excepciones.FachadaException;
+import exceptions.BisnessException;
 import interfaz.IVehiculoFCD;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 
 /**
@@ -25,7 +28,11 @@ public class VehiculoFCD implements IVehiculoFCD{
     @Override
     public void llenarCBX(JComboBox comboBox) throws FachadaException {
         try{
-            vehiculo.llenarCBX(comboBox); 
+            try { 
+                vehiculo.llenarCBX(comboBox);
+            } catch (BisnessException ex) {
+                Logger.getLogger(VehiculoFCD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         catch(ControlException ex){
             throw new FachadaException(ex.getMessage());

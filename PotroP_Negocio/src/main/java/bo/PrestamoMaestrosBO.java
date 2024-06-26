@@ -81,5 +81,6 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
         } catch (DAOException e) {
             throw new BisnessException("Error al obtener la lista de préstamos de maestros: " + e.getMessage());
         }
+    
     }
 }
