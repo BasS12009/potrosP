@@ -48,7 +48,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         
         //configuracion del frame
         this.setLocationRelativeTo(this);
-        this.setSize(670, 550);  
+        this.setSize(670, 600);  
         this.txfMotivo.setEditable(false);
         
         //configuramos el contenedore motivo para que no sea editable
@@ -74,7 +74,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         lblPlaca.setText(traslado.getPlaca());
         lblEmpleado.setText(traslado.getCorreoEmpleado());
         lblChofer.setText(traslado.getCorreoChofer());
-        lblEstado.setText(Establecerestado(traslado.getEstado()));
+        lblEstado.setText(establecerEstado(traslado.getEstado()));
         
         //configuramos el estado
         configEstado(lblEstado);
@@ -110,7 +110,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      * @param estado Booleano a convertir a un String
      * @return String que nos indica el estado del prestamo
      */
-    public String Establecerestado(boolean estado){
+    private String establecerEstado(boolean estado){
         if (estado) {
             return "DEVUELTO";
         }
@@ -177,25 +177,68 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      * @param caracter caracter que se desaea eliminar
      * @return retorna un String sin el caracter deseado
      */
-    public static String eliminarCaracter(String cadena, char caracter) {
+    private String eliminarCaracter(String cadena, char caracter) {
         // Reemplazar todas las ocurrencias del carácter con una cadena vacía
         return cadena.replace(String.valueOf(caracter), "");
     }
     
+    /**
+     * Crea un nuevo objeto TrasladoDTO con los valores combinados de el 
+     * traslado original y los nuevos valores que se ingresan el el frame
+     * 
+     * @param original Objeto TrasladoDTO del cual obtendremos los valores 
+     * originales del objeto;
+     * 
+     * @return nuevo Objeto TrasladoDTO con los nuevos valores ingresados en el 
+     * frame
+     */
+    private TrasladoDTO crearDevolucion(TrasladoDTO original){
+        
+        //originales
+        int numTraslado = original.getNumTraslado();
+        String destino = original.getDestino();
+        int personas = original.getPersonas();
+        LocalDateTime fechaSalida = original.getFechaHoraSalida();
+        
+        //modificado
+        LocalDateTime fechaDevolucion = LocalDateTime.now();
+        
+        //original
+        String motivo = original.getMotivo();
+        
+        //modificados
+        String carroceria = carroceria(cbxCarroceria);    
+        String llantas = llantas(cbxLlantas);
+        int combustible = combustible(cbxCombustible);
+      
+        //originales
+        String placa = original.getPlaca();
+        String empleado = original.getCorreoEmpleado();
+        String chofer = original.getCorreoChofer();
+        boolean estado = original.getEstado();
+        
+        return new TrasladoDTO(numTraslado, destino, personas, fechaSalida, 
+        fechaDevolucion, motivo, carroceria, llantas, combustible, placa,
+        empleado, chofer, estado);
+        
+    }
+    
+    /**
+     * Genera el codigo necesario para realizar la devolucion del Traslado
+     * 
+     */
     private void devolucion(){
         try{
         //definimos el traslado orinal    
         TrasladoDTO original = devolucionFCD.buscar(guardar.getNumDevolucion());
         
         //definimos el traslado de devolucion
-        TrasladoDTO devolucion = original;
-        //modificamos la devolucion para que tenga los valores que se asignan
-        //en el frame 
-        devolucion.setCombustible(combustible(cbxCombustible));
-        devolucion.setCarroceria(carroceria(cbxCarroceria));
-        devolucion.setLlantas(llantas(cbxLlantas));
-        devolucion.setFechaHoraRegreso(LocalDateTime.now());
-        
+        TrasladoDTO devolucion = crearDevolucion(original);
+       
+            System.out.println(original.toString());
+            System.out.println(" ");
+            System.out.println(devolucion.toString());
+            
         
         //agregamos la devolucion
         devolucionFCD.agregar(original, devolucion);
@@ -374,35 +417,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(122, 122, 122))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblPersonas))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -414,8 +429,32 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblPersonas))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

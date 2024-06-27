@@ -4,10 +4,10 @@
  */
 package daos;
 
+import Interfaces.IConexion;
+import Interfaces.IReporteDAO;
 import conexion.Conexion;
 import excepciones.DAOException;
-import interfaces.IConexion;
-import interfaces.IReporteDAO;
 
 /**
  * Clase que implementa la interfaz IReporteDAO y maneja la persistencia de datos de los reportes.

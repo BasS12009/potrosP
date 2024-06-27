@@ -18,11 +18,13 @@ GUI\Menu$5.class
 GUI\Traslado.class
 GUI\Prestamo$1.class
 GUI\AgregarVehiculo.class
+GUI\devolucionTraslado\DevolucionTraslado$3.class
 GUI\Menu$8.class
 GUI\devolucionTraslado\BusquedaTraslado.class
 GUI\HistorialPrestamo$1.class
 GUI\LogIn.class
 GUI\Choferes.class
+GUI\devolucionTraslado\DevolucionTraslado$4.class
 GUI\Menu$1.class
 GUI\Prestamo$4.class
 GUI\Menu$3.class

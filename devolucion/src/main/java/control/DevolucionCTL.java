@@ -157,10 +157,10 @@ public class DevolucionCTL {
         }
 
         // Comparar los campos de carrocería, llantas y combustible
-        if (!original.getCarroceria().equals(devolucion.getCarroceria())) {
+        if (!original.getCarroceria().equalsIgnoreCase(devolucion.getCarroceria())) {
             return false;
         }
-        if (!original.getLlantas().equals(devolucion.getLlantas())) {
+        if (!original.getLlantas().equalsIgnoreCase(devolucion.getLlantas())) {
             return false;
         }
         if (original.getCombustible() != devolucion.getCombustible()) {
@@ -210,13 +210,13 @@ public class DevolucionCTL {
             message.setFrom(new InternetAddress(username));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress("skevinjaredfigueroa@gmail.com"));
             message.setSubject("Comparación de Traslados");
-            message.setText(contenido(original, devolucion));
+            message.setText("probando probando 123 123");
 
             // Enviar mensaje de correo
             Transport.send(message);
             System.out.println("Correo enviado exitosamente.");
     } catch (MessagingException e) {
-            throw new BisnessException("Error al enviar el correo: ");
+            throw new BisnessException("Error al enviar el correo");
     }
 }
     

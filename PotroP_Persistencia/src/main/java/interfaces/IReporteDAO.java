@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package interfaces;
+package Interfaces;
 
 import excepciones.DAOException;
 
@@ -26,4 +26,5 @@ public interface IReporteDAO {
      * @throws DAOException Si ocurre un error durante la operación de agregado.
      */
     public void agregar() throws DAOException;
+
 }

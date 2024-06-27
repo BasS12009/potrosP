@@ -4,7 +4,8 @@
  */
 package conexion;
 
-import interfaces.IConexion;
+import Interfaces.IConexion;
+
 
 
 /**

@@ -77,9 +77,13 @@ public class DevolucionFCD implements IDevolucionFCD {
             if (devolucion.validaCampos(original)) {
                 // Comparar los campos del traslado original y el traslado devuelto
                 if (devolucion.compararCampos(original, devuelto)) {
-                    JOptionPane.showMessageDialog(null, "Los campos son iguales");
+                    devolucion.agregar(original, devuelto);
+                    JOptionPane.showMessageDialog(null, "El traslado ha sido agregado con exito");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Los campos no son iguales");
+                    devolucion.agregar(original, devuelto);
+                    devolucion.enviarCorreo(original, devuelto);
+                    JOptionPane.showMessageDialog(null, "El traslado ha sido agregado con exito"
+                            + "Correo de reporte por incosistencia en devolucion ennviado");
                 }
             }
         } catch (BisnessException ex) {

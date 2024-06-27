@@ -4,13 +4,13 @@
  */
 package bo;
 
+import Interfaces.ITrasladoDAO;
 import dtos.TrasladoDTO;
 import converters.TrasladoCVR;
 import daos.TrasladoDAO;
 import excepciones.DAOException;
 import exceptions.BisnessException;
 import interfaces.ITrasladoBO;
-import interfaces.ITrasladoDAO;
 
 /**
  * Clase que implementa la interfaz ITrasladoBO y gestiona la lógica de negocio relacionada con traslados.

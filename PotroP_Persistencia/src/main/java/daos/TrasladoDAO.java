@@ -4,11 +4,11 @@
  */
 package daos;
 
+import Interfaces.IConexion;
+import Interfaces.ITrasladoDAO;
 import conexion.Conexion;
 import entidades.Traslado;
 import excepciones.DAOException;
-import interfaces.IConexion;
-import interfaces.ITrasladoDAO;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -39,7 +39,7 @@ public class TrasladoDAO implements ITrasladoDAO {
      */
     @Override
     public void agregar(Traslado traslado) throws DAOException {
-        // Implementación pendiente
+        System.out.println("El traslado se agrego con exito");
     }
 
     /**
@@ -62,7 +62,7 @@ public class TrasladoDAO implements ITrasladoDAO {
      */
     @Override
     public Traslado buscar(int numTraslado) throws DAOException {
-        if (numTraslado == 213) {
+        
             // Variable que representa el día de hoy a las 11:30
             LocalDateTime inicio = LocalDateTime.now().with(LocalTime.of(11, 30));
             
@@ -71,8 +71,8 @@ public class TrasladoDAO implements ITrasladoDAO {
             
             return new Traslado(1, 213, "Campus centro", 2, inicio, fin, "traslado",
             "EXCELENTE", "AIRE BAJO", 25, "WYZ-212-AS", "example@gmail.com", "chofer@gmail.com", false);
-        }
-        return null;
+        
+        
     }
 
     /**
@@ -84,6 +84,6 @@ public class TrasladoDAO implements ITrasladoDAO {
      */
     @Override
     public boolean existe(int numTraslado) throws DAOException {
-        return numTraslado == 213;
+        return true;
     }
 }

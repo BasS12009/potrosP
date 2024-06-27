@@ -180,5 +180,17 @@ public class TrasladoDTO {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "TrasladoDTO{" + "numTraslado=" + numTraslado + ", destino=" 
+                + destino + ", personas=" + personas + ", fechaHoraSalida=" 
+                + fechaHoraSalida + ", fechaHoraRegreso=" + fechaHoraRegreso 
+                + ", motivo=" + motivo + ", carroceria=" + carroceria 
+                + ", llantas=" + llantas + ", combustible=" + combustible 
+                + ", placa=" + placa + ", correoEmpleado=" + correoEmpleado 
+                + ", correoChofer=" + correoChofer + ", estado=" + estado + '}';
+    }
+
+    
     
 }
