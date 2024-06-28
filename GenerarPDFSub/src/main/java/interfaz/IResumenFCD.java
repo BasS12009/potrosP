@@ -11,7 +11,7 @@ package interfaz;
 import dtos.PrestamoMaestrosDTO;
 import excepcion.FachadaException;
 
-public interface IPrestamoMaestrosFCD {
+public interface IResumenFCD {
     
     void generarPDF(PrestamoMaestrosDTO prestamo, String filePath) throws FachadaException;
     

@@ -6,6 +6,7 @@ import dtos.PrestamoMaestrosDTO;
 import dtos.VehiculoDTO;
 import excepcion.FachadaException;
 import fachada.PrestamoMaestrosFCD;
+import fachada.ResumenFCD;
 import fachada.VehiculoFCD;
 import interfaz.IPrestamoMaestrosFCD;
 import interfaz.IVehiculoFCD;
@@ -25,6 +26,8 @@ import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
+import prueba.TabladeMaestros;
+import interfaz.IResumenFCD;
 
 /**
  *
@@ -589,7 +592,6 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
 
         // Mostrar la lista en la consola
         for (PrestamoMaestrosDTO prestamo : listaPrestamos) {
-            System.out.println("ID: " + prestamo.getId());
             System.out.println("Fecha: " + prestamo.getFechaPrestamo());
             System.out.println("Departamento: " + prestamo.getDepartamento());
             // Agrega aquí las demás características que deseas mostrar
@@ -636,7 +638,7 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
             fachada.agregar(nuevoPrestamo);
             
             // Generar PDF
-            PrestamoMaestrosFCD controller = new PrestamoMaestrosFCD();
+            ResumenFCD controller = new ResumenFCD();
             String pdfFileName = "TicketPrestamoMaestros.pdf";
             controller.generarPDF(nuevoPrestamo, pdfFileName);
             

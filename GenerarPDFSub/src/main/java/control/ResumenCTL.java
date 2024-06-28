@@ -18,7 +18,7 @@ import exceptions.BisnessException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class PrestamoMaestrosCTL {
+public class ResumenCTL {
   
     
     public void generarPDF(PrestamoMaestrosDTO prestamo, String filePath) throws BisnessException {

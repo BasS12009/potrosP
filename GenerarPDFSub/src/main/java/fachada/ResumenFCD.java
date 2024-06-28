@@ -9,19 +9,21 @@ package fachada;
  *
  * @author caarl
  */
-import control.PrestamoMaestrosCTL;
+import control.ResumenCTL;
 import dtos.PrestamoMaestrosDTO;
 import excepcion.FachadaException;
 import exceptions.BisnessException;
+import interfaz.IResumenFCD;
 
-public class PrestamoMaestrosFCD {
+public class ResumenFCD implements IResumenFCD{
     
-    private final PrestamoMaestrosCTL control;
+    private final ResumenCTL control;
 
-    public PrestamoMaestrosFCD() {
-        this.control = new PrestamoMaestrosCTL(); 
+    public ResumenFCD() {
+        this.control = new ResumenCTL(); 
     }
 
+    @Override
     public void generarPDF(PrestamoMaestrosDTO prestamo, String filePath) throws FachadaException {
         try{
         control.generarPDF(prestamo, filePath);
