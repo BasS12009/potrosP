@@ -4,8 +4,8 @@
  */
 package control;
 
-import DTO.PrestamoDTO;
-import DTO.PrestamoMaestrosDTO;
+import dtos.PrestamoDTO;
+import dtos.PrestamoMaestrosDTO;
 import bo.PrestamoBO;
 import bo.PrestamoMaestrosBO;
 import bo.VehiculoBO;
@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class PrestamoMaestrosCTL {
+    
     private final IPrestamoBO prestamoBO;
     private final IPrestamoMaestrosBO prestamoMaestrosBO;
     private final IVehiculoBO vehiculoBO;
@@ -30,9 +31,6 @@ public class PrestamoMaestrosCTL {
     }
 
     
-    
-
-
     public void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws ControlException, BisnessException {
         try {
             prestamoMaestrosBO.agregar(prestamoMaestrosDTO);
@@ -124,14 +122,10 @@ public class PrestamoMaestrosCTL {
             }
 
             if (profes && original) {
-
                 return true;
-
             } else {
-                
-                throw new ControlException("M4M4ST3");
-                
-                
+                throw new ControlException
+                ("El automovil no esta disponible en las fechas seleccionadas"); 
             }
             
         } catch (BisnessException ex) {
@@ -142,5 +136,4 @@ public class PrestamoMaestrosCTL {
 
     
     
-   
 }

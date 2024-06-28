@@ -1,5 +1,0 @@
-excepcion\ControlException.class
-control\PrestamoMaestrosCTL.class
-excepcion\FachadaException.class
-fachada\PrestamoMaestrosFCD.class
-interfaz\IPrestamoMaestrosFCD.class
