@@ -20,7 +20,7 @@ public class PrestamoMaestrosFCD implements IPrestamoMaestrosFCD {
     private final PrestamoMaestrosCTL control;
      
 
-    public PrestamoMaestrosFCD() throws BisnessException {
+    public PrestamoMaestrosFCD(){
         this.control = new PrestamoMaestrosCTL();
         
     }

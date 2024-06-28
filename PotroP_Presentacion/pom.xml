@@ -63,6 +63,16 @@
             <artifactId>devolucion</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PrestamoMaestrosSUB</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>GenerarPDFSub</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <name>PotroP_Presentacion</name>
 </project>
