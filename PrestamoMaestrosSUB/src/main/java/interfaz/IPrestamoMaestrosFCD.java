@@ -5,11 +5,12 @@
 package interfaz;
 
 
-import DTO.PrestamoMaestrosDTO;
+import dtos.PrestamoMaestrosDTO;
 import excepcion.FachadaException;
 import java.util.List;
 
 public interface IPrestamoMaestrosFCD {
+    
     void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws FachadaException;
     void eliminar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws FachadaException;
     void actualizar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws FachadaException;

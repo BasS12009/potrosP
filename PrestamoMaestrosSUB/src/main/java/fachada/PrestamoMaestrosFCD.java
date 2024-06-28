@@ -5,7 +5,7 @@
 package fachada;
 
 
-import DTO.PrestamoMaestrosDTO;
+import dtos.PrestamoMaestrosDTO;
 import control.PrestamoMaestrosCTL;
 import excepcion.ControlException;
 import excepcion.FachadaException;
@@ -25,11 +25,7 @@ public class PrestamoMaestrosFCD implements IPrestamoMaestrosFCD {
         
     }
 
-    /**
-     *
-     * @param prestamoMaestrosDTO
-     * @throws FachadaException
-     */
+    
     @Override
     public void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws FachadaException {
         try {
@@ -98,13 +94,7 @@ public class PrestamoMaestrosFCD implements IPrestamoMaestrosFCD {
         } catch (BisnessException | ControlException ex) {
             throw new FachadaException("Error al obtener la lista de préstamos de maestros: " + ex.getMessage());
         }
-    
+    }
 
     
-}
-
-   
-
-    
-  
 }
