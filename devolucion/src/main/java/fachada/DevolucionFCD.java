@@ -78,10 +78,12 @@ public class DevolucionFCD implements IDevolucionFCD {
                 // Comparar los campos del traslado original y el traslado devuelto
                 if (devolucion.compararCampos(original, devuelto)) {
                     devolucion.agregar(original, devuelto);
+                    devolucion.actualizar(original);
                     JOptionPane.showMessageDialog(null, "El traslado ha sido agregado con exito");
                 } else {
                     devolucion.agregar(original, devuelto);
                     devolucion.enviarCorreo(original, devuelto);
+                    devolucion.actualizar(original);
                     JOptionPane.showMessageDialog(null, "El traslado ha sido agregado con exito"
                             + "Correo de reporte por incosistencia en devolucion ennviado");
                 }

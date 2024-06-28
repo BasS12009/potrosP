@@ -4,7 +4,7 @@
  */
 package entidades;
 /**
- * La clase ReporteDTO representa un reporte que contiene información sobre dos objetos TrasladoDTO:
+ * La clase Reporte representa un reporte que contiene información sobre dos objetos Traslado:
  * uno original y uno comparado.
  * 
  * @autor skevi
@@ -26,8 +26,8 @@ public class Reporte {
     /**
      * Constructor que inicializa los atributos original y comparado con los valores proporcionados.
      * 
-     * @param original el objeto TrasladoDTO original.
-     * @param comparado el objeto TrasladoDTO comparado.
+     * @param original el objeto Traslado original.
+     * @param comparado el objeto Traslado comparado.
      */
     public Reporte(Traslado original, Traslado comparado) {
         this.original = original;
@@ -35,25 +35,25 @@ public class Reporte {
     }
 
     /**
-     * Obtiene el objeto TrasladoDTO original.
+     * Obtiene el objeto Traslado original.
      * 
-     * @return el objeto TrasladoDTO original.
+     * @return el objeto Traslado original.
      */
     public Traslado getOriginal() {
         return original;
     }
 
     /**
-     * Establece el objeto TrasladoDTO original.
+     * Establece el objeto Traslado original.
      * 
-     * @param original el objeto TrasladoDTO original a establecer.
+     * @param original el objeto Traslado original a establecer.
      */
     public void setOriginal(Traslado original) {
         this.original = original;
     }
 
     /**
-     * Obtiene el objeto TrasladoDTO comparado.
+     * Obtiene el objeto Traslado comparado.
      * 
      * @return el objeto TrasladoDTO comparado.
      */
@@ -62,9 +62,9 @@ public class Reporte {
     }
 
     /**
-     * Establece el objeto TrasladoDTO comparado.
+     * Establece el objeto Traslado comparado.
      * 
-     * @param comparado el objeto TrasladoDTO comparado a establecer.
+     * @param comparado el objeto Traslado comparado a establecer.
      */
     public void setComparado(Traslado comparado) {
         this.comparado = comparado;

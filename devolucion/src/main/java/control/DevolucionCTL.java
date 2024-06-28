@@ -17,7 +17,6 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -28,6 +27,10 @@ import javax.mail.internet.MimeMessage;
  */
 public class DevolucionCTL {
 
+    //variables de entorno para el envio de correo
+    private static final String CORREO = "skevinjaredfigueroa@gmail.com";
+    private static final String CONTRASEÑA = "fzml okes xwor nhjg";
+    
     // Interfaces de negocio para traslados y reportes
     ITrasladoBO traslado;
     IReporteBO reporte;
@@ -186,39 +189,37 @@ public class DevolucionCTL {
      * @throws BisnessException si ocurre un error al enviar el correo.
      */
     public void enviarCorreo(TrasladoDTO original, TrasladoDTO devolucion) throws BisnessException {
-        // Configurar propiedades del correo
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
-        String username = System.getenv("kevin.sanchez240798@potros.itson.edu.mx"); 
-        String password = System.getenv("19379San"); 
+        // Estas credenciales están hardcodeadas para fines de demostración.
+        // En producción, usa variables de entorno u otros métodos seguros para manejarlas.
+        String username = CORREO; //aqui pones tu correo
+        String password = CONTRASEÑA; //aqui pones tu contraseña
 
-        // Crear sesión de correo
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-           @Override
-           protected PasswordAuthentication getPasswordAuthentication() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
-           }
-           });
+            }
+        });
 
         try {
-            // Crear mensaje de correo
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress("skevinjaredfigueroa@gmail.com"));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress("")); //aqui pones el correo de destino
             message.setSubject("Comparación de Traslados");
-            message.setText("probando probando 123 123");
+            message.setText(contenido(original, devolucion));
 
-            // Enviar mensaje de correo
             Transport.send(message);
             System.out.println("Correo enviado exitosamente.");
-    } catch (MessagingException e) {
-            throw new BisnessException("Error al enviar el correo");
+        } catch (MessagingException e) {
+            throw new BisnessException("Error al enviar el correo", e);
+        }
     }
-}
     
 
     /**
