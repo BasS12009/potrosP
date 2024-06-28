@@ -5,10 +5,7 @@
 package dtos;
 
 import java.time.LocalDate;
-<<<<<<< Updated upstream
 import java.util.List;
-=======
->>>>>>> Stashed changes
 
 /**
  *
@@ -16,7 +13,6 @@ import java.util.List;
  */
 public class PrestamoMaestrosDTO {
     
-<<<<<<< Updated upstream
     private LocalDate fechaPrestamo;
     private String departamento;
     private int cantidadPersonas;
@@ -113,12 +109,5 @@ public class PrestamoMaestrosDTO {
         return acompaniantes;
     }
 
-    public void setAcompaniantes(List<String> acompaniantes) {
-        this.acompaniantes = acompaniantes;
-    }
-=======
-    
-    
->>>>>>> Stashed changes
     
 }
