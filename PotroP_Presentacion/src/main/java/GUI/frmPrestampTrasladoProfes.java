@@ -6,7 +6,8 @@ import DTO.VehiculoDTO;
 import excepcion.FachadaException;
 import excepcion.FachadaExceptionPDF;
 import fachada.PrestamoMaestrosFCD;
-import fachada.PrestamoMaestrosFCDPDF;
+import fachada.ResumenFCD;
+
 import fachada.VehiculoFCD;
 import interfaz.IPrestamoMaestrosFCD;
 import interfaz.IVehiculoFCD;
@@ -197,7 +198,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cmbVehiculos = new javax.swing.JComboBox<>();
-        btnListaPrestamos = new javax.swing.JButton();
         btnSolicitar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -298,7 +298,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jLabel8.setText("Departamento");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
-        txtAcompaniante1.setText("ID-1");
         txtAcompaniante1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante1ActionPerformed(evt);
@@ -306,7 +305,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 110, -1));
 
-        txtAcompaniante2.setText("ID-2");
         txtAcompaniante2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante2ActionPerformed(evt);
@@ -314,7 +312,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 110, -1));
 
-        txtAcompaniante3.setText("ID-3");
         txtAcompaniante3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante3ActionPerformed(evt);
@@ -322,7 +319,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 110, -1));
 
-        txtAcompaniante4.setText("ID-4");
         txtAcompaniante4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante4ActionPerformed(evt);
@@ -365,14 +361,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
             }
         });
         jPanel1.add(cmbVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 130, -1));
-
-        btnListaPrestamos.setText("Lista de prestamos");
-        btnListaPrestamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaPrestamosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnListaPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
         btnSolicitar1.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         btnSolicitar1.setText("Solicitar vehiculo");
@@ -586,27 +574,6 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
 
     }//GEN-LAST:event_cmbVehiculosActionPerformed
 
-    private void btnListaPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPrestamosActionPerformed
-   try {
-        // Supongamos que tienes una instancia de tu BO (Business Object) llamada "prestamoMaestrosBO"
-        List<PrestamoMaestrosDTO> listaPrestamos = fachada.listaPrestamosMaestros();
-
-        // Mostrar la lista en la consola
-        for (PrestamoMaestrosDTO prestamo : listaPrestamos) {
-            System.out.println("ID: " + prestamo.getId());
-            System.out.println("Fecha: " + prestamo.getFechaPrestamo());
-            System.out.println("Departamento: " + prestamo.getDepartamento());
-            // Agrega aquí las demás características que deseas mostrar
-            System.out.println("--------------------");
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al obtener la lista de préstamos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-  
-   
-
-    }//GEN-LAST:event_btnListaPrestamosActionPerformed
-
     private void btnSolicitar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitar1ActionPerformed
                                           
     try {
@@ -640,7 +607,7 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
             fachada.agregar(nuevoPrestamo);
             
             // Generar PDF
-            PrestamoMaestrosFCDPDF controller = new PrestamoMaestrosFCDPDF();
+            ResumenFCD controller = new ResumenFCD();
             String pdfFileName = "TicketPrestamoMaestros.pdf";
             controller.generarPDF(nuevoPrestamo, pdfFileName);
             
@@ -699,7 +666,6 @@ private void abrirPDF(String fileName) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnListaMaestros;
-    private javax.swing.JButton btnListaPrestamos;
     private javax.swing.JButton btnSolicitar1;
     private com.toedter.calendar.JCalendar calFechaPrestamo;
     private javax.swing.JComboBox<String> cbmDepartamentosProfes;
