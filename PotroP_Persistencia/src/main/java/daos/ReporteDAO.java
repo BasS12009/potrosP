@@ -4,35 +4,37 @@
  */
 package daos;
 
-import Interfaces.IConexion;
+
 import Interfaces.IReporteDAO;
+import com.mongodb.client.MongoCollection;
+import conexion.ConexionBD;
+import entidades.Reporte;
+import entidades.Traslado;
 import excepciones.DAOException;
 
 /**
- * Clase que implementa la interfaz IReporteDAO y maneja la persistencia de datos de los reportes.
  * 
- * @author skevi
+ * 
+ * 
+ * @author diana
  */
 public class ReporteDAO implements IReporteDAO {
+ 
+    private final MongoCollection<Reporte> reporteCollection;
 
-    // Atributo para manejar la conexión a la base de datos
-    IConexion conexion;
-
-    /**
-     * Constructor por defecto que inicializa la conexión.
-     */
     public ReporteDAO() {
-//        this.conexion = new Conexion();
+        this.reporteCollection = ConexionBD.getInstance().getDatabase().getCollection("Reporte", Reporte.class);
     }
-    
-    /**
-     * Método para agregar un nuevo reporte a la base de datos.
-     * Actualmente, este método está vacío y necesita ser implementado.
-     * 
-     * @throws DAOException si ocurre un error al agregar el reporte.
-     */
+
+
+
     @Override
-    public void agregar() throws DAOException {
-        System.out.println("se agrego el reporte con exito");
-    }
+  public void agregar(Reporte reporte) throws DAOException {
+        try {
+            reporteCollection.insertOne(reporte);
+        } catch (Exception e) {
+            throw new DAOException("Error al generar traslado" + e);
+        }
+    
+}
 }

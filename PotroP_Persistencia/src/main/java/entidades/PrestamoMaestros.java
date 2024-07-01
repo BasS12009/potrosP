@@ -6,11 +6,12 @@ package entidades;
 
 import java.time.LocalDate;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 
 
 public class PrestamoMaestros {
-    private int id;
+    private ObjectId id;
     private LocalDate fechaPrestamo;
     private String departamento;
     private int cantidadPersonas;
@@ -25,7 +26,8 @@ public class PrestamoMaestros {
     public PrestamoMaestros() {
     }
 
-    public PrestamoMaestros(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+    public PrestamoMaestros(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
         this.cantidadPersonas = cantidadPersonas;
@@ -37,13 +39,17 @@ public class PrestamoMaestros {
         this.acompaniantes = acompaniantes;
     }
 
-    public int getId() {
+  
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
+
+    
 
     public String getCorreoResponsable() {
         return correoResponsable;

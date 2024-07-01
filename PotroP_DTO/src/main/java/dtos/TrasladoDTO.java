@@ -11,7 +11,7 @@ import java.sql.Date;
  * @author diana
  */
 public class TrasladoDTO {
-     private String Folio;
+    private String folio;
     private String motivo;
     private int personas;
     private Date fechaHoraSalida;
@@ -26,8 +26,8 @@ public class TrasladoDTO {
     public TrasladoDTO() {
     }
 
-    public TrasladoDTO(String Folio, String motivo, int personas, Date fechaHoraSalida, Date fechaHoraRegreso, boolean disponibilidad, VehiculoDTO vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible) {
-        this.Folio = Folio;
+    public TrasladoDTO(String folio, String motivo, int personas, Date fechaHoraSalida, Date fechaHoraRegreso, boolean disponibilidad, VehiculoDTO vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible) {
+        this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;
         this.fechaHoraSalida = fechaHoraSalida;
@@ -41,11 +41,11 @@ public class TrasladoDTO {
     }
 
     public String getFolio() {
-        return Folio;
+        return folio;
     }
 
     public void setFolio(String Folio) {
-        this.Folio = Folio;
+        this.folio = Folio;
     }
 
     public String getMotivo() {

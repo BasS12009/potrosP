@@ -6,6 +6,7 @@ package Interfaces;
 
 import entidades.Traslado;
 import excepciones.DAOException;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,4 +15,6 @@ import excepciones.DAOException;
 public interface ITrasladoDAO {
     
     public void agregar(Traslado traslado) throws DAOException;
+    
+    public Traslado buscarPorId(ObjectId id) throws DAOException;
 }

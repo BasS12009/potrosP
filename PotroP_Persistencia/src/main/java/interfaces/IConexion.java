@@ -6,8 +6,8 @@ package Interfaces;
 
 /**
  *
- * @author skevi
+ * @author diana
  */
 public interface IConexion {
-     
+    
 }

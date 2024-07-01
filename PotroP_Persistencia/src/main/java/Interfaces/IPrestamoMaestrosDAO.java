@@ -11,13 +11,15 @@ package Interfaces;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 public interface IPrestamoMaestrosDAO {
     
-    void agregar(PrestamoMaestros prestamoMaestros) throws DAOException;
-    void eliminar(PrestamoMaestros prestamoMaestros) throws DAOException;
-    void actualizar(PrestamoMaestros prestamoMaestros) throws DAOException;
-    PrestamoMaestros buscarPorId(int id) throws DAOException;
-    List<PrestamoMaestros> listaPrestamosMaestros() throws DAOException;
+    public void agregar(PrestamoMaestros prestamoMaestros) throws DAOException;
+    
+    public PrestamoMaestros buscarPorId(ObjectId id) throws DAOException;
+    
+    
+    public List<PrestamoMaestros> listaPrestamosMaestros() throws DAOException;
     
 }

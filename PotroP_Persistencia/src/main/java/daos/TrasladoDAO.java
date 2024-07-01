@@ -6,9 +6,11 @@ package DAOs;
 
 import Interfaces.ITrasladoDAO;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import conexion.ConexionBD;
 import entidades.Traslado;
 import excepciones.DAOException;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -30,7 +32,13 @@ public class TrasladoDAO implements ITrasladoDAO{
         }
     }
     
-    public void buscarPorId(Traslado Traslado) throws DAOException{
-        
-    }
+      @Override
+    public Traslado buscarPorId(ObjectId id) throws DAOException {
+         try {
+            return trasladoCollection.find(Filters.eq("id", id)).first();
+        } catch (Exception e) {
+            throw new DAOException("Error al numero de prestamo: " + e.getMessage());
+        }
+    
+}
 }

@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import entidades.Reporte;
 import excepciones.DAOException;
 
 /**
@@ -23,8 +24,9 @@ public interface IReporteDAO {
     /**
      * Método para agregar un reporte en el sistema de almacenamiento de datos.
      * 
+     * @param reporte
      * @throws DAOException Si ocurre un error durante la operación de agregado.
      */
-    public void agregar() throws DAOException;
+    public void agregar(Reporte reporte) throws DAOException;
 
 }

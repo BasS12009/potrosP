@@ -4,89 +4,56 @@
  */
 package daos;
 
+
 import Interfaces.IPrestamoMaestrosDAO;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import conexion.ConexionBD;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.bson.types.ObjectId;
 
-public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
-    private static final List<PrestamoMaestros> lista = new ArrayList<>();
-    private static int nextId = 1;
-
+public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO{
+    
+    private final MongoCollection<PrestamoMaestros> prestamoMaestrosCollection;
+  
     public PrestamoMaestrosDAO() {
-        try {
-            // Agregar algunos préstamos predeterminados
-            agregar(new PrestamoMaestros(LocalDate.now(), "Matemáticas", 2, "Conferencia", "Plantel A", "Plantel B", "Automóvil", "prof1@ejemplo.com", Arrays.asList("acomp1@ejemplo.com")));
-            agregar(new PrestamoMaestros(LocalDate.now().plusDays(1), "Física", 3, "Visita de campo", "Plantel B", "Plantel C", "Camioneta", "prof2@ejemplo.com", Arrays.asList("acomp2@ejemplo.com", "acomp3@ejemplo.com")));
-        } catch (DAOException ex) {
-            Logger.getLogger(PrestamoMaestrosDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.prestamoMaestrosCollection = ConexionBD.getInstance().getDatabase().getCollection("Prestamos", PrestamoMaestros.class);
     }
-
+    
+    
     @Override
     public void agregar(PrestamoMaestros prestamoMaestros) throws DAOException {
         try {
-            prestamoMaestros.setId(nextId++);
-            lista.add(prestamoMaestros);
+           prestamoMaestrosCollection.insertOne(prestamoMaestros);
         } catch (Exception e) {
-            throw new DAOException("Error interno al agregar el préstamo de maestros: " + e.getMessage());
+            throw new DAOException("Error interno al agregar el préstamo de maestros: " + e);
         }
     }
 
-    @Override
-    public void eliminar(PrestamoMaestros prestamoMaestros) throws DAOException {
-        try {
-            PrestamoMaestros prestamo = buscarPorId(prestamoMaestros.getId());
-            if (prestamo != null) {
-                lista.remove(prestamo);
-            } else {
-                throw new DAOException("El préstamo de maestros no existe");
-            }
-        } catch (DAOException e) {
-            throw new DAOException("Error al eliminar el préstamo de maestros: " + e.getMessage());
-        }
-    }
 
+   
     @Override
-    public void actualizar(PrestamoMaestros prestamoMaestros) throws DAOException {
-        try {
-            PrestamoMaestros prestamoExistente = buscarPorId(prestamoMaestros.getId());
-            if (prestamoExistente != null) {
-                int index = lista.indexOf(prestamoExistente);
-                lista.set(index, prestamoMaestros);
-            } else {
-                throw new DAOException("El préstamo de maestros no existe");
-            }
-        } catch (DAOException e) {
-            throw new DAOException("Error al actualizar el préstamo de maestros: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public PrestamoMaestros buscarPorId(int id) throws DAOException {
-        try {
-            for (PrestamoMaestros prestamo : lista) {
-                if (prestamo.getId() == id) {
-                    return prestamo;
-                }
-            }
-            return null;
+    public PrestamoMaestros buscarPorId(ObjectId id) throws DAOException {
+         try {
+            return prestamoMaestrosCollection.find(Filters.eq("id", id)).first();
         } catch (Exception e) {
             throw new DAOException("Error al obtener el préstamo de maestros: " + e.getMessage());
         }
     }
 
+
     @Override
-    public List<PrestamoMaestros> listaPrestamosMaestros() throws DAOException {
+    public List<PrestamoMaestros> listaPrestamosMaestros() {
         try {
-            return new ArrayList<>(lista);
+            List<PrestamoMaestros> prestamoMaestros = prestamoMaestrosCollection.find().into(new ArrayList<>());
+            System.out.println("Prestamo de maestros obtenidos correctamente: " + prestamoMaestros);
+            return prestamoMaestros;
         } catch (Exception e) {
-            throw new DAOException("Error al obtener la lista de préstamos de maestros: " + e.getMessage());
+            System.err.println("Error al obtener todos los prestamos: " + e.getMessage());
+            return null;
         }
     }
     
