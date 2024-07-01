@@ -4,90 +4,50 @@
  */
 package bo;
 
-import Interfaces.ITrasladoDAO;
-import dtos.TrasladoDTO;
+import DAOs.TrasladoDAO;
 import converters.TrasladoCVR;
-import daos.TrasladoDAO;
+import dtos.TrasladoDTO;
 import excepciones.DAOException;
 import exceptions.BisnessException;
 import interfaces.ITrasladoBO;
 
 /**
- * Clase que implementa la interfaz ITrasladoBO y gestiona la lógica de negocio relacionada con traslados.
- * Utiliza objetos de tipo ITrasladoDAO y TrasladoCVR para acceder a los datos y realizar conversiones.
- * 
- * @author skevi
+ *
+ * @author diana
  */
-public class TrasladoBO implements ITrasladoBO {
-
-    // Atributos para acceder a los datos y realizar conversiones
-    ITrasladoDAO traslado;
-    TrasladoCVR trasladoCVR;
-
-    /**
-     * Constructor por defecto que inicializa los atributos.
-     */
+public class TrasladoBO implements ITrasladoBO{
+       // Data Access Object para manejar operaciones de base de datos relacionadas con 'Traslado'
+    private final TrasladoDAO trasladoDAO;
+    
+    
+    private final TrasladoCVR trasladoCVR;
+    
+    //Constructor
     public TrasladoBO() {
-        this.traslado = new TrasladoDAO(); // Inicializa un objeto TrasladoDAO para acceder a los datos de los traslados
-        this.trasladoCVR = new TrasladoCVR(); // Inicializa un objeto TrasladoCVR para realizar conversiones
+        // Inicialización de las dependencias DAO y CVR
+        this.trasladoDAO = new TrasladoDAO();
+        this.trasladoCVR = new TrasladoCVR();
     }
+
    
     
-    /**
-     * Método para agregar un nuevo traslado.
-     * 
-     * @param traslado El objeto TrasladoDTO que se desea agregar.
-     * @throws BisnessException si ocurre un error en la lógica de negocio.
-     */
+    // Implementación del método agregar que pertenece a la interfaz que TrasladoBO implementa (suponiendo ITrasladoBO)
     @Override
     public void agregar(TrasladoDTO traslado) throws BisnessException {
-        // Implementación pendiente
-    }
-
-    /**
-     * Método para actualizar un traslado existente.
-     * 
-     * @param traslado El objeto TrasladoDTO con los nuevos datos.
-     * @throws BisnessException si ocurre un error en la lógica de negocio.
-     */
-    @Override
-    public void actualizar(TrasladoDTO traslado) throws BisnessException {
-        // Implementación pendiente
-    }
-
-    /**
-     * Método para buscar un traslado por su número de traslado.
-     * Convierte el objeto recuperado de tipo Traslado a un TrasladoDTO antes de retornarlo.
-     * 
-     * @param numTraslado El número del traslado que se desea buscar.
-     * @return El objeto TrasladoDTO si se encuentra, null en caso contrario.
-     * @throws BisnessException si ocurre un error en la lógica de negocio.
-     */
-    @Override
-    public TrasladoDTO buscar(int numTraslado) throws BisnessException {
         try {
-            // Busca el traslado utilizando el objeto TrasladoDAO y lo convierte a TrasladoDTO
-            return trasladoCVR.convertir_DTO(traslado.buscar(numTraslado));
-        } catch (DAOException ex) {
-            throw new BisnessException(ex.getMessage());
+            // Convierte el objeto TrasladoDTO a un objeto de dominio utilizando el conversor (CVR)
+            // y lo pasa al DAO para ser agregado a la base de datos
+            trasladoDAO.agregar(trasladoCVR.convetir_Traslado(traslado));
+            System.out.println("Traslado agregado correctamente.");
+        } catch (DAOException e) {
+            // Manejo de excepciones: Si ocurre un error en la operación DAO, se lanza una excepción BO con el mensaje de error original
+            throw new BisnessException(e.getMessage(), e);
         }
     }
-
-    /**
-     * Método para verificar si existe un traslado por su número de traslado.
-     * 
-     * @param numTraslado El número del traslado que se desea verificar.
-     * @return true si el traslado existe, false en caso contrario.
-     * @throws BisnessException si ocurre un error en la lógica de negocio.
-     */
-    @Override
-    public boolean existe(int numTraslado) throws BisnessException {
-        try {
-            // Verifica la existencia del traslado utilizando el objeto TrasladoDAO
-            return traslado.existe(numTraslado);
-        } catch (DAOException ex) {
-            throw new BisnessException(ex.getMessage());
-        }
+    
+    public void buscarPorId(TrasladoDTO traslado) throws BisnessException{
+        
     }
+    
     
 }

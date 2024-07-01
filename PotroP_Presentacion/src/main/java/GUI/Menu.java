@@ -6,8 +6,6 @@
  */
 package GUI;
 
-import GUI.devolucionTraslado.BusquedaTraslado;
-
 /** 
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -42,9 +40,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnPrestamo = new javax.swing.JButton();
         btnSolicitarTraslado = new javax.swing.JButton();
-        btnDevolucionPrestamo = new javax.swing.JButton();
         btnDevolucionTraslado = new javax.swing.JButton();
-        btnAgregarVehiculo = new javax.swing.JButton();
         btnConsultarChoferes = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         btnDisponibilidad1 = new javax.swing.JButton();
@@ -66,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
                 btnPrestamoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 210, 50));
+        jPanel1.add(btnPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 210, 50));
 
         btnSolicitarTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         btnSolicitarTraslado.setText("Solicitar Traslado");
@@ -75,16 +71,7 @@ public class Menu extends javax.swing.JFrame {
                 btnSolicitarTrasladoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSolicitarTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 210, 50));
-
-        btnDevolucionPrestamo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        btnDevolucionPrestamo.setText("Devolucion Prestamo");
-        btnDevolucionPrestamo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDevolucionPrestamoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnDevolucionPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, 50));
+        jPanel1.add(btnSolicitarTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 210, 50));
 
         btnDevolucionTraslado.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         btnDevolucionTraslado.setText("Devolucion Traslado");
@@ -93,25 +80,16 @@ public class Menu extends javax.swing.JFrame {
                 btnDevolucionTrasladoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDevolucionTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 210, 50));
-
-        btnAgregarVehiculo.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        btnAgregarVehiculo.setText("Agregar Vehiculo");
-        btnAgregarVehiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarVehiculoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAgregarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 210, 50));
+        jPanel1.add(btnDevolucionTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 210, 50));
 
         btnConsultarChoferes.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        btnConsultarChoferes.setText("Consultar Choferes");
+        btnConsultarChoferes.setText("Traslado Maestros");
         btnConsultarChoferes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarChoferesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultarChoferes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 210, 50));
+        jPanel1.add(btnConsultarChoferes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 210, 50));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 670, 40));
 
         btnDisponibilidad1.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
@@ -128,7 +106,7 @@ public class Menu extends javax.swing.JFrame {
 
         btnHistorialPrestamos.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnHistorialPrestamos.setForeground(new java.awt.Color(255, 255, 255));
-        btnHistorialPrestamos.setText("Historial Prestamos");
+        btnHistorialPrestamos.setText("Historial ");
         btnHistorialPrestamos.setBorder(null);
         btnHistorialPrestamos.setContentAreaFilled(false);
         btnHistorialPrestamos.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +114,7 @@ public class Menu extends javax.swing.JFrame {
                 btnHistorialPrestamosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHistorialPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 30));
+        jPanel1.add(btnHistorialPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,14 +138,6 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPrestamoActionPerformed
 
-    private void btnDevolucionPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolucionPrestamoActionPerformed
-        // TODO add your handling code here:
-        DevolucionPrestamo devolucionPrestamo = new DevolucionPrestamo();
-        
-        devolucionPrestamo.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnDevolucionPrestamoActionPerformed
-
     private void btnSolicitarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarTrasladoActionPerformed
         // TODO add your handling code here:
         Traslado traslado = new Traslado();
@@ -175,15 +145,6 @@ public class Menu extends javax.swing.JFrame {
         traslado.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSolicitarTrasladoActionPerformed
-
-    private void btnAgregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVehiculoActionPerformed
-        // TODO add your handling code here:
-        
-        AgregarVehiculo agregarVehiculo = new AgregarVehiculo();
-        
-        agregarVehiculo.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAgregarVehiculoActionPerformed
 
     private void btnConsultarChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarChoferesActionPerformed
         // TODO add your handling code here:
@@ -222,9 +183,7 @@ public class Menu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarVehiculo;
     private javax.swing.JButton btnConsultarChoferes;
-    private javax.swing.JButton btnDevolucionPrestamo;
     private javax.swing.JButton btnDevolucionTraslado;
     private javax.swing.JButton btnDisponibilidad1;
     private javax.swing.JButton btnHistorialPrestamos;

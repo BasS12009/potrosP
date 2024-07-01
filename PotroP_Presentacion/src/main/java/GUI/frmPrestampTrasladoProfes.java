@@ -1,4 +1,4 @@
-package GUI.prestamoMaestros;
+package GUI;
 
 
 import GUI.Menu;
@@ -260,7 +260,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(cmbPlantelOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 130, -1));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -273,7 +273,7 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 10, 480));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 10, 480));
 
         jLabel6.setText("Comprobante de identidad:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
@@ -291,10 +291,10 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
                 txtCorreoResponsableActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreoResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 140, -1));
+        jPanel1.add(txtCorreoResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 140, -1));
 
         jLabel7.setText("Correo Maestro responsable:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         jLabel8.setText("Departamento");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));

@@ -4,8 +4,9 @@
  * Pantalla de presentación que permite la funcionalidad de devolver un 
  * traslado.
  */
-package GUI.devolucionTraslado;
+package GUI;
 
+import GUI.BusquedaTraslado;
 import GUI.Menu;
 import dtos.TrasladoDTO;
 import fachada.DevolucionFCD;
@@ -68,8 +69,8 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         TrasladoDTO traslado = devolucionFCD.buscar(guardar.getNumDevolucion());
         
         lblPersonas.setText(String.valueOf(traslado.getPersonas()));
-        lblSalida.setText(convertir(traslado.getFechaHoraSalida()));
-        lblRegreso.setText(convertir(traslado.getFechaHoraRegreso()));
+        lblSalida.setText(convertir(traslado.getFechaHoraRegreso()));
+        lblRegreso.setText(convertir(traslado.getFechaHoraSalida()));
         txfMotivo.setText(traslado.getMotivo());
         lblPlaca.setText(traslado.getPlaca());
         lblEmpleado.setText(traslado.getCorreoEmpleado());

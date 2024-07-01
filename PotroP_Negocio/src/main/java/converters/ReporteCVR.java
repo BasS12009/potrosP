@@ -33,8 +33,8 @@ public class ReporteCVR {
      * @return Un objeto Reporte convertido a partir del ReporteDTO proporcionado.
      */
     public Reporte convertir_Reporte(ReporteDTO reporteDTO){
-        Traslado original = traslado.convertir_Entidad(reporteDTO.getOriginal());
-        Traslado comparado = traslado.convertir_Entidad(reporteDTO.getComparado());
+        Traslado original = traslado.convetir_Traslado(reporteDTO.getOriginal());
+        Traslado comparado = traslado.convetir_Traslado(reporteDTO.getComparado());
         return new Reporte(original, comparado);
     }
     
@@ -45,8 +45,8 @@ public class ReporteCVR {
      * @return Un objeto ReporteDTO convertido a partir del Reporte proporcionado.
      */
     public ReporteDTO convertir_DTO(Reporte reporte){
-        TrasladoDTO original = traslado.convertir_DTO(reporte.getOriginal());
-        TrasladoDTO comparado = traslado.convertir_DTO(reporte.getComparado());
+        TrasladoDTO original = traslado.convertir_TrasladoDTO(reporte.getOriginal());
+        TrasladoDTO comparado = traslado.convertir_TrasladoDTO(reporte.getComparado());
         return new ReporteDTO(original, comparado);
     }
     

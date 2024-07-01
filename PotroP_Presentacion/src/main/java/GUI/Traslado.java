@@ -6,6 +6,9 @@
  */
 package GUI;
 
+import java.sql.Date;
+import javax.swing.JOptionPane;
+
 /** 
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -15,6 +18,9 @@ package GUI;
  */
 public class Traslado extends javax.swing.JFrame {
 
+      int cantidadP = 0;
+
+    Date inicio, fin;
     /**
      * Constructor creado por el compilador que permite inicializar los
      * componentes de la pantalla y se agregaron 2 métodos para alinear el frame
@@ -36,13 +42,64 @@ public class Traslado extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        cbxPersonas = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        dateSalida = new com.github.lgooddatepicker.components.DateTimePicker();
+        dateRegreso = new com.github.lgooddatepicker.components.DateTimePicker();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
+        btnDisponibilidad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(65, 164, 205));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 670, 40));
+
+        jLabel1.setFont(new java.awt.Font("Serif", 0, 36)); // NOI18N
+        jLabel1.setText("Solicitar Traslado");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 680, 40));
+
+        cbxPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" }));
+        jPanel1.add(cbxPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 200, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Cantidad de Personas: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
+        jPanel1.add(dateSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        jPanel1.add(dateRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
+
+        jLabel9.setText("Fecha y hora de Salida:");
+        jLabel9.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+
+        jLabel5.setText("Fecha y hora de Regreso:");
+        jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, -1));
+
+        btnRegresar.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 130, -1));
+
+        btnDisponibilidad.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        btnDisponibilidad.setText("Checar Disponibilidad");
+        btnDisponibilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisponibilidadActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,12 +115,55 @@ public class Traslado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            this.cantidadP = Integer.parseInt((String) cbxPersonas.getSelectedItem());
+
+            if (cantidadP % 5 == 0) {
+                this.inicio = Date.valueOf(dateSalida.datePicker.getDate());
+                inicio.setTime(dateSalida.timePicker.getTime().toNanoOfDay()/1000000);
+
+                this.fin = Date.valueOf(dateRegreso.datePicker.getDate());
+
+                fin.setTime(dateRegreso.timePicker.getTime().toNanoOfDay()/1000000);
+
+////                Traslado2 traslado2 = new Traslado2(this);
+//
+//                traslado2.setVisible(true);
+//                this.dispose();
+            } else {
+
+                JOptionPane.showMessageDialog(this, "La cantidad seleccionada debe ser un múltiplo de 5 para poder continuar.", "Error de Disponibilidad", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La cantidad seleccionada no es válida. Por favor, seleccione un número.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDisponibilidadActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDisponibilidad;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JComboBox<String> cbxPersonas;
+    private com.github.lgooddatepicker.components.DateTimePicker dateRegreso;
+    private com.github.lgooddatepicker.components.DateTimePicker dateSalida;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

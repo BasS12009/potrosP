@@ -5,69 +5,48 @@
 package converters;
 
 import dtos.TrasladoDTO;
+import dtos.VehiculoDTO;
 import entidades.Traslado;
-import java.time.LocalDateTime;
+import entidades.Vehiculo;
+import java.sql.Date;
 
 /**
- * Clase que proporciona métodos para convertir entre objetos de tipo TrasladoDTO y Traslado.
- * Utilizada para la conversión de datos entre capas del sistema.
- * 
- * @author skevi
+ *
+ * @author diana
  */
 public class TrasladoCVR {
     
-    /**
-     * Convierte un objeto TrasladoDTO a un objeto Traslado.
-     * 
-     * @param trasladoDTO El objeto TrasladoDTO que se desea convertir.
-     * @return Un objeto Traslado convertido a partir del TrasladoDTO proporcionado.
-     */
-    public Traslado convertir_Entidad(TrasladoDTO trasladoDTO){
-        int numTraslado = trasladoDTO.getNumTraslado();
-        String destino = trasladoDTO.getDestino();
-        int personas = trasladoDTO.getPersonas();
-        LocalDateTime fechaHoraSalida = trasladoDTO.getFechaHoraSalida();
-        LocalDateTime fechaHoraRegreso = trasladoDTO.getFechaHoraRegreso();
+    public Traslado convetir_Traslado(TrasladoDTO trasladoDTO) {
+
+        String folio = trasladoDTO.getFolio();
         String motivo = trasladoDTO.getMotivo();
+        int personas = trasladoDTO.getPersonas();
+        Date fechaHoraSalida = trasladoDTO.getFechaHoraSalida();
+        Date fechaHoraRegreso = trasladoDTO.getFechaHoraRegreso();
+        boolean disponibilidad = trasladoDTO.isDisponibilidad();
         String carroceria = trasladoDTO.getCarroceria();
         String llantas = trasladoDTO.getLlantas();
         int combustible = trasladoDTO.getCombustible();
-        String placa = trasladoDTO.getPlaca();
-        String correoEmpleado = trasladoDTO.getCorreoEmpleado();
-        String correoChofer = trasladoDTO.getCorreoChofer();
-        boolean estado = trasladoDTO.getEstado();
-        
-        // Retornamos un objeto Traslado convertido
-        return new Traslado(numTraslado, destino, personas, fechaHoraSalida,
-                            fechaHoraRegreso, motivo, carroceria, llantas, combustible,
-                            placa, correoEmpleado, correoChofer, estado);
+        String estadoVehiculo = trasladoDTO.getEstadoVehiculo();
+        Vehiculo vehiculo = null;
+        return new Traslado(folio, motivo, personas,fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculo, estadoVehiculo, llantas, carroceria, combustible);
+
     }
-    
-    /**
-     * Convierte un objeto Traslado a un objeto TrasladoDTO.
-     * 
-     * @param traslado El objeto Traslado que se desea convertir.
-     * @return Un objeto TrasladoDTO convertido a partir del Traslado proporcionado.
-     */
-    public TrasladoDTO convertir_DTO(Traslado traslado){
-        int numTraslado = traslado.getNumTraslado();
-        String destino = traslado.getDestino();
-        int personas = traslado.getPersonas();
-        LocalDateTime fechaHoraSalida = traslado.getFechaHoraSalida();
-        LocalDateTime fechaHoraRegreso = traslado.getFechaHoraRegreso();
+
+    public TrasladoDTO convertir_TrasladoDTO(Traslado traslado) {
+
+        String folio = traslado.getFolio();
         String motivo = traslado.getMotivo();
+        int personas = traslado.getPersonas();
+        Date fechaHoraSalida = traslado.getFechaHoraSalida();
+        Date fechaHoraRegreso = traslado.getFechaHoraRegreso();
+        boolean disponibilidad = traslado.isDisponibilidad();
+        VehiculoDTO vehiculoDTO = null;
         String carroceria = traslado.getCarroceria();
         String llantas = traslado.getLlantas();
         int combustible = traslado.getCombustible();
-        String placa = traslado.getPlaca();
-        String correoEmpleado = traslado.getCorreoEmpleado();
-        String correoChofer = traslado.getCorreoChofer();
-        boolean estado = traslado.getEstado();
-        
-        // Retornamos un objeto TrasladoDTO convertido
-        return new TrasladoDTO(numTraslado, destino, personas, fechaHoraSalida,
-                               fechaHoraRegreso, motivo, carroceria, llantas, combustible,
-                               placa, correoEmpleado, correoChofer, estado);
+        String estadoVehiculo = traslado.getEstadoVehiculo();
+        return new TrasladoDTO(folio, motivo, personas, fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculoDTO, estadoVehiculo, llantas, carroceria, combustible);
     }
-    
+
 }

@@ -4,7 +4,7 @@
  * Pantalla de presentación que permite la funcionalidad de gestionar las
  * solicitudes de los préstamos de vehículos.
  */
-package GUI.devolucionTraslado;
+package GUI;
 
 import GUI.*;
 import excepcion.FachadaException;

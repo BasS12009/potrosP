@@ -6,7 +6,6 @@ package daos;
 
 import Interfaces.IConexion;
 import Interfaces.IReporteDAO;
-import conexion.Conexion;
 import excepciones.DAOException;
 
 /**
@@ -23,7 +22,7 @@ public class ReporteDAO implements IReporteDAO {
      * Constructor por defecto que inicializa la conexión.
      */
     public ReporteDAO() {
-        this.conexion = new Conexion();
+//        this.conexion = new Conexion();
     }
     
     /**

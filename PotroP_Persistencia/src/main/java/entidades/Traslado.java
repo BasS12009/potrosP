@@ -4,159 +4,74 @@
  */
 package entidades;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+import org.bson.types.ObjectId;
 
 /**
  *
- * @author skevi
+ * @author diana
  */
 public class Traslado {
     
-    // Atributos del traslado
-    private int id;                           // identificador del traslado
-    private int numTraslado;                  // Número de traslado
-    private String destino;                   // Destino del traslado
-    private int personas;                     // Número de personas en el traslado
-    private LocalDateTime fechaHoraSalida;    // Fecha y hora de salida del traslado
-    private LocalDateTime fechaHoraRegreso;   // Fecha y hora de regreso del traslado
-    private String motivo;                    // Motivo del traslado
-    private String carroceria;                // Descripción de la carrocería del vehículo
-    private String llantas;                   // Descripción de las llantas del vehículo
-    private int combustible;                  // Cantidad de combustible al momento del traslado
-    private String placa;                     // Placa del vehículo utilizado
-    private String correoEmpleado;            // Correo del empleado responsable
-    private String correoChofer;              // Correo del chofer
-    private boolean estado;                   // Estado del traslado (activo/inactivo)
+    private ObjectId id;
+    private String Folio;
+    private String motivo;
+    private int personas;
+    private Date fechaHoraSalida;
+    private Date fechaHoraRegreso;
+    private boolean disponibilidad;
+    private Vehiculo vehiculo;
+    private String estadoVehiculo;
+    private String llantas;
+    private String carroceria;
+    private int combustible;
 
-    /**
-     * Constructor por defecto.
-     */
     public Traslado() {
     }
 
-    /**
-     * Constructor con parámetros para inicializar todos los atributos 
-     * excepto el id.
-     * 
-     * @param numTraslado número de traslado.
-     * @param destino destino del traslado.
-     * @param personas número de personas en el traslado.
-     * @param fechaHoraSalida fecha y hora de salida del traslado.
-     * @param fechaHoraRegreso fecha y hora de regreso del traslado.
-     * @param motivo motivo del traslado.
-     * @param carroceria descripción de la carrocería del vehículo.
-     * @param llantas descripción de las llantas del vehículo.
-     * @param combustible cantidad de combustible.
-     * @param placa placa del vehículo.
-     * @param correoEmpleado correo del empleado responsable.
-     * @param correoChofer correo del chofer.
-     * @param estado estado del traslado.
-     */
-    public Traslado(int numTraslado, String destino, int personas, 
-            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
-            String motivo, String carroceria, String llantas, int combustible, 
-            String placa, String correoEmpleado, String correoChofer, boolean estado) {
-        this.numTraslado = numTraslado;
-        this.destino = destino;
-        this.personas = personas;
-        this.fechaHoraSalida = fechaHoraSalida;
-        this.fechaHoraRegreso = fechaHoraRegreso;
-        this.motivo = motivo;
-        this.carroceria = carroceria;
-        this.llantas = llantas;
-        this.combustible = combustible;
-        this.placa = placa;
-        this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
-        this.estado = estado;
-    }
-
-    /**
-     * Constructor con parámetros para inicializar todos los atributos.
-     * 
-     * @param id identificador 
-     * @param numTraslado número de traslado.
-     * @param destino destino del traslado.
-     * @param personas número de personas en el traslado.
-     * @param fechaHoraSalida fecha y hora de salida del traslado.
-     * @param fechaHoraRegreso fecha y hora de regreso del traslado.
-     * @param motivo motivo del traslado.
-     * @param carroceria descripción de la carrocería del vehículo.
-     * @param llantas descripción de las llantas del vehículo.
-     * @param combustible cantidad de combustible.
-     * @param placa placa del vehículo.
-     * @param correoEmpleado correo del empleado responsable.
-     * @param correoChofer correo del chofer.
-     * @param estado estado del traslado.
-     */
-    public Traslado(int id, int numTraslado, String destino, int personas, 
-            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso,
-            String motivo, String carroceria, String llantas, int combustible, 
-            String placa, String correoEmpleado, String correoChofer, boolean estado) {
+    public Traslado(ObjectId id, String Folio, String motivo, int personas, Date fechaHoraSalida, Date fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible) {
         this.id = id;
-        this.numTraslado = numTraslado;
-        this.destino = destino;
+        this.Folio = Folio;
+        this.motivo = motivo;
         this.personas = personas;
         this.fechaHoraSalida = fechaHoraSalida;
         this.fechaHoraRegreso = fechaHoraRegreso;
-        this.motivo = motivo;
-        this.carroceria = carroceria;
+        this.disponibilidad = disponibilidad;
+        this.vehiculo = vehiculo;
+        this.estadoVehiculo = estadoVehiculo;
         this.llantas = llantas;
+        this.carroceria = carroceria;
         this.combustible = combustible;
-        this.placa = placa;
-        this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
-        this.estado = estado;
     }
-    
 
-    // Métodos getter y setter para cada atributo
-    public int getId() {
+        public Traslado(String Folio, String motivo, int personas, Date fechaHoraSalida, Date fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible) {
+        this.Folio = Folio;
+        this.motivo = motivo;
+        this.personas = personas;
+        this.fechaHoraSalida = fechaHoraSalida;
+        this.fechaHoraRegreso = fechaHoraRegreso;
+        this.disponibilidad = disponibilidad;
+        this.vehiculo = vehiculo;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public int getNumTraslado() {
-        return numTraslado;
+    public String getFolio() {
+        return Folio;
     }
 
-    public void setNumTraslado(int numTraslado) {
-        this.numTraslado = numTraslado;
-    }
-
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
-    public int getPersonas() {
-        return personas;
-    }
-
-    public void setPersonas(int personas) {
-        this.personas = personas;
-    }
-
-    public LocalDateTime getFechaHoraSalida() {
-        return fechaHoraSalida;
-    }
-
-    public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
-        this.fechaHoraSalida = fechaHoraSalida;
-    }
-
-    public LocalDateTime getFechaHoraRegreso() {
-        return fechaHoraRegreso;
-    }
-
-    public void setFechaHoraRegreso(LocalDateTime fechaHoraRegreso) {
-        this.fechaHoraRegreso = fechaHoraRegreso;
+    public void setFolio(String Folio) {
+        this.Folio = Folio;
     }
 
     public String getMotivo() {
@@ -167,12 +82,52 @@ public class Traslado {
         this.motivo = motivo;
     }
 
-    public String getCarroceria() {
-        return carroceria;
+    public int getPersonas() {
+        return personas;
     }
 
-    public void setCarroceria(String carroceria) {
-        this.carroceria = carroceria;
+    public void setPersonas(int personas) {
+        this.personas = personas;
+    }
+
+    public Date getFechaHoraSalida() {
+        return fechaHoraSalida;
+    }
+
+    public void setFechaHoraSalida(Date fechaHoraSalida) {
+        this.fechaHoraSalida = fechaHoraSalida;
+    }
+
+    public Date getFechaHoraRegreso() {
+        return fechaHoraRegreso;
+    }
+
+    public void setFechaHoraRegreso(Date fechaHoraRegreso) {
+        this.fechaHoraRegreso = fechaHoraRegreso;
+    }
+
+    public boolean isDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public String getEstadoVehiculo() {
+        return estadoVehiculo;
+    }
+
+    public void setEstadoVehiculo(String estadoVehiculo) {
+        this.estadoVehiculo = estadoVehiculo;
     }
 
     public String getLlantas() {
@@ -183,44 +138,20 @@ public class Traslado {
         this.llantas = llantas;
     }
 
+    public String getCarroceria() {
+        return carroceria;
+    }
+
+    public void setCarroceria(String carroceria) {
+        this.carroceria = carroceria;
+    }
+
     public int getCombustible() {
         return combustible;
     }
 
     public void setCombustible(int combustible) {
         this.combustible = combustible;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public String getCorreoEmpleado() {
-        return correoEmpleado;
-    }
-
-    public void setCorreoEmpleado(String correoEmpleado) {
-        this.correoEmpleado = correoEmpleado;
-    }
-
-    public String getCorreoChofer() {
-        return correoChofer;
-    }
-
-    public void setCorreoChofer(String correoChofer) {
-        this.correoChofer = correoChofer;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
 
     

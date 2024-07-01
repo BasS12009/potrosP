@@ -9,7 +9,5 @@ package Interfaces;
  * @author skevi
  */
 public interface IConexion {
-    
-    public void conexion();
-    
+     
 }

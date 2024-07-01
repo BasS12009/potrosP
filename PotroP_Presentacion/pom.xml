@@ -73,6 +73,16 @@
             <artifactId>GenerarPDFSub</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.lgooddatepicker</groupId>
+            <artifactId>LGoodDatePicker</artifactId>
+            <version>11.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Traslado_Subsistema</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <name>PotroP_Presentacion</name>
 </project>

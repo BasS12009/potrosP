@@ -1,11 +1,6 @@
-/**
- * VehiculoCVR.java
- * 
- * Clase encargada de convertir entre objetos de tipo VehiculoDTO y Vehiculo.
- * 
- * Esta clase proporciona métodos para convertir entre objetos de tipo 
- * VehiculoDTO y Vehiculo, permitiendo la transferencia de datos entre capas 
- * de la aplicación.
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package converters;
 
@@ -13,42 +8,38 @@ import dtos.VehiculoDTO;
 import entidades.Vehiculo;
 
 /**
- * @author/(s):
- * Diana Sofia Bastidas Osuna - 245804,
- * Carlos Damian Garcia Bernal - 247614,
- * Kevin Jared Sánchez Figueroa - 240798,
- * Daniel Alejandro Castro Félix - 235294.
+ *
+ * @author diana
  */
 public class VehiculoCVR {
-    
-    /**
-     * Convierte un objeto VehiculoDTO en un objeto Vehiculo.
-     * 
-     * @param vehiculoDTO El objeto VehiculoDTO a convertir.
-     * @return El objeto Vehiculo resultante de la conversión.
-     */
-    public Vehiculo convertir_Entidad(VehiculoDTO vehiculoDTO){
-        String marca =  vehiculoDTO.getMarca();
+    // Método para convertir un VehiculoDTO a un objeto de dominio Vehiculo
+    public Vehiculo convertir_Entidad(VehiculoDTO vehiculoDTO) {
+        // Extrae los atributos del objeto VehiculoDTO
+        int numVehiculo = vehiculoDTO.getNumVehiculo();
+        String marca = vehiculoDTO.getMarca();
         String modelo = vehiculoDTO.getModelo();
         int año = vehiculoDTO.getAño();
-        String tipo = vehiculoDTO.getPlaca();
+        String tipo = vehiculoDTO.getTipo();
         String placa = vehiculoDTO.getPlaca();
-        return new Vehiculo(marca, modelo, año, tipo, placa);
+        String capacidad = vehiculoDTO.getCapacidad();
+
+         // Crea y retorna un nuevo objeto Vehiculo utilizando los atributos extraídos
+        return new Vehiculo( numVehiculo, marca, modelo, año, tipo, placa, capacidad);
     }
-    
-    /**
-     * Convierte un objeto Vehiculo en un objeto VehiculoDTO.
-     * 
-     * @param vehiculo El objeto Vehiculo a convertir.
-     * @return El objeto VehiculoDTO resultante de la conversión.
-     */
-    public VehiculoDTO convertir_DTO(Vehiculo vehiculo){
-        int id = vehiculo.getId();
+
+    // Método para convertir un objeto de dominio Vehiculo a un VehiculoDTO
+    public VehiculoDTO convertir_DTO(Vehiculo vehiculo) {
+      
+         // Extrae los atributos del objeto Vehiculo
+        int numVehiculo = vehiculo.getNumVehiculo();
         String marca = vehiculo.getMarca();
         String modelo = vehiculo.getModelo();
         int año = vehiculo.getAño();
         String tipo = vehiculo.getTipo();
         String placa = vehiculo.getPlaca();
-        return new VehiculoDTO(id, marca, modelo, año, tipo, placa);
+        String capacidad = vehiculo.getCapacidad();
+
+        // Crea y retorna un nuevo objeto VehiculoDTO utilizando los atributos extraídos
+        return new VehiculoDTO( numVehiculo, marca, modelo, año, tipo, placa, capacidad); // No se incluye el id en el constructor del DTO
     }
 }
