@@ -23,14 +23,12 @@ import java.time.LocalDate;
  */
 public class Prestamo {
     
-    
-    
-    private String id;
-    private String motivo;
-    private LocalDate inicio;
-    private LocalDate fin;
-    private String placaVehiculo;
-    private String correoEmpleado;
+    private String id;  // Identificador único del préstamo
+    private String motivo;  // Motivo del préstamo
+    private LocalDate inicio;  // Fecha de inicio del préstamo
+    private LocalDate fin;  // Fecha de fin del préstamo
+    private String placaVehiculo;  // Placa del vehículo utilizado en el préstamo
+    private String correoEmpleado;  // Correo electrónico del empleado responsable del préstamo
     
     
     /**
@@ -182,4 +180,10 @@ public class Prestamo {
         this.correoEmpleado = correoEmpleado;
     }
 
+    @Override
+    public String toString() {
+        return "Prestamo{" + "id=" + id + ", motivo=" + motivo + ", inicio=" + inicio 
+                + ", fin=" + fin + ", placaVehiculo=" + placaVehiculo + ", correoEmpleado=" + correoEmpleado + '}';
+    }
+   
 }

@@ -31,7 +31,7 @@ public class Vehiculo {
     private int año;  // Año de fabricación del vehículo
     private String tipo;  // Tipo de vehículo (por ejemplo, sedán, SUV, etc.)
     private String placa;  // Placa del vehículo
-    private String capacidad;  // Capacidad del vehículo(numero de personas que 
+    private String capacidad;  // Capacidad del vehículo(numero de asientos disponibles)
     
     
     
