@@ -6,6 +6,7 @@ package EntidadesMapeo;
 
 import entidades.Vehiculo;
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
  */
 public class TrasladoMapeo {
 
-    private String id;
+     private ObjectId id;
     private String Folio;
     private String motivo;
     private int personas;
@@ -29,7 +30,10 @@ public class TrasladoMapeo {
     private String correoChofer;
     private boolean estado;
 
-    public TrasladoMapeo(String id, String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
+    public TrasladoMapeo() {
+    }
+
+    public TrasladoMapeo(ObjectId id, String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
         this.id = id;
         this.Folio = Folio;
         this.motivo = motivo;
@@ -42,16 +46,32 @@ public class TrasladoMapeo {
         this.llantas = llantas;
         this.carroceria = carroceria;
         this.combustible = combustible;
-        this.correoEmpleado = correoEmpleado;
         this.correoChofer = correoChofer;
+        this.correoEmpleado = correoEmpleado;
         this.estado = estado;
     }
 
-    public String getId() {
+   
+
+        public TrasladoMapeo(String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
+        this.Folio = Folio;
+        this.motivo = motivo;
+        this.personas = personas;
+        this.fechaHoraSalida = fechaHoraSalida;
+        this.fechaHoraRegreso = fechaHoraRegreso;
+        this.disponibilidad = disponibilidad;
+        this.vehiculo = vehiculo;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -166,8 +186,6 @@ public class TrasladoMapeo {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-    
-}
 
     
+}

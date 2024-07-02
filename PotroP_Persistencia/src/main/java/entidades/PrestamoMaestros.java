@@ -6,12 +6,11 @@ package entidades;
 
 import java.time.LocalDate;
 import java.util.List;
-import org.bson.types.ObjectId;
-
 
 
 public class PrestamoMaestros {
-    private ObjectId id;
+    
+     private String id;
     private LocalDate fechaPrestamo;
     private String departamento;
     private int cantidadPersonas;
@@ -22,11 +21,10 @@ public class PrestamoMaestros {
     private String correoResponsable;
     private List<String> acompaniantes;
 
-    // Constructor, getters y setters
     public PrestamoMaestros() {
     }
 
-    public PrestamoMaestros(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+    public PrestamoMaestros(String id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
@@ -39,24 +37,32 @@ public class PrestamoMaestros {
         this.acompaniantes = acompaniantes;
     }
 
-  
+    public PrestamoMaestros(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.departamento = departamento;
+        this.cantidadPersonas = cantidadPersonas;
+        this.motivo = motivo;
+        this.plantelOrigen = plantelOrigen;
+        this.plantelDestino = plantelDestino;
+        this.vehiculo = vehiculo;
+        this.correoResponsable = correoResponsable;
+        this.acompaniantes = acompaniantes;
+    }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    
-
-    public String getCorreoResponsable() {
-        return correoResponsable;
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
     }
 
-    public void setCorreoResponsable(String correoResponsable) {
-        this.correoResponsable = correoResponsable;
+    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 
     public String getDepartamento() {
@@ -67,20 +73,20 @@ public class PrestamoMaestros {
         this.departamento = departamento;
     }
 
+    public int getCantidadPersonas() {
+        return cantidadPersonas;
+    }
+
+    public void setCantidadPersonas(int cantidadPersonas) {
+        this.cantidadPersonas = cantidadPersonas;
+    }
+
     public String getMotivo() {
         return motivo;
     }
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
-    }
-
-    public LocalDate getFechaPrestamo() {
-        return fechaPrestamo;
-    }
-
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
     }
 
     public String getPlantelOrigen() {
@@ -107,12 +113,12 @@ public class PrestamoMaestros {
         this.vehiculo = vehiculo;
     }
 
-    public int getCantidadPersonas() {
-        return cantidadPersonas;
+    public String getCorreoResponsable() {
+        return correoResponsable;
     }
 
-    public void setCantidadPersonas(int cantidadPersonas) {
-        this.cantidadPersonas = cantidadPersonas;
+    public void setCorreoResponsable(String correoResponsable) {
+        this.correoResponsable = correoResponsable;
     }
 
     public List<String> getAcompaniantes() {
@@ -122,6 +128,7 @@ public class PrestamoMaestros {
     public void setAcompaniantes(List<String> acompaniantes) {
         this.acompaniantes = acompaniantes;
     }
-
-      
+    
+    
+    
 }

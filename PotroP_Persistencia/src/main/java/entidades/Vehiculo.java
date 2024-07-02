@@ -20,7 +20,7 @@ import org.bson.types.ObjectId;
  */
 public class Vehiculo {
    
-    private ObjectId id;
+    private String id;
     private int numVehiculo;
     private String marca;
     private String modelo;
@@ -29,13 +29,7 @@ public class Vehiculo {
     private String placa;
     private String capacidad;
 
-    /**
-     * Constructor por omisión de la clase Prestamo.
-     */
-    public Vehiculo() {
-    }
-
-    public Vehiculo(ObjectId id, int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {    
+    public Vehiculo(String id, int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         this.id = id;
         this.numVehiculo = numVehiculo;
         this.marca = marca;
@@ -46,23 +40,20 @@ public class Vehiculo {
         this.capacidad = capacidad;
     }
 
-    
-    public Vehiculo(int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {   
-        this.numVehiculo = numVehiculo;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.año = año;
-        this.tipo = tipo;
-        this.placa = placa;
-        this.capacidad = capacidad;
-    }
-
-    public ObjectId getId() {         
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {    
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public int getNumVehiculo() {
+        return numVehiculo;
+    }
+
+    public void setNumVehiculo(int numVehiculo) {
+        this.numVehiculo = numVehiculo;
     }
 
     public String getMarca() {
@@ -97,26 +88,12 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
-
     public String getPlaca() {
         return placa;
     }
 
     public void setPlaca(String placa) {
         this.placa = placa;
-    }
-
-    @Override
-    public String toString() {
-        return marca + ", " + modelo + ", " + tipo;
-    }
-
-    public int getNumVehiculo() {
-        return numVehiculo;
-    }
-
-    public void setNumVehiculo(int numVehiculo) {
-        this.numVehiculo = numVehiculo;
     }
 
     public String getCapacidad() {

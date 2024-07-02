@@ -11,7 +11,6 @@ package entidades;
 
 
 import java.time.LocalDate;
-import org.bson.types.ObjectId;
 
 /** 
  * 
@@ -23,12 +22,16 @@ import org.bson.types.ObjectId;
  * 
  */
 public class Prestamo {
-    private ObjectId id;
+    
+    
+    
+    private String id;
     private String motivo;
     private LocalDate inicio;
     private LocalDate fin;
     private String placaVehiculo;
     private String correoEmpleado;
+    
     
     /**
      * Constructor por omisión de la clase Prestamo.
@@ -63,7 +66,7 @@ public class Prestamo {
      * @param placaVehiculo la placa del vehículo prestado.
      * @param correoEmpleado el correo del empleado que realiza el préstamo.
      */
-    public Prestamo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
+        public Prestamo(String id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
         this.inicio = inicio;
@@ -77,7 +80,7 @@ public class Prestamo {
      * 
      * @return el identificador único del préstamo.
      */
-    public ObjectId getId() {  
+    public String getId() {  
         return id;
     }
 
@@ -86,7 +89,7 @@ public class Prestamo {
      * 
      * @param id el identificador único del préstamo.
      */
-    public void setId(ObjectId id) {    
+    public void setId(String id) {    
         this.id = id;
     }
 

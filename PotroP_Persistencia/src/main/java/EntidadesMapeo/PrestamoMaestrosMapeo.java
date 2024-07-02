@@ -6,14 +6,14 @@ package EntidadesMapeo;
 
 import java.time.LocalDate;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author diana
  */
 public class PrestamoMaestrosMapeo {
-    
-    private String id;
+     private ObjectId id;
     private LocalDate fechaPrestamo;
     private String departamento;
     private int cantidadPersonas;
@@ -24,7 +24,11 @@ public class PrestamoMaestrosMapeo {
     private String correoResponsable;
     private List<String> acompaniantes;
 
-    public PrestamoMaestrosMapeo(String id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+    // Constructor, getters y setters
+    public PrestamoMaestrosMapeo() {
+    }
+
+    public PrestamoMaestrosMapeo(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
@@ -37,20 +41,36 @@ public class PrestamoMaestrosMapeo {
         this.acompaniantes = acompaniantes;
     }
 
-    public String getId() {
+    public PrestamoMaestrosMapeo(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.departamento = departamento;
+        this.cantidadPersonas = cantidadPersonas;
+        this.motivo = motivo;
+        this.plantelOrigen = plantelOrigen;
+        this.plantelDestino = plantelDestino;
+        this.vehiculo = vehiculo;
+        this.correoResponsable = correoResponsable;
+        this.acompaniantes = acompaniantes;
+    }
+
+  
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public LocalDate getFechaPrestamo() {
-        return fechaPrestamo;
+    
+
+    public String getCorreoResponsable() {
+        return correoResponsable;
     }
 
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
+    public void setCorreoResponsable(String correoResponsable) {
+        this.correoResponsable = correoResponsable;
     }
 
     public String getDepartamento() {
@@ -61,20 +81,20 @@ public class PrestamoMaestrosMapeo {
         this.departamento = departamento;
     }
 
-    public int getCantidadPersonas() {
-        return cantidadPersonas;
-    }
-
-    public void setCantidadPersonas(int cantidadPersonas) {
-        this.cantidadPersonas = cantidadPersonas;
-    }
-
     public String getMotivo() {
         return motivo;
     }
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
+    }
+
+    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 
     public String getPlantelOrigen() {
@@ -101,12 +121,12 @@ public class PrestamoMaestrosMapeo {
         this.vehiculo = vehiculo;
     }
 
-    public String getCorreoResponsable() {
-        return correoResponsable;
+    public int getCantidadPersonas() {
+        return cantidadPersonas;
     }
 
-    public void setCorreoResponsable(String correoResponsable) {
-        this.correoResponsable = correoResponsable;
+    public void setCantidadPersonas(int cantidadPersonas) {
+        this.cantidadPersonas = cantidadPersonas;
     }
 
     public List<String> getAcompaniantes() {
@@ -116,6 +136,5 @@ public class PrestamoMaestrosMapeo {
     public void setAcompaniantes(List<String> acompaniantes) {
         this.acompaniantes = acompaniantes;
     }
-    
-    
+
 }

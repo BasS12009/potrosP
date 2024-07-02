@@ -46,12 +46,14 @@ public class Traslado extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         cbxPersonas = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        dateSalida = new com.github.lgooddatepicker.components.DateTimePicker();
-        dateRegreso = new com.github.lgooddatepicker.components.DateTimePicker();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnDisponibilidad = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,8 +72,6 @@ public class Traslado extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cantidad de Personas: ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
-        jPanel1.add(dateSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-        jPanel1.add(dateRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
 
         jLabel9.setText("Fecha y hora de Salida:");
         jLabel9.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
@@ -100,6 +100,14 @@ public class Traslado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 120, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", " " }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 110, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00" }));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,8 +166,10 @@ public class Traslado extends javax.swing.JFrame {
     private javax.swing.JButton btnDisponibilidad;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxPersonas;
-    private com.github.lgooddatepicker.components.DateTimePicker dateRegreso;
-    private com.github.lgooddatepicker.components.DateTimePicker dateSalida;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

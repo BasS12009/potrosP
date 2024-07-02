@@ -4,12 +4,15 @@
  */
 package EntidadesMapeo;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author diana
  */
 public class VehiculoMapeo {
-    private String id;
+    
+    private ObjectId id;
     private int numVehiculo;
     private String marca;
     private String modelo;
@@ -18,7 +21,7 @@ public class VehiculoMapeo {
     private String placa;
     private String capacidad;
 
-    public VehiculoMapeo(String id, int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
+    public VehiculoMapeo(ObjectId id, int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         this.id = id;
         this.numVehiculo = numVehiculo;
         this.marca = marca;
@@ -29,11 +32,11 @@ public class VehiculoMapeo {
         this.capacidad = capacidad;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -92,6 +95,8 @@ public class VehiculoMapeo {
     public void setCapacidad(String capacidad) {
         this.capacidad = capacidad;
     }
+
+    
     
     
 }

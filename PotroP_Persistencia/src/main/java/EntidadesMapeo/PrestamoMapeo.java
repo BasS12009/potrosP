@@ -5,21 +5,24 @@
 package EntidadesMapeo;
 
 import java.time.LocalDate;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author diana
  */
 public class PrestamoMapeo {
-    
-    private String id;
+     private ObjectId id;
     private String motivo;
     private LocalDate inicio;
     private LocalDate fin;
     private String placaVehiculo;
     private String correoEmpleado;
 
-    public PrestamoMapeo(String id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
+    public PrestamoMapeo() {
+    }
+
+    public PrestamoMapeo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
         this.inicio = inicio;
@@ -28,11 +31,19 @@ public class PrestamoMapeo {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public String getId() {
+    public PrestamoMapeo(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
+        this.motivo = motivo;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.placaVehiculo = placaVehiculo;
+        this.correoEmpleado = correoEmpleado;
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -75,6 +86,8 @@ public class PrestamoMapeo {
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correoEmpleado = correoEmpleado;
     }
+
+   
     
     
 }

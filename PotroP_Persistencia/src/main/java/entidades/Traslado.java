@@ -6,7 +6,6 @@ package entidades;
 
 
 import java.time.LocalDateTime;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,7 +13,8 @@ import org.bson.types.ObjectId;
  */
 public class Traslado {
     
-    private ObjectId id;
+     
+    private String id;
     private String Folio;
     private String motivo;
     private int personas;
@@ -30,10 +30,7 @@ public class Traslado {
     private String correoChofer;
     private boolean estado;
 
-    public Traslado() {
-    }
-
-    public Traslado(ObjectId id, String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
+    public Traslado(String id, String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
         this.id = id;
         this.Folio = Folio;
         this.motivo = motivo;
@@ -46,14 +43,12 @@ public class Traslado {
         this.llantas = llantas;
         this.carroceria = carroceria;
         this.combustible = combustible;
-        this.correoChofer = correoChofer;
         this.correoEmpleado = correoEmpleado;
+        this.correoChofer = correoChofer;
         this.estado = estado;
     }
 
-   
-
-        public Traslado(String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
+    public Traslado(String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
         this.Folio = Folio;
         this.motivo = motivo;
         this.personas = personas;
@@ -65,13 +60,17 @@ public class Traslado {
         this.llantas = llantas;
         this.carroceria = carroceria;
         this.combustible = combustible;
+        this.correoEmpleado = correoEmpleado;
+        this.correoChofer = correoChofer;
+        this.estado = estado;
     }
 
-    public ObjectId getId() {
+    
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -186,7 +185,10 @@ public class Traslado {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
     
     
 }
+
+    
+    
+
