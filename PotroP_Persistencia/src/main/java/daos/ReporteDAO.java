@@ -9,7 +9,6 @@ import Interfaces.IReporteDAO;
 import com.mongodb.client.MongoCollection;
 import conexion.ConexionBD;
 import entidades.Reporte;
-import entidades.Traslado;
 import excepciones.DAOException;
 
 /**
