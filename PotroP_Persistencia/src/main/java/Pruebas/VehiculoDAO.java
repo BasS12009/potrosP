@@ -5,9 +5,6 @@
 package Pruebas;
 
 import entidades.Vehiculo;
-import excepciones.DAOException;
-import java.util.List;
-
 /**
  *
  * @author diana
