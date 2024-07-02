@@ -15,6 +15,7 @@ import Interfaces.IPrestamoMaestrosDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
 
@@ -39,28 +40,12 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
         }
     }
 
-    @Override
-    public void eliminar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
-        try {
-            PrestamoMaestros entidad = prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO);
-            prestamoMaestrosDAO.eliminar(entidad);
-        } catch (DAOException e) {
-            throw new BisnessException("Error al eliminar el préstamo de maestros: " + e.getMessage());
-        }
-    }
+    
+
+    
 
     @Override
-    public void actualizar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
-        try {
-            PrestamoMaestros entidad = prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO);
-            prestamoMaestrosDAO.actualizar(entidad);
-        } catch (DAOException e) {
-            throw new BisnessException("Error al actualizar el préstamo de maestros: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public PrestamoMaestrosDTO buscarPorId(int id) throws BisnessException {
+    public PrestamoMaestrosDTO buscarPorId(ObjectId id) throws BisnessException {
         try {
             PrestamoMaestros entidad = prestamoMaestrosDAO.buscarPorId(id);
             return prestamoMaestrosCVR.convertir_DTO(entidad);

@@ -7,13 +7,14 @@ package interfaces;
 import dtos.PrestamoMaestrosDTO;
 import exceptions.BisnessException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 public interface IPrestamoMaestrosBO {
     
-    void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
-    void eliminar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
-    void actualizar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
-    PrestamoMaestrosDTO buscarPorId(int id) throws BisnessException;
-    List<PrestamoMaestrosDTO> listaPrestamosMaestros() throws BisnessException;
+    public void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException;
+    
+    public PrestamoMaestrosDTO buscarPorId(ObjectId id) throws BisnessException;
+    
+    public List<PrestamoMaestrosDTO> listaPrestamosMaestros() throws BisnessException;
     
 }

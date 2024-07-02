@@ -10,6 +10,7 @@ package converters;
 import dtos.PrestamoDTO;
 import entidades.Prestamo;
 import java.time.LocalDate;
+import org.bson.types.ObjectId;
 
 /**
  * @author/(s):
@@ -54,7 +55,7 @@ public class PrestamoCVR {
      * @return El objeto PrestamoDTO resultante de la conversión.
      */
     public PrestamoDTO convertir_DTO(Prestamo prestamo){
-        int id  = prestamo.getId();
+        String id  = prestamo.getId();
         String motivo = prestamo.getMotivo();
         LocalDate inicio= prestamo.getInicio();
         LocalDate fin = prestamo.getFin();

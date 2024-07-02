@@ -8,6 +8,7 @@ import Interfaces.IReporteDAO;
 import dtos.ReporteDTO;
 import converters.ReporteCVR;
 import daos.ReporteDAO;
+import entidades.Reporte;
 import excepciones.DAOException;
 import exceptions.BisnessException;
 import interfaces.IReporteBO;
@@ -43,7 +44,7 @@ public class ReporteBO implements IReporteBO {
     @Override
     public void agregar(ReporteDTO reporteDTO) throws BisnessException {
         try{
-            reporte.agregar();
+            reporte.agregar((Reporte) reporte);
         }
         catch(DAOException ex){
             throw new BisnessException(ex.getMessage());

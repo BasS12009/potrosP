@@ -9,6 +9,7 @@ import dtos.VehiculoDTO;
 import entidades.Traslado;
 import entidades.Vehiculo;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -38,8 +39,8 @@ public class TrasladoCVR {
         String folio = traslado.getFolio();
         String motivo = traslado.getMotivo();
         int personas = traslado.getPersonas();
-        Date fechaHoraSalida = traslado.getFechaHoraSalida();
-        Date fechaHoraRegreso = traslado.getFechaHoraRegreso();
+        LocalDateTime fechaHoraSalida = traslado.getFechaHoraSalida();
+        LocalDateTime fechaHoraRegreso = traslado.getFechaHoraRegreso();
         boolean disponibilidad = traslado.isDisponibilidad();
         VehiculoDTO vehiculoDTO = null;
         String carroceria = traslado.getCarroceria();

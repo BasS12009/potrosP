@@ -19,6 +19,7 @@ import exceptions.BisnessException;
 import entidades.Prestamo;
 import java.time.LocalDate;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  * @author/(s):
@@ -36,22 +37,7 @@ public interface IPrestamoBO {
      * @throws BisnessException si ocurre un error durante la operación de agregar.
      */
     public void agregar(PrestamoDTO prestamoDTO) throws BisnessException;
-    
-    /**
-     * Elimina un préstamo del sistema.
-     * 
-     * @param prestamoDTO objeto de tipo PrestamoDTO que representa el préstamo a eliminar.
-     * @throws BisnessException si ocurre un error durante la operación de eliminar.
-     */
-    public void eliminar(PrestamoDTO prestamoDTO) throws BisnessException;
-    
-    /**
-     * Actualiza un préstamo en el sistema.
-     * 
-     * @param prestamoDTO objeto de tipo PrestamoDTO que representa el préstamo a actualizar.
-     * @throws BisnessException si ocurre un error durante la operación de actualizar.
-     */
-    public void actualizar(PrestamoDTO prestamoDTO) throws BisnessException;
+ 
     
     /**
      * Busca un préstamo por su identificador único.
@@ -60,34 +46,8 @@ public interface IPrestamoBO {
      * @return el préstamo encontrado.
      * @throws BisnessException si ocurre un error durante la operación de búsqueda.
      */
-    public Prestamo buscarPorId(int id) throws BisnessException;
+    public Prestamo buscarPorId(ObjectId id) throws BisnessException;
      
-    /**
-     * Obtiene una lista de todos los préstamos almacenados en el sistema.
-     * 
-     * @return una lista de objetos de tipo PrestamoDTO.
-     * @throws BisnessException si ocurre un error durante la operación de obtener la lista.
-     */
-    public List<PrestamoDTO> listaPrestamos() throws BisnessException;
-    
-    /**
-     * Obtiene una lista paginada de préstamos.
-     * 
-     * @param offset el índice inicial de la paginación.
-     * @param limit el número máximo de elementos por página.
-     * @return una lista de objetos de tipo PrestamoDTO.
-     * @throws BisnessException si ocurre un error durante la operación de obtener la lista paginada.
-     */
-    public List<PrestamoDTO> listaPaginda(int offset, int limit) throws BisnessException;
-    
-    /**
-     * Obtiene una lista de préstamos realizados dentro de un rango de fechas especificado.
-     * 
-     * @param begin la fecha de inicio del rango.
-     * @param end la fecha de fin del rango.
-     * @return una lista de objetos de tipo PrestamoDTO.
-     * @throws BisnessException si ocurre un error durante la operación de obtener la lista por fechas.
-     */
-    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException;
+   
     
 }
