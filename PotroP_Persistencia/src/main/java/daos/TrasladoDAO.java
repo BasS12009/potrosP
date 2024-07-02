@@ -17,28 +17,36 @@ import org.bson.types.ObjectId;
  * @author diana
  */
 public class TrasladoDAO implements ITrasladoDAO{
-      private final MongoCollection<Traslado> trasladoCollection;
+    // Colección de MongoDB para traslados
+    private final MongoCollection<Traslado> trasladoCollection;
 
+    // Constructor para inicializar la colección de traslados
     public TrasladoDAO() {
+        // Aquí obtienes la colección "Traslado" desde la instancia de conexión a la base de datos
         this.trasladoCollection = ConexionBD.getInstance().getDatabase().getCollection("Traslado", Traslado.class);
     }
 
-      @Override
-    public void agregar(Traslado Traslado) throws DAOException {
+    // Método para agregar un traslado a la base de datos
+    @Override
+    public void agregar(Traslado traslado) throws DAOException {
         try {
-            trasladoCollection.insertOne(Traslado);
+            // Insertar un nuevo documento traslado en la colección
+            trasladoCollection.insertOne(traslado);
         } catch (Exception e) {
-            throw new DAOException("Error al generar traslado" + e);
+            // Capturar cualquier excepción y lanzarla como DAOException
+            throw new DAOException("Error al generar traslado: " + e.getMessage(), e);
         }
     }
     
-      @Override
+    // Método para buscar un traslado por su ID
+    @Override
     public Traslado buscarPorId(ObjectId id) throws DAOException {
-         try {
-            return trasladoCollection.find(Filters.eq("id", id)).first();
+        try {
+            // Utilizar Filters.eq para encontrar el traslado por su ID y devolver el primero encontrado
+            return trasladoCollection.find(Filters.eq("_id", id)).first();
         } catch (Exception e) {
-            throw new DAOException("Error al numero de prestamo: " + e.getMessage());
+            // Capturar cualquier excepción y lanzarla como DAOException
+            throw new DAOException("Error al buscar traslado por ID: " + e.getMessage(), e);
         }
-    
-}
+    }
 }

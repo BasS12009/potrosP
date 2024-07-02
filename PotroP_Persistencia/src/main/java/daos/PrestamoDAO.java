@@ -24,37 +24,31 @@ import org.bson.types.ObjectId;
 public class PrestamoDAO implements IPrestamoDAO {
 
     
-     private final MongoCollection<Prestamo> prestamoCollection;
+    // Colección de MongoDB para préstamos
+    private final MongoCollection<Prestamo> prestamoCollection;
 
-    
-     public PrestamoDAO(MongoCollection<Prestamo> prestamoCollection) {
+    // Constructor para inicializar la colección de préstamos
+    public PrestamoDAO(MongoCollection<Prestamo> prestamoCollection) {
         this.prestamoCollection = prestamoCollection;
     }
-  
-     
 
-    /**
-     * Agrega un préstamo a la lista.
-     * 
-     * @param prestamo el préstamo a agregar.
-     * @throws DAOException si ocurre un error durante la operación.
-     */
+    // Método para agregar un préstamo a la base de datos
     @Override
     public void agregar(Prestamo prestamo) throws DAOException {
-        try{
-        prestamoCollection.insertOne(prestamo);
-        }
-        catch(Exception e){
-            throw new DAOException("Error al agregar el prestamo");
+        try {
+            prestamoCollection.insertOne(prestamo);
+        } catch (Exception e) {
+            throw new DAOException("Error al agregar el préstamo: " + e.getMessage(), e);
         }
     }
 
+    // Método para buscar un préstamo por su ID
     @Override
-   public Prestamo buscarPorId(ObjectId id) throws DAOException {
-         try {
-            return prestamoCollection.find(Filters.eq("id", id)).first();
+    public Prestamo buscarPorId(ObjectId id) throws DAOException {
+        try {
+            return prestamoCollection.find(Filters.eq("_id", id)).first();
         } catch (Exception e) {
-            throw new DAOException("Error el numero de préstamo: " + e.getMessage());
+            throw new DAOException("Error al obtener el préstamo por ID: " + e.getMessage(), e);
         }
     }
 

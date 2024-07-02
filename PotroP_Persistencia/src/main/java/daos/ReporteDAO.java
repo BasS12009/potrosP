@@ -19,21 +19,24 @@ import excepciones.DAOException;
  */
 public class ReporteDAO implements IReporteDAO {
  
+     // Colección de MongoDB para reportes
     private final MongoCollection<Reporte> reporteCollection;
 
+    // Constructor para inicializar la colección de reportes
     public ReporteDAO() {
+        // Aquí obtienes la colección "Reporte" desde la instancia de conexión a la base de datos
         this.reporteCollection = ConexionBD.getInstance().getDatabase().getCollection("Reporte", Reporte.class);
     }
 
-
-
+    // Método para agregar un reporte a la base de datos
     @Override
-  public void agregar(Reporte reporte) throws DAOException {
+    public void agregar(Reporte reporte) throws DAOException {
         try {
+            // Insertar un nuevo documento reporte en la colección
             reporteCollection.insertOne(reporte);
         } catch (Exception e) {
-            throw new DAOException("Error al generar traslado" + e);
+            // Capturar cualquier excepción y lanzarla como DAOException
+            throw new DAOException("Error al agregar reporte: " + e.getMessage(), e);
         }
-    
-}
+    }
 }

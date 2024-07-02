@@ -7,7 +7,7 @@ package entidades;
  * La clase Reporte representa un reporte que contiene información sobre dos objetos Traslado:
  * uno original y uno comparado.
  * 
- * @autor skevi
+ * 
  */
 public class Reporte {
     
