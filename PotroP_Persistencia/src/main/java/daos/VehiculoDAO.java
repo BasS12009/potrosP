@@ -17,6 +17,8 @@ import java.util.List;
  * @author diana
  */
 public class VehiculoDAO implements IVehiculoDAO{
+    
+    
      private final MongoCollection<Vehiculo> vehiculoCollection;
 
     public VehiculoDAO() {
