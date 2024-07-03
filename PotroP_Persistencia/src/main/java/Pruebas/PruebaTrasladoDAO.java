@@ -15,7 +15,7 @@ import excepciones.DAOException;
 
 import java.time.LocalDateTime;
 
-public class MainPruebaTrasladoDAO {
+public class PruebaTrasladoDAO {
     public static void main(String[] args) {
         TrasladoDAO trasladoDAO = new TrasladoDAO();
 

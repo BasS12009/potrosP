@@ -16,7 +16,7 @@ import excepciones.DAOException;
 
 import java.time.LocalDate;
 
-public class MainPruebaPrestamoDAO {
+public class PruebaPrestamoDAO {
 //    public static void main(String[] args) {
 //        ConexionBD conexion = ConexionBD.getInstance();
 //        

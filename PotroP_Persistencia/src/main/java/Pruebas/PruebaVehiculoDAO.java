@@ -13,7 +13,7 @@ import DAOs.VehiculoDAO;
 import entidades.Vehiculo;
 import excepciones.DAOException;
 
-public class MainPruebaVehiculoDAO {
+public class PruebaVehiculoDAO {
     public static void main(String[] args) {
         VehiculoDAO vehiculoDAO = new VehiculoDAO();
 

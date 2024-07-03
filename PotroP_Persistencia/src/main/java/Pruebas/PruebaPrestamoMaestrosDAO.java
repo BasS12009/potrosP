@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-public class MainPruebaPrestamoMaestrosDAO {
+public class PruebaPrestamoMaestrosDAO {
     public static void main(String[] args) {
         PrestamoMaestrosDAO prestamoMaestrosDAO = new PrestamoMaestrosDAO();
 
