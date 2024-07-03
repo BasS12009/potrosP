@@ -10,7 +10,7 @@ package Pruebas;
  * @author diana
  */
 import conexion.ConexionBD;
-import dao.PrestamoDAO;
+import daos.PrestamoDAO;
 import entidades.Prestamo;
 import excepciones.DAOException;
 

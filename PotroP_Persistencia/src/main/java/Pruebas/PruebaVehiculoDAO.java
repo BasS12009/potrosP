@@ -9,7 +9,7 @@ package Pruebas;
  *
  * @author diana
  */
-import dao.VehiculoDAO;
+import daos.VehiculoDAO;
 import entidades.Vehiculo;
 import excepciones.DAOException;
 

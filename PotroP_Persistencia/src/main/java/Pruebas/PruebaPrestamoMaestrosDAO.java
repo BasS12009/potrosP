@@ -8,7 +8,7 @@ package Pruebas;
  *
  * @author diana
  */
-import dao.PrestamoMaestrosDAO;
+import daos.PrestamoMaestrosDAO;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
 
