@@ -5,7 +5,7 @@
 package Fachada;
 
 import Control.TrasladoCTL;
-import DTOs.TrasladoDTO;
+import dtos.TrasladoDTO;
 import excepciones.fachadaException;
 
 /**

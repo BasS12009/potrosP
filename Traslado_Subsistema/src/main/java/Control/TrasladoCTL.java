@@ -4,10 +4,12 @@
  */
 package Control;
 
-import BO.TrasladoBO;
-import DTOs.TrasladoDTO;
+
+import bo.TrasladoBO;
+import dtos.TrasladoDTO;
 import excepciones.fachadaException;
 import interfaces.ITrasladoBO;
+
 
 
 
@@ -49,7 +51,7 @@ public class TrasladoCTL {
         throw new fachadaException("La fecha y hora de regreso no pueden ser nulas.");
     }
 
-    if (trasladoDTO.getFechaHoraSalida().after(trasladoDTO.getFechaHoraRegreso())) {
+    if (trasladoDTO.getFechaHoraSalida().isAfter(trasladoDTO.getFechaHoraRegreso())) {
         throw new fachadaException("La fecha y hora de salida debe ser anterior a la fecha y hora de regreso.");
     }
     

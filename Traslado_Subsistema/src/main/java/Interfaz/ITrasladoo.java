@@ -4,7 +4,7 @@
  */
 package Interfaz;
 
-import DTOs.TrasladoDTO;
+import dtos.TrasladoDTO;
 import excepciones.fachadaException;
 
 /**
