@@ -8,6 +8,9 @@ package daos;
 import Interfaces.IPrestamoMaestrosDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import conexion.ConexionBD;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
@@ -67,12 +70,41 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO{
 
     @Override
     public void eliminar(PrestamoMaestros prestamoMaestrosDTO) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            DeleteResult result = prestamoMaestrosCollection.deleteOne(Filters.eq("_id", prestamoMaestrosDTO.getId()));
+            if (result.getDeletedCount() == 0) {
+                throw new DAOException("No se encontró el préstamo de maestros para eliminar.");
+            }
+        } catch (Exception e) {
+            throw new DAOException("Error al eliminar el préstamo de maestros: " + e.getMessage(), e);
+        }
     }
 
     @Override
     public void actualizar(PrestamoMaestros prestamoMaestrosDTO) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+        UpdateResult result = prestamoMaestrosCollection.updateOne(
+            Filters.eq("_id", prestamoMaestrosDTO.getId()),
+            Updates.combine(
+                Updates.set("fechaPrestamo", prestamoMaestrosDTO.getFechaPrestamo()),
+                Updates.set("departamento", prestamoMaestrosDTO.getDepartamento()),
+                Updates.set("cantidadPersonas", prestamoMaestrosDTO.getCantidadPersonas()),
+                Updates.set("motivo", prestamoMaestrosDTO.getMotivo()),
+                Updates.set("plantelOrigen", prestamoMaestrosDTO.getPlantelOrigen()),
+                Updates.set("plantelDestino", prestamoMaestrosDTO.getPlantelDestino()),
+                Updates.set("vehiculo", prestamoMaestrosDTO.getVehiculo()),
+                Updates.set("correoResponsable", prestamoMaestrosDTO.getCorreoResponsable()),
+                Updates.set("acompanantes", prestamoMaestrosDTO.getAcompaniantes())
+            )
+        );
+        if (result.getMatchedCount() == 0) {
+            throw new DAOException("No se encontró el préstamo de maestros para actualizar.");
+        }
+    } catch (Exception e) {
+        throw new DAOException("Error al actualizar el préstamo de maestros: " + e.getMessage(), e);
     }
-    
+    }
 }
+    
+    
+    

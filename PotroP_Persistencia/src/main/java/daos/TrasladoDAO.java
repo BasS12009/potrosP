@@ -7,6 +7,8 @@ package DAOs;
 import Interfaces.ITrasladoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 import conexion.ConexionBD;
 import entidades.Traslado;
 import excepciones.DAOException;
@@ -51,18 +53,52 @@ public class TrasladoDAO implements ITrasladoDAO{
         }
     }
 
+    // Método para verificar si un traslado existe por su número de traslado
     @Override
     public boolean existe(int numTraslado) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       try {
+            return trasladoCollection.find(Filters.eq("numTraslado", numTraslado)).first() != null;
+        } catch (Exception e) {
+            throw new DAOException("Error al verificar la existencia del traslado: " + e.getMessage(), e);
+        }
     }
 
+    // Método para buscar un traslado por su folio
     @Override
-    public Traslado buscar(int Folio) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Traslado buscar(int folio) throws DAOException {
+        try {
+            return trasladoCollection.find(Filters.eq("folio", folio)).first();
+        } catch (Exception e) {
+            throw new DAOException("Error al buscar traslado por folio: " + e.getMessage(), e);
+        }
     }
-
+    
+    
+     // Método para actualizar un traslado en la base de datos
     @Override
-    public void actualizar(Traslado trasladoDTO) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void actualizar(Traslado traslado) throws DAOException {
+        try {
+            UpdateResult result = trasladoCollection.updateOne(
+                Filters.eq("_id", traslado.getId()),
+                Updates.combine(
+                    Updates.set("folio", traslado.getFolio()),
+                    Updates.set("motivo", traslado.getMotivo()),
+                    Updates.set("personas", traslado.getPersonas()),
+                    Updates.set("fechaHoraSalida", traslado.getFechaHoraSalida()),
+                    Updates.set("fechaHoraRegreso", traslado.getFechaHoraRegreso()),
+                    Updates.set("disponibilidad", traslado.isDisponibilidad()),
+                    Updates.set("vehiculo", traslado.getVehiculo()),
+                    Updates.set("estadoVehiculo", traslado.getEstadoVehiculo()),
+                    Updates.set("llantas", traslado.getLlantas()),
+                    Updates.set("carroceria", traslado.getCarroceria()),
+                    Updates.set("combustible", traslado.getCombustible())
+                )
+            );
+            if (result.getMatchedCount() == 0) {
+                throw new DAOException("No se encontró el traslado para actualizar.");
+            }
+        } catch (Exception e) {
+            throw new DAOException("Error al actualizar el traslado: " + e.getMessage(), e);
+        }
     }
 }

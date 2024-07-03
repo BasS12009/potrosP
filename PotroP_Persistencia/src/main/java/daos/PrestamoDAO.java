@@ -16,11 +16,15 @@ package daos;
  */
 import Interfaces.IPrestamoDAO;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import conexion.ConexionBD;
 import entidades.Prestamo;
 import excepciones.DAOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -58,15 +62,46 @@ public class PrestamoDAO implements IPrestamoDAO {
 
     @Override
     public List<Prestamo> listaPaginda(int offset, int limit) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      try {
+            List<Prestamo> prestamos = new ArrayList<>();
+            MongoCursor<Prestamo> cursor = prestamoCollection.find()
+                .skip(offset)
+                .limit(limit)
+                .iterator();
+            while (cursor.hasNext()) {
+                prestamos.add(cursor.next());
+            }
+            cursor.close();
+            return prestamos;
+        } catch (Exception e) {
+            throw new DAOException("Error al obtener la lista paginada de préstamos: " + e.getMessage(), e);
+        }
     }
 
     @Override
     public List<Prestamo> listaPorFechas(LocalDate begin, LocalDate end) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       try {
+            List<Prestamo> prestamos = new ArrayList<>();
+            Date beginDate = Date.from(begin.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Date endDate = Date.from(end.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            MongoCursor<Prestamo> cursor = prestamoCollection.find(
+                Filters.and(
+                    Filters.gte("inicio", beginDate),
+                    Filters.lte("fin", endDate)
+                )
+            ).iterator();
+            while (cursor.hasNext()) {
+                prestamos.add(cursor.next());
+            }
+            cursor.close();
+            return prestamos;
+        } catch (Exception e) {
+            throw new DAOException("Error al obtener la lista de préstamos por fechas: " + e.getMessage(), e);
+        }
+    }
     }
 
    
-}
+
 
     

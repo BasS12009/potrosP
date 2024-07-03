@@ -47,32 +47,33 @@ public class TrasladoBO implements ITrasladoBO{
 
     @Override
     public boolean existe(int numTraslado) throws BisnessException {
-        try{
+        try {
+        
             return trasladoDAO.existe(numTraslado);
-        }
-        catch(DAOException ex){
-            throw new BisnessException(ex.getMessage());
-        }
+    
+        } catch (DAOException ex) {
+        
+            throw new BisnessException("Error al verificar la existencia del traslado: " + ex.getMessage(), ex);
+    }
     }
 
     @Override
     public TrasladoDTO buscar(int Folio) throws BisnessException {
-        try{
-            return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(Folio));
-        }
-        catch(DAOException ex){
-            throw new BisnessException(ex.getMessage());
-        }
+        try {
+        return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(Folio));
+    } catch (DAOException ex) {
+        throw new BisnessException("Error al buscar el traslado: " + ex.getMessage(), ex);
+    }
     }
 
+    
     @Override
     public void actualizar(TrasladoDTO trasladoDTO) throws BisnessException {
-        try{
-            trasladoDAO.actualizar(trasladoCVR.convetir_Traslado(trasladoDTO));
-        }
-        catch(DAOException ex){
-            throw new BisnessException(ex.getMessage());
-        }
+         try {
+        trasladoDAO.actualizar(trasladoCVR.convetir_Traslado(trasladoDTO));
+    } catch (DAOException ex) {
+        throw new BisnessException("Error al actualizar el traslado: " + ex.getMessage(), ex);
+    }
     }
     
     
