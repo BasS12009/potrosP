@@ -114,15 +114,7 @@ public class DevolucionCTL {
         if (traslado.getMotivo() == null || traslado.getMotivo().isEmpty()) {
             throw new BisnessException("El motivo no puede estar vacío o ser nulo.");
         }
-        if (traslado.getCarroceria() == null || traslado.getCarroceria().isEmpty()) {
-            throw new BisnessException("La carrocería no puede estar vacía o ser nula.");
-        }
-        if (traslado.getLlantas() == null || traslado.getLlantas().isEmpty()) {
-            throw new BisnessException("Las llantas no pueden estar vacías o ser nulas.");
-        }
-        if (traslado.getCombustible() < 0) {
-            throw new BisnessException("El combustible no puede ser negativo.");
-        }
+        
         if (traslado.getVehiculo() == null) {
             throw new BisnessException("La placa no puede estar vacía o ser nula.");
         }
@@ -138,23 +130,22 @@ public class DevolucionCTL {
      * en caso contrario retorna falso.
      * 
      * @param original El objeto TrasladoDTO original.
-     * @param devolucion El objeto TrasladoDTO de la devolución.
      * @return true si los campos coinciden y la fecha de devolución no supera la original, false en caso contrario.
      * @throws BisnessException si algún objeto TrasladoDTO es nulo.
      */
-    public boolean compararCampos(TrasladoDTO original, TrasladoDTO devolucion) throws BisnessException {
-        if (original == null || devolucion == null) {
+    public boolean compararCampos(TrasladoDTO original) throws BisnessException {
+        if (original == null) {
             throw new BisnessException("Los objetos TrasladoDTO no pueden ser nulos.");
         }
 
         // Comparar los campos de carrocería, llantas y combustible
-        if (!original.getCarroceria().equalsIgnoreCase(devolucion.getCarroceria())) {
+        if (!original.getVehiculoEntregado().getCarroceria().equalsIgnoreCase(original.getVehiculoDevuelto().getCarroceria())) {
             return false;
         }
-        if (!original.getLlantas().equalsIgnoreCase(devolucion.getLlantas())) {
+        if (!original.getVehiculoEntregado().getLlantas().equalsIgnoreCase(original.getVehiculoDevuelto().getLlantas())) {
             return false;
         }
-        if (original.getCombustible() != devolucion.getCombustible()) {
+        if (original.getVehiculoEntregado().getCombustible() != original.getVehiculoDevuelto().getCombustible()) {
             return false;
         }
 
@@ -200,7 +191,7 @@ public class DevolucionCTL {
             message.setFrom(new InternetAddress(username));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(""));
             message.setSubject("Comparación de Traslados");
-            message.setText(contenido(original, devolucion));
+            message.setText(contenido(original));
 
             Transport.send(message);
             System.out.println("Correo enviado exitosamente.");
@@ -217,7 +208,7 @@ public class DevolucionCTL {
      * @param devolucion El objeto TrasladoDTO de la devolución.
      * @return El contenido del correo como una cadena de texto.
      */
-    private String contenido(TrasladoDTO original, TrasladoDTO devolucion) {
+    private String contenido(TrasladoDTO original) {
         // Generar el contenido del correo comparando los campos de los dos traslados
         StringBuilder contenido = new StringBuilder();
         contenido.append("Comparación de Traslados:\n\n");

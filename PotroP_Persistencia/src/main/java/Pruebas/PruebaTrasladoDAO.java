@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */package Pruebas;
 
-import DAOs.TrasladoDAO;
+import dao.TrasladoDAO;
 import entidades.Traslado;
 import entidades.Vehiculo;
 import entidades.VehiculoEntregado;

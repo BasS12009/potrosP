@@ -6,7 +6,7 @@ package bo;
 
 import dtos.PrestamoMaestrosDTO;
 import converters.PrestamoMaestrosCVR;
-import daos.PrestamoMaestrosDAO;
+import dao.PrestamoMaestrosDAO;
 import entidades.PrestamoMaestros;
 import exceptions.BisnessException;
 import excepciones.DAOException;

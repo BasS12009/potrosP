@@ -7,7 +7,7 @@ package bo;
 import Interfaces.IReporteDAO;
 import dtos.ReporteDTO;
 import converters.ReporteCVR;
-import daos.ReporteDAO;
+import dao.ReporteDAO;
 import entidades.Reporte;
 import excepciones.DAOException;
 import exceptions.BisnessException;

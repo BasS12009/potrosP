@@ -4,7 +4,7 @@
  */
 package bo;
 
-import DAOs.VehiculoDAO;
+import dao.VehiculoDAO;
 import Interfaces.IVehiculoDAO;
 import converters.VehiculoCVR;
 import dtos.VehiculoDTO;

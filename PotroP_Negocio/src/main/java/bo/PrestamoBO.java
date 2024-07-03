@@ -13,7 +13,7 @@ import converters.PrestamoCVR;
 import dtos.PrestamoDTO;
 import exceptions.BisnessException;
 import Interfaces.IPrestamoDAO;
-import daos.PrestamoDAO;
+import dao.PrestamoDAO;
 import entidades.Prestamo;
 import excepciones.DAOException;    
 import interfaces.IPrestamoBO;

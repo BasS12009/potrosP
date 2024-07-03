@@ -5,7 +5,7 @@
  * lista en memoria, utilizando una implementación de la interfaz IPrestamoDAO 
  * que proporciona acceso a los datos de préstamos utilizando una lista en memoria;
  */
-package daos;
+package dao;
 
 /** 
  * @author/(s):
