@@ -57,12 +57,12 @@ public class DevolucionCTL {
     /**
      * Método que busca y retorna un traslado con el número especificado.
      * 
-     * @param numTraslado El número del traslado a buscar.
+     * @param folio El número del traslado a buscar.
      * @return El objeto TrasladoDTO correspondiente al número de traslado especificado.
      * @throws BisnessException si ocurre un error en la capa de negocio.
      */
-    public TrasladoDTO buscar(int numTraslado) throws BisnessException {
-        return traslado.buscar(numTraslado);
+    public TrasladoDTO buscar(int folio) throws BisnessException {
+        return traslado.buscar(folio);
     }
 
     /**
@@ -102,12 +102,6 @@ public class DevolucionCTL {
         if (traslado == null) {
             throw new BisnessException("El objeto TrasladoDTO no puede ser nulo.");
         }
-        if (traslado.getNumTraslado() <= 0) {
-            throw new BisnessException("El número de traslado debe ser mayor a cero.");
-        }
-        if (traslado.getDestino() == null || traslado.getDestino().isEmpty()) {
-            throw new BisnessException("El destino no puede estar vacío o ser nulo.");
-        }
         if (traslado.getPersonas() <= 0) {
             throw new BisnessException("El número de personas debe ser mayor a cero.");
         }
@@ -129,14 +123,8 @@ public class DevolucionCTL {
         if (traslado.getCombustible() < 0) {
             throw new BisnessException("El combustible no puede ser negativo.");
         }
-        if (traslado.getPlaca() == null || traslado.getPlaca().isEmpty()) {
+        if (traslado.getVehiculo() == null) {
             throw new BisnessException("La placa no puede estar vacía o ser nula.");
-        }
-        if (traslado.getCorreoEmpleado() == null || traslado.getCorreoEmpleado().isEmpty()) {
-            throw new BisnessException("El correo del empleado no puede estar vacío o ser nulo.");
-        }
-        if (traslado.getCorreoChofer() == null || traslado.getCorreoChofer().isEmpty()) {
-            throw new BisnessException("El correo del chofer no puede estar vacío o ser nulo.");
         }
         // Si todos los campos son válidos
         return true;
@@ -210,7 +198,7 @@ public class DevolucionCTL {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress("")); //aqui pones el correo de destino
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(""));
             message.setSubject("Comparación de Traslados");
             message.setText(contenido(original, devolucion));
 

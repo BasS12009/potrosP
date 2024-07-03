@@ -6,7 +6,6 @@ package Interfaces;
 
 import entidades.Traslado;
 import excepciones.DAOException;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -18,21 +17,13 @@ import org.bson.types.ObjectId;
  */
 public interface ITrasladoDAO {
     
-     /**
-     * Agrega un nuevo objeto Traslado.
-     * 
-     * @param traslado El objeto Traslado que se va a agregar
-     * @throws DAOException Si ocurre algún error durante la operación de agregar
-     */
     public void agregar(Traslado traslado) throws DAOException;
     
+    public boolean existe(int numTraslado) throws DAOException;
     
-    /**
-     * Busca un objeto Traslado por su identificador único.
-     * 
-     * @param id El identificador único del traslado
-     * @return El objeto Traslado encontrado, o null si no se encuentra
-     * @throws DAOException Si ocurre algún error durante la búsqueda
-     */
-    public Traslado buscarPorId(ObjectId id) throws DAOException;
+    public Traslado buscar(int Folio) throws DAOException;
+    
+    public void actualizar(Traslado trasladoDTO) throws DAOException;
+    
+    public Traslado buscarPorId(String id) throws DAOException;
 }

@@ -70,7 +70,7 @@ public class PrestamoMaestrosFCD implements IPrestamoMaestrosFCD {
     }
 
 
-    public PrestamoMaestrosDTO buscarPorId(int id) throws FachadaException {
+    public PrestamoMaestrosDTO buscarPorId(String id) throws FachadaException {
         try {
             try {
                 return control.buscarPorId(id);

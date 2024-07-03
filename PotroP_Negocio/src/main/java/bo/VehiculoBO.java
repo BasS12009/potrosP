@@ -4,10 +4,46 @@
  */
 package bo;
 
+import DAOs.VehiculoDAO;
+import Interfaces.IVehiculoDAO;
+import converters.VehiculoCVR;
+import dtos.VehiculoDTO;
+import entidades.Vehiculo;
+import excepciones.DAOException;
+import exceptions.BisnessException;
+import interfaces.IVehiculoBO;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author diana
  */
-public class VehiculoBO {
+public class VehiculoBO implements IVehiculoBO{
+
+    IVehiculoDAO vehiculo;
+    VehiculoCVR vehiculoCVR;
+
+    public VehiculoBO() {
+        this.vehiculo = new VehiculoDAO();
+        this.vehiculoCVR = new VehiculoCVR();
+    }
+    
+    
+    @Override
+    public List<VehiculoDTO> listaVehiculos() throws BisnessException {
+        try{
+            List<Vehiculo> lista = vehiculo.obtenerTodos();
+            List<VehiculoDTO> listaDTO = new ArrayList<>();
+            
+            for (Vehiculo vehiculo : lista) {
+                listaDTO.add(vehiculoCVR.convertir_DTO(vehiculo));
+            }
+            return listaDTO;
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
+    }
     
 }

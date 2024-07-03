@@ -8,7 +8,6 @@ package Pruebas;
  *
  * @author diana
  */
-import conexion.ConexionBD;
 import daos.PrestamoMaestrosDAO;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
@@ -41,8 +40,7 @@ public class MainPruebaPrestamoMaestrosDAO {
             System.out.println("Préstamo de maestros agregado con ID: " + prestamoMaestrosPrueba.getId());
 
             // Buscar préstamo de maestros por ID
-            ObjectId idPrestamoMaestros = new ObjectId(prestamoMaestrosPrueba.getId());
-            PrestamoMaestros prestamoMaestrosEncontrado = prestamoMaestrosDAO.buscarPorId(idPrestamoMaestros);
+            PrestamoMaestros prestamoMaestrosEncontrado = prestamoMaestrosDAO.buscarPorId(prestamoMaestrosPrueba.getId());
             System.out.println("Préstamo de maestros encontrado: " + prestamoMaestrosEncontrado);
 
             // Listar todos los préstamos de maestros

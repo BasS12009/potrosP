@@ -13,10 +13,13 @@ import converters.PrestamoCVR;
 import dtos.PrestamoDTO;
 import exceptions.BisnessException;
 import Interfaces.IPrestamoDAO;
+import daos.PrestamoDAO;
 import entidades.Prestamo;
-import excepciones.DAOException;
+import excepciones.DAOException;    
 import interfaces.IPrestamoBO;
-import org.bson.types.ObjectId;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author/(s):
@@ -31,19 +34,13 @@ public class PrestamoBO implements IPrestamoBO {
     private final IPrestamoDAO prestamoDAO; //instancia de la clase DAO
     private final PrestamoCVR prestamoCVR; //instancia de la clase de convertidores
 
-    /**
-     * Constructor que inicializa las variables de la clase.
-     * @param prestamoDAO
-     * @param prestamoCVR
-     */
-    
-    public PrestamoBO(IPrestamoDAO prestamoDAO, PrestamoCVR prestamoCVR) {
-        this.prestamoDAO = prestamoDAO;
-        this.prestamoCVR = prestamoCVR;
+
+    public PrestamoBO() {
+        this.prestamoDAO = new PrestamoDAO();
+        this.prestamoCVR = new PrestamoCVR();
     }
 
     
-
     /**
      * Metodo para agregar un nuevo prestamo.
      *
@@ -61,8 +58,7 @@ public class PrestamoBO implements IPrestamoBO {
         }
     }
 
- 
-
+    
     /**
      * Metodo que nos permite obtener un prestamo buscándolo mediante su id.
      *
@@ -72,11 +68,41 @@ public class PrestamoBO implements IPrestamoBO {
      * operación.
      */
     @Override
-    public Prestamo buscarPorId(ObjectId id) throws BisnessException {
+    public Prestamo buscarPorId(String id) throws BisnessException {
         try {
             return this.prestamoDAO.buscarPorId(id);
         } catch (DAOException e) {
             throw new BisnessException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<PrestamoDTO> listaPaginda(int offset, int limit) throws BisnessException {
+        try{
+            List<Prestamo> lista = prestamoDAO.listaPaginda(offset, limit);
+            List<PrestamoDTO> listaDTO = new ArrayList<>();
+            for (int i = 0; i < lista.size(); i++) {
+                listaDTO.add(prestamoCVR.convertir_DTO(lista.get(i)));
+            }
+            return listaDTO;
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException {
+        try{
+            List<Prestamo> lista = prestamoDAO.listaPorFechas(begin, end);
+            List<PrestamoDTO> listaDTO = new ArrayList<>();
+            for (int i = 0; i < lista.size(); i++) {
+                listaDTO.add(prestamoCVR.convertir_DTO(lista.get(i)));
+            }
+            return listaDTO;
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
         }
     }
 

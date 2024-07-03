@@ -12,7 +12,6 @@ import DAOs.TrasladoDAO;
 import entidades.Traslado;
 import entidades.Vehiculo;
 import excepciones.DAOException;
-import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
 
@@ -45,8 +44,7 @@ public class MainPruebaTrasladoDAO {
             System.out.println("Traslado agregado con ID: " + trasladoPrueba.getId());
 
             // Buscar traslado por ID
-            ObjectId idTraslado = new ObjectId(trasladoPrueba.getId());
-            Traslado trasladoEncontrado = trasladoDAO.buscarPorId(idTraslado);
+            Traslado trasladoEncontrado = trasladoDAO.buscarPorId(trasladoPrueba.getId());
             System.out.println("Traslado encontrado: " + trasladoEncontrado);
 
         } catch (DAOException e) {

@@ -40,13 +40,29 @@ public class TrasladoDAO implements ITrasladoDAO{
     
     // Método para buscar un traslado por su ID
     @Override
-    public Traslado buscarPorId(ObjectId id) throws DAOException {
+    public Traslado buscarPorId(String id) throws DAOException {
         try {
+            ObjectId objeto = new ObjectId(id);
             // Utilizar Filters.eq para encontrar el traslado por su ID y devolver el primero encontrado
-            return trasladoCollection.find(Filters.eq("_id", id)).first();
+            return trasladoCollection.find(Filters.eq("_id", objeto)).first();
         } catch (Exception e) {
             // Capturar cualquier excepción y lanzarla como DAOException
             throw new DAOException("Error al buscar traslado por ID: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    public boolean existe(int numTraslado) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Traslado buscar(int Folio) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void actualizar(Traslado trasladoDTO) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

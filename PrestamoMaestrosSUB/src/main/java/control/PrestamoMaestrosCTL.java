@@ -55,12 +55,14 @@ public class PrestamoMaestrosCTL {
         }
     }
 
-    public PrestamoMaestrosDTO buscarPorId(int id) throws ControlException, BisnessException {
+    public PrestamoMaestrosDTO buscarPorId(String id) throws ControlException, BisnessException {
+        
         try {
             return prestamoMaestrosBO.buscarPorId(id);
         } catch (BisnessException ex) {
             throw new ControlException("Error al buscar el préstamo de maestros: " + ex.getMessage());
         }
+        
     }
 
     public List<PrestamoMaestrosDTO> listaPrestamosMaestros() throws ControlException, BisnessException {

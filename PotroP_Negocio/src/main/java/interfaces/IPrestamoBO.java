@@ -19,7 +19,6 @@ import exceptions.BisnessException;
 import entidades.Prestamo;
 import java.time.LocalDate;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  * @author/(s):
@@ -46,8 +45,26 @@ public interface IPrestamoBO {
      * @return el préstamo encontrado.
      * @throws BisnessException si ocurre un error durante la operación de búsqueda.
      */
-    public Prestamo buscarPorId(ObjectId id) throws BisnessException;
+    public Prestamo buscarPorId(String id) throws BisnessException;
      
    
+    /**
+     * 
+     * @param offset
+     * @param limit
+     * @return
+     * @throws BisnessException 
+     */
+    public List<PrestamoDTO> listaPaginda(int offset, int limit) throws BisnessException;
+    
+    
+    /**
+     * 
+     * @param begin
+     * @param end
+     * @return
+     * @throws BisnessException 
+     */
+    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException;
     
 }

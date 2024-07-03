@@ -17,8 +17,11 @@ package daos;
 import Interfaces.IPrestamoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import conexion.ConexionBD;
 import entidades.Prestamo;
 import excepciones.DAOException;
+import java.time.LocalDate;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 public class PrestamoDAO implements IPrestamoDAO {
@@ -28,8 +31,8 @@ public class PrestamoDAO implements IPrestamoDAO {
     private final MongoCollection<Prestamo> prestamoCollection;
 
     // Constructor para inicializar la colección de préstamos
-    public PrestamoDAO(MongoCollection<Prestamo> prestamoCollection) {
-        this.prestamoCollection = prestamoCollection;
+    public PrestamoDAO() {
+        this.prestamoCollection = ConexionBD.getInstance().getDatabase().getCollection("Prestamos", Prestamo.class);
     }
 
     // Método para agregar un préstamo a la base de datos
@@ -44,12 +47,23 @@ public class PrestamoDAO implements IPrestamoDAO {
 
     // Método para buscar un préstamo por su ID
     @Override
-    public Prestamo buscarPorId(ObjectId id) throws DAOException {
+    public Prestamo buscarPorId(String id) throws DAOException {
         try {
-            return prestamoCollection.find(Filters.eq("_id", id)).first();
+            ObjectId objeto = new ObjectId(id);
+            return prestamoCollection.find(Filters.eq("_id", objeto)).first();
         } catch (Exception e) {
             throw new DAOException("Error al obtener el préstamo por ID: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    public List<Prestamo> listaPaginda(int offset, int limit) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Prestamo> listaPorFechas(LocalDate begin, LocalDate end) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

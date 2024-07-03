@@ -40,6 +40,6 @@ public class VehiculoCVR {
         String capacidad = vehiculo.getCapacidad();
 
         // Crea y retorna un nuevo objeto VehiculoDTO utilizando los atributos extraídos
-        return new VehiculoDTO( numVehiculo, marca, modelo, año, tipo, placa, capacidad); // No se incluye el id en el constructor del DTO
+        return new VehiculoDTO( numVehiculo, marca, modelo, año, tipo, placa, capacidad); 
     }
 }

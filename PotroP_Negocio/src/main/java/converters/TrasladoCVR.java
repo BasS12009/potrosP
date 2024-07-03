@@ -8,7 +8,6 @@ import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
 import entidades.Traslado;
 import entidades.Vehiculo;
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 /**
@@ -22,16 +21,16 @@ public class TrasladoCVR {
         String folio = trasladoDTO.getFolio();
         String motivo = trasladoDTO.getMotivo();
         int personas = trasladoDTO.getPersonas();
-        Date fechaHoraSalida = trasladoDTO.getFechaHoraSalida();
-        Date fechaHoraRegreso = trasladoDTO.getFechaHoraRegreso();
+        LocalDateTime fechaHoraSalida = trasladoDTO.getFechaHoraSalida();
+        LocalDateTime fechaHoraRegreso = trasladoDTO.getFechaHoraRegreso();
         boolean disponibilidad = trasladoDTO.isDisponibilidad();
         String carroceria = trasladoDTO.getCarroceria();
         String llantas = trasladoDTO.getLlantas();
         int combustible = trasladoDTO.getCombustible();
         String estadoVehiculo = trasladoDTO.getEstadoVehiculo();
         Vehiculo vehiculo = null;
-        return new Traslado(folio, motivo, personas,fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculo, estadoVehiculo, llantas, carroceria, combustible);
-
+        
+        return new Traslado();
     }
 
     public TrasladoDTO convertir_TrasladoDTO(Traslado traslado) {
@@ -47,7 +46,10 @@ public class TrasladoCVR {
         String llantas = traslado.getLlantas();
         int combustible = traslado.getCombustible();
         String estadoVehiculo = traslado.getEstadoVehiculo();
-        return new TrasladoDTO(folio, motivo, personas, fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculoDTO, estadoVehiculo, llantas, carroceria, combustible);
+        
+        return new TrasladoDTO(folio, motivo, personas, fechaHoraSalida, 
+                fechaHoraRegreso, disponibilidad, vehiculoDTO, 
+                estadoVehiculo, llantas, carroceria, combustible);
     }
 
 }

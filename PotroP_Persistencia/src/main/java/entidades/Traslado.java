@@ -12,9 +12,12 @@ import java.time.LocalDateTime;
  * @author diana
  */
 /**
- * La clase Traslado representa el traslado de un vehículo con atributos tales como id, folio, motivo, número de personas, fechas y horas de salida y regreso,
- * disponibilidad, vehículo, estado del vehículo, llantas, carrocería, combustible, correo del empleado, correo del chofer y estado del traslado.
- * Esta clase proporciona métodos para obtener y establecer estos atributos, así como constructores para crear instancias de Traslado.
+ * La clase Traslado representa el traslado de un vehículo con atributos tales 
+ * como id, folio, motivo, número de personas, fechas y horas de salida y regreso,
+ * disponibilidad, vehículo, estado del vehículo, llantas, carrocería,
+ * combustible, correo del empleado, correo del chofer y estado del traslado.
+ * Esta clase proporciona métodos para obtener y establecer estos 
+ * atributos, así como constructores para crear instancias de Traslado.
  */
 public class Traslado {
     
@@ -35,26 +38,26 @@ public class Traslado {
     private String correoChofer;  // Correo electrónico del chofer
     private boolean estado;  // Estado del traslado (activo o inactivo)
 
+    public Traslado() {
+    }
 
-     /**
-     * Constructor completo de la clase Traslado.
-     * 
-     * @param id Identificador único del traslado
-     * @param Folio Folio del traslado
-     * @param motivo Motivo del traslado
-     * @param personas Número de personas involucradas en el traslado
-     * @param fechaHoraSalida Fecha y hora de salida del traslado
-     * @param fechaHoraRegreso Fecha y hora de regreso del traslado
-     * @param disponibilidad Disponibilidad del vehículo para el traslado
-     * @param vehiculo Vehículo utilizado para el traslado
-     * @param estadoVehiculo Estado del vehículo al momento del traslado
-     * @param llantas Estado de las llantas del vehículo
-     * @param carroceria Estado de la carrocería del vehículo
-     * @param combustible Nivel de combustible del vehículo
-     * @param correoEmpleado Correo electrónico del empleado
-     * @param correoChofer Correo electrónico del chofer
-     * @param estado Estado del traslado (activo o inactivo)
-     */
+    public Traslado(String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
+        this.Folio = Folio;
+        this.motivo = motivo;
+        this.personas = personas;
+        this.fechaHoraSalida = fechaHoraSalida;
+        this.fechaHoraRegreso = fechaHoraRegreso;
+        this.disponibilidad = disponibilidad;
+        this.vehiculo = vehiculo;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+        this.correoEmpleado = correoEmpleado;
+        this.correoChofer = correoChofer;
+        this.estado = estado;
+    }
+
     public Traslado(String id, String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
         this.id = id;
         this.Folio = Folio;
@@ -73,41 +76,7 @@ public class Traslado {
         this.estado = estado;
     }
 
-    /**
-     * Constructor de la clase Traslado sin el atributo id.
-     * 
-     * @param Folio Folio del traslado
-     * @param motivo Motivo del traslado
-     * @param personas Número de personas involucradas en el traslado
-     * @param fechaHoraSalida Fecha y hora de salida del traslado
-     * @param fechaHoraRegreso Fecha y hora de regreso del traslado
-     * @param disponibilidad Disponibilidad del vehículo para el traslado
-     * @param vehiculo Vehículo utilizado para el traslado
-     * @param estadoVehiculo Estado del vehículo al momento del traslado
-     * @param llantas Estado de las llantas del vehículo
-     * @param carroceria Estado de la carrocería del vehículo
-     * @param combustible Nivel de combustible del vehículo
-     * @param correoEmpleado Correo electrónico del empleado
-     * @param correoChofer Correo electrónico del chofer
-     * @param estado Estado del traslado (activo o inactivo)
-     */
-    public Traslado(String Folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, String estadoVehiculo, String llantas, String carroceria, int combustible, String correoEmpleado, String correoChofer, boolean estado) {
-        this.Folio = Folio;
-        this.motivo = motivo;
-        this.personas = personas;
-        this.fechaHoraSalida = fechaHoraSalida;
-        this.fechaHoraRegreso = fechaHoraRegreso;
-        this.disponibilidad = disponibilidad;
-        this.vehiculo = vehiculo;
-        this.estadoVehiculo = estadoVehiculo;
-        this.llantas = llantas;
-        this.carroceria = carroceria;
-        this.combustible = combustible;
-        this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
-        this.estado = estado;
-    }
-
+    
     /**
      * Obtiene el identificador único del traslado.
      * 

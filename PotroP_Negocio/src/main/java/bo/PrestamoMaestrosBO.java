@@ -12,10 +12,8 @@ import exceptions.BisnessException;
 import excepciones.DAOException;
 import interfaces.IPrestamoMaestrosBO;
 import Interfaces.IPrestamoMaestrosDAO;
-
 import java.util.ArrayList;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
 
@@ -28,8 +26,11 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
     }
 
  
-
-  
+    /**
+     * 
+     * @param prestamoMaestrosDTO
+     * @throws BisnessException 
+     */
     @Override
     public void agregar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
         try {
@@ -40,12 +41,14 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
         }
     }
 
-    
-
-    
-
+    /**
+     * 
+     * @param id
+     * @return
+     * @throws BisnessException 
+     */
     @Override
-    public PrestamoMaestrosDTO buscarPorId(ObjectId id) throws BisnessException {
+    public PrestamoMaestrosDTO buscarPorId(String id) throws BisnessException {
         try {
             PrestamoMaestros entidad = prestamoMaestrosDAO.buscarPorId(id);
             return prestamoMaestrosCVR.convertir_DTO(entidad);
@@ -54,6 +57,11 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
         }
     }
 
+    /**
+     * 
+     * @return
+     * @throws BisnessException 
+     */
     @Override
     public List<PrestamoMaestrosDTO> listaPrestamosMaestros() throws BisnessException {
         try {
@@ -68,4 +76,36 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
         }
     
     }
+
+    /**
+     * 
+     * @param prestamoMaestrosDTO
+     * @throws BisnessException 
+     */
+    @Override
+    public void eliminar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
+        try{
+            prestamoMaestrosDAO.actualizar(prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO));
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
+    }
+
+    /**
+     * 
+     * @param prestamoMaestrosDTO
+     * @throws BisnessException 
+     */
+    @Override
+    public void actualizar(PrestamoMaestrosDTO prestamoMaestrosDTO) throws BisnessException {
+        try{
+            prestamoMaestrosDAO.actualizar(prestamoMaestrosCVR.convertir_PrestamoMaestros(prestamoMaestrosDTO));
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
+    }
+    
+    
 }

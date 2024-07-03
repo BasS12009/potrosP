@@ -22,7 +22,7 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO{
 
     // Constructor para inicializar la colección de préstamos de maestros
     public PrestamoMaestrosDAO() {
-        this.prestamoMaestrosCollection = ConexionBD.getInstance().getDatabase().getCollection("Prestamos", PrestamoMaestros.class);
+        this.prestamoMaestrosCollection = ConexionBD.getInstance().getDatabase().getCollection("PrestamosMaestros", PrestamoMaestros.class);
     }
 
     // Método para agregar un préstamo de maestros a la base de datos
@@ -36,10 +36,18 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO{
     }
 
     // Método para buscar un préstamo de maestros por su ID
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws DAOException
+     */
     @Override
-    public PrestamoMaestros buscarPorId(ObjectId id) throws DAOException {
+    public PrestamoMaestros buscarPorId(String id) throws DAOException {
         try {
-            return prestamoMaestrosCollection.find(Filters.eq("_id", id)).first();
+            ObjectId objeto = new ObjectId(id);
+            return prestamoMaestrosCollection.find(Filters.eq("_id", objeto)).first();
         } catch (Exception e) {
             throw new DAOException("Error al obtener el préstamo de maestros por ID: " + e.getMessage(), e);
         }
@@ -55,6 +63,16 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO{
         } catch (Exception e) {
             throw new DAOException("Error al obtener todos los préstamos de maestros: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    public void eliminar(PrestamoMaestros prestamoMaestrosDTO) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void actualizar(PrestamoMaestros prestamoMaestrosDTO) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

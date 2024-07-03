@@ -32,9 +32,26 @@ public class Vehiculo {
     private String tipo;  // Tipo de vehículo (por ejemplo, sedán, SUV, etc.)
     private String placa;  // Placa del vehículo
     private String capacidad;  // Capacidad del vehículo(numero de asientos disponibles)
-    
-    
-    
+
+    /**
+     * 
+     * @param numVehiculo
+     * @param marca
+     * @param modelo
+     * @param año
+     * @param tipo
+     * @param placa
+     * @param capacidad 
+     */
+    public Vehiculo(int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
+        this.numVehiculo = numVehiculo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.año = año;
+        this.tipo = tipo;
+        this.placa = placa;
+        this.capacidad = capacidad;
+    }
     
     
     /**

@@ -44,10 +44,38 @@ public class TrasladoBO implements ITrasladoBO{
             throw new BisnessException(e.getMessage(), e);
         }
     }
-    
-    public void buscarPorId(TrasladoDTO traslado) throws BisnessException{
-        
+
+    @Override
+    public boolean existe(int numTraslado) throws BisnessException {
+        try{
+            return trasladoDAO.existe(numTraslado);
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
     }
+
+    @Override
+    public TrasladoDTO buscar(int Folio) throws BisnessException {
+        try{
+            return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(Folio));
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void actualizar(TrasladoDTO trasladoDTO) throws BisnessException {
+        try{
+            trasladoDAO.actualizar(trasladoCVR.convetir_Traslado(trasladoDTO));
+        }
+        catch(DAOException ex){
+            throw new BisnessException(ex.getMessage());
+        }
+    }
+    
+    
     
     
 }

@@ -16,7 +16,7 @@ import java.time.LocalDate;
  */
 public class PrestamoDTO {
     
-    private int id;
+    private String id;
     private String motivo;
     private LocalDate inicio;
     private LocalDate fin;
@@ -57,7 +57,7 @@ public class PrestamoDTO {
      * @param placaVehiculo La placa del vehículo prestado.
      * @param correoEmpleado El correo del empleado que realiza el préstamo.
      */
-    public PrestamoDTO(int id, String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
+    public PrestamoDTO(String id, String motivo, LocalDate Inicio, LocalDate Fin, String placaVehiculo, String correoEmpleado) {
         this.id = id;
         this.motivo = motivo;
         this.inicio = Inicio;
@@ -71,7 +71,7 @@ public class PrestamoDTO {
      * 
      * @return El identificador único del préstamo.
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -80,7 +80,7 @@ public class PrestamoDTO {
      * 
      * @param id El identificador único del préstamo.
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
