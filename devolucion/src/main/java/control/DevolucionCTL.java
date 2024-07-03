@@ -150,7 +150,7 @@ public class DevolucionCTL {
         }
 
         // Comparar la fecha y hora de devolución
-        if (devolucion.getFechaHoraRegreso().isAfter(original.getFechaHoraRegreso())) {
+        if (original.getFechaHoraRegreso().isAfter(original.getFechaHoraRegreso())) {
             return false;
         }
 

@@ -5,7 +5,6 @@ import GUI.Menu;
 import dtos.PrestamoMaestrosDTO;
 import dtos.VehiculoDTO;
 import excepcion.FachadaException;
-import excepcion.FachadaExceptionPDF;
 import fachada.PrestamoMaestrosFCD;
 import fachada.ResumenFCD;
 import fachada.VehiculoFCD;
@@ -616,7 +615,7 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
             String pdfFileName = "TicketPrestamoMaestros.pdf";
             try {
                 controller.generarPDF(nuevoPrestamo, pdfFileName);
-            } catch (FachadaExceptionPDF ex) {
+            } catch (FachadaException ex) {
                 Logger.getLogger(frmPrestampTrasladoProfes.class.getName()).log(Level.SEVERE, null, ex);
             }
             
