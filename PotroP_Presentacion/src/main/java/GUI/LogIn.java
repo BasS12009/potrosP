@@ -8,7 +8,6 @@ package GUI;
 
 import exception.FachadaException;
 import fachada.LogginFCD;
-import insertar.Inserciones;
 import interfaz.ILogginFCD;
 import javax.swing.JOptionPane;
 
@@ -31,15 +30,7 @@ public class LogIn extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);
         
-        Inserciones inserciones = new Inserciones();
-        
-        try{
-        inserciones.insertar();
-            System.out.println("inserciones agregadas con exito");
-        }
-        catch(Exception ex){
-            System.out.println("Los datos no fueron agregados correctamente");
-        }
+       
     }
 
     /**

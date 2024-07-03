@@ -30,7 +30,7 @@ public class ConexionBD implements IConexionBD {
     final String USUARIO = "root";
     
     // Constante que define la contraseña para la conexión a la base de datos
-    final String CONTRASEÑA = "Saymyname15";
+    final String CONTRASEÑA = "root";
 
     /**
      * Método que crea una conexión a la base de datos utilizando los parámetros definidos.
