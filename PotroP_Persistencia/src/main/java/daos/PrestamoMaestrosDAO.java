@@ -22,7 +22,7 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO{
 
     // Constructor para inicializar la colección de préstamos de maestros
     public PrestamoMaestrosDAO() {
-        this.prestamoMaestrosCollection = ConexionBD.getInstance().getDatabase().getCollection("Prestamos", PrestamoMaestros.class);
+        this.prestamoMaestrosCollection = ConexionBD.getInstance().getDatabase().getCollection("PrestamoMaestros", PrestamoMaestros.class);
     }
 
     // Método para agregar un préstamo de maestros a la base de datos

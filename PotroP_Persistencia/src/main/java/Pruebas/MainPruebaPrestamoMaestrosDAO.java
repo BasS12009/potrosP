@@ -16,10 +16,12 @@ import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainPruebaPrestamoMaestrosDAO {
     public static void main(String[] args) {
-        PrestamoMaestrosDAO prestamoMaestrosDAO = new PrestamoMaestrosDAO();
+       PrestamoMaestrosDAO prestamoMaestrosDAO = new PrestamoMaestrosDAO();
 
         try {
             // Crear un préstamo de maestros de prueba
@@ -40,17 +42,26 @@ public class MainPruebaPrestamoMaestrosDAO {
             prestamoMaestrosDAO.agregar(prestamoMaestrosPrueba);
             System.out.println("Préstamo de maestros agregado con ID: " + prestamoMaestrosPrueba.getId());
 
-            // Buscar préstamo de maestros por ID
-            ObjectId idPrestamoMaestros = new ObjectId(prestamoMaestrosPrueba.getId());
-            PrestamoMaestros prestamoMaestrosEncontrado = prestamoMaestrosDAO.buscarPorId(idPrestamoMaestros);
-            System.out.println("Préstamo de maestros encontrado: " + prestamoMaestrosEncontrado);
+           
+            
+            try {
+                ObjectId idPrestamoMaestros = new ObjectId(prestamoMaestrosPrueba.getId());
+                PrestamoMaestros prestamoMaestrosEncontrado = prestamoMaestrosDAO.buscarPorId(idPrestamoMaestros);
+                System.out.println("Préstamo encontrado: " + prestamoMaestrosEncontrado);
+           
 
             // Listar todos los préstamos de maestros
             System.out.println("Listando todos los préstamos de maestros:");
             prestamoMaestrosDAO.listaPrestamosMaestros().forEach(System.out::println);
 
-        } catch (DAOException e) {
-            System.err.println("Error en PrestamoMaestrosDAO: " + e.getMessage());
+       } catch (IllegalArgumentException e) {
+    // Ignoramos la excepción y continuamos
+    System.err.println("Error al buscar el préstamo por ID: " + e.getMessage());
+}           catch (DAOException ex) {
+                Logger.getLogger(MainPruebaPrestamoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(MainPruebaPrestamoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

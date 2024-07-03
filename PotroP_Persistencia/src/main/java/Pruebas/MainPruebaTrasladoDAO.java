@@ -15,6 +15,8 @@ import excepciones.DAOException;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainPruebaTrasladoDAO {
     public static void main(String[] args) {
@@ -43,14 +45,19 @@ public class MainPruebaTrasladoDAO {
             System.out.println("Agregando traslado...");
             trasladoDAO.agregar(trasladoPrueba);
             System.out.println("Traslado agregado con ID: " + trasladoPrueba.getId());
+            try {
+                ObjectId idTraslado = new ObjectId(trasladoPrueba.getId());
+                Traslado trasladoEncontrado = trasladoDAO.buscarPorId(idTraslado);
+                System.out.println("Préstamo encontrado: " + trasladoEncontrado);
 
-            // Buscar traslado por ID
-            ObjectId idTraslado = new ObjectId(trasladoPrueba.getId());
-            Traslado trasladoEncontrado = trasladoDAO.buscarPorId(idTraslado);
-            System.out.println("Traslado encontrado: " + trasladoEncontrado);
-
-        } catch (DAOException e) {
-            System.err.println("Error en TrasladoDAO: " + e.getMessage());
+            } catch (IllegalArgumentException e) {
+                // Ignoramos la excepción y continuamos
+                System.err.println("Error al buscar el préstamo por ID: " + e.getMessage());
+            } catch (DAOException ex) {
+                Logger.getLogger(MainPruebaPrestamoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(MainPruebaPrestamoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

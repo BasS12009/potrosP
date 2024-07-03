@@ -23,7 +23,7 @@ public class PrestamoMaestrosBO implements IPrestamoMaestrosBO {
     private final PrestamoMaestrosCVR prestamoMaestrosCVR;
 
     public PrestamoMaestrosBO() {
-        this.prestamoMaestrosDAO = new PrestamoMaestrosDAO();
+        this.prestamoMaestrosDAO = new PrestamoMaestrosDAO("PrestamosMaestros");
         this.prestamoMaestrosCVR = new PrestamoMaestrosCVR();
     }
 

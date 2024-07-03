@@ -16,8 +16,13 @@ import excepciones.DAOException;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainPruebaPrestamoDAO {
+    
+    
+
     public static void main(String[] args) {
         ConexionBD conexion = ConexionBD.getInstance();
         PrestamoDAO prestamoDAO = new PrestamoDAO(conexion.getDatabase().getCollection("Prestamos", Prestamo.class));
@@ -37,15 +42,20 @@ public class MainPruebaPrestamoDAO {
             prestamoDAO.agregar(prestamoPrueba);
             System.out.println("Préstamo agregado con ID: " + prestamoPrueba.getId());
 
-            // Buscar préstamo por ID
-            ObjectId idPrestamo = new ObjectId(prestamoPrueba.getId());
-            Prestamo prestamoEncontrado = prestamoDAO.buscarPorId(idPrestamo);
-            System.out.println("Préstamo encontrado: " + prestamoEncontrado);
-
-        } catch (DAOException e) {
-            System.err.println("Error en PrestamoDAO: " + e.getMessage());
-        } finally {
-            
+           try {
+    ObjectId idPrestamo = new ObjectId(prestamoPrueba.getId());
+    Prestamo prestamoEncontrado = prestamoDAO.buscarPorId(idPrestamo);
+    System.out.println("Préstamo encontrado: " + prestamoEncontrado);
+} catch (IllegalArgumentException e) {
+    // Ignoramos la excepción y continuamos
+    System.err.println("Error al buscar el préstamo por ID: " + e.getMessage());
+}           catch (DAOException ex) {
+                Logger.getLogger(MainPruebaPrestamoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(MainPruebaPrestamoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+   
 }

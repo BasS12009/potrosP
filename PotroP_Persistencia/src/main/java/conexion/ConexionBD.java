@@ -57,16 +57,12 @@ public class ConexionBD implements IConexion{
     public MongoDatabase getDatabase() {
         return mongoDatabase;
     }
-}
 
-//    public void close() {
-//        if (mongoClient != null) {
-//            mongoClient.close();
-//            mongoClient = null;
-//        }
-//    }
-//}
-//    
+
+    public void close() {
+      ConexionBD.this.close(); 
+}
+}
     
     
 
