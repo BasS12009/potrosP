@@ -28,6 +28,13 @@ public class VehiculoEntregado extends Vehiculo {
     private String estadoVehiculo;  // Estado general del vehículo
     private String llantas;     // Estado de las llantas
 
+    public VehiculoEntregado(String carroceria, int combustible, String estadoVehiculo, String llantas) {
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+    }
+    
     /**
      * Constructor de la clase VehiculoEntregado.
      * 

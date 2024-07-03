@@ -29,7 +29,12 @@ public class TrasladoDTO {
     public TrasladoDTO() {
     }
 
-    public TrasladoDTO(String folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, VehiculoDTO vehiculo, VehiculoEntregadoDTO vehiculoEntregado, VehiculoDevueltoDTO vehiculoDevuelto, String correoEmpleado, String correoChofer, boolean estado) {
+    public TrasladoDTO(String folio, String motivo, int personas, 
+            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
+            boolean disponibilidad, VehiculoDTO vehiculo, 
+            VehiculoEntregadoDTO vehiculoEntregado, 
+            VehiculoDevueltoDTO vehiculoDevuelto, 
+            String correoEmpleado, String correoChofer, boolean estado) {
         this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;

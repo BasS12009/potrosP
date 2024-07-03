@@ -10,22 +10,22 @@ package dtos;
  */
 public class VehiculoDevueltoDTO extends VehiculoDTO{
     
-     private String carroceria;  // Estado de la carrocería al devolverse
+    private String carroceria;  // Estado de la carrocería al devolverse
     private int combustible;    // Nivel de combustible al devolverse
     private String estadoVehiculo;  // Estado general del vehículo al devolverse
     private String llantas;     // Estado de las llantas al devolverse
 
     public VehiculoDevueltoDTO() {
     }
-
-    
-    
+   
     public VehiculoDevueltoDTO(String carroceria, int combustible, String estadoVehiculo, String llantas) {
         this.carroceria = carroceria;
         this.combustible = combustible;
         this.estadoVehiculo = estadoVehiculo;
         this.llantas = llantas;
     }
+    
+    
 
     public String getCarroceria() {
         return carroceria;

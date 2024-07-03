@@ -24,12 +24,34 @@ package entidades;
  */
 public class VehiculoDevuelto extends Vehiculo {
     
+    
     private String carroceria;  // Estado de la carrocería al devolverse
     private int combustible;    // Nivel de combustible al devolverse
     private String estadoVehiculo;  // Estado general del vehículo al devolverse
     private String llantas;     // Estado de las llantas al devolverse
-   
 
+    /**
+     * 
+     */
+    public VehiculoDevuelto() {
+    }
+
+    /**
+     * 
+     * @param carroceria
+     * @param combustible
+     * @param estadoVehiculo
+     * @param llantas 
+     */
+    public VehiculoDevuelto(String carroceria, int combustible, String 
+            estadoVehiculo, String llantas) {
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+    }
+
+    
     /**
      * Constructor de la clase VehiculoDevuelto.
      * 

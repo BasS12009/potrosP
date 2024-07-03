@@ -6,8 +6,12 @@ package converters;
 
 import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
+import dtos.VehiculoDevueltoDTO;
+import dtos.VehiculoEntregadoDTO;
 import entidades.Traslado;
 import entidades.Vehiculo;
+import entidades.VehiculoDevuelto;
+import entidades.VehiculoEntregado;
 import java.time.LocalDateTime;
 
 /**
@@ -15,6 +19,17 @@ import java.time.LocalDateTime;
  * @author diana
  */
 public class TrasladoCVR {
+    
+    private final VehiculoCVR vehiculoCVR;
+    private final VehiculoEntregadoCVR vehiculoEntregadoCVR;
+    private final VehiculoDevueltoCVR vehiculoDevueltoCVR;
+
+    public TrasladoCVR() {
+        this.vehiculoCVR = new VehiculoCVR();
+        this.vehiculoDevueltoCVR = new VehiculoDevueltoCVR();
+        this.vehiculoEntregadoCVR = new VehiculoEntregadoCVR();
+    }
+    
     
     public Traslado convetir_Traslado(TrasladoDTO trasladoDTO) {
 
@@ -24,13 +39,16 @@ public class TrasladoCVR {
         LocalDateTime fechaHoraSalida = trasladoDTO.getFechaHoraSalida();
         LocalDateTime fechaHoraRegreso = trasladoDTO.getFechaHoraRegreso();
         boolean disponibilidad = trasladoDTO.isDisponibilidad();
-        String carroceria = trasladoDTO.getCarroceria();
-        String llantas = trasladoDTO.getLlantas();
-        int combustible = trasladoDTO.getCombustible();
-        String estadoVehiculo = trasladoDTO.getEstadoVehiculo();
-        Vehiculo vehiculo = null;
+        Vehiculo vehiculo = vehiculoCVR.convertir_Entidad(trasladoDTO.getVehiculo());
+        VehiculoEntregado vehiculoEntregado = vehiculoEntregadoCVR.convertir_Entregado(trasladoDTO.getVehiculoEntregado());
+        VehiculoDevuelto vehiculoDevuelto = vehiculoDevueltoCVR.convertir_Devuelto(trasladoDTO.getVehiculoDevuelto());
+        String correoEmpleado = trasladoDTO.getCorreoEmpleado();
+        String correoChofer = trasladoDTO.getCorreoChofer();
+        boolean estado = trasladoDTO.isEstado();
         
-        return new Traslado();
+        return new Traslado(folio, motivo, personas, fechaHoraSalida, 
+                fechaHoraRegreso, disponibilidad, vehiculo, vehiculoEntregado,
+        vehiculoDevuelto, correoEmpleado, correoChofer, estado);
     }
 
     public TrasladoDTO convertir_TrasladoDTO(Traslado traslado) {
@@ -41,11 +59,16 @@ public class TrasladoCVR {
         LocalDateTime fechaHoraSalida = traslado.getFechaHoraSalida();
         LocalDateTime fechaHoraRegreso = traslado.getFechaHoraRegreso();
         boolean disponibilidad = traslado.isDisponibilidad();
-        VehiculoDTO vehiculoDTO = null;
-
+        VehiculoDTO vehiculoDTO = vehiculoCVR.convertir_DTO(traslado.getVehiculo());
+        VehiculoEntregadoDTO vehiculoEntregado = vehiculoEntregadoCVR.convertir_EntregadoDTO(traslado.getVehiculoEntregado());
+        VehiculoDevueltoDTO vehiculoDevuelto = vehiculoDevueltoCVR.convertir_DevueltoDTO(traslado.getVehiculoDevuelto());
+        String correoEmpleado = traslado.getCorreoEmpleado();
+        String correoChofer = traslado.getCorreoChofer();
+        boolean estado = traslado.isEstado();
         
         return new TrasladoDTO(folio, motivo, personas, fechaHoraSalida, 
-                fechaHoraRegreso, disponibilidad, vehiculoDTO);
+                fechaHoraRegreso, disponibilidad, vehiculoDTO, vehiculoEntregado,
+        vehiculoDevuelto, correoEmpleado, correoChofer, estado);
     }
 
 }

@@ -34,6 +34,13 @@ public class Vehiculo {
     private String capacidad;  // Capacidad del vehículo(numero de asientos disponibles)
 
     /**
+     * Constructor vacio
+     */
+    public Vehiculo() {
+    }
+
+    
+    /**
      * 
      * @param numVehiculo
      * @param marca

@@ -30,7 +30,6 @@ public class VehiculoDTO {
         this.capacidad = capacidad;
     }
 
-
     
     public int getNumVehiculo() {
         return numVehiculo;

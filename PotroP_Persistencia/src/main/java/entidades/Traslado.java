@@ -7,6 +7,7 @@ package entidades;
 import java.time.LocalDateTime;
 
 public class Traslado {
+    
     private String id;
     private String folio;
     private String motivo;
@@ -21,15 +22,14 @@ public class Traslado {
     private String correoChofer;
     private boolean estado;
 
-    // Constructor por defecto
     public Traslado() {
     }
 
-    // Constructor principal
-    public Traslado(String folio, String motivo, int personas, LocalDateTime fechaHoraSalida, 
-                    LocalDateTime fechaHoraRegreso, boolean disponibilidad, 
-                    Vehiculo vehiculo, VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, 
-                    String correoEmpleado, String correoChofer, boolean estado) {
+    public Traslado(String folio, String motivo, int personas, 
+            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
+            boolean disponibilidad, Vehiculo vehiculo, 
+            VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, 
+            String correoEmpleado, String correoChofer, boolean estado) {
         this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;
@@ -44,15 +44,27 @@ public class Traslado {
         this.estado = estado;
     }
 
-    // Constructor con id
-    public Traslado(String id, String folio, String motivo, int personas, LocalDateTime fechaHoraSalida, 
-                    LocalDateTime fechaHoraRegreso, boolean disponibilidad, 
-                    Vehiculo vehiculo, VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, 
-                    String correoEmpleado, String correoChofer, boolean estado) {
-        this(folio, motivo, personas, fechaHoraSalida, fechaHoraRegreso, disponibilidad, 
-             vehiculo, vehiculoEntregado, vehiculoDevuelto, correoEmpleado, correoChofer, estado);
+    public Traslado(String id, String folio, String motivo, int personas, 
+            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
+            boolean disponibilidad, Vehiculo vehiculo, 
+            VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, 
+            String correoEmpleado, String correoChofer, boolean estado) {
         this.id = id;
+        this.folio = folio;
+        this.motivo = motivo;
+        this.personas = personas;
+        this.fechaHoraSalida = fechaHoraSalida;
+        this.fechaHoraRegreso = fechaHoraRegreso;
+        this.disponibilidad = disponibilidad;
+        this.vehiculo = vehiculo;
+        this.vehiculoEntregado = vehiculoEntregado;
+        this.vehiculoDevuelto = vehiculoDevuelto;
+        this.correoEmpleado = correoEmpleado;
+        this.correoChofer = correoChofer;
+        this.estado = estado;
     }
+
+    
 
     // Getters y setters
 

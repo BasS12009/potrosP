@@ -4,10 +4,29 @@
  */
 package converters;
 
+import dtos.VehiculoDevueltoDTO;
+import entidades.VehiculoDevuelto;
+
 /**
  *
  * @author caarl
  */
 public class VehiculoDevueltoCVR {
     
+    public VehiculoDevuelto convertir_Devuelto(VehiculoDevueltoDTO vehiculoDTO){
+        
+        String carroceria = vehiculoDTO.getCarroceria();  
+        int combustible = vehiculoDTO.getCombustible();    
+        String estadoVehiculo = vehiculoDTO.getEstadoVehiculo();  
+        String llantas = vehiculoDTO.getLlantas();
+        return new VehiculoDevuelto(carroceria, combustible, estadoVehiculo, llantas);
+    }
+    
+    public VehiculoDevueltoDTO convertir_DevueltoDTO(VehiculoDevuelto vehiculo){
+        String carroceria = vehiculo.getCarroceria();  
+        int combustible = vehiculo.getCombustible();    
+        String estadoVehiculo = vehiculo.getEstadoVehiculo();  
+        String llantas = vehiculo.getLlantas();
+        return new VehiculoDevueltoDTO(carroceria, combustible, estadoVehiculo, llantas);
+    }
 }
