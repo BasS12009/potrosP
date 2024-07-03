@@ -18,7 +18,7 @@ import interfaces.ITrasladoBO;
 public class TrasladoBO implements ITrasladoBO{
        // Data Access Object para manejar operaciones de base de datos relacionadas con 'Traslado'
     private final TrasladoDAO trasladoDAO;
-    
+ 
     
     private final TrasladoCVR trasladoCVR;
     

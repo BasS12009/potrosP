@@ -41,6 +41,9 @@ public class PrestamoBO implements IPrestamoBO {
     }
 
     
+    
+    
+    
     /**
      * Metodo para agregar un nuevo prestamo.
      *

@@ -24,8 +24,8 @@ public class VehiculoMapeo {
     private String tipo;  // Tipo de vehículo (por ejemplo, sedan, SUV, etc.)
     private String placa;  // Placa del vehículo
     private String capacidad;  // Capacidad del vehículo (por ejemplo, número de asientos)
+  
 
-    
      /**
      * Constructor de la clase VehiculoMapeo.
      * 

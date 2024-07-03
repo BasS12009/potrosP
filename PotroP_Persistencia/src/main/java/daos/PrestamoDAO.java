@@ -30,7 +30,8 @@ import org.bson.types.ObjectId;
 
 public class PrestamoDAO implements IPrestamoDAO {
 
-    
+   
+
     // Colección de MongoDB para préstamos
     private final MongoCollection<Prestamo> prestamoCollection;
 
