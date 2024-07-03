@@ -29,7 +29,7 @@ public class DevolucionCTL {
 
     //variables de entorno para el envio de correo
     private static final String CORREO = "skevinjaredfigueroa@gmail.com";
-    private static final String CONTRASEÑA = "fzml okes xwor nhjg";
+    private static final String CONTRASENA = "fzml okes xwor nhjg";
     
     // Interfaces de negocio para traslados y reportes
     ITrasladoBO traslado;
@@ -72,12 +72,12 @@ public class DevolucionCTL {
      * @param devolucion El objeto TrasladoDTO del traslado devuelto.
      * @throws BisnessException si ocurre un error en la capa de negocio.
      */
-    public void agregar(TrasladoDTO original, TrasladoDTO devolucion) throws BisnessException {
+    public void agregar(TrasladoDTO original) throws BisnessException {
         // Crear un reporte con los traslados original y devuelto
-        ReporteDTO report = new ReporteDTO(original, devolucion);
-        
-        // Agregar el reporte a la capa de negocio de reportes
-        reporte.agregar(report);
+//        ReporteDTO report = new ReporteDTO(original, devolucion);
+//        
+//        // Agregar el reporte a la capa de negocio de reportes
+//        reporte.agregar(report);
     }
 
     /**
@@ -164,10 +164,9 @@ public class DevolucionCTL {
      * entre el objeto "original" y el objeto "devolucion".
      * 
      * @param original El objeto TrasladoDTO original.
-     * @param devolucion El objeto TrasladoDTO de la devolución.
      * @throws BisnessException si ocurre un error al enviar el correo.
      */
-    public void enviarCorreo(TrasladoDTO original, TrasladoDTO devolucion) throws BisnessException {
+    public void enviarCorreo(TrasladoDTO original) throws BisnessException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -177,7 +176,7 @@ public class DevolucionCTL {
         // Estas credenciales están hardcodeadas para fines de demostración.
         // En producción, usa variables de entorno u otros métodos seguros para manejarlas.
         String username = CORREO; //aqui pones tu correo
-        String password = CONTRASEÑA; //aqui pones tu contraseña
+        String password = CONTRASENA; //aqui pones tu contraseña
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
@@ -213,18 +212,17 @@ public class DevolucionCTL {
         StringBuilder contenido = new StringBuilder();
         contenido.append("Comparación de Traslados:\n\n");
 
-        contenido.append("Carrocería Original: ").append(original.getCarroceria()).append("\n");
-        contenido.append("Carrocería Devolución: ").append(devolucion.getCarroceria()).append("\n\n");
+        contenido.append("Carrocería Original: ").append(original.getVehiculoEntregado().getCarroceria()).append("\n");
+        contenido.append("Carrocería Devolución: ").append(original.getVehiculoDevuelto().getCarroceria()).append("\n\n");
 
-        contenido.append("Llantas Original: ").append(original.getLlantas()).append("\n");
-        contenido.append("Llantas Devolución: ").append(devolucion.getLlantas()).append("\n\n");
+        contenido.append("Llantas Original: ").append(original.getVehiculoEntregado().getLlantas()).append("\n");
+        contenido.append("Llantas Devolución: ").append(original.getVehiculoDevuelto().getLlantas()).append("\n\n");
 
-        contenido.append("Combustible Original: ").append(original.getCombustible()).append("\n");
-        contenido.append("Combustible Devolución: ").append(devolucion.getCombustible()).append("\n\n");
+        contenido.append("Combustible Original: ").append(original.getVehiculoEntregado().getCombustible()).append("\n");
+        contenido.append("Combustible Devolución: ").append(original.getVehiculoDevuelto().getCombustible()).append("\n\n");
 
         contenido.append("Fecha y Hora de Salida Original: ").append(original.getFechaHoraSalida()).append("\n");
-        contenido.append("Fecha y Hora de Regreso Original: ").append(original.getFechaHoraRegreso()).append("\n");
-        contenido.append("Fecha y Hora de Regreso Devolución: ").append(devolucion.getFechaHoraRegreso()).append("\n\n");
+        contenido.append("Fecha y Hora de Regreso devolucion: ").append(original.getFechaHoraRegreso()).append("\n");
 
         return contenido.toString();
     }

@@ -6,8 +6,6 @@
  */
 package GUI;
 
-import GUI.BusquedaTraslado;
-import GUI.Menu;
 import dtos.TrasladoDTO;
 import fachada.DevolucionFCD;
 import guardar.Guardar;
@@ -72,10 +70,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         lblSalida.setText(convertir(traslado.getFechaHoraRegreso()));
         lblRegreso.setText(convertir(traslado.getFechaHoraSalida()));
         txfMotivo.setText(traslado.getMotivo());
-        lblPlaca.setText(traslado.getPlaca());
+        //lblPlaca.setText(traslado.getPlaca());
         lblEmpleado.setText(traslado.getCorreoEmpleado());
         lblChofer.setText(traslado.getCorreoChofer());
-        lblEstado.setText(establecerEstado(traslado.getEstado()));
+        lblEstado.setText(establecerEstado(traslado.isEstado()));
         
         //configuramos el estado
         configEstado(lblEstado);
@@ -195,33 +193,33 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      */
     private TrasladoDTO crearDevolucion(TrasladoDTO original){
         
-        //originales
-        int numTraslado = original.getNumTraslado();
-        String destino = original.getDestino();
-        int personas = original.getPersonas();
-        LocalDateTime fechaSalida = original.getFechaHoraSalida();
-        
-        //modificado
-        LocalDateTime fechaDevolucion = LocalDateTime.now();
-        
-        //original
-        String motivo = original.getMotivo();
-        
-        //modificados
-        String carroceria = carroceria(cbxCarroceria);    
-        String llantas = llantas(cbxLlantas);
-        int combustible = combustible(cbxCombustible);
-      
-        //originales
-        String placa = original.getPlaca();
-        String empleado = original.getCorreoEmpleado();
-        String chofer = original.getCorreoChofer();
-        boolean estado = original.getEstado();
-        
-        return new TrasladoDTO(numTraslado, destino, personas, fechaSalida, 
-        fechaDevolucion, motivo, carroceria, llantas, combustible, placa,
-        empleado, chofer, estado);
-        
+//        //originales
+//        int numTraslado = original.getNumTraslado();
+//        String destino = original.getDestino();
+//        int personas = original.getPersonas();
+//        LocalDateTime fechaSalida = original.getFechaHoraSalida();
+//        
+//        //modificado
+//        LocalDateTime fechaDevolucion = LocalDateTime.now();
+//        
+//        //original
+//        String motivo = original.getMotivo();
+//        
+//        //modificados
+//        String carroceria = carroceria(cbxCarroceria);    
+//        String llantas = llantas(cbxLlantas);
+//        int combustible = combustible(cbxCombustible);
+//      
+//        //originales
+//        String placa = original.getPlaca();
+//        String empleado = original.getCorreoEmpleado();
+//        String chofer = original.getCorreoChofer();
+//        boolean estado = original.getEstado();
+//        
+//        return new TrasladoDTO(numTraslado, destino, personas, fechaSalida, 
+//        fechaDevolucion, motivo, carroceria, llantas, combustible, placa,
+//        empleado, chofer, estado);
+        return null;
     }
     
     /**
@@ -242,7 +240,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
             
         
         //agregamos la devolucion
-        devolucionFCD.agregar(original, devolucion);
+        devolucionFCD.agregar(original);
         
         //mostramos una ventana de confirmacion para preguntar si se desa hacer 
         //otra devolucion

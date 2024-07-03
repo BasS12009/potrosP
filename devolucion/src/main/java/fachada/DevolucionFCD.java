@@ -67,22 +67,21 @@ public class DevolucionFCD implements IDevolucionFCD {
      * Método que agrega un traslado original y uno devuelto, comparando sus campos.
      * 
      * @param original El objeto TrasladoDTO del traslado original.
-     * @param devuelto El objeto TrasladoDTO del traslado devuelto.
      * @throws FachadaException si ocurre un error en la capa de negocio.
      */
     @Override
-    public void agregar(TrasladoDTO original, TrasladoDTO devuelto) throws FachadaException {
+    public void agregar(TrasladoDTO original) throws FachadaException {
         try {
             // Validar los campos del traslado original antes de proceder
             if (devolucion.validaCampos(original)) {
                 // Comparar los campos del traslado original y el traslado devuelto
-                if (devolucion.compararCampos(original, devuelto)) {
-                    devolucion.agregar(original, devuelto);
+                if (devolucion.compararCampos(original)) {
+                    devolucion.agregar(original);
                     devolucion.actualizar(original);
                     JOptionPane.showMessageDialog(null, "El traslado ha sido agregado con exito");
                 } else {
-                    devolucion.agregar(original, devuelto);
-                    devolucion.enviarCorreo(original, devuelto);
+                    devolucion.agregar(original);
+                    devolucion.enviarCorreo(original);
                     devolucion.actualizar(original);
                     JOptionPane.showMessageDialog(null, "El traslado ha sido agregado con exito"
                             + "Correo de reporte por incosistencia en devolucion ennviado");

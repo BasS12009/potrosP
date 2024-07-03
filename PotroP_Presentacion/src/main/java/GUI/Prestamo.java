@@ -291,14 +291,14 @@ public class Prestamo extends javax.swing.JFrame {
 
         //declaremos las variables necesarias que obtendremos de las pantallas
         try {
-            int id = 1;
+
             String motivo = txfMotivo.getText();
             LocalDate inicio = convertir(dcInicio);
             LocalDate fin = convertir(dcFin);
             String placa = obtenerPlaca(cbxVehiculo);
             String correo = obtenerCorreo();
 
-            PrestamoDTO loan = new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
+            PrestamoDTO loan = new PrestamoDTO(motivo, inicio, fin, placa, correo);
 
             //agregamos el prestamo
             prestamo.agregar(loan);
