@@ -42,14 +42,10 @@ public class TrasladoCVR {
         LocalDateTime fechaHoraRegreso = traslado.getFechaHoraRegreso();
         boolean disponibilidad = traslado.isDisponibilidad();
         VehiculoDTO vehiculoDTO = null;
-        String carroceria = traslado.getCarroceria();
-        String llantas = traslado.getLlantas();
-        int combustible = traslado.getCombustible();
-        String estadoVehiculo = traslado.getEstadoVehiculo();
+
         
         return new TrasladoDTO(folio, motivo, personas, fechaHoraSalida, 
-                fechaHoraRegreso, disponibilidad, vehiculoDTO, 
-                estadoVehiculo, llantas, carroceria, combustible);
+                fechaHoraRegreso, disponibilidad, vehiculoDTO);
     }
 
 }

@@ -12,25 +12,24 @@ import java.time.LocalDateTime;
  */
 public class TrasladoDTO {
     
-    private String folio;
+   private String folio;
     private String motivo;
     private int personas;
     private LocalDateTime fechaHoraSalida;
     private LocalDateTime fechaHoraRegreso;
     private boolean disponibilidad;
     private VehiculoDTO vehiculo;
-    private String estadoVehiculo;
-    private String llantas;
-    private String carroceria;
-    private int combustible;
+    private VehiculoEntregadoDTO vehiculoEntregado;
+    private VehiculoDevueltoDTO vehiculoDevuelto;
+    private String correoEmpleado;
+    private String correoChofer;
+    private boolean estado;
+
 
     public TrasladoDTO() {
     }
 
-    public TrasladoDTO(String folio, String motivo, int personas, 
-            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
-            boolean disponibilidad, VehiculoDTO vehiculo, String estadoVehiculo, 
-            String llantas, String carroceria, int combustible) {
+    public TrasladoDTO(String folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, VehiculoDTO vehiculo, VehiculoEntregadoDTO vehiculoEntregado, VehiculoDevueltoDTO vehiculoDevuelto, String correoEmpleado, String correoChofer, boolean estado) {
         this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;
@@ -38,18 +37,19 @@ public class TrasladoDTO {
         this.fechaHoraRegreso = fechaHoraRegreso;
         this.disponibilidad = disponibilidad;
         this.vehiculo = vehiculo;
-        this.estadoVehiculo = estadoVehiculo;
-        this.llantas = llantas;
-        this.carroceria = carroceria;
-        this.combustible = combustible;
+        this.vehiculoEntregado = vehiculoEntregado;
+        this.vehiculoDevuelto = vehiculoDevuelto;
+        this.correoEmpleado = correoEmpleado;
+        this.correoChofer = correoChofer;
+        this.estado = estado;
     }
 
     public String getFolio() {
         return folio;
     }
 
-    public void setFolio(String Folio) {
-        this.folio = Folio;
+    public void setFolio(String folio) {
+        this.folio = folio;
     }
 
     public String getMotivo() {
@@ -100,37 +100,46 @@ public class TrasladoDTO {
         this.vehiculo = vehiculo;
     }
 
-    public String getEstadoVehiculo() {
-        return estadoVehiculo;
+    public VehiculoEntregadoDTO getVehiculoEntregado() {
+        return vehiculoEntregado;
     }
 
-    public void setEstadoVehiculo(String estadoVehiculo) {
-        this.estadoVehiculo = estadoVehiculo;
+    public void setVehiculoEntregado(VehiculoEntregadoDTO vehiculoEntregado) {
+        this.vehiculoEntregado = vehiculoEntregado;
     }
 
-    public String getLlantas() {
-        return llantas;
+    public VehiculoDevueltoDTO getVehiculoDevuelto() {
+        return vehiculoDevuelto;
     }
 
-    public void setLlantas(String llantas) {
-        this.llantas = llantas;
+    public void setVehiculoDevuelto(VehiculoDevueltoDTO vehiculoDevuelto) {
+        this.vehiculoDevuelto = vehiculoDevuelto;
     }
 
-    public String getCarroceria() {
-        return carroceria;
+    public String getCorreoEmpleado() {
+        return correoEmpleado;
     }
 
-    public void setCarroceria(String carroceria) {
-        this.carroceria = carroceria;
+    public void setCorreoEmpleado(String correoEmpleado) {
+        this.correoEmpleado = correoEmpleado;
     }
 
-    public int getCombustible() {
-        return combustible;
+    public String getCorreoChofer() {
+        return correoChofer;
     }
 
-    public void setCombustible(int combustible) {
-        this.combustible = combustible;
+    public void setCorreoChofer(String correoChofer) {
+        this.correoChofer = correoChofer;
     }
-   
-  
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
+    
 }

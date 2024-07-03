@@ -8,11 +8,8 @@ import EntidadesMapeo.TrasladoMapeo;
 import entidades.Traslado;
 import org.bson.types.ObjectId;
 
-/**
- *
- * @author diana
- */
 public class ConvertidorTraslado {
+    
     /**
      * Convierte una entidad de tipo Traslado a una entidad de mapeo TrasladoMapeo.
      * 
@@ -31,10 +28,8 @@ public class ConvertidorTraslado {
                 traslado.getFechaHoraRegreso(),
                 traslado.isDisponibilidad(),
                 traslado.getVehiculo(),
-                traslado.getEstadoVehiculo(),
-                traslado.getLlantas(),
-                traslado.getCarroceria(),
-                traslado.getCombustible(),
+                traslado.getVehiculoEntregado(),
+                traslado.getVehiculoDevuelto(),
                 traslado.getCorreoEmpleado(),
                 traslado.getCorreoChofer(),
                 traslado.isEstado()
@@ -48,10 +43,8 @@ public class ConvertidorTraslado {
             traslado.getFechaHoraRegreso(),
             traslado.isDisponibilidad(),
             traslado.getVehiculo(),
-            traslado.getEstadoVehiculo(),
-            traslado.getLlantas(),
-            traslado.getCarroceria(),
-            traslado.getCombustible(),
+            traslado.getVehiculoEntregado(),
+            traslado.getVehiculoDevuelto(),
             traslado.getCorreoEmpleado(),
             traslado.getCorreoChofer(),
             traslado.isEstado()
@@ -76,10 +69,8 @@ public class ConvertidorTraslado {
                 trasladoMapeo.getFechaHoraRegreso(),
                 trasladoMapeo.isDisponibilidad(),
                 trasladoMapeo.getVehiculo(),
-                trasladoMapeo.getEstadoVehiculo(),
-                trasladoMapeo.getLlantas(),
-                trasladoMapeo.getCarroceria(),
-                trasladoMapeo.getCombustible(),
+                trasladoMapeo.getVehiculoEntregado(),
+                trasladoMapeo.getVehiculoDevuelto(),
                 trasladoMapeo.getCorreoEmpleado(),
                 trasladoMapeo.getCorreoChofer(),
                 trasladoMapeo.isEstado()
@@ -88,4 +79,3 @@ public class ConvertidorTraslado {
         return null;
     }
 }
-
