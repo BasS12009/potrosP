@@ -30,46 +30,10 @@ public class VehiculoEntregado extends Vehiculo {
 
     public VehiculoEntregado() {
     }
-    
-    
-    public VehiculoEntregado(String carroceria, int combustible, 
-            String estadoVehiculo, String llantas) {
-        this.carroceria = carroceria;
-        this.combustible = combustible;
-        this.estadoVehiculo = estadoVehiculo;
-        this.llantas = llantas;
-    }
-    
-    /**
-     * Constructor de la clase VehiculoEntregado.
-     * 
-     * @param id Identificador único del vehículo
-     * @param numVehiculo Número de vehículo
-     * @param marca Marca del vehículo
-     * @param modelo Modelo del vehículo
-     * @param año Año de fabricación del vehículo
-     * @param tipo Tipo de vehículo
-     * @param placa Placa del vehículo
-     * @param capacidad Capacidad del vehículo
-     * @param carroceria Estado de la carrocería
-     * @param combustible Nivel de combustible
-     * @param estadoVehiculo Estado general del vehículo
-     * @param llantas Estado de las llantas
-     */
-    public VehiculoEntregado(String id, int numVehiculo, String marca, String modelo, 
-                             int año, String tipo, String placa, String capacidad,
-                             String carroceria, int combustible, String estadoVehiculo, String llantas) {
-        super(id, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
-        this.carroceria = carroceria;
-        this.combustible = combustible;
-        this.estadoVehiculo = estadoVehiculo;
-        this.llantas = llantas;
-    }
 
-    
     public VehiculoEntregado(String carroceria, int combustible, 
             String estadoVehiculo, String llantas, int numVehiculo, 
-            String marca, String modelo, int año, String tipo, String placa, 
+            String marca, String modelo, int año, String tipo, String placa,
             String capacidad) {
         super(numVehiculo, marca, modelo, año, tipo, placa, capacidad);
         this.carroceria = carroceria;
@@ -78,6 +42,18 @@ public class VehiculoEntregado extends Vehiculo {
         this.llantas = llantas;
     }
 
+    public VehiculoEntregado(String carroceria, int combustible, 
+            String estadoVehiculo, String llantas, String id, int numVehiculo, 
+            String marca, String modelo, int año, String tipo, String placa, 
+            String capacidad) {
+        super(id, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+    }
+    
+    
     public String getCarroceria() {
         return carroceria;
     }
@@ -110,72 +86,86 @@ public class VehiculoEntregado extends Vehiculo {
         this.llantas = llantas;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
 
+    @Override
     public int getNumVehiculo() {
         return numVehiculo;
     }
 
+    @Override
     public void setNumVehiculo(int numVehiculo) {
         this.numVehiculo = numVehiculo;
     }
 
+    @Override
     public String getMarca() {
         return marca;
     }
 
+    @Override
     public void setMarca(String marca) {
         this.marca = marca;
     }
 
+    @Override
     public String getModelo() {
         return modelo;
     }
 
+    @Override
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
+    @Override
     public int getAño() {
         return año;
     }
 
+    @Override
     public void setAño(int año) {
         this.año = año;
     }
 
+    @Override
     public String getTipo() {
         return tipo;
     }
 
+    @Override
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    @Override
     public String getPlaca() {
         return placa;
     }
 
+    @Override
     public void setPlaca(String placa) {
         this.placa = placa;
     }
 
+    @Override
     public String getCapacidad() {
         return capacidad;
     }
 
+    @Override
     public void setCapacidad(String capacidad) {
         this.capacidad = capacidad;
     }
     
-    
-
     /**
      * Representa el objeto VehiculoEntregado como una cadena de caracteres.
      * 

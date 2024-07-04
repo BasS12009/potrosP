@@ -19,13 +19,6 @@ public class VehiculoDevueltoDTO extends VehiculoDTO{
     public VehiculoDevueltoDTO() {
     }
     
-    public VehiculoDevueltoDTO(String carroceria, int combustible, String estadoVehiculo, String llantas) {
-        this.carroceria = carroceria;
-        this.combustible = combustible;
-        this.estadoVehiculo = estadoVehiculo;
-        this.llantas = llantas;
-    }
-
     public VehiculoDevueltoDTO(String carroceria, int combustible, 
             String estadoVehiculo, String llantas, int numVehiculo, 
             String marca, String modelo, int año, String tipo, String placa, 

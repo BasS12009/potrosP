@@ -7,6 +7,7 @@
 package GUI;
 
 import java.sql.Date;
+import javax.swing.JOptionPane;
 
 /** 
  * @author/(s):
@@ -18,8 +19,7 @@ import java.sql.Date;
 public class Traslado extends javax.swing.JFrame {
 
       int cantidadP = 0;
-
-    Date inicio, fin;
+      Date inicio, fin;
     /**
      * Constructor creado por el compilador que permite inicializar los
      * componentes de la pantalla y se agregaron 2 métodos para alinear el frame
@@ -130,30 +130,31 @@ public class Traslado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
-//        // TODO add your handling code here:
-//
-//        try {
-//            this.cantidadP = Integer.parseInt((String) cbxPersonas.getSelectedItem());
-//
-//            if (cantidadP % 5 == 0) {
-//                this.inicio = Date.valueOf(dateSalida.datePicker.getDate());
-//                inicio.setTime(dateSalida.timePicker.getTime().toNanoOfDay()/1000000);
-//
-//                this.fin = Date.valueOf(dateRegreso.datePicker.getDate());
-//
-//                fin.setTime(dateRegreso.timePicker.getTime().toNanoOfDay()/1000000);
-//
-//////                Traslado2 traslado2 = new Traslado2(this);
-////
-////                traslado2.setVisible(true);
-////                this.dispose();
-//            } else {
-//
-//                JOptionPane.showMessageDialog(this, "La cantidad seleccionada debe ser un múltiplo de 5 para poder continuar.", "Error de Disponibilidad", JOptionPane.ERROR_MESSAGE);
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "La cantidad seleccionada no es válida. Por favor, seleccione un número.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
-//        }
+        // TODO add your handling code here:
+
+        try {
+            this.cantidadP = Integer.parseInt((String) cbxPersonas.getSelectedItem());
+
+            if (cantidadP % 5 == 0) {
+                //configuramos la fecha y hora de salida
+                this.inicio = Date.valueOf(dateSalida.datePicker.getDate());
+                inicio.setTime(dateSalida.timePicker.getTime().toNanoOfDay()/1000000);
+
+                //Configuramos la fecha y hora de llegada
+                this.fin = Date.valueOf(dateRegreso.datePicker.getDate());
+                fin.setTime(dateRegreso.timePicker.getTime().toNanoOfDay()/1000000);
+
+                Traslado2 traslado2 = new Traslado2(this);
+
+                traslado2.setVisible(true);
+                this.dispose();
+            } else {
+
+                JOptionPane.showMessageDialog(this, "La cantidad seleccionada debe ser un múltiplo de 5 para poder continuar.", "Error de Disponibilidad", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La cantidad seleccionada no es válida. Por favor, seleccione un número.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDisponibilidadActionPerformed
 
     /**
