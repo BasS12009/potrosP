@@ -9,13 +9,14 @@ package dtos;
  * @author diana
  */
 public class VehiculoDTO {
-     private int numVehiculo;
-    private String marca;
-    private String modelo;
-    private int año;
-    private String tipo;
-    private String placa;
-    private String capacidad;
+    
+    protected int numVehiculo;
+    protected String marca;
+    protected String modelo;
+    protected int año;
+    protected String tipo;
+    protected String placa;
+    protected String capacidad;
 
     public VehiculoDTO() {
     }
@@ -39,8 +40,6 @@ public class VehiculoDTO {
         this.numVehiculo = numVehiculo;
     }
 
-    
-    
     public String getMarca() {
         return marca;
     }
