@@ -28,7 +28,12 @@ public class VehiculoEntregado extends Vehiculo {
     private String estadoVehiculo;  // Estado general del vehículo
     private String llantas;     // Estado de las llantas
 
-    public VehiculoEntregado(String carroceria, int combustible, String estadoVehiculo, String llantas) {
+    public VehiculoEntregado() {
+    }
+    
+    
+    public VehiculoEntregado(String carroceria, int combustible, 
+            String estadoVehiculo, String llantas) {
         this.carroceria = carroceria;
         this.combustible = combustible;
         this.estadoVehiculo = estadoVehiculo;
@@ -61,77 +66,115 @@ public class VehiculoEntregado extends Vehiculo {
         this.llantas = llantas;
     }
 
-    /**
-     * Obtiene el estado de la carrocería.
-     * 
-     * @return El estado de la carrocería
-     */
+    
+    public VehiculoEntregado(String carroceria, int combustible, 
+            String estadoVehiculo, String llantas, int numVehiculo, 
+            String marca, String modelo, int año, String tipo, String placa, 
+            String capacidad) {
+        super(numVehiculo, marca, modelo, año, tipo, placa, capacidad);
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+    }
+
     public String getCarroceria() {
         return carroceria;
     }
 
-    /**
-     * Establece el estado de la carrocería.
-     * 
-     * @param carroceria El estado de la carrocería
-     */
     public void setCarroceria(String carroceria) {
         this.carroceria = carroceria;
     }
 
-    /**
-     * Obtiene el nivel de combustible.
-     * 
-     * @return El nivel de combustible
-     */
     public int getCombustible() {
         return combustible;
     }
 
-    /**
-     * Establece el nivel de combustible.
-     * 
-     * @param combustible El nivel de combustible
-     */
     public void setCombustible(int combustible) {
         this.combustible = combustible;
     }
 
-    /**
-     * Obtiene el estado general del vehículo.
-     * 
-     * @return El estado general del vehículo
-     */
     public String getEstadoVehiculo() {
         return estadoVehiculo;
     }
 
-    /**
-     * Establece el estado general del vehículo.
-     * 
-     * @param estadoVehiculo El estado general del vehículo
-     */
     public void setEstadoVehiculo(String estadoVehiculo) {
         this.estadoVehiculo = estadoVehiculo;
     }
 
-    /**
-     * Obtiene el estado de las llantas.
-     * 
-     * @return El estado de las llantas
-     */
     public String getLlantas() {
         return llantas;
     }
 
-    /**
-     * Establece el estado de las llantas.
-     * 
-     * @param llantas El estado de las llantas
-     */
     public void setLlantas(String llantas) {
         this.llantas = llantas;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getNumVehiculo() {
+        return numVehiculo;
+    }
+
+    public void setNumVehiculo(int numVehiculo) {
+        this.numVehiculo = numVehiculo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(String capacidad) {
+        this.capacidad = capacidad;
+    }
+    
+    
 
     /**
      * Representa el objeto VehiculoEntregado como una cadena de caracteres.

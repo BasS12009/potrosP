@@ -24,7 +24,7 @@ public class TrasladoFCD {
         if (traslado.validarTrasladoDTO(trasladoDTO)) {
             traslado.solicitarTraslado(trasladoDTO);
         }
-       
     }
+    
 }
 

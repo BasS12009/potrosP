@@ -29,7 +29,8 @@ public class VehiculoDevuelto extends Vehiculo {
     private int combustible;    // Nivel de combustible al devolverse
     private String estadoVehiculo;  // Estado general del vehículo al devolverse
     private String llantas;     // Estado de las llantas al devolverse
-
+    
+    
     /**
      * 
      */
@@ -51,6 +52,18 @@ public class VehiculoDevuelto extends Vehiculo {
         this.llantas = llantas;
     }
 
+    public VehiculoDevuelto(String carroceria, int combustible, 
+            String estadoVehiculo, String llantas, int numVehiculo, 
+            String marca, String modelo, int año, String tipo, String placa, 
+            String capacidad) {
+        super(numVehiculo, marca, modelo, año, tipo, placa, capacidad);
+        this.carroceria = carroceria;
+        this.combustible = combustible;
+        this.estadoVehiculo = estadoVehiculo;
+        this.llantas = llantas;
+    }
+
+    
     
     /**
      * Constructor de la clase VehiculoDevuelto.
@@ -116,6 +129,69 @@ public class VehiculoDevuelto extends Vehiculo {
         this.llantas = llantas;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getNumVehiculo() {
+        return numVehiculo;
+    }
+
+    public void setNumVehiculo(int numVehiculo) {
+        this.numVehiculo = numVehiculo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(String capacidad) {
+        this.capacidad = capacidad;
+    }
     
 
     /**
