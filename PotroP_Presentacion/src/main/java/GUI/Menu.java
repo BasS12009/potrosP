@@ -6,6 +6,7 @@
  */
 package GUI;
 
+
 /** 
  * @author/(s):
  * Diana Sofia Bastidas Osuna - 245804,
@@ -41,7 +42,7 @@ public class Menu extends javax.swing.JFrame {
         btnPrestamo = new javax.swing.JButton();
         btnSolicitarTraslado = new javax.swing.JButton();
         btnDevolucionTraslado = new javax.swing.JButton();
-        btnConsultarChoferes = new javax.swing.JButton();
+        btnTrasladoMaestros = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         btnDisponibilidad1 = new javax.swing.JButton();
         btnHistorialPrestamos = new javax.swing.JButton();
@@ -82,14 +83,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(btnDevolucionTraslado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 210, 50));
 
-        btnConsultarChoferes.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
-        btnConsultarChoferes.setText("Traslado Maestros");
-        btnConsultarChoferes.addActionListener(new java.awt.event.ActionListener() {
+        btnTrasladoMaestros.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
+        btnTrasladoMaestros.setText("Traslado Maestros");
+        btnTrasladoMaestros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarChoferesActionPerformed(evt);
+                btnTrasladoMaestrosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultarChoferes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 210, 50));
+        jPanel1.add(btnTrasladoMaestros, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 210, 50));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 670, 40));
 
         btnDisponibilidad1.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
@@ -146,13 +147,15 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSolicitarTrasladoActionPerformed
 
-    private void btnConsultarChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarChoferesActionPerformed
-        // TODO add your handling code here:
-       Choferes choferes = new Choferes();
-       
-       choferes.setVisible(true);
-       this.dispose();
-    }//GEN-LAST:event_btnConsultarChoferesActionPerformed
+    private void btnTrasladoMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasladoMaestrosActionPerformed
+   
+            // TODO add your handling code here:
+            frmPrestampTrasladoProfes choferes = new frmPrestampTrasladoProfes();
+            
+            choferes.setVisible(true);
+            this.dispose();
+        
+    }//GEN-LAST:event_btnTrasladoMaestrosActionPerformed
 
     private void btnHistorialPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialPrestamosActionPerformed
         // TODO add your handling code here:
@@ -183,12 +186,12 @@ public class Menu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultarChoferes;
     private javax.swing.JButton btnDevolucionTraslado;
     private javax.swing.JButton btnDisponibilidad1;
     private javax.swing.JButton btnHistorialPrestamos;
     private javax.swing.JButton btnPrestamo;
     private javax.swing.JButton btnSolicitarTraslado;
+    private javax.swing.JButton btnTrasladoMaestros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;

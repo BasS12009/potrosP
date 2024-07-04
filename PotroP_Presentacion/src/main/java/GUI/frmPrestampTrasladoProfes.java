@@ -1,7 +1,6 @@
 package GUI;
 
 
-import GUI.Menu;
 import dtos.PrestamoMaestrosDTO;
 import dtos.VehiculoDTO;
 import excepcion.FachadaException;
@@ -27,7 +26,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
 import prueba.TabladeMaestros;
-import interfaz.IResumenFCD;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +39,7 @@ private final IPrestamoMaestrosFCD fachada;
    
     private PrestamoMaestrosDTO prestamoMaestrosDTO;
     
-    public frmPrestampTrasladoProfes() throws Exception {      
+    public frmPrestampTrasladoProfes()  {      
     initComponents();
     
     this.fachada = new PrestamoMaestrosFCD();

@@ -14,28 +14,24 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 
 
-/**
- *
- * @author skevi
- */
-public class ConexionBD implements IConexion{
- private static ConexionBD instance;
+public class ConexionBD implements IConexion {
+    private static ConexionBD instance;
     private final String direccion = "mongodb://localhost:27017/";
     private final String nombreBD = "PotroP";
     private final MongoDatabase mongoDatabase;
 
-    public ConexionBD() {
+    private ConexionBD() {
         // Configuración del codec para manejar POJOs
         CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(
-                MongoClientSettings.getDefaultCodecRegistry(),
-                CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build())
+            MongoClientSettings.getDefaultCodecRegistry(),
+            CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build())
         );
 
         // Configuración de los ajustes del cliente MongoDB
         MongoClientSettings clientSettings = MongoClientSettings.builder()
-                .applyConnectionString(new com.mongodb.ConnectionString(direccion))
-                .codecRegistry(pojoCodecRegistry)
-                .build();
+            .applyConnectionString(new com.mongodb.ConnectionString(direccion))
+            .codecRegistry(pojoCodecRegistry)
+            .build();
 
         // Creación de la instancia de MongoDatabase
         mongoDatabase = MongoClients.create(clientSettings).getDatabase(nombreBD);
@@ -52,20 +48,8 @@ public class ConexionBD implements IConexion{
         return instance;
     }
 
-   
+    @Override
     public MongoDatabase getDatabase() {
         return mongoDatabase;
     }
 }
-
-//    public void close() {
-//        if (mongoClient != null) {
-//            mongoClient.close();
-//            mongoClient = null;
-//        }
-//    }
-//}
-//    
-    
-    
-

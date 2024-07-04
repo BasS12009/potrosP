@@ -29,13 +29,12 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 public class PrestamoDAO implements IPrestamoDAO {
-
-   
-
-    // Colección de MongoDB para préstamos
     private final MongoCollection<Prestamo> prestamoCollection;
 
-    // Constructor para inicializar la colección de préstamos
+    public PrestamoDAO(MongoCollection<Prestamo> prestamoCollection) {
+        this.prestamoCollection = prestamoCollection;
+    }
+
     public PrestamoDAO() {
         this.prestamoCollection = ConexionBD.getInstance().getDatabase().getCollection("Prestamos", Prestamo.class);
     }
