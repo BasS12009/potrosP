@@ -9,18 +9,20 @@ package Pruebas;
  *
  * @author diana
  */
+import conexion.ConexionBDM;
 import daos.VehiculoDAO;
 import entidades.Vehiculo;
 import excepciones.DAOException;
 
 public class PruebaVehiculoDAO {
     public static void main(String[] args) {
+       ConexionBDM.getInstance();
         VehiculoDAO vehiculoDAO = new VehiculoDAO();
-
+        
         try {
-            // Crear un vehículo de prueba
+            // Criar um veículo de teste
             Vehiculo vehiculoPrueba = new Vehiculo(
-                "1",
+                null, // O ID será gerado pelo MongoDB
                 1,
                 "Toyota",
                 "Corolla",
@@ -29,18 +31,17 @@ public class PruebaVehiculoDAO {
                 "ABC123",
                 "5"
             );
-
-            // Agregar vehículo
-            System.out.println("Agregando vehículo...");
+            
+            // Adicionar veículo
+            System.out.println("Adicionando veículo...");
             vehiculoDAO.agregar(vehiculoPrueba);
-            System.out.println("Vehículo agregado exitosamente");
-
-            // Obtener todos los vehículos
-            System.out.println("Listando todos los vehículos:");
+            System.out.println("Veículo adicionado com sucesso");
+            
+            // Obter todos os veículos
+            System.out.println("Listando todos os veículos:");
             vehiculoDAO.obtenerTodos().forEach(System.out::println);
-
         } catch (DAOException e) {
-            System.err.println("Error en VehiculoDAO: " + e.getMessage());
+            System.err.println("Erro em VehiculoDAO: " + e.getMessage());
         }
     }
 }

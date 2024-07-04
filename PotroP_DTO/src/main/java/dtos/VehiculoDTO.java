@@ -90,7 +90,11 @@ public class VehiculoDTO {
 
     @Override
     public String toString() {
-        return "Vehiculo " + numVehiculo ;
+        return  marca + "," + modelo ;
     }
+
+
+
+
     
 }

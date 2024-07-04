@@ -39,7 +39,7 @@ public class TrasladoCVR {
         LocalDateTime fechaHoraSalida = trasladoDTO.getFechaHoraSalida();
         LocalDateTime fechaHoraRegreso = trasladoDTO.getFechaHoraRegreso();
         boolean disponibilidad = trasladoDTO.isDisponibilidad();
-        Vehiculo vehiculo = vehiculoCVR.convertir_Entidad(trasladoDTO.getVehiculo());
+        Vehiculo vehiculo = vehiculoCVR.convertir_Vehiculo(trasladoDTO.getVehiculo());
         VehiculoEntregado vehiculoEntregado = vehiculoEntregadoCVR.convertir_Entregado(trasladoDTO.getVehiculoEntregado());
         VehiculoDevuelto vehiculoDevuelto = vehiculoDevueltoCVR.convertir_Devuelto(trasladoDTO.getVehiculoDevuelto());
         String correoEmpleado = trasladoDTO.getCorreoEmpleado();

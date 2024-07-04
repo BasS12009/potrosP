@@ -17,55 +17,45 @@ import org.bson.types.ObjectId;
  */
 public class PrestamoMapeo {
     
-    private ObjectId id; // Identificador único del préstamo
-    private String motivo; // Motivo del préstamo
-    private LocalDate inicio; // Fecha de inicio del préstamo
-    private LocalDate fin; // Fecha de fin del préstamo
-    private String placaVehiculo; // Placa del vehículo asociado al préstamo
-    private String correoEmpleado; // Correo del empleado responsable del préstamo
+     private ObjectId id;
+    private String motivo;
+    private LocalDate inicio;
+    private LocalDate fin;
+    private String placaVehiculo;
+    private String correoEmpleado;
+    private VehiculoMapeo vehiculo;
 
-     /**
-     * Constructor vacío de la clase PrestamoMapeo.
-     */
     public PrestamoMapeo() {
     }
 
-        /**
-     * Constructor de la clase PrestamoMapeo.
-     * 
-     * @param id Identificador único del préstamo
-     * @param motivo Motivo del préstamo
-     * @param inicio Fecha de inicio del préstamo
-     * @param fin Fecha de fin del préstamo
-     * @param placaVehiculo Placa del vehículo asociado al préstamo
-     * @param correoEmpleado Correo del empleado responsable del préstamo
-     */
-
-    public PrestamoMapeo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
+    public PrestamoMapeo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, VehiculoMapeo vehiculo) {
         this.id = id;
         this.motivo = motivo;
         this.inicio = inicio;
         this.fin = fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
+        this.vehiculo = vehiculo;
     }
 
-    /**
-     * Constructor alternativo de la clase PrestamoMapeo.
-     * 
-     * @param motivo Motivo del préstamo
-     * @param inicio Fecha de inicio del préstamo
-     * @param fin Fecha de fin del préstamo
-     * @param placaVehiculo Placa del vehículo asociado al préstamo
-     * @param correoEmpleado Correo del empleado responsable del préstamo
-     */
-    public PrestamoMapeo(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
+    public PrestamoMapeo(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, VehiculoMapeo vehiculo) {
         this.motivo = motivo;
         this.inicio = inicio;
         this.fin = fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
+        this.vehiculo = vehiculo;
     }
+
+    public VehiculoMapeo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(VehiculoMapeo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    
 
     
     /**

@@ -9,57 +9,64 @@ package converters;
 
 import dtos.PrestamoDTO;
 import entidades.Prestamo;
+import entidades.Vehiculo;
+import org.bson.types.ObjectId;
 import java.time.LocalDate;
 
-/**
- * @author/(s):
- * Diana Sofia Bastidas Osuna - 245804,
- * Carlos Damian Garcia Bernal - 247614,
- * Kevin Jared Sánchez Figueroa - 240798,
- * Daniel Alejandro Castro Félix - 235294.
- */
 public class PrestamoCVR {
     
-    VehiculoCVR vehiculoCVR;
+    private VehiculoCVR vehiculoCVR;
 
-    /**
-     * Constructor de la clase PrestamoCVR.
-     * 
-     * Inicializa un objeto de tipo VehiculoCVR para su uso en las conversiones.
-     */
     public PrestamoCVR() {
         this.vehiculoCVR = new VehiculoCVR();
     }
-    
-    /**
-     * Convierte un objeto de tipo PrestamoDTO en un objeto de tipo Prestamo.
-     * 
-     * @param prestamoDTO El objeto PrestamoDTO a convertir.
-     * @return El objeto Prestamo resultante de la conversión.
-     */
-    public Prestamo convetir_Prestamo(PrestamoDTO prestamoDTO){
-        String motivo = prestamoDTO.getMotivo();
-        LocalDate Inicio = prestamoDTO.getInicio();
-        LocalDate Fin = prestamoDTO.getFin();
-        //convertimos utilizando el convertidor de vehiculos a entidad vehiculo
-        String placa = prestamoDTO.getPlacaVehiculo();
-        String correo = prestamoDTO.getCorreoEmpleado();
-        return new Prestamo(motivo, Inicio, Fin, placa, correo);
+
+    public Prestamo convertir_Prestamo(PrestamoDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        Vehiculo vehiculo = null;
+        if (dto.getPlacaVehiculo() != null && !dto.getPlacaVehiculo().isEmpty()) {
+            vehiculo = new Vehiculo();
+            vehiculo.setPlaca(dto.getPlacaVehiculo());
+            // Aquí podrías usar vehiculoCVR para convertir más datos del vehículo si es necesario
+        }
+
+        ObjectId id = null;
+        if (dto.getId() != null && !dto.getId().isEmpty()) {
+            id = new ObjectId(dto.getId());
+        }
+
+        return new Prestamo(
+            id,
+            dto.getMotivo(),
+            dto.getInicio(),
+            dto.getFin(),
+            dto.getPlacaVehiculo(),
+            dto.getCorreoEmpleado(),
+            vehiculo
+        );
     }
-    
-    /**
-     * Convierte un objeto de tipo Prestamo en un objeto de tipo PrestamoDTO.
-     * 
-     * @param prestamo El objeto Prestamo a convertir.
-     * @return El objeto PrestamoDTO resultante de la conversión.
-     */
-    public PrestamoDTO convertir_DTO(Prestamo prestamo){
-        String id  = prestamo.getId();
-        String motivo = prestamo.getMotivo();
-        LocalDate inicio= prestamo.getInicio();
-        LocalDate fin = prestamo.getFin();
-        String placa = prestamo.getPlacaVehiculo();
-        String correo = prestamo.getCorreoEmpleado();
-        return new PrestamoDTO(id, motivo, inicio, fin, placa, correo);
+
+    public PrestamoDTO convertir_DTO(Prestamo entidad) {
+        if (entidad == null) {
+            return null;
+        }
+
+        PrestamoDTO dto = new PrestamoDTO();
+        dto.setId(entidad.getId() != null ? entidad.getId().toString() : null);
+        dto.setMotivo(entidad.getMotivo());
+        dto.setInicio(entidad.getInicio());
+        dto.setFin(entidad.getFin());
+        dto.setPlacaVehiculo(entidad.getPlacaVehiculo());
+        dto.setCorreoEmpleado(entidad.getCorreoEmpleado());
+        
+        // Si necesitas convertir más datos del vehículo, podrías usar vehiculoCVR aquí
+        if (entidad.getVehiculo() != null) {
+            dto.setPlacaVehiculo(entidad.getVehiculo().getPlaca());
+        }
+
+        return dto;
     }
 }
