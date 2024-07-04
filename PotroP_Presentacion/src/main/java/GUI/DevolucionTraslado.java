@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 public class DevolucionTraslado extends javax.swing.JFrame {
 
     IDevolucionFCD devolucionFCD;
+    TrasladoDTO trasladoDTO;
     Guardar guardar;
     
     //instaciamos frames
@@ -52,7 +53,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         
         //configuramos el contenedore motivo para que no sea editable
         txfMotivo.setEditable(false);
-        
+        txfMotivo.setFocusable(false);
         //cargamos la informacion del traslado
         cargarInfo();
     }
@@ -66,10 +67,11 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         //buscamos el objeto traslado basandonos en su numero de traslado    
         TrasladoDTO traslado = devolucionFCD.buscar(guardar.getNumDevolucion());
         
+        txfMotivo.setText(traslado.getMotivo());
         lblPersonas.setText(String.valueOf(traslado.getPersonas()));
         lblSalida.setText(convertir(traslado.getFechaHoraRegreso()));
         lblRegreso.setText(convertir(traslado.getFechaHoraSalida()));
-        txfMotivo.setText(traslado.getMotivo());
+        
         //lblPlaca.setText(traslado.getPlaca());
         lblEmpleado.setText(traslado.getCorreoEmpleado());
         lblChofer.setText(traslado.getCorreoChofer());
@@ -215,10 +217,8 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 //        String empleado = original.getCorreoEmpleado();
 //        String chofer = original.getCorreoChofer();
 //        boolean estado = original.getEstado();
-//        
-//        return new TrasladoDTO(numTraslado, destino, personas, fechaSalida, 
-//        fechaDevolucion, motivo, carroceria, llantas, combustible, placa,
-//        empleado, chofer, estado);
+        
+        
         return null;
     }
     
@@ -230,17 +230,14 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         try{
         //definimos el traslado orinal    
         TrasladoDTO original = devolucionFCD.buscar(guardar.getNumDevolucion());
-        
-        //definimos el traslado de devolucion
-        TrasladoDTO devolucion = crearDevolucion(original);
        
-            System.out.println(original.toString());
-            System.out.println(" ");
-            System.out.println(devolucion.toString());
-            
+        String motivo = taComentarios.getText();
+        
+        //imprimimos la el traslado para verificar si la informacion es la correcta 
+        System.out.println(original.toString());
         
         //agregamos la devolucion
-        devolucionFCD.agregar(original);
+        devolucionFCD.agregar(original, motivo);
         
         //mostramos una ventana de confirmacion para preguntar si se desa hacer 
         //otra devolucion

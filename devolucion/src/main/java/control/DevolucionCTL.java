@@ -4,10 +4,10 @@
  */
 package control;
 
-import dtos.ReporteDTO;
 import dtos.TrasladoDTO;
 import bo.ReporteBO;
 import bo.TrasladoBO;
+import dtos.ReporteDTO;
 import exceptions.BisnessException;
 import interfaces.IReporteBO;
 import interfaces.ITrasladoBO;
@@ -69,15 +69,15 @@ public class DevolucionCTL {
      * Método que agrega un traslado original y uno devuelto, generando un reporte.
      * 
      * @param original El objeto TrasladoDTO del traslado original.
-     * @param devolucion El objeto TrasladoDTO del traslado devuelto.
+     * @param motivo Texto que indica el motivo del reporte
      * @throws BisnessException si ocurre un error en la capa de negocio.
      */
-    public void agregar(TrasladoDTO original) throws BisnessException {
-        // Crear un reporte con los traslados original y devuelto
-//        ReporteDTO report = new ReporteDTO(original, devolucion);
-//        
-//        // Agregar el reporte a la capa de negocio de reportes
-//        reporte.agregar(report);
+    public void agregar(TrasladoDTO original, String motivo) throws BisnessException {
+        //Crear un reporte con los traslados original y devuelto
+        ReporteDTO report = new ReporteDTO(original, motivo);
+        
+        // Agregar el reporte a la capa de negocio de reportes
+        reporte.agregar(report);
     }
 
     /**
@@ -166,7 +166,7 @@ public class DevolucionCTL {
      * @param original El objeto TrasladoDTO original.
      * @throws BisnessException si ocurre un error al enviar el correo.
      */
-    public void enviarCorreo(TrasladoDTO original) throws BisnessException {
+    public void enviarCorreo(TrasladoDTO original, String motivo) throws BisnessException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -190,7 +190,7 @@ public class DevolucionCTL {
             message.setFrom(new InternetAddress(username));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(""));
             message.setSubject("Comparación de Traslados");
-            message.setText(contenido(original));
+            message.setText(contenido(original, motivo));
 
             Transport.send(message);
             System.out.println("Correo enviado exitosamente.");
@@ -207,7 +207,7 @@ public class DevolucionCTL {
      * @param devolucion El objeto TrasladoDTO de la devolución.
      * @return El contenido del correo como una cadena de texto.
      */
-    private String contenido(TrasladoDTO original) {
+    private String contenido(TrasladoDTO original, String motivo) {
         // Generar el contenido del correo comparando los campos de los dos traslados
         StringBuilder contenido = new StringBuilder();
         contenido.append("Comparación de Traslados:\n\n");
@@ -224,6 +224,8 @@ public class DevolucionCTL {
         contenido.append("Fecha y Hora de Salida Original: ").append(original.getFechaHoraSalida()).append("\n");
         contenido.append("Fecha y Hora de Regreso devolucion: ").append(original.getFechaHoraRegreso()).append("\n");
 
+        contenido.append("El motivo del reporte es: ").append(motivo);
+        
         return contenido.toString();
     }
     

@@ -17,7 +17,7 @@ import excepciones.DAOException;
 
 import java.time.LocalDate;
 
-public class PruebaPrestamoDAO {
+public class PruebaPrestamoDAO {   
     public static void main(String[] args) {
 
 
@@ -45,4 +45,5 @@ public class PruebaPrestamoDAO {
             System.err.println("Error al agregar el préstamo: " + e.getMessage());
         }
     }
+    
 }
