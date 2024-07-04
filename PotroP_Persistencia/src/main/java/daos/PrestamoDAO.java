@@ -18,7 +18,8 @@ import Interfaces.IPrestamoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
-import conexion.ConexionBD;
+
+import conexion.ConexionBDM;
 import entidades.Prestamo;
 import excepciones.DAOException;
 import java.time.LocalDate;
@@ -36,7 +37,7 @@ public class PrestamoDAO implements IPrestamoDAO {
     }
 
     public PrestamoDAO() {
-        this.prestamoCollection = ConexionBD.getInstance().getDatabase().getCollection("Prestamos", Prestamo.class);
+        this.prestamoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Prestamos", Prestamo.class);
     }
 
     // Método para agregar un préstamo a la base de datos

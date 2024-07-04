@@ -12,6 +12,6 @@ package Interfaces;
  */
 import com.mongodb.client.MongoDatabase;
 
-public interface IConexion {
+public interface IConexionBDM {
     MongoDatabase getDatabase();
 }

@@ -6,6 +6,9 @@
  */
 package GUI;
 
+
+
+import conexion.ConexionBDM;
 import exception.FachadaException;
 import fachada.LogginFCD;
 import interfaz.ILogginFCD;
@@ -26,6 +29,8 @@ public class LogIn extends javax.swing.JFrame {
      * el frame con la pantalla y asignarle un tamaño.
      */
     public LogIn(){
+                
+            ConexionBDM.getInstance();
         initComponents();
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);

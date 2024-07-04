@@ -150,9 +150,9 @@ public class Menu extends javax.swing.JFrame {
     private void btnTrasladoMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasladoMaestrosActionPerformed
    
             // TODO add your handling code here:
-            frmPrestampTrasladoProfes choferes = new frmPrestampTrasladoProfes();
+            frmPrestampTrasladoProfes dddd = new frmPrestampTrasladoProfes();
             
-            choferes.setVisible(true);
+            dddd.setVisible(true);
             this.dispose();
         
     }//GEN-LAST:event_btnTrasladoMaestrosActionPerformed

@@ -9,7 +9,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
-import conexion.ConexionBD;
+import conexion.ConexionBDM;
 import entidades.Traslado;
 import excepciones.DAOException;
 import org.bson.types.ObjectId;
@@ -18,7 +18,7 @@ public class TrasladoDAO implements ITrasladoDAO {
     private final MongoCollection<Traslado> trasladoCollection;
 
     public TrasladoDAO() {
-        this.trasladoCollection = ConexionBD.getInstance().getDatabase().getCollection("Traslado", Traslado.class);
+        this.trasladoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Traslado", Traslado.class);
     }
 
     @Override

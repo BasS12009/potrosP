@@ -6,7 +6,7 @@ package daos;
 
 import Interfaces.IVehiculoDAO;
 import com.mongodb.client.MongoCollection;
-import conexion.ConexionBD;
+import conexion.ConexionBDM;
 import entidades.Vehiculo;
 import entidades.VehiculoEntregado;
 import entidades.VehiculoDevuelto;
@@ -22,7 +22,7 @@ public class VehiculoDAO implements IVehiculoDAO {
     private final MongoCollection<Document> vehiculoCollection;
 
     public VehiculoDAO() {
-        this.vehiculoCollection = ConexionBD.getInstance().getDatabase().getCollection("Vehiculo");
+        this.vehiculoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Vehiculo");
     }
 
     @Override

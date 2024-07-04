@@ -10,7 +10,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
-import conexion.ConexionBD;
+import conexion.ConexionBDM;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
 import org.bson.types.ObjectId;
@@ -26,7 +26,7 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
     }
 
     public PrestamoMaestrosDAO() {
-        this.prestamoMaestrosCollection = ConexionBD.getInstance().getDatabase().getCollection("PrestamosMaestros", PrestamoMaestros.class);
+        this.prestamoMaestrosCollection = ConexionBDM.getInstance().getDatabase().getCollection("PrestamosMaestros", PrestamoMaestros.class);
     }
 
     @Override

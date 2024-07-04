@@ -17,6 +17,8 @@ import java.sql.SQLException;
  */
 public class ConexionBD implements IConexionBD {
 
+    
+
     // Constante que define la dirección del servidor de la base de datos
     final String SERVER = "localhost";
     

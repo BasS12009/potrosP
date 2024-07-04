@@ -1,6 +1,7 @@
 package GUI;
 
 
+import conexion.ConexionBDM;
 import dtos.PrestamoMaestrosDTO;
 import dtos.VehiculoDTO;
 import excepcion.FachadaException;
@@ -41,6 +42,7 @@ private final IPrestamoMaestrosFCD fachada;
     
     public frmPrestampTrasladoProfes()  {      
     initComponents();
+            ConexionBDM.getInstance();
     
     this.fachada = new PrestamoMaestrosFCD();
             
@@ -405,16 +407,16 @@ private void mostrarPrestamosEnConsola() {
 
 
 private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws IllegalArgumentException {
-    try {
-        List<PrestamoMaestrosDTO> prestamos = fachada.listaPrestamosMaestros();
-        for (PrestamoMaestrosDTO prestamo : prestamos) {
-            if (prestamo.getVehiculo().equals(placa) && prestamo.getFechaPrestamo().equals(fecha)) {
-                throw new IllegalArgumentException("El vehículo seleccionado no está disponible para la fecha indicada.");
-            }
-        }
-    } catch (FachadaException e) {
-        throw new IllegalArgumentException("Error al verificar la disponibilidad del vehículo: " + e.getMessage());
-    }
+//    try {
+//        List<PrestamoMaestrosDTO> prestamos = fachada.listaPrestamosMaestros();
+//        for (PrestamoMaestrosDTO prestamo : prestamos) {
+//            if (prestamo.getVehiculo().equals(placa) && prestamo.getFechaPrestamo().equals(fecha)) {
+//                throw new IllegalArgumentException("El vehículo seleccionado no está disponible para la fecha indicada.");
+//            }
+//        }
+//    } catch (FachadaException e) {
+//        throw new IllegalArgumentException("Error al verificar la disponibilidad del vehículo: " + e.getMessage());
+//    }
 }
 
 

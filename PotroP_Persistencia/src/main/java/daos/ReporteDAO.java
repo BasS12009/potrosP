@@ -7,7 +7,7 @@ package daos;
 
 import Interfaces.IReporteDAO;
 import com.mongodb.client.MongoCollection;
-import conexion.ConexionBD;
+import conexion.ConexionBDM;
 import entidades.Reporte;
 import excepciones.DAOException;
 
@@ -25,7 +25,7 @@ public class ReporteDAO implements IReporteDAO {
     // Constructor para inicializar la colección de reportes
     public ReporteDAO() {
         // Aquí obtienes la colección "Reporte" desde la instancia de conexión a la base de datos
-        this.reporteCollection = ConexionBD.getInstance().getDatabase().getCollection("Reporte", Reporte.class);
+        this.reporteCollection = ConexionBDM.getInstance().getDatabase().getCollection("Reporte", Reporte.class);
     }
 
     // Método para agregar un reporte a la base de datos

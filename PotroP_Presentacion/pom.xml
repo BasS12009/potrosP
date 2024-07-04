@@ -83,6 +83,11 @@
             <artifactId>Traslado_Subsistema</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PotroP_Persistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <name>PotroP_Presentacion</name>
 </project>

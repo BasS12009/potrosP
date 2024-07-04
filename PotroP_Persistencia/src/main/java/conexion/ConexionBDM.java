@@ -4,7 +4,7 @@
  */
 package conexion;
 
-import Interfaces.IConexion;
+import Interfaces.IConexionBDM;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -14,13 +14,13 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 
 
-public class ConexionBD implements IConexion {
-    private static ConexionBD instance;
+public class ConexionBDM implements IConexionBDM {
+    private static ConexionBDM instance;
     private final String direccion = "mongodb://localhost:27017/";
     private final String nombreBD = "PotroP";
     private final MongoDatabase mongoDatabase;
 
-    private ConexionBD() {
+    private ConexionBDM() {
         // Configuración del codec para manejar POJOs
         CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(
             MongoClientSettings.getDefaultCodecRegistry(),
@@ -37,11 +37,11 @@ public class ConexionBD implements IConexion {
         mongoDatabase = MongoClients.create(clientSettings).getDatabase(nombreBD);
     }
 
-    public static ConexionBD getInstance() {
+    public static ConexionBDM getInstance() {
         if (instance == null) {
-            synchronized (ConexionBD.class) {
+            synchronized (ConexionBDM.class) {
                 if (instance == null) {
-                    instance = new ConexionBD();
+                    instance = new ConexionBDM();
                 }
             }
         }

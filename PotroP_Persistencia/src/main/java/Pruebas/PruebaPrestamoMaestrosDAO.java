@@ -8,7 +8,7 @@ package Pruebas;
  *
  * @author diana
  */
-import conexion.ConexionBD;
+import conexion.ConexionBDM;
 import daos.PrestamoMaestrosDAO;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class PruebaPrestamoMaestrosDAO {
     public static void main(String[] args) {
        // Inicializar la conexión a la base de datos
-        ConexionBD.getInstance();
+        ConexionBDM.getInstance();
         
         PrestamoMaestrosDAO prestamoMaestrosDAO = new PrestamoMaestrosDAO();
 
