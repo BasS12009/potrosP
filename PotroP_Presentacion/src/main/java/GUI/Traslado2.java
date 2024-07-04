@@ -35,6 +35,7 @@ public class Traslado2 extends javax.swing.JFrame {
     private TrasladoBO fachada;
 
     /**
+     * 
      * Creates new form Traslado2
      */
     public Traslado2() {
@@ -57,6 +58,10 @@ public class Traslado2 extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * 
+     * @param formTr 
+     */
     public Traslado2(Traslado formTr) {
         this.formT = formTr;
         initComponents();
@@ -109,12 +114,12 @@ public class Traslado2 extends javax.swing.JFrame {
             return;
         }
 
+        
+        
         // Crear una instancia de TrasladoDTO y llenar sus campos
         TrasladoDTO trasladoDTO = new TrasladoDTO();
         trasladoDTO.setMotivo(txtPrestamo.getText().trim());
         
-    trasladoDTO.getFechaHoraSalida(/* Obtener fecha de salida del componente correspondiente */);
-    trasladoDTO.getFechaHoraRegreso(/* Obtener fecha de regreso del componente correspondiente */);
         trasladoDTO.setDisponibilidad(true); // O el valor que corresponda
         VehiculoEntregado vehiculoEntregado = new VehiculoEntregado();
         vehiculoEntregado.setEstadoVehiculo(cbxVehiculo.getSelectedItem().toString());
@@ -122,10 +127,13 @@ public class Traslado2 extends javax.swing.JFrame {
         vehiculoEntregado.setCarroceria(cbxCarroceria.getSelectedItem().toString());
         trasladoDTO.setPersonas(formT.cantidadP);
         
-//        trasladoDTO.setFechaHoraSalida(formT.inicio);
-//        trasladoDTO.setFechaHoraRegreso(formT.fin);
+        trasladoDTO.setFechaHoraSalida(formT.inicio);
+        trasladoDTO.setFechaHoraRegreso(formT.fin);
         String combustibleSeleccionado = cbxCombustible.getSelectedItem().toString();
-// Remover el símbolo '%' del valor seleccionado
+        
+        
+        
+        // Remover el símbolo '%' del valor seleccionado
         String combustibleSinPorcentaje = combustibleSeleccionado.replace("%", "").trim();
 
         try {
@@ -366,8 +374,8 @@ public class Traslado2 extends javax.swing.JFrame {
             // Si hubo un error al buscar el empleado (incluyendo si no fue encontrado)
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             btnDisponibilidad.setEnabled(false);
-
         }
+        
     }//GEN-LAST:event_btnComprobarActionPerformed
 
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed

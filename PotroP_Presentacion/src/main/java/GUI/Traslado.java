@@ -6,10 +6,11 @@
  */
 package GUI;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /** 
@@ -21,8 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class Traslado extends javax.swing.JFrame {
 
-      int cantidadP = 0;
-      Date inicio, fin;
+      public int cantidadP = 0;
+      public LocalDateTime inicio, fin;
     /**
      * Constructor creado por el compilador que permite inicializar los
      * componentes de la pantalla y se agregaron 2 métodos para alinear el frame
@@ -132,32 +133,46 @@ public class Traslado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
-        // TODO add your handling code here:
-
+        
         try {
             this.cantidadP = Integer.parseInt((String) cbxPersonas.getSelectedItem());
 
             if (cantidadP % 5 == 0) {
-                localdateTime:    this.inicio = LocalDateTime.valueOf(dateSalida.datePicker.getDate());
-                inicio.setTime(dateSalida.timePicker.getTime().toNanoOfDay()/1000000);
+                // Configuramos la fecha y hora de salida
+                LocalDate fechaSalida = convertToLocalDateViaInstant(dateSalida.getDate());
+                LocalTime horaSalidaTime = convertToLocalTime(horaSalida.getSelectedItem().toString());
+                this.inicio = LocalDateTime.of(fechaSalida, horaSalidaTime);
 
-                //Configuramos la fecha y hora de llegada
-                this.fin = Date.valueOf(dateRegreso.datePicker.getDate());
-                fin.setTime(dateRegreso.localDate.getTime().toNanoOfDay()/1000000);
+                // Configuramos la fecha y hora de llegada
+                LocalDate fechaRegreso = convertToLocalDateViaInstant(dateRegreso.getDate());
+                LocalTime horaRegresoTime = convertToLocalTime(horaRegreso.getSelectedItem().toString());
+                this.fin = LocalDateTime.of(fechaRegreso, horaRegresoTime);
+
                 Traslado2 traslado2 = new Traslado2(this);
-
                 traslado2.setVisible(true);
                 this.dispose();
             } else {
-
                 JOptionPane.showMessageDialog(this, "La cantidad seleccionada debe ser un múltiplo de 5 para poder continuar.", "Error de Disponibilidad", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "La cantidad seleccionada no es válida. Por favor, seleccione un número.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
-        }
+        }   
     }//GEN-LAST:event_btnDisponibilidadActionPerformed
 
+    private LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    private LocalTime convertToLocalTime(String timeString) {
+        String[] parts = timeString.split(":");
+        int hour = Integer.parseInt(parts[0]);
+        int minute = Integer.parseInt(parts[1]);
+        return LocalTime.of(hour, minute);
+    }
     /**
      * @param args the command line arguments
      */
