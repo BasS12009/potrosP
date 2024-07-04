@@ -5,7 +5,6 @@
 package conexion;
 
 import Interfaces.IConexion;
-import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
