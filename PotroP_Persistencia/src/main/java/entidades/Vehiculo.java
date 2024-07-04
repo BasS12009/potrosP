@@ -24,14 +24,14 @@ package entidades;
  */
 public class Vehiculo {
    
-    private String id;  // Identificador único del vehículo
-    private int numVehiculo;  // Número de vehículo
-    private String marca;  // Marca del vehículo
-    private String modelo;  // Modelo del vehículo
-    private int año;  // Año de fabricación del vehículo
-    private String tipo;  // Tipo de vehículo (por ejemplo, sedán, SUV, etc.)
-    private String placa;  // Placa del vehículo
-    private String capacidad;  // Capacidad del vehículo(numero de asientos disponibles)
+    protected String id;  // Identificador único del vehículo
+    protected int numVehiculo;  // Número de vehículo
+    protected String marca;  // Marca del vehículo
+    protected String modelo;  // Modelo del vehículo
+    protected int año;  // Año de fabricación del vehículo
+    protected String tipo;  // Tipo de vehículo (por ejemplo, sedán, SUV, etc.)
+    protected String placa;  // Placa del vehículo
+    protected String capacidad;  // Capacidad del vehículo(numero de asientos disponibles)
 
     /**
      * Constructor vacio
@@ -240,4 +240,5 @@ public class Vehiculo {
                 + ", año=" + año + ", tipo=" + tipo + ", placa=" + placa 
                 + ", capacidad=" + capacidad + '}';
     }
+    
 }
