@@ -17,34 +17,31 @@ import excepciones.DAOException;
 import java.time.LocalDate;
 
 public class PruebaPrestamoDAO {
-//    public static void main(String[] args) {
-//        ConexionBD conexion = ConexionBD.getInstance();
-//        
-//        PrestamoDAO prestamoDAO = new PrestamoDAO(conexion.getDatabase().getCollection("PrestamosMaestros", Prestamo.class));
-//
-//        try {
-//            // Crear un préstamo de prueba
-//            Prestamo prestamoPrueba = new Prestamo(
-//                "Viaje de negocios",
-//                LocalDate.now(),
-//                LocalDate.now().plusDays(5),
-//                "ABC123",
-//                "empleado@ejemplo.com"
-//            );
-//
-//            // Agregar préstamo
-//            System.out.println("Agregando préstamo...");
-//            prestamoDAO.agregar(prestamoPrueba);
-//            System.out.println("Préstamo agregado con ID: " + prestamoPrueba.getId());
-//
-//            // Buscar préstamo por ID
-//            Prestamo prestamoEncontrado = prestamoDAO.buscarPorId(prestamoPrueba.getId());
-//            System.out.println("Préstamo encontrado: " + prestamoEncontrado);
-//
-//        } catch (DAOException e) {
-//            System.err.println("Error en PrestamoDAO: " + e.getMessage());
-//        } finally {
-//            
-//        }
-//    }
+    public static void main(String[] args) {
+
+
+        // Inicializar la conexión a la base de datos
+        ConexionBD.getInstance();
+        
+        PrestamoDAO prestamoDAO = new PrestamoDAO();
+
+        try {
+            // Crear un nuevo préstamo
+            Prestamo nuevoPrestamo = new Prestamo(
+                "Viaje de negocios",
+                LocalDate.now(),
+                LocalDate.now().plusDays(3),
+                "ABC-123",
+                "empleado@ejemplo.com"
+            );
+
+            // Agregar el préstamo a la base de datos
+            prestamoDAO.agregar(nuevoPrestamo);
+            System.out.println("Préstamo agregado con éxito a la base de datos MongoDB.");
+            System.out.println("Detalles del préstamo: " + nuevoPrestamo);
+
+        } catch (DAOException e) {
+            System.err.println("Error al agregar el préstamo: " + e.getMessage());
+        }
+    }
 }

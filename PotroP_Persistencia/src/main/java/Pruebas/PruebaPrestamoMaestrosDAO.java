@@ -8,46 +8,42 @@ package Pruebas;
  *
  * @author diana
  */
+import conexion.ConexionBD;
 import daos.PrestamoMaestrosDAO;
 import entidades.PrestamoMaestros;
 import excepciones.DAOException;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 
+
 public class PruebaPrestamoMaestrosDAO {
     public static void main(String[] args) {
+       // Inicializar la conexión a la base de datos
+        ConexionBD.getInstance();
+        
         PrestamoMaestrosDAO prestamoMaestrosDAO = new PrestamoMaestrosDAO();
 
         try {
-            // Crear un préstamo de maestros de prueba
-            PrestamoMaestros prestamoMaestrosPrueba = new PrestamoMaestros(
+            // Crear un nuevo préstamo de maestros
+            PrestamoMaestros nuevoPrestamoMaestros = new PrestamoMaestros(
                 LocalDate.now(),
                 "Departamento de Informática",
                 3,
-                "Conferencia",
-                "Campus Norte",
-                "Campus Sur",
-                "VEH001",
+                "Conferencia de IA",
+                "Campus Principal",
+                "Campus Secundario",
+                "Minivan",
                 "profesor@universidad.edu",
-                Arrays.asList("estudiante1@universidad.edu", "estudiante2@universidad.edu")
+                Arrays.asList("Asistente 1", "Asistente 2")
             );
 
-            // Agregar préstamo de maestros
-            System.out.println("Agregando préstamo de maestros...");
-            prestamoMaestrosDAO.agregar(prestamoMaestrosPrueba);
-            System.out.println("Préstamo de maestros agregado con ID: " + prestamoMaestrosPrueba.getId());
-
-            // Buscar préstamo de maestros por ID
-            PrestamoMaestros prestamoMaestrosEncontrado = prestamoMaestrosDAO.buscarPorId(prestamoMaestrosPrueba.getId());
-            System.out.println("Préstamo de maestros encontrado: " + prestamoMaestrosEncontrado);
-
-            // Listar todos los préstamos de maestros
-            System.out.println("Listando todos los préstamos de maestros:");
-            prestamoMaestrosDAO.listaPrestamosMaestros().forEach(System.out::println);
+            // Agregar el préstamo de maestros a la base de datos
+            prestamoMaestrosDAO.agregar(nuevoPrestamoMaestros);
+            System.out.println("Préstamo de maestros agregado con éxito a la base de datos MongoDB.");
+            System.out.println("Detalles del préstamo de maestros: " + nuevoPrestamoMaestros);
 
         } catch (DAOException e) {
-            System.err.println("Error en PrestamoMaestrosDAO: " + e.getMessage());
+            System.err.println("Error al agregar el préstamo de maestros: " + e.getMessage());
         }
     }
 }
