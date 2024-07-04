@@ -79,36 +79,35 @@ public class VehiculoDAO implements IVehiculoDAO {
         switch (tipoVehiculo) {
             case "entregado":
                 return new VehiculoEntregado(
-                    doc.getObjectId("_id").toHexString(),
-                    doc.getInteger("numVehiculo"),
-                    doc.getString("marca"),
-                    doc.getString("modelo"),
-                    doc.getInteger("año"),
-                    doc.getString("tipo"),
-                    doc.getString("placa"),
-                    doc.getString("capacidad"),
-                    doc.getString("carroceria"),
-                    doc.getInteger("combustible"),
-                    doc.getString("estadoVehiculo"),
-                    doc.getString("llantas")
-                );
-            case "devuelto":
-                return new VehiculoDevuelto(
-                    doc.getObjectId("_id").toHexString(),
-                    doc.getInteger("numVehiculo"),
-                    doc.getString("marca"),
-                    doc.getString("modelo"),
-                    doc.getInteger("año"),
-                    doc.getString("tipo"),
-                    doc.getString("placa"),
-                    doc.getString("capacidad"),
                     doc.getString("carroceria"),
                     doc.getInteger("combustible"),
                     doc.getString("estadoVehiculo"),
                     doc.getString("llantas"),
-                    doc.getInteger("kilometrosRecorridos"),
-                    doc.getString("observaciones")
+                    doc.getObjectId("_id").toHexString(),
+                    doc.getInteger("numVehiculo"),
+                    doc.getString("marca"),
+                    doc.getString("modelo"), 
+                    doc.getInteger("año"),
+                    doc.getString("tipo"),
+                    doc.getString("placa"),
+                    doc.getString("capacidad")
                 );
+            case "devuelto":
+                return new VehiculoDevuelto(
+                    doc.getString("carroceria"),
+                    doc.getInteger("combustible"),
+                    doc.getString("estadoVehiculo"),
+                    doc.getString("llantas"),
+                    doc.getObjectId("_id").toHexString(),
+                    doc.getInteger("numVehiculo"),
+                    doc.getString("marca"),
+                    doc.getString("modelo"), 
+                    doc.getInteger("año"),
+                    doc.getString("tipo"),
+                    doc.getString("placa"),
+                    doc.getString("capacidad")
+                );
+                
             default:
                 return new Vehiculo(
                     doc.getObjectId("_id").toHexString(),

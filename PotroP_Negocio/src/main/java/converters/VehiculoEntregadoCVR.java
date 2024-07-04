@@ -19,15 +19,34 @@ public class VehiculoEntregadoCVR {
         int combustible = vehiculoDTO.getCombustible();    
         String estadoVehiculo = vehiculoDTO.getEstadoVehiculo();  
         String llantas = vehiculoDTO.getLlantas();
-        return new VehiculoEntregado(carroceria, combustible, estadoVehiculo, llantas);
+        int numVehiculo = 12;
+        String marca = vehiculoDTO.getMarca();
+        String modelo = vehiculoDTO.getModelo();
+        int año = vehiculoDTO.getAño();
+        String tipo = vehiculoDTO.getTipo();
+        String placa = vehiculoDTO.getPlaca();
+        String capacidad = vehiculoDTO.getCapacidad();
+        
+        return new VehiculoEntregado(carroceria, combustible, estadoVehiculo, 
+           llantas, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
     }
     
     public VehiculoEntregadoDTO convertir_EntregadoDTO(VehiculoEntregado vehiculo){
+        
         String carroceria = vehiculo.getCarroceria();  
         int combustible = vehiculo.getCombustible();    
         String estadoVehiculo = vehiculo.getEstadoVehiculo();  
         String llantas = vehiculo.getLlantas();
-        return new VehiculoEntregadoDTO(carroceria, combustible, estadoVehiculo, llantas);
+        int numVehiculo = vehiculo.getNumVehiculo();
+        String marca = vehiculo.getMarca();
+        String modelo = vehiculo.getModelo();
+        int año = vehiculo.getAño();
+        String tipo = vehiculo.getTipo();
+        String placa = vehiculo.getPlaca();
+        String capacidad = vehiculo.getCapacidad();
+        
+        return new VehiculoEntregadoDTO(carroceria, combustible, estadoVehiculo, 
+              llantas, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
     }
     
 }

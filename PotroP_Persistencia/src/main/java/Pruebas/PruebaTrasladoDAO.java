@@ -29,36 +29,34 @@ public class PruebaTrasladoDAO {
 
             // Crear un vehículo entregado de prueba
             VehiculoEntregado vehiculoEntregado = new VehiculoEntregado(
+                "bien",
+                50,
+                "bien",
+                "bien",    
                 null, // El ID se generará automáticamente
                 12,
-                "Toyota",
-                "Corolla",
-                2022,
-                "Sedán",
-                "ABC-123",
-                "5",
-                "Buen estado",
-                100,
-                "Buen estado",
-                "Buen estado"
+                "sedan",    
+                "chevi",
+                2012,
+                "carro",
+                "BCS-123",
+                "10"    
             );
 
             // Crear un vehículo devuelto de prueba
             VehiculoDevuelto vehiculoDevuelto = new VehiculoDevuelto(
+               "excelente",
+                50,
+                "excelente",
+                "excelente",    
                 null, // El ID se generará automáticamente
                 12,
-                "Toyota",
-                "Corolla",
-                2022,
-                "Sedán",
-                "ABC-123",
-                "5",
-                "Buen estado",
-                90,
-                "Buen estado",
-                "Buen estado",
-                500,
-                "Sin observaciones"
+                "camaro",    
+                "chvrolet",
+                2012,
+                "carro",
+                "BCS-123",
+                "10"
             );
 
             // Crear un traslado de prueba
