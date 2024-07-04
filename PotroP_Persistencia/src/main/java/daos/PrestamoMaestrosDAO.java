@@ -12,6 +12,7 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import conexion.ConexionBDM;
 import entidades.PrestamoMaestros;
+import entidades.Vehiculo;
 import excepciones.DAOException;
 import org.bson.types.ObjectId;
 
@@ -19,19 +20,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
-    private final MongoCollection<PrestamoMaestros> prestamoMaestrosCollection;
-
-    public PrestamoMaestrosDAO(MongoCollection<PrestamoMaestros> prestamoMaestrosCollection) {
-        this.prestamoMaestrosCollection = prestamoMaestrosCollection;
-    }
+     private final MongoCollection<PrestamoMaestros> prestamoMaestrosCollection;
+    private final VehiculoDAO vehiculoDAO;
 
     public PrestamoMaestrosDAO() {
         this.prestamoMaestrosCollection = ConexionBDM.getInstance().getDatabase().getCollection("PrestamosMaestros", PrestamoMaestros.class);
+        this.vehiculoDAO = new VehiculoDAO();
     }
 
     @Override
     public void agregar(PrestamoMaestros prestamoMaestros) throws DAOException {
         try {
+            // Buscar el vehículo por placa
+            Vehiculo vehiculo = vehiculoDAO.buscarPorPlaca(prestamoMaestros.getVehiculo().getPlaca());
+            if (vehiculo == null) {
+                throw new DAOException("No se encontró el vehículo con la placa especificada.");
+            }
+
+            // Asociar el vehículo completo al préstamo
+            prestamoMaestros.setVehiculo(vehiculo);
+
+            // Insertar el préstamo en la base de datos
             prestamoMaestrosCollection.insertOne(prestamoMaestros);
         } catch (Exception e) {
             throw new DAOException("Error al agregar el préstamo de maestros: " + e.getMessage(), e);
@@ -51,9 +60,7 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
     @Override
     public List<PrestamoMaestros> listaPrestamosMaestros() throws DAOException {
         try {
-            List<PrestamoMaestros> prestamoMaestros = prestamoMaestrosCollection.find().into(new ArrayList<>());
-            System.out.println("Préstamos de maestros obtenidos: " + prestamoMaestros.size());
-            return prestamoMaestros;
+            return prestamoMaestrosCollection.find().into(new ArrayList<>());
         } catch (Exception e) {
             throw new DAOException("Error al obtener la lista de préstamos de maestros: " + e.getMessage(), e);
         }

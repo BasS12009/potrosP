@@ -55,7 +55,7 @@ public class PrestamoBO implements IPrestamoBO {
     public void agregar(PrestamoDTO prestamoDTO) throws BisnessException {
         try {
             // agregamos un prestamo convirtiendolo de DTO a Entidad.
-            this.prestamoDAO.agregar(prestamoCVR.convetir_Prestamo(prestamoDTO));
+            this.prestamoDAO.agregar(prestamoCVR.convertir_Prestamo(prestamoDTO));
         } catch (DAOException e) {
             throw new BisnessException(e.getMessage());
         }

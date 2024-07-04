@@ -9,6 +9,8 @@
  */
 package entidades;
 
+import org.bson.types.ObjectId;
+
 
 /** 
  * @author/(s):
@@ -24,32 +26,18 @@ package entidades;
  */
 public class Vehiculo {
    
-    protected String id;  // Identificador único del vehículo
-    protected int numVehiculo;  // Número de vehículo
-    protected String marca;  // Marca del vehículo
-    protected String modelo;  // Modelo del vehículo
-    protected int año;  // Año de fabricación del vehículo
-    protected String tipo;  // Tipo de vehículo (por ejemplo, sedán, SUV, etc.)
-    protected String placa;  // Placa del vehículo
-    protected String capacidad;  // Capacidad del vehículo(numero de asientos disponibles)
+   private ObjectId id;
+    private int numVehiculo;
+    private String marca;
+    private String modelo;
+    private int año;
+    private String tipo;
+    private String placa;
+    private String capacidad;
 
-    /**
-     * Constructor vacio
-     */
     public Vehiculo() {
     }
 
-    
-    /**
-     * 
-     * @param numVehiculo
-     * @param marca
-     * @param modelo
-     * @param año
-     * @param tipo
-     * @param placa
-     * @param capacidad 
-     */
     public Vehiculo(int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         this.numVehiculo = numVehiculo;
         this.marca = marca;
@@ -59,21 +47,8 @@ public class Vehiculo {
         this.placa = placa;
         this.capacidad = capacidad;
     }
-    
-    
-    /**
-     * Constructor de la clase Vehiculo.
-     * 
-     * @param id Identificador único del vehículo
-     * @param numVehiculo Número de vehículo
-     * @param marca Marca del vehículo
-     * @param modelo Modelo del vehículo
-     * @param año Año de fabricación del vehículo
-     * @param tipo Tipo de vehículo
-     * @param placa Placa del vehículo
-     * @param capacidad Capacidad del vehículo
-     */
-    public Vehiculo(String id, int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
+
+    public Vehiculo(ObjectId id, int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         this.id = id;
         this.numVehiculo = numVehiculo;
         this.marca = marca;
@@ -83,24 +58,29 @@ public class Vehiculo {
         this.placa = placa;
         this.capacidad = capacidad;
     }
+    
+    
 
-   /**
-     * Obtiene el identificador único del vehículo.
-     * 
-     * @return El identificador único del vehículo
-     */
-    public String getId() {
+    // Getters y setters
+
+    public ObjectId getId() {
         return id;
     }
 
-    /**
-     * Establece el identificador único del vehículo.
-     * 
-     * @param id El identificador único del vehículo
-     */
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
+
+    // ... otros getters y setters ...
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
 
     /**
      * Obtiene el número del vehículo.
@@ -197,18 +177,7 @@ public class Vehiculo {
      * 
      * @return La placa del vehículo
      */
-    public String getPlaca() {
-        return placa;
-    }
-
-    /**
-     * Establece la placa del vehículo.
-     * 
-     * @param placa La placa del vehículo
-     */
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
+   
 
     /**
      * Obtiene la capacidad del vehículo.

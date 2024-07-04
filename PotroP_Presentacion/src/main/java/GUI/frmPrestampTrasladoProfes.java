@@ -298,7 +298,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         jLabel8.setText("Departamento");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
-        txtAcompaniante1.setText("ID-1");
         txtAcompaniante1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante1ActionPerformed(evt);
@@ -306,7 +305,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 110, -1));
 
-        txtAcompaniante2.setText("ID-2");
         txtAcompaniante2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante2ActionPerformed(evt);
@@ -314,7 +312,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 110, -1));
 
-        txtAcompaniante3.setText("ID-3");
         txtAcompaniante3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante3ActionPerformed(evt);
@@ -322,7 +319,6 @@ private PrestamoMaestrosDTO obtenerDatosFormulario() throws IllegalArgumentExcep
         });
         jPanel1.add(txtAcompaniante3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 110, -1));
 
-        txtAcompaniante4.setText("ID-4");
         txtAcompaniante4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAcompaniante4ActionPerformed(evt);
@@ -415,8 +411,10 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
 //            }
 //        }
 //    } catch (FachadaException e) {
-//        throw new IllegalArgumentException("Error al verificar la disponibilidad del vehículo: " + e.getMessage());
-//    }
+//    throw new IllegalArgumentException("Error al verificar la disponibilidad del vehículo: " + e.getMessage(), e);
+//} catch (Exception e) {
+//    throw new IllegalArgumentException("Error inesperado al verificar la disponibilidad: " + e.getMessage(), e);
+//}
 }
 
 

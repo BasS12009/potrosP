@@ -6,72 +6,44 @@ package ConvertidorMapeo;
 
 import EntidadesMapeo.PrestamoMaestrosMapeo;
 import entidades.PrestamoMaestros;
-import org.bson.types.ObjectId;
 
-/**
- *
- * @author diana
- */
 public class ConvertidorPrestamoMaestros {
-    /**
-     * Convierte una entidad de tipo PrestamoMaestros a una entidad de mapeo PrestamoMaestrosMapeo.
-     * 
-     * @param prestamoMaestros la entidad PrestamoMaestros a convertir.
-     * @return la entidad de mapeo PrestamoMaestrosMapeo.
-     */
+
+    private ConvertidorVehiculo convertidorVehiculo = new ConvertidorVehiculo();
+
     public PrestamoMaestrosMapeo convertirEntidadAMapeo(PrestamoMaestros prestamoMaestros) {
-        if (prestamoMaestros.getId() != null) {
-            ObjectId objectId = new ObjectId(prestamoMaestros.getId());
-            return new PrestamoMaestrosMapeo(
-                objectId,
-                prestamoMaestros.getFechaPrestamo(),
-                prestamoMaestros.getDepartamento(),
-                prestamoMaestros.getCantidadPersonas(),
-                prestamoMaestros.getMotivo(),
-                prestamoMaestros.getPlantelOrigen(),
-                prestamoMaestros.getPlantelDestino(),
-                prestamoMaestros.getVehiculo(),
-                prestamoMaestros.getCorreoResponsable(),
-                prestamoMaestros.getAcompaniantes()
-            );
+        if (prestamoMaestros == null) {
+            return null;
         }
         return new PrestamoMaestrosMapeo(
+            prestamoMaestros.getId(),
             prestamoMaestros.getFechaPrestamo(),
             prestamoMaestros.getDepartamento(),
             prestamoMaestros.getCantidadPersonas(),
             prestamoMaestros.getMotivo(),
             prestamoMaestros.getPlantelOrigen(),
             prestamoMaestros.getPlantelDestino(),
-            prestamoMaestros.getVehiculo(),
+            convertidorVehiculo.convertirEntidadAMapeo(prestamoMaestros.getVehiculo()),
             prestamoMaestros.getCorreoResponsable(),
             prestamoMaestros.getAcompaniantes()
         );
     }
 
-    /**
-     * Convierte una entidad de mapeo PrestamoMaestrosMapeo a una entidad PrestamoMaestros.
-     * 
-     * @param prestamoMaestrosMapeo la entidad de mapeo PrestamoMaestrosMapeo a convertir.
-     * @return la entidad PrestamoMaestros.
-     */
     public PrestamoMaestros convertirMapeoAEntidad(PrestamoMaestrosMapeo prestamoMaestrosMapeo) {
-        if (prestamoMaestrosMapeo != null) {
-            String id = prestamoMaestrosMapeo.getId() != null ? prestamoMaestrosMapeo.getId().toHexString() : null;
-            return new PrestamoMaestros(
-                id,
-                prestamoMaestrosMapeo.getFechaPrestamo(),
-                prestamoMaestrosMapeo.getDepartamento(),
-                prestamoMaestrosMapeo.getCantidadPersonas(),
-                prestamoMaestrosMapeo.getMotivo(),
-                prestamoMaestrosMapeo.getPlantelOrigen(),
-                prestamoMaestrosMapeo.getPlantelDestino(),
-                prestamoMaestrosMapeo.getVehiculo(),
-                prestamoMaestrosMapeo.getCorreoResponsable(),
-                prestamoMaestrosMapeo.getAcompaniantes()
-            );
+        if (prestamoMaestrosMapeo == null) {
+            return null;
         }
-        return null;
+        return new PrestamoMaestros(
+            prestamoMaestrosMapeo.getId(),
+            prestamoMaestrosMapeo.getFechaPrestamo(),
+            prestamoMaestrosMapeo.getDepartamento(),
+            prestamoMaestrosMapeo.getCantidadPersonas(),
+            prestamoMaestrosMapeo.getMotivo(),
+            prestamoMaestrosMapeo.getPlantelOrigen(),
+            prestamoMaestrosMapeo.getPlantelDestino(),
+            convertidorVehiculo.convertirMapeoAEntidad(prestamoMaestrosMapeo.getVehiculo()),
+            prestamoMaestrosMapeo.getCorreoResponsable(),
+            prestamoMaestrosMapeo.getAcompaniantes()
+        );
     }
 }
-
-

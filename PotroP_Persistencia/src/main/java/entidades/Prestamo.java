@@ -11,6 +11,7 @@ package entidades;
 
 
 import java.time.LocalDate;
+import org.bson.types.ObjectId;
 
 /** 
  * 
@@ -23,12 +24,14 @@ import java.time.LocalDate;
  */
 public class Prestamo {
     
-    private String id;  // Identificador único del préstamo
+    private ObjectId id;  // Identificador único del préstamo
     private String motivo;  // Motivo del préstamo
     private LocalDate inicio;  // Fecha de inicio del préstamo
     private LocalDate fin;  // Fecha de fin del préstamo
     private String placaVehiculo;  // Placa del vehículo utilizado en el préstamo
     private String correoEmpleado;  // Correo electrónico del empleado responsable del préstamo
+     private Vehiculo vehiculo;  // Cambiado de String a Vehiculo
+    
     
     
     /**
@@ -46,39 +49,40 @@ public class Prestamo {
      * @param placaVehiculo la placa del vehículo prestado.
      * @param correoEmpleado el correo del empleado que realiza el préstamo.
      */
-    public Prestamo(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
-        this.motivo = motivo;
-        this.inicio = inicio;
-        this.fin = fin;
-        this.placaVehiculo = placaVehiculo;
-        this.correoEmpleado = correoEmpleado;
-    }
-
-    /**
-     * Constructor de la clase Prestamo que inicializa todos los atributos, incluyendo el id.
-     * 
-     * @param id el identificador único del préstamo.
-     * @param motivo el motivo del préstamo.
-     * @param inicio la fecha de inicio del préstamo.
-     * @param fin la fecha de fin del préstamo.
-     * @param placaVehiculo la placa del vehículo prestado.
-     * @param correoEmpleado el correo del empleado que realiza el préstamo.
-     */
-        public Prestamo(String id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado) {
+    public Prestamo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, Vehiculo vehiculo) {    
         this.id = id;
         this.motivo = motivo;
         this.inicio = inicio;
         this.fin = fin;
         this.placaVehiculo = placaVehiculo;
         this.correoEmpleado = correoEmpleado;
+        this.vehiculo = vehiculo;
     }
+
+    public Prestamo(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, Vehiculo vehiculo) {
+        this.motivo = motivo;
+        this.inicio = inicio;
+        this.fin = fin;
+        this.placaVehiculo = placaVehiculo;
+        this.correoEmpleado = correoEmpleado;
+        this.vehiculo = vehiculo;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+    
 
     /**
      * Obtiene el identificador único del préstamo.
      * 
      * @return el identificador único del préstamo.
      */
-    public String getId() {  
+    public ObjectId getId() {  
         return id;
     }
 
@@ -87,7 +91,7 @@ public class Prestamo {
      * 
      * @param id el identificador único del préstamo.
      */
-    public void setId(String id) {    
+    public void setId(ObjectId id) {    
         this.id = id;
     }
 

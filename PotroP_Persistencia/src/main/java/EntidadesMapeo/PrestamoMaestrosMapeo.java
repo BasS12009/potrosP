@@ -19,6 +19,7 @@ import org.bson.types.ObjectId;
 public class PrestamoMaestrosMapeo {
     
     
+    
     private ObjectId id; // Identificador único del préstamo de maestros
     private LocalDate fechaPrestamo; // Fecha del préstamo
     private String departamento; // Departamento responsable del préstamo
@@ -26,7 +27,7 @@ public class PrestamoMaestrosMapeo {
     private String motivo; // Motivo del préstamo
     private String plantelOrigen; // Plantel de origen del préstamo
     private String plantelDestino; // Plantel de destino del préstamo
-    private String vehiculo; // Vehículo asignado al préstamo (placa del vehículo)
+    private VehiculoMapeo vehiculo;
     private String correoResponsable; // Correo del responsable del préstamo
     private List<String> acompaniantes; // Lista de acompañantes del responsable del préstamo
     
@@ -52,7 +53,7 @@ public class PrestamoMaestrosMapeo {
      * @param correoResponsable Correo del responsable del préstamo
      * @param acompaniantes Lista de acompañantes del responsable del préstamo
      */
-    public PrestamoMaestrosMapeo(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+    public PrestamoMaestrosMapeo(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, VehiculoMapeo vehiculo, String correoResponsable, List<String> acompaniantes) {    
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
@@ -65,8 +66,7 @@ public class PrestamoMaestrosMapeo {
         this.acompaniantes = acompaniantes;
     }
 
-    
-     /**
+    /**
      * Constructor alternativo de la clase PrestamoMaestrosMapeo.
      * 
      * @param fechaPrestamo Fecha del préstamo
@@ -79,7 +79,7 @@ public class PrestamoMaestrosMapeo {
      * @param correoResponsable Correo del responsable del préstamo
      * @param acompaniantes Lista de acompañantes del responsable del préstamo
      */
-    public PrestamoMaestrosMapeo(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+    public PrestamoMaestrosMapeo(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, VehiculoMapeo vehiculo, String correoResponsable, List<String> acompaniantes) {    
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
         this.cantidadPersonas = cantidadPersonas;
@@ -91,7 +91,6 @@ public class PrestamoMaestrosMapeo {
         this.acompaniantes = acompaniantes;
     }
 
-  
 /**
      * Obtiene el identificador único del préstamo de maestros.
      * 
@@ -218,21 +217,16 @@ public class PrestamoMaestrosMapeo {
         this.plantelDestino = plantelDestino;
     }
 
+    public VehiculoMapeo getVehiculo() {
+        return vehiculo;
+    }
+
     /**
      * Obtiene el vehículo asignado al préstamo de maestros (placa del vehículo).
      * 
      * @return La placa del vehículo asignado al préstamo de maestros
      */
-    public String getVehiculo() {
-        return vehiculo;
-    }
-
-    /**
-     * Establece el vehículo asignado al préstamo de maestros (placa del vehículo).
-     * 
-     * @param vehiculo La placa del vehículo asignado al préstamo de maestros
-     */
-    public void setVehiculo(String vehiculo) {
+    public void setVehiculo(VehiculoMapeo vehiculo) {    
         this.vehiculo = vehiculo;
     }
 

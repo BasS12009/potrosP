@@ -198,14 +198,14 @@ public class Prestamo extends javax.swing.JFrame {
 
         lblID.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         lblID.setText("ID:");
-        jPanel1.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+        jPanel1.add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
 
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
             }
         });
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 130, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 130, -1));
 
         btnComprobar.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         btnComprobar.setText("Comprobar");
@@ -240,7 +240,7 @@ public class Prestamo extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLabel9.setText("Comprobante de identidad:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
 
         tblEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

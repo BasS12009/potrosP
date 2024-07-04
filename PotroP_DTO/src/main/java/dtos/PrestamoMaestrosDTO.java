@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class PrestamoMaestrosDTO {
     
+    private String id;
     private LocalDate fechaPrestamo;
     private String departamento;
     private int cantidadPersonas;
@@ -26,10 +27,8 @@ public class PrestamoMaestrosDTO {
     public PrestamoMaestrosDTO() {
     }
 
-    public PrestamoMaestrosDTO(LocalDate fechaPrestamo, String departamento, 
-            int cantidadPersonas, String motivo, String plantelOrigen, 
-            String plantelDestino, String vehiculo, String correoResponsable, 
-            List<String> acompaniantes) {
+    public PrestamoMaestrosDTO(String id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
         this.cantidadPersonas = cantidadPersonas;
@@ -39,6 +38,26 @@ public class PrestamoMaestrosDTO {
         this.vehiculo = vehiculo;
         this.correoResponsable = correoResponsable;
         this.acompaniantes = acompaniantes;
+    }
+
+    public PrestamoMaestrosDTO(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.departamento = departamento;
+        this.cantidadPersonas = cantidadPersonas;
+        this.motivo = motivo;
+        this.plantelOrigen = plantelOrigen;
+        this.plantelDestino = plantelDestino;
+        this.vehiculo = vehiculo;
+        this.correoResponsable = correoResponsable;
+        this.acompaniantes = acompaniantes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getFechaPrestamo() {
@@ -109,5 +128,10 @@ public class PrestamoMaestrosDTO {
         return acompaniantes;
     }
 
+    public void setAcompaniantes(List<String> acompaniantes) {
+        this.acompaniantes = acompaniantes;
+    }
+
+  
     
 }

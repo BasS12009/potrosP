@@ -1,54 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entidades;
 
 import java.time.LocalDate;
 import java.util.List;
+import org.bson.types.ObjectId;
 
-
-/**
- * La clase PrestamoMaestros representa el préstamo de un vehículo para maestros, con atributos como id, fecha del préstamo,
- * departamento, cantidad de personas, motivo del préstamo, plantel de origen, plantel de destino, vehículo utilizado, 
- * correo del responsable y acompañantes.
- * Esta clase proporciona métodos para obtener y establecer estos atributos, así como constructores para crear instancias de PrestamoMaestros.
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 public class PrestamoMaestros {
     
-    private String id;  // Identificador único del préstamo
-    private LocalDate fechaPrestamo;  // Fecha del préstamo
-    private String departamento;  // Departamento solicitante del préstamo
-    private int cantidadPersonas;  // Cantidad de personas involucradas en el préstamo
-    private String motivo;  // Motivo del préstamo
-    private String plantelOrigen;  // Plantel de origen del préstamo
-    private String plantelDestino;  // Plantel de destino del préstamo
-    private String vehiculo;  // Vehículo utilizado para el préstamo
-    private String correoResponsable;  // Correo electrónico del responsable del préstamo
-    private List<String> acompaniantes;  // Lista de acompañantes en el préstamo
+    private ObjectId id;
+    private LocalDate fechaPrestamo;
+    private String departamento;
+    private int cantidadPersonas;
+    private String motivo;
+    private String plantelOrigen;
+    private String plantelDestino;
+    private Vehiculo vehiculo;  // Cambiado de String a Vehiculo
+    private String correoResponsable;
+    private List<String> acompaniantes;
 
-    /**
-     * Constructor vacío de la clase PrestamoMaestros.
-     */
     public PrestamoMaestros() {
     }
 
-    
-    /**
-     * Constructor completo de la clase PrestamoMaestros.
-     * 
-     * @param id Identificador único del préstamo
-     * @param fechaPrestamo Fecha del préstamo
-     * @param departamento Departamento solicitante del préstamo
-     * @param cantidadPersonas Cantidad de personas involucradas en el préstamo
-     * @param motivo Motivo del préstamo
-     * @param plantelOrigen Plantel de origen del préstamo
-     * @param plantelDestino Plantel de destino del préstamo
-     * @param vehiculo Vehículo utilizado para el préstamo
-     * @param correoResponsable Correo electrónico del responsable del préstamo
-     * @param acompaniantes Lista de acompañantes en el préstamo
-     */
-    public PrestamoMaestros(String id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
+    public PrestamoMaestros(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, Vehiculo vehiculo, String correoResponsable, List<String> acompaniantes) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.departamento = departamento;
@@ -61,46 +38,22 @@ public class PrestamoMaestros {
         this.acompaniantes = acompaniantes;
     }
 
-    /**
-     * Constructor de la clase PrestamoMaestros sin el atributo id.
-     * 
-     * @param fechaPrestamo Fecha del préstamo
-     * @param departamento Departamento solicitante del préstamo
-     * @param cantidadPersonas Cantidad de personas involucradas en el préstamo
-     * @param motivo Motivo del préstamo
-     * @param plantelOrigen Plantel de origen del préstamo
-     * @param plantelDestino Plantel de destino del préstamo
-     * @param vehiculo Vehículo utilizado para el préstamo
-     * @param correoResponsable Correo electrónico del responsable del préstamo
-     * @param acompaniantes Lista de acompañantes en el préstamo
-     */
-    public PrestamoMaestros(LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, String vehiculo, String correoResponsable, List<String> acompaniantes) {
-        this.fechaPrestamo = fechaPrestamo;
-        this.departamento = departamento;
-        this.cantidadPersonas = cantidadPersonas;
-        this.motivo = motivo;
-        this.plantelOrigen = plantelOrigen;
-        this.plantelDestino = plantelDestino;
-        this.vehiculo = vehiculo;
-        this.correoResponsable = correoResponsable;
-        this.acompaniantes = acompaniantes;
-    }
- /**
-     * Obtiene el identificador único del préstamo.
-     * 
-     * @return El identificador único del préstamo
-     */
-    public String getId() {
+
+    public ObjectId getId() {
         return id;
     }
 
-    /**
-     * Establece el identificador único del préstamo.
-     * 
-     * @param id El identificador único del préstamo
-     */
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
+    }
+
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     /**
@@ -211,23 +164,6 @@ public class PrestamoMaestros {
         this.plantelDestino = plantelDestino;
     }
 
-    /**
-     * Obtiene el vehículo utilizado para el préstamo.
-     * 
-     * @return El vehículo utilizado para el préstamo
-     */
-    public String getVehiculo() {
-        return vehiculo;
-    }
-
-    /**
-     * Establece el vehículo utilizado para el préstamo.
-     * 
-     * @param vehiculo El vehículo utilizado para el préstamo
-     */
-    public void setVehiculo(String vehiculo) {
-        this.vehiculo = vehiculo;
-    }
 
     /**
      * Obtiene el correo electrónico del responsable del préstamo.

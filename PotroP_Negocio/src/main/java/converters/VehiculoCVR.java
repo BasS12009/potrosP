@@ -12,34 +12,28 @@ import entidades.Vehiculo;
  * @author diana
  */
 public class VehiculoCVR {
-    // Método para convertir un VehiculoDTO a un objeto de dominio Vehiculo
-    public Vehiculo convertir_Entidad(VehiculoDTO vehiculoDTO) {
-        // Extrae los atributos del objeto VehiculoDTO
-        int numVehiculo = vehiculoDTO.getNumVehiculo();
-        String marca = vehiculoDTO.getMarca();
-        String modelo = vehiculoDTO.getModelo();
-        int año = vehiculoDTO.getAño();
-        String tipo = vehiculoDTO.getTipo();
-        String placa = vehiculoDTO.getPlaca();
-        String capacidad = vehiculoDTO.getCapacidad();
 
-         // Crea y retorna un nuevo objeto Vehiculo utilizando los atributos extraídos
-        return new Vehiculo( numVehiculo, marca, modelo, año, tipo, placa, capacidad);
+    public Vehiculo convertir_Vehiculo(VehiculoDTO dto) {
+        Vehiculo vehiculo = new Vehiculo();
+        vehiculo.setNumVehiculo(dto.getNumVehiculo());
+        vehiculo.setMarca(dto.getMarca());
+        vehiculo.setModelo(dto.getModelo());
+        vehiculo.setAño(dto.getAño());
+        vehiculo.setTipo(dto.getTipo());
+        vehiculo.setPlaca(dto.getPlaca());
+        vehiculo.setCapacidad(dto.getCapacidad());
+        return vehiculo;
     }
 
-    // Método para convertir un objeto de dominio Vehiculo a un VehiculoDTO
-    public VehiculoDTO convertir_DTO(Vehiculo vehiculo) {
-      
-         // Extrae los atributos del objeto Vehiculo
-        int numVehiculo = vehiculo.getNumVehiculo();
-        String marca = vehiculo.getMarca();
-        String modelo = vehiculo.getModelo();
-        int año = vehiculo.getAño();
-        String tipo = vehiculo.getTipo();
-        String placa = vehiculo.getPlaca();
-        String capacidad = vehiculo.getCapacidad();
-
-        // Crea y retorna un nuevo objeto VehiculoDTO utilizando los atributos extraídos
-        return new VehiculoDTO( numVehiculo, marca, modelo, año, tipo, placa, capacidad); 
+    public VehiculoDTO convertir_DTO(Vehiculo entidad) {
+        VehiculoDTO dto = new VehiculoDTO();
+        dto.setNumVehiculo(entidad.getNumVehiculo());
+        dto.setMarca(entidad.getMarca());
+        dto.setModelo(entidad.getModelo());
+        dto.setAño(entidad.getAño());
+        dto.setTipo(entidad.getTipo());
+        dto.setPlaca(entidad.getPlaca());
+        dto.setCapacidad(entidad.getCapacidad());
+        return dto;
     }
 }

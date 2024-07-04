@@ -6,6 +6,7 @@ package daos;
 
 import Interfaces.IVehiculoDAO;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import conexion.ConexionBDM;
 import entidades.Vehiculo;
 import entidades.VehiculoEntregado;
@@ -37,24 +38,6 @@ public class VehiculoDAO implements IVehiculoDAO {
                 .append("placa", vehiculo.getPlaca())
                 .append("capacidad", vehiculo.getCapacidad());
 
-            if (vehiculo instanceof VehiculoEntregado) {
-                VehiculoEntregado ve = (VehiculoEntregado) vehiculo;
-                doc.append("carroceria", ve.getCarroceria())
-                   .append("combustible", ve.getCombustible())
-                   .append("estadoVehiculo", ve.getEstadoVehiculo())
-                   .append("llantas", ve.getLlantas())
-                   .append("tipoVehiculo", "entregado");
-            } else if (vehiculo instanceof VehiculoDevuelto) {
-                VehiculoDevuelto vd = (VehiculoDevuelto) vehiculo;
-                doc.append("carroceria", vd.getCarroceria())
-                   .append("combustible", vd.getCombustible())
-                   .append("estadoVehiculo", vd.getEstadoVehiculo())
-                   .append("llantas", vd.getLlantas())                  
-                   .append("tipoVehiculo", "devuelto");
-            } else {
-                doc.append("tipoVehiculo", "normal");
-            }
-
             vehiculoCollection.insertOne(doc);
         } catch (Exception e) {
             throw new DAOException("Error al ingresar vehiculo: " + e.getMessage(), e);
@@ -74,52 +57,28 @@ public class VehiculoDAO implements IVehiculoDAO {
         }
     }
 
-    private Vehiculo convertirDocumentoAVehiculo(Document doc) {
-        String tipoVehiculo = doc.getString("tipoVehiculo");
-        switch (tipoVehiculo) {
-            case "entregado":
-                return new VehiculoEntregado(
-                    doc.getString("carroceria"),
-                    doc.getInteger("combustible"),
-                    doc.getString("estadoVehiculo"),
-                    doc.getString("llantas"),
-                    doc.getObjectId("_id").toHexString(),
-                    doc.getInteger("numVehiculo"),
-                    doc.getString("marca"),
-                    doc.getString("modelo"), 
-                    doc.getInteger("año"),
-                    doc.getString("tipo"),
-                    doc.getString("placa"),
-                    doc.getString("capacidad")
-                );
-            case "devuelto":
-                return new VehiculoDevuelto(
-                    doc.getString("carroceria"),
-                    doc.getInteger("combustible"),
-                    doc.getString("estadoVehiculo"),
-                    doc.getString("llantas"),
-                    doc.getObjectId("_id").toHexString(),
-                    doc.getInteger("numVehiculo"),
-                    doc.getString("marca"),
-                    doc.getString("modelo"), 
-                    doc.getInteger("año"),
-                    doc.getString("tipo"),
-                    doc.getString("placa"),
-                    doc.getString("capacidad")
-                );
-                
-            default:
-                return new Vehiculo(
-                    doc.getObjectId("_id").toHexString(),
-                    doc.getInteger("numVehiculo"),
-                    doc.getString("marca"),
-                    doc.getString("modelo"),
-                    doc.getInteger("año"),
-                    doc.getString("tipo"),
-                    doc.getString("placa"),
-                    doc.getString("capacidad")
-                );
+    public Vehiculo buscarPorPlaca(String placa) throws DAOException {
+        try {
+            Document doc = vehiculoCollection.find(Filters.eq("placa", placa)).first();
+            if (doc == null) {
+                return null;
+            }
+            return convertirDocumentoAVehiculo(doc);
+        } catch (Exception e) {
+            throw new DAOException("Error al buscar vehículo por placa: " + e.getMessage(), e);
         }
     }
 
+    private Vehiculo convertirDocumentoAVehiculo(Document doc) {
+        return new Vehiculo(
+            doc.getObjectId("_id"),
+            doc.getInteger("numVehiculo"),
+            doc.getString("marca"),
+            doc.getString("modelo"),
+            doc.getInteger("año"),
+            doc.getString("tipo"),
+            doc.getString("placa"),
+            doc.getString("capacidad")
+        );
+    }
 }

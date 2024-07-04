@@ -21,6 +21,7 @@ import com.mongodb.client.model.Filters;
 
 import conexion.ConexionBDM;
 import entidades.Prestamo;
+import entidades.Vehiculo;
 import excepciones.DAOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -31,19 +32,29 @@ import org.bson.types.ObjectId;
 
 public class PrestamoDAO implements IPrestamoDAO {
     private final MongoCollection<Prestamo> prestamoCollection;
+       private final VehiculoDAO vehiculoDAO;
 
-    public PrestamoDAO(MongoCollection<Prestamo> prestamoCollection) {
-        this.prestamoCollection = prestamoCollection;
-    }
+    
 
     public PrestamoDAO() {
+        this.vehiculoDAO = new VehiculoDAO();
         this.prestamoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Prestamos", Prestamo.class);
     }
 
     // Método para agregar un préstamo a la base de datos
     @Override
     public void agregar(Prestamo prestamo) throws DAOException {
+        
         try {
+            // Buscar el vehículo por placa
+            Vehiculo vehiculo = vehiculoDAO.buscarPorPlaca(prestamo.getVehiculo().getPlaca());
+            if (vehiculo == null) {
+                throw new DAOException("No se encontró el vehículo con la placa especificada.");
+            }
+            
+             // Asociar el vehículo completo al préstamo
+            prestamo.setVehiculo(vehiculo);
+        
             prestamoCollection.insertOne(prestamo);
         } catch (Exception e) {
             throw new DAOException("Error al agregar el préstamo: " + e.getMessage(), e);

@@ -4,62 +4,51 @@
  */
 package ConvertidorMapeo;
 
-import EntidadesMapeo.PrestamoMapeo;
-import entidades.Prestamo;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author diana
  */
+
+
+
+
+import EntidadesMapeo.PrestamoMapeo;
+import entidades.Prestamo;
+import org.bson.types.ObjectId;
+
 public class ConvertidorPrestamo {
     
-    /**
-     * Convierte una entidad de tipo Prestamo a una entidad de mapeo PrestamoMapeo.
-     * 
-     * @param prestamo la entidad Prestamo a convertir.
-     * @return la entidad de mapeo PrestamoMapeo.
-     */
+    private ConvertidorVehiculo convertidorVehiculo = new ConvertidorVehiculo();
+    
     public PrestamoMapeo convertirEntidadAMapeo(Prestamo prestamo) {
-        if (prestamo.getId() != null) {
-            ObjectId objectId = new ObjectId(prestamo.getId());
-            return new PrestamoMapeo(
-                objectId,
-                prestamo.getMotivo(),
-                prestamo.getInicio(),
-                prestamo.getFin(),
-                prestamo.getPlacaVehiculo(),
-                prestamo.getCorreoEmpleado()
-            );
+        if (prestamo == null) {
+            return null;
         }
         return new PrestamoMapeo(
+            prestamo.getId(),
             prestamo.getMotivo(),
             prestamo.getInicio(),
             prestamo.getFin(),
             prestamo.getPlacaVehiculo(),
-            prestamo.getCorreoEmpleado()
+            prestamo.getCorreoEmpleado(),
+            convertidorVehiculo.convertirEntidadAMapeo(prestamo.getVehiculo())
         );
     }
-
-    /**
-     * Convierte una entidad de mapeo PrestamoMapeo a una entidad Prestamo.
-     * 
-     * @param prestamoMapeo la entidad de mapeo PrestamoMapeo a convertir.
-     * @return la entidad Prestamo.
-     */
+    
     public Prestamo convertirMapeoAEntidad(PrestamoMapeo prestamoMapeo) {
-        if (prestamoMapeo != null) {
-            String id = prestamoMapeo.getId() != null ? prestamoMapeo.getId().toHexString() : null;
-            return new Prestamo(
-                id,
-                prestamoMapeo.getMotivo(),
-                prestamoMapeo.getInicio(),
-                prestamoMapeo.getFin(),
-                prestamoMapeo.getPlacaVehiculo(),
-                prestamoMapeo.getCorreoEmpleado()
-            );
+        if (prestamoMapeo == null) {
+            return null;
         }
-        return null;
+        
+        return new Prestamo(
+            prestamoMapeo.getId(),
+            prestamoMapeo.getMotivo(),
+            prestamoMapeo.getInicio(),
+            prestamoMapeo.getFin(),
+            prestamoMapeo.getPlacaVehiculo(),
+            prestamoMapeo.getCorreoEmpleado(),
+            convertidorVehiculo.convertirMapeoAEntidad(prestamoMapeo.getVehiculo())
+        );
     }
-
 }

@@ -4,6 +4,8 @@
  */
 package entidades;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author caarl
@@ -24,16 +26,11 @@ package entidades;
  */
 public class VehiculoDevuelto extends Vehiculo {
     
-   
-    private String carroceria;  // Estado de la carrocería al devolverse
-    private int combustible;    // Nivel de combustible al devolverse
-    private String estadoVehiculo;  // Estado general del vehículo al devolverse
-    private String llantas;     // Estado de las llantas al devolverse
+   private String carroceria;
+    private int combustible;
+    private String estadoVehiculo;
+    private String llantas;
     
-    
-    /**
-     * 
-     */
     public VehiculoDevuelto() {
     }
 
@@ -41,16 +38,15 @@ public class VehiculoDevuelto extends Vehiculo {
             String estadoVehiculo, String llantas, int numVehiculo, 
             String marca, String modelo, int año, String tipo, 
             String placa, String capacidad) {
-        super(numVehiculo, marca, modelo, año, tipo, placa, capacidad);
+        super(null, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
         this.carroceria = carroceria;
         this.combustible = combustible;
         this.estadoVehiculo = estadoVehiculo;
         this.llantas = llantas;
     }
 
-    
     public VehiculoDevuelto(String carroceria, int combustible, 
-            String estadoVehiculo, String llantas, String id, 
+            String estadoVehiculo, String llantas, ObjectId id, 
             int numVehiculo, String marca, String modelo, int año, 
             String tipo, String placa, String capacidad) {
         super(id, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
@@ -60,8 +56,6 @@ public class VehiculoDevuelto extends Vehiculo {
         this.llantas = llantas;
     }
     
-    
-
     // Getters y setters
 
     public String getCarroceria() {
@@ -96,92 +90,8 @@ public class VehiculoDevuelto extends Vehiculo {
         this.llantas = llantas;
     }
 
-    @Override
-    public String getId() {
-        return id;
-    }
+    // No es necesario sobrescribir los getters y setters de la clase padre
 
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public int getNumVehiculo() {
-        return numVehiculo;
-    }
-
-    @Override
-    public void setNumVehiculo(int numVehiculo) {
-        this.numVehiculo = numVehiculo;
-    }
-
-    @Override
-    public String getMarca() {
-        return marca;
-    }
-
-    @Override
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    @Override
-    public String getModelo() {
-        return modelo;
-    }
-
-    @Override
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    @Override
-    public int getAño() {
-        return año;
-    }
-
-    @Override
-    public void setAño(int año) {
-        this.año = año;
-    }
-
-    @Override
-    public String getTipo() {
-        return tipo;
-    }
-
-    @Override
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    @Override
-    public String getPlaca() {
-        return placa;
-    }
-
-    @Override
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    @Override
-    public String getCapacidad() {
-        return capacidad;
-    }
-
-    @Override
-    public void setCapacidad(String capacidad) {
-        this.capacidad = capacidad;
-    }
-    
-
-    /**
-     * Representa el objeto VehiculoDevuelto como una cadena de caracteres.
-     * 
-     * @return Una cadena de caracteres que representa el objeto VehiculoDevuelto
-     */
     @Override
     public String toString() {
         return super.toString() + ", VehiculoDevuelto{" +
