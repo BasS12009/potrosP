@@ -9,6 +9,7 @@ import bo.TrasladoBO;
 import dtos.EmpleadoDTO;
 import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
+import entidades.VehiculoEntregado;
 import excepciones.NegocioException;
 import excepciones.fachadaException;
 import fachada.VehiculoFCD;
@@ -112,39 +113,34 @@ public class Traslado2 extends javax.swing.JFrame {
         TrasladoDTO trasladoDTO = new TrasladoDTO();
         trasladoDTO.setMotivo(txtPrestamo.getText().trim());
         
-//    trasladoDTO.setFechaHoraSalida(/* Obtener fecha de salida del componente correspondiente */);
-//    trasladoDTO.setFechaHoraRegreso(/* Obtener fecha de regreso del componente correspondiente */);
-//        trasladoDTO.setDisponibilidad(true); // O el valor que corresponda
-//      
-//        VehiculoDTO vehiculoDTO = obtenerVehiculoSeleccionado(); // Definir este método para obtener el VehiculoDTO seleccionado
-//        trasladoDTO.setVehiculo(vehiculoDTO);
-//        trasladoDTO.setEstadoVehiculo(cbxVehiculo.getSelectedItem().toString());
-//        trasladoDTO.setLlantas(cbxLlantas.getSelectedItem().toString());
-//        trasladoDTO.setCarroceria(cbxCarroceria.getSelectedItem().toString());
-//        trasladoDTO.setPersonas(formT.cantidadP);
-//        
+    trasladoDTO.getFechaHoraSalida(/* Obtener fecha de salida del componente correspondiente */);
+    trasladoDTO.getFechaHoraRegreso(/* Obtener fecha de regreso del componente correspondiente */);
+        trasladoDTO.setDisponibilidad(true); // O el valor que corresponda
+        VehiculoEntregado vehiculoEntregado = new VehiculoEntregado();
+        vehiculoEntregado.setEstadoVehiculo(cbxVehiculo.getSelectedItem().toString());
+        vehiculoEntregado.setLlantas(cbxLlantas.getSelectedItem().toString());
+        vehiculoEntregado.setCarroceria(cbxCarroceria.getSelectedItem().toString());
+        trasladoDTO.setPersonas(formT.cantidadP);
+        
 //        trasladoDTO.setFechaHoraSalida(formT.inicio);
-//        
 //        trasladoDTO.setFechaHoraRegreso(formT.fin);
-//        
-        
-        
         String combustibleSeleccionado = cbxCombustible.getSelectedItem().toString();
 // Remover el símbolo '%' del valor seleccionado
         String combustibleSinPorcentaje = combustibleSeleccionado.replace("%", "").trim();
-//
-//        try {
-//            // Convertir a entero
-//            int nivelCombustible = Integer.parseInt(combustibleSinPorcentaje);
-//            trasladoDTO.setCombustible(nivelCombustible);
-//        } catch (NumberFormatException e) {
-//            // Manejo de error si no se puede convertir a entero
-//            JOptionPane.showMessageDialog(this, "Error en el nivel de combustible seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+
+        try {
+            // Convertir a entero
+            int nivelCombustible = Integer.parseInt(combustibleSinPorcentaje);
+            vehiculoEntregado.setCombustible(nivelCombustible);
+        } catch (NumberFormatException e) {
+            // Manejo de error si no se puede convertir a entero
+            JOptionPane.showMessageDialog(this, "Error en el nivel de combustible seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
         // Crear una instancia de TrasladoFCD y solicitar el traslado
         TrasladoFCD trasladoFCD = new TrasladoFCD();
         try {
+            
             trasladoFCD.solicitarTraslado(trasladoDTO);
             JOptionPane.showMessageDialog(this, "Traslado solicitado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (fachadaException e) {
