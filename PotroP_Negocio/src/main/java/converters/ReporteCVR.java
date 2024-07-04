@@ -34,8 +34,8 @@ public class ReporteCVR {
      */
     public Reporte convertir_Reporte(ReporteDTO reporteDTO){
         Traslado original = traslado.convetir_Traslado(reporteDTO.getOriginal());
-        Traslado comparado = traslado.convetir_Traslado(reporteDTO.getComparado());
-        return new Reporte(original, comparado);
+        String motivo = reporteDTO.getMotivo();
+        return new Reporte(original, motivo);
     }
     
     /**
@@ -46,8 +46,8 @@ public class ReporteCVR {
      */
     public ReporteDTO convertir_DTO(Reporte reporte){
         TrasladoDTO original = traslado.convertir_TrasladoDTO(reporte.getOriginal());
-        TrasladoDTO comparado = traslado.convertir_TrasladoDTO(reporte.getComparado());
-        return new ReporteDTO(original, comparado);
+        String motivo = reporte.getMotivo();
+        return new ReporteDTO(original, motivo);
     }
     
 }

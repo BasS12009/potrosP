@@ -7,6 +7,9 @@
 package GUI;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /** 
@@ -49,10 +52,10 @@ public class Traslado extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnDisponibilidad = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        dateSalida = new com.toedter.calendar.JDateChooser();
+        horaSalida = new javax.swing.JComboBox<>();
+        dateRegreso = new com.toedter.calendar.JDateChooser();
+        horaRegreso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,14 +102,14 @@ public class Traslado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 120, -1));
+        jPanel1.add(dateSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 120, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", " " }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 110, -1));
+        horaSalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", " " }));
+        jPanel1.add(horaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        jPanel1.add(dateRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 110, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
+        horaRegreso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00" }));
+        jPanel1.add(horaRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,31 +133,29 @@ public class Traslado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
-//        // TODO add your handling code here:
-//
-//        try {
-//            this.cantidadP = Integer.parseInt((String) cbxPersonas.getSelectedItem());
-//
-//            if (cantidadP % 5 == 0) {
-//                //configuramos la fecha y hora de salida
-//                this.inicio = Date.valueOf(dateSalida.datePicker.getDate());
-//                inicio.setTime(dateSalida.timePicker.getTime().toNanoOfDay()/1000000);
-//
-//                //Configuramos la fecha y hora de llegada
-//                this.fin = Date.valueOf(dateRegreso.datePicker.getDate());
-//                fin.setTime(dateRegreso.timePicker.getTime().toNanoOfDay()/1000000);
-//
-//                Traslado2 traslado2 = new Traslado2(this);
-//
-//                traslado2.setVisible(true);
-//                this.dispose();
-//            } else {
-//
-//                JOptionPane.showMessageDialog(this, "La cantidad seleccionada debe ser un múltiplo de 5 para poder continuar.", "Error de Disponibilidad", JOptionPane.ERROR_MESSAGE);
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "La cantidad seleccionada no es válida. Por favor, seleccione un número.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
-//        }
+        // TODO add your handling code here:
+
+        try {
+            this.cantidadP = Integer.parseInt((String) cbxPersonas.getSelectedItem());
+
+            if (cantidadP % 5 == 0) {
+                localdateTime:    this.inicio = LocalDateTime.valueOf(dateSalida.datePicker.getDate());
+                inicio.setTime(dateSalida.timePicker.getTime().toNanoOfDay()/1000000);
+
+                //Configuramos la fecha y hora de llegada
+                this.fin = Date.valueOf(dateRegreso.datePicker.getDate());
+                fin.setTime(dateRegreso.localDate.getTime().toNanoOfDay()/1000000);
+                Traslado2 traslado2 = new Traslado2(this);
+
+                traslado2.setVisible(true);
+                this.dispose();
+            } else {
+
+                JOptionPane.showMessageDialog(this, "La cantidad seleccionada debe ser un múltiplo de 5 para poder continuar.", "Error de Disponibilidad", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La cantidad seleccionada no es válida. Por favor, seleccione un número.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDisponibilidadActionPerformed
 
     /**
@@ -166,10 +167,10 @@ public class Traslado extends javax.swing.JFrame {
     private javax.swing.JButton btnDisponibilidad;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxPersonas;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser dateRegreso;
+    private com.toedter.calendar.JDateChooser dateSalida;
+    private javax.swing.JComboBox<String> horaRegreso;
+    private javax.swing.JComboBox<String> horaSalida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 public class TrasladoDTO {
     
-   private String folio;
+    private String folio;
     private String motivo;
     private int personas;
     private LocalDateTime fechaHoraSalida;

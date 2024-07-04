@@ -16,7 +16,7 @@ public class ReporteDTO {
     private TrasladoDTO original;
     
     // Atributo que representa el traslado comparado.
-    private TrasladoDTO comparado;
+    private String motivo;
 
     /**
      * Constructor por defecto.
@@ -28,11 +28,11 @@ public class ReporteDTO {
      * Constructor que inicializa los atributos original y comparado con los valores proporcionados.
      * 
      * @param original el objeto TrasladoDTO original.
-     * @param comparado el objeto TrasladoDTO comparado.
+     * @param motivo el objeto TrasladoDTO comparado.
      */
-    public ReporteDTO(TrasladoDTO original, TrasladoDTO comparado) {
+    public ReporteDTO(TrasladoDTO original, String motivo) {
         this.original = original;
-        this.comparado = comparado;
+        this.motivo = motivo;
     }
 
     /**
@@ -58,16 +58,16 @@ public class ReporteDTO {
      * 
      * @return el objeto TrasladoDTO comparado.
      */
-    public TrasladoDTO getComparado() {
-        return comparado;
+    public String getMotivo() {
+        return motivo;
     }
 
     /**
      * Establece el objeto TrasladoDTO comparado.
      * 
-     * @param comparado el objeto TrasladoDTO comparado a establecer.
+     * @param motivo el objeto TrasladoDTO comparado a establecer.
      */
-    public void setComparado(TrasladoDTO comparado) {
-        this.comparado = comparado;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 }

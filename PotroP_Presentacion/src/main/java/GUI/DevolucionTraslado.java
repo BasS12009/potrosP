@@ -7,6 +7,9 @@
 package GUI;
 
 import dtos.TrasladoDTO;
+import dtos.VehiculoDTO;
+import dtos.VehiculoDevueltoDTO;
+import dtos.VehiculoEntregadoDTO;
 import fachada.DevolucionFCD;
 import guardar.Guardar;
 import interfaz.IDevolucionFCD;
@@ -26,8 +29,9 @@ import javax.swing.JOptionPane;
  */
 public class DevolucionTraslado extends javax.swing.JFrame {
 
-    IDevolucionFCD devolucionFCD;
-    Guardar guardar;
+    private IDevolucionFCD devolucionFCD;
+    private TrasladoDTO trasladoDTO;
+    private Guardar guardar;
     
     //instaciamos frames
     Menu menu = new Menu();
@@ -45,35 +49,44 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         this.devolucionFCD = new DevolucionFCD();
         this.guardar = new Guardar();
         
+        //inicializamos el traslado original con a partir de una busqueda
+        try{
+           this.trasladoDTO = devolucionFCD.buscar(guardar.getNumDevolucion()); 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
         //configuracion del frame
         this.setLocationRelativeTo(this);
         this.setSize(670, 600);  
         this.txfMotivo.setEditable(false);
         
-        //configuramos el contenedore motivo para que no sea editable
+        //configuramos el contenedor motivo para que no sea editable
         txfMotivo.setEditable(false);
+        //configuramos el contenedor de motivo para que no sea enfocable 
+        txfMotivo.setFocusable(false);
         
         //cargamos la informacion del traslado
-        cargarInfo();
+        cargarInfo(trasladoDTO);
     }
 
     /**
      * Cargamos la informacion del traslado que se desea hacer la devolucion
      * 
      */
-    private void cargarInfo(){
+    private void cargarInfo(TrasladoDTO traslado){
         try{
-        //buscamos el objeto traslado basandonos en su numero de traslado    
-        TrasladoDTO traslado = devolucionFCD.buscar(guardar.getNumDevolucion());
         
+        txfMotivo.setText(traslado.getMotivo());
         lblPersonas.setText(String.valueOf(traslado.getPersonas()));
         lblSalida.setText(convertir(traslado.getFechaHoraRegreso()));
         lblRegreso.setText(convertir(traslado.getFechaHoraSalida()));
-        txfMotivo.setText(traslado.getMotivo());
-        //lblPlaca.setText(traslado.getPlaca());
+        lblDisponibilidad.setText(disponibilidad(traslado.isDisponibilidad()));
+        lblVehiculo.setText(traslado.getVehiculo().toString());
         lblEmpleado.setText(traslado.getCorreoEmpleado());
         lblChofer.setText(traslado.getCorreoChofer());
-        lblEstado.setText(establecerEstado(traslado.isEstado()));
+        lblEstado.setText(estado(traslado.isEstado()));
         
         //configuramos el estado
         configEstado(lblEstado);
@@ -81,6 +94,21 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    /**
+     * establece un String que indica el estado a partir de un boleano
+     * 
+     * @param estado booleano que inidica el estado
+     * @return texto descriptivo del estado
+     */
+    private String disponibilidad(boolean disponibilidad){
+        if (disponibilidad) {
+           return "DISPONIBLE"; 
+        }
+        else{
+            return "NO DISPONIBLE";
         }
     }
     
@@ -109,7 +137,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      * @param estado Booleano a convertir a un String
      * @return String que nos indica el estado del prestamo
      */
-    private String establecerEstado(boolean estado){
+    private String estado(boolean estado){
         if (estado) {
             return "DEVUELTO";
         }
@@ -152,6 +180,11 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         return llantas;
     }
     
+    private String estadoGeneral(JComboBox combo){
+        String estado = (String) combo.getSelectedItem();
+        return estado;
+    }
+    
     /**
      * Convierte un String un objeto LocalDateTime a un String 
      * 
@@ -182,8 +215,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     }
     
     /**
-     * Crea un nuevo objeto TrasladoDTO con los valores combinados de el 
-     * traslado original y los nuevos valores que se ingresan el el frame
+     * 
      * 
      * @param original Objeto TrasladoDTO del cual obtendremos los valores 
      * originales del objeto;
@@ -191,35 +223,53 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      * @return nuevo Objeto TrasladoDTO con los nuevos valores ingresados en el 
      * frame
      */
-    private TrasladoDTO crearDevolucion(TrasladoDTO original){
+    private VehiculoDevueltoDTO crearVehiculo(TrasladoDTO original){
         
-//        //originales
-//        int numTraslado = original.getNumTraslado();
-//        String destino = original.getDestino();
-//        int personas = original.getPersonas();
-//        LocalDateTime fechaSalida = original.getFechaHoraSalida();
-//        
-//        //modificado
-//        LocalDateTime fechaDevolucion = LocalDateTime.now();
-//        
-//        //original
-//        String motivo = original.getMotivo();
-//        
-//        //modificados
-//        String carroceria = carroceria(cbxCarroceria);    
-//        String llantas = llantas(cbxLlantas);
-//        int combustible = combustible(cbxCombustible);
-//      
-//        //originales
-//        String placa = original.getPlaca();
-//        String empleado = original.getCorreoEmpleado();
-//        String chofer = original.getCorreoChofer();
-//        boolean estado = original.getEstado();
-//        
-//        return new TrasladoDTO(numTraslado, destino, personas, fechaSalida, 
-//        fechaDevolucion, motivo, carroceria, llantas, combustible, placa,
-//        empleado, chofer, estado);
-        return null;
+        VehiculoEntregadoDTO  vehiculo = original.getVehiculoEntregado();
+        
+        //datos nuevos que agregaremos 
+        String carroceria = carroceria(cbxCarroceria);  
+        int combustible = combustible(cbxCombustible);
+        String estadoVehiculo = estadoGeneral(cbxEstado);
+        String llantas = llantas(cbxLlantas);
+        
+      
+        // datos del vehiculo entregado
+        int numVehiculo = vehiculo.getNumVehiculo();
+        String marca = vehiculo.getMarca();
+        String modelo = vehiculo.getModelo();
+        int año = vehiculo.getAño();
+        String tipo = vehiculo.getTipo();
+        String placa = vehiculo.getPlaca();
+        String capacidad = vehiculo.getCapacidad();
+        
+        return new VehiculoDevueltoDTO(carroceria, combustible, estadoVehiculo, 
+              llantas, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
+    }
+    
+    /**
+     * 
+     * @param traslado
+     * @return 
+     */
+    private TrasladoDTO crearDevolucion(TrasladoDTO traslado){
+        
+        String folio = traslado.getFolio();
+        String motivo = traslado.getMotivo();
+        int personas = traslado.getPersonas();
+        LocalDateTime fechaHoraSalida = traslado.getFechaHoraSalida();
+        LocalDateTime fechaHoraRegreso = traslado.getFechaHoraRegreso();
+        boolean disponibilidad = traslado.isDisponibilidad();
+        VehiculoDTO vehiculo = traslado.getVehiculo();
+        VehiculoEntregadoDTO vehiculoEntregado = traslado.getVehiculoEntregado();
+        VehiculoDevueltoDTO vehiculoDevuelto = crearVehiculo(traslado); 
+        String correoEmpleado = traslado.getCorreoEmpleado();
+        String correoChofer = traslado.getCorreoChofer();
+        boolean estado = traslado.isEstado();
+        
+        return new TrasladoDTO(folio, motivo, personas, fechaHoraSalida, 
+                fechaHoraRegreso, disponibilidad, vehiculo, vehiculoEntregado, 
+                vehiculoDevuelto, correoEmpleado, correoChofer, estado);
     }
     
     /**
@@ -228,19 +278,17 @@ public class DevolucionTraslado extends javax.swing.JFrame {
      */
     private void devolucion(){
         try{
-        //definimos el traslado orinal    
-        TrasladoDTO original = devolucionFCD.buscar(guardar.getNumDevolucion());
-        
-        //definimos el traslado de devolucion
-        TrasladoDTO devolucion = crearDevolucion(original);
+        //definimos el traslado de devolucion    
+        TrasladoDTO original = crearDevolucion(trasladoDTO);
        
-            System.out.println(original.toString());
-            System.out.println(" ");
-            System.out.println(devolucion.toString());
-            
+        //definimos el motivo
+        String motivo = taComentarios.getText();
+        
+        //imprimimos la el traslado para verificar si la informacion es la correcta 
+        System.out.println(original.toString());
         
         //agregamos la devolucion
-        devolucionFCD.agregar(original);
+        devolucionFCD.agregar(original, motivo);
         
         //mostramos una ventana de confirmacion para preguntar si se desa hacer 
         //otra devolucion
@@ -296,15 +344,19 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         lblSalida = new javax.swing.JLabel();
         lblPersonas = new javax.swing.JLabel();
         lblRegreso = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         txfMotivo = new javax.swing.JTextField();
-        lblPlaca = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lblEmpleado = new javax.swing.JLabel();
         lblChofer = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblDisponibilidad = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblVehiculo = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cbxEstado = new javax.swing.JComboBox<>();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -315,19 +367,19 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Devolucion Traslado");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 330, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Combustible:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Estado carroceria:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Estado llantas:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -349,7 +401,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         jPanel1.add(btnDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, -1, -1));
 
         cbxLlantas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AIRE BAJO", "DESGASTADAS", "BUEN ESTADO " }));
-        jPanel1.add(cbxLlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 180, -1));
+        jPanel1.add(cbxLlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, -1));
 
         cbxCombustible.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "25%", "50%", "75%", "100%" }));
         cbxCombustible.addActionListener(new java.awt.event.ActionListener() {
@@ -357,10 +409,10 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                 cbxCombustibleActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxCombustible, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, -1));
+        jPanel1.add(cbxCombustible, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 180, -1));
 
         cbxCarroceria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EXCELENTE", "REGULAR", "DAÑADA" }));
-        jPanel1.add(cbxCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 180, -1));
+        jPanel1.add(cbxCarroceria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Comentarios adicionales:");
@@ -386,15 +438,11 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
         lblRegreso.setText("jLabel16");
 
-        jLabel17.setText("Placa vehiculo: ");
-
         txfMotivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfMotivoActionPerformed(evt);
             }
         });
-
-        lblPlaca.setText("jLabel18");
 
         jLabel19.setText("Correo empleado:");
 
@@ -408,6 +456,14 @@ public class DevolucionTraslado extends javax.swing.JFrame {
 
         lblEstado.setText("jLabel10");
 
+        jLabel10.setText("Disponibilidad:");
+
+        lblDisponibilidad.setText("jLabel11");
+
+        jLabel11.setText("Vehiculo:");
+
+        lblVehiculo.setText("jLabel12");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -416,49 +472,48 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblChofer))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblEmpleado))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPersonas))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblPersonas))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblRegreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel23)
+                                .addComponent(jLabel11))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(lblPersonas))
@@ -472,12 +527,8 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                     .addComponent(lblRegreso))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(lblPlaca))
+                    .addComponent(jLabel9)
+                    .addComponent(txfMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
@@ -488,12 +539,27 @@ public class DevolucionTraslado extends javax.swing.JFrame {
                     .addComponent(lblChofer))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lblDisponibilidad))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(lblEstado))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(lblVehiculo))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 300, 370));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 300, 390));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel12.setText("Estado general:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -541,10 +607,13 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxCarroceria;
     private javax.swing.JComboBox<String> cbxCombustible;
+    private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JComboBox<String> cbxLlantas;
     private com.toedter.calendar.JDateChooser dcFin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -562,12 +631,13 @@ public class DevolucionTraslado extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblChofer;
+    private javax.swing.JLabel lblDisponibilidad;
     private javax.swing.JLabel lblEmpleado;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblPersonas;
-    private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblRegreso;
     private javax.swing.JLabel lblSalida;
+    private javax.swing.JLabel lblVehiculo;
     private javax.swing.JTextArea taComentarios;
     private javax.swing.JTextField txfMotivo;
     // End of variables declaration//GEN-END:variables

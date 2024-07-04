@@ -15,7 +15,7 @@ public class Reporte {
     private Traslado original;
     
     // Atributo que representa el traslado comparado.
-    private Traslado comparado;
+    String motivo;
 
     /**
      * Constructor por defecto.
@@ -27,11 +27,10 @@ public class Reporte {
      * Constructor que inicializa los atributos original y comparado con los valores proporcionados.
      * 
      * @param original el objeto Traslado original.
-     * @param comparado el objeto Traslado comparado.
      */
-    public Reporte(Traslado original, Traslado comparado) {
+    public Reporte(Traslado original, String motivo) {
         this.original = original;
-        this.comparado = comparado;
+        this.motivo = motivo;
     }
 
     /**
@@ -57,16 +56,16 @@ public class Reporte {
      * 
      * @return el objeto TrasladoDTO comparado.
      */
-    public Traslado getComparado() {
-        return comparado;
+    public String getMotivo() {
+        return motivo;
     }
 
     /**
      * Establece el objeto Traslado comparado.
      * 
-     * @param comparado el objeto Traslado comparado a establecer.
+     * @param motivo el objeto Traslado comparado a establecer.
      */
-    public void setComparado(Traslado comparado) {
-        this.comparado = comparado;
+    public void setMotivo(String motivo) {
+        this.motivo= motivo;
     }
 }

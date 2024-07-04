@@ -36,8 +36,9 @@ public interface IDevolucionFCD {
      * Agrega un nuevo traslado de devolución.
      * 
      * @param original el objeto TrasladoDTO original.
+     * @param motivo
      * @throws FachadaException si ocurre un error durante la adición.
      */
-    public void agregar(TrasladoDTO original) throws FachadaException; 
+    public void agregar(TrasladoDTO original, String motivo) throws FachadaException; 
 }
 

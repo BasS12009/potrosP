@@ -13,7 +13,7 @@ import excepciones.DAOException;
 import java.time.LocalDate;
 import org.bson.types.ObjectId;
 
-public class PruebaPrestamoDAO {
+public class PruebaPrestamoDAO {   
     public static void main(String[] args) {
         // Inicializar la conexión a la base de datos
         ConexionBDM.getInstance();
@@ -58,4 +58,7 @@ public class PruebaPrestamoDAO {
             System.err.println("Error al trabajar con el préstamo: " + e.getMessage());
         }
     }
+
 }
+
+
