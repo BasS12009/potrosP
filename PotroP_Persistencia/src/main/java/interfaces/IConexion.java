@@ -4,10 +4,14 @@
  */
 package Interfaces;
 
+
+
 /**
  *
  * @author diana
  */
+import com.mongodb.client.MongoDatabase;
+
 public interface IConexion {
-    
+    MongoDatabase getDatabase();
 }
