@@ -43,11 +43,13 @@ public class Prestamo {
     /**
      * Constructor de la clase Prestamo que inicializa todos los atributos.
      * 
+     * @param id
      * @param motivo el motivo del préstamo.
      * @param inicio la fecha de inicio del préstamo.
      * @param fin la fecha de fin del préstamo.
      * @param placaVehiculo la placa del vehículo prestado.
      * @param correoEmpleado el correo del empleado que realiza el préstamo.
+     * @param vehiculo
      */
     public Prestamo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, Vehiculo vehiculo) {    
         this.id = id;

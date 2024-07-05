@@ -15,12 +15,26 @@ import excepciones.DAOException;
 import org.bson.types.ObjectId;
 
 public class TrasladoDAO implements ITrasladoDAO {
+   
+    /**
+     * Colección de MongoDB para almacenar objetos de tipo Traslado.
+     */
     private final MongoCollection<Traslado> trasladoCollection;
 
+    /**
+     * Constructor que inicializa la colección de Traslado utilizando la instancia de conexión a la base de datos.
+     */
     public TrasladoDAO() {
         this.trasladoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Traslado", Traslado.class);
     }
 
+    
+    /**
+     * Agrega un nuevo objeto Traslado a la base de datos.
+     * 
+     * @param traslado el objeto Traslado a agregar.
+     * @throws DAOException si ocurre un error al generar el traslado.
+     */
     @Override
     public void agregar(Traslado traslado) throws DAOException {
         try {
@@ -30,6 +44,14 @@ public class TrasladoDAO implements ITrasladoDAO {
         }
     }
     
+    
+    /**
+     * Busca un objeto Traslado por su ID en la base de datos.
+     * 
+     * @param id el ID del Traslado a buscar.
+     * @return el objeto Traslado encontrado, o null si no se encuentra.
+     * @throws DAOException si ocurre un error al buscar el traslado por ID.
+     */
     @Override
     public Traslado buscarPorId(String id) throws DAOException {
         try {
@@ -39,7 +61,16 @@ public class TrasladoDAO implements ITrasladoDAO {
             throw new DAOException("Error al buscar traslado por ID: " + e.getMessage(), e);
         }
     }
-
+    
+    
+    
+    /**
+     * Verifica si existe un traslado en la base de datos dado un folio específico.
+     * 
+     * @param folio el folio del traslado a verificar.
+     * @return true si existe el traslado con el folio especificado, false de lo contrario.
+     * @throws DAOException si ocurre un error al verificar la existencia del traslado.
+     */
     @Override
     public boolean existe(String folio) throws DAOException {
        try {
@@ -49,6 +80,13 @@ public class TrasladoDAO implements ITrasladoDAO {
         }
     }
 
+     /**
+     * Busca un objeto Traslado por su folio en la base de datos.
+     * 
+     * @param folio el folio del Traslado a buscar.
+     * @return el objeto Traslado encontrado, o null si no se encuentra.
+     * @throws DAOException si ocurre un error al buscar el traslado por folio.
+     */
     @Override
     public Traslado buscar(String folio) throws DAOException {
         try {
@@ -58,6 +96,12 @@ public class TrasladoDAO implements ITrasladoDAO {
         }
     }
     
+    /**
+     * Actualiza un objeto Traslado en la base de datos.
+     * 
+     * @param traslado el objeto Traslado actualizado.
+     * @throws DAOException si ocurre un error al actualizar el traslado.
+     */
     @Override
     public void actualizar(Traslado traslado) throws DAOException {
         try {
