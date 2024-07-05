@@ -130,6 +130,8 @@ public class Prestamo extends javax.swing.JFrame {
     }
 }
     
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -376,6 +378,8 @@ public class Prestamo extends javax.swing.JFrame {
         } catch (excepciones.FachadaException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        
+        
     }//GEN-LAST:event_btnComprobarActionPerformed
 
     private void cbxVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxVehiculoActionPerformed

@@ -412,7 +412,7 @@ public class Traslado2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnComprobarActionPerformed
 
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
-//        traslado();
+        traslado();
     }//GEN-LAST:event_btnDisponibilidadActionPerformed
 
     /**

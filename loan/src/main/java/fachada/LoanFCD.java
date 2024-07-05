@@ -10,6 +10,7 @@ import excepcion.ControlException;
 import excepcion.FachadaException;
 import interfaz.ILoanFCD;
 import java.time.LocalDate;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,5 +52,7 @@ public class LoanFCD implements ILoanFCD{
             throw new FachadaException(ex.getMessage()); 
         }
     }
+    
+    
     
 }

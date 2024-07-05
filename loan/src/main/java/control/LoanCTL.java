@@ -6,10 +6,13 @@ package control;
 
 import dtos.PrestamoDTO;
 import bo.PrestamoBO;
+import entidades.Prestamo;
 import excepcion.ControlException;
+import excepciones.DAOException;
 import exceptions.BisnessException;
 import interfaces.IPrestamoBO;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,7 +25,7 @@ import java.util.List;
 public class LoanCTL {
 
     // Referencia a la capa de lógica de negocio de préstamos
-    private IPrestamoBO prestamoBO;
+    private final IPrestamoBO prestamoBO;
 
     /**
      * Constructor de la clase LoanCTL.
@@ -145,6 +148,18 @@ public class LoanCTL {
         } catch (BisnessException ex) {
             System.out.println(ex.getMessage());
             throw new ControlException("Error al validar la disponibilidad", ex); // Lanzar una excepción personalizada
+        }
+    }
+    
+ 
+    public List<PrestamoDTO> obtenerPrestamosPorFechas(LocalDate fechaInicio, LocalDate fechaFin) throws ControlException {
+        try {
+            // Aquí iría la lógica para obtener los préstamos
+            // Por ejemplo, podrías usar un BO o directamente un DAO
+            PrestamoBO prestamoBO = new PrestamoBO();
+            return prestamoBO.listaPorFechas(fechaInicio, fechaFin);
+        } catch (BisnessException ex) {
+            throw new ControlException("Error al obtener préstamos por fechas", ex);
         }
     }
 }
