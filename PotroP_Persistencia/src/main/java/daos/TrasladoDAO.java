@@ -15,6 +15,7 @@ import excepciones.DAOException;
 import org.bson.types.ObjectId;
 
 public class TrasladoDAO implements ITrasladoDAO {
+    
     private final MongoCollection<Traslado> trasladoCollection;
 
     public TrasladoDAO() {
@@ -28,6 +29,8 @@ public class TrasladoDAO implements ITrasladoDAO {
         } catch (Exception e) {
             throw new DAOException("Error al generar traslado: " + e.getMessage(), e);
         }
+          System.out.println("esto es lo que llego en agregar: ");
+          System.out.println(traslado.toString());
     }
     
     @Override
@@ -42,46 +45,54 @@ public class TrasladoDAO implements ITrasladoDAO {
 
     @Override
     public boolean existe(String folio) throws DAOException {
-       try {
-            return trasladoCollection.find(Filters.eq("numTraslado", folio)).first() != null;
-        } catch (Exception e) {
-            throw new DAOException("Error al verificar la existencia del traslado: " + e.getMessage(), e);
-        }
+//       try {
+//            return trasladoCollection.find(Filters.eq("numTraslado", folio)).first() != null;
+//        } catch (Exception e) {
+//            throw new DAOException("Error al verificar la existencia del traslado: " + e.getMessage(), e);
+//        }
+          System.out.println("est es lo que llego en existe");
+          System.out.println(folio);
+          return true;
     }
 
     @Override
     public Traslado buscar(String folio) throws DAOException {
-        try {
-            return trasladoCollection.find(Filters.eq("folio", folio)).first();
-        } catch (Exception e) {
-            throw new DAOException("Error al buscar traslado por folio: " + e.getMessage(), e);
-        }
+//        try {
+//            return trasladoCollection.find(Filters.eq("folio", folio)).first();
+//        } catch (Exception e) {
+//            throw new DAOException("Error al buscar traslado por folio: " + e.getMessage(), e);
+//        }
+        System.out.println("esto es lo que llego en la busqueda");
+        System.out.println(folio);
+        return null;
     }
     
     @Override
     public void actualizar(Traslado traslado) throws DAOException {
-        try {
-            UpdateResult result = trasladoCollection.updateOne(
-                Filters.eq("_id", new ObjectId(traslado.getId())),
-                Updates.combine(
-                    Updates.set("folio", traslado.getFolio()),
-                    Updates.set("motivo", traslado.getMotivo()),
-                    Updates.set("personas", traslado.getPersonas()),
-                    Updates.set("fechaHoraSalida", traslado.getFechaHoraSalida()),
-                    Updates.set("fechaHoraRegreso", traslado.getFechaHoraRegreso()),
-                    Updates.set("disponibilidad", traslado.isDisponibilidad()),
-                    Updates.set("vehiculo", traslado.getVehiculo()),
-                    Updates.set("vehiculoEntregado", traslado.getVehiculoEntregado()),
-                    Updates.set("vehiculoDevuelto", traslado.getVehiculoDevuelto()),
-                    Updates.set("correoEmpleado", traslado.getCorreoEmpleado()),
-                    Updates.set("estado", traslado.isEstado())
-                )
-            );
-            if (result.getMatchedCount() == 0) {
-                throw new DAOException("No se encontró el traslado para actualizar.");
-            }
-        } catch (Exception e) {
-            throw new DAOException("Error al actualizar el traslado: " + e.getMessage(), e);
-        }
-    }
+//        try {
+//            UpdateResult result = trasladoCollection.updateOne(
+//                Filters.eq("_id", new ObjectId(traslado.getId())),
+//                Updates.combine(
+//                    Updates.set("folio", traslado.getFolio()),
+//                    Updates.set("motivo", traslado.getMotivo()),
+//                    Updates.set("personas", traslado.getPersonas()),
+//                    Updates.set("fechaHoraSalida", traslado.getFechaHoraSalida()),
+//                    Updates.set("fechaHoraRegreso", traslado.getFechaHoraRegreso()),
+//                    Updates.set("disponibilidad", traslado.isDisponibilidad()),
+//                    Updates.set("vehiculo", traslado.getVehiculo()),
+//                    Updates.set("vehiculoEntregado", traslado.getVehiculoEntregado()),
+//                    Updates.set("vehiculoDevuelto", traslado.getVehiculoDevuelto()),
+//                    Updates.set("correoEmpleado", traslado.getCorreoEmpleado()),
+//                    Updates.set("estado", traslado.isEstado())
+//                )
+//            );
+//            if (result.getMatchedCount() == 0) {
+//                throw new DAOException("No se encontró el traslado para actualizar.");
+//            }
+//        } catch (Exception e) {
+//            throw new DAOException("Error al actualizar el traslado: " + e.getMessage(), e);
+//        }
+        System.out.println("esto es lo que llego a actualizar: ");
+        System.out.println(traslado.toString());
+   }
 }

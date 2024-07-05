@@ -9,6 +9,7 @@ import bo.TrasladoBO;
 import dtos.EmpleadoDTO;
 import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
+import dtos.VehiculoDevueltoDTO;
 import dtos.VehiculoEntregadoDTO;
 import excepciones.NegocioException;
 import excepciones.fachadaException;
@@ -16,9 +17,9 @@ import fachada.VehiculoFCD;
 import interfaces.IEmpleadoBO;
 import interfaz.IVehiculoFCD;
 import java.awt.Color;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import negocio.EmpleadoBO;
@@ -119,28 +120,30 @@ public class Traslado2 extends javax.swing.JFrame {
 
         
         // Crear una instancia de TrasladoDTO y llenar sus campos
-        TrasladoDTO trasladoDTO = new TrasladoDTO();
         
-        trasladoDTO.setFolio(txtFolio.getText());
-        trasladoDTO.setMotivo(txtPrestamo.getText().trim());
-        trasladoDTO.setPersonas(formT.cantidadP);
-        trasladoDTO.setFechaHoraSalida(formT.inicio);
-        trasladoDTO.setFechaHoraRegreso(formT.fin);
-        trasladoDTO.setDisponibilidad(true);
-        trasladoDTO.setVehiculo(obtenerVehiculo(boxVehiculo));
+        String folio = txtFolio.getText();
+        String motivo = txtPrestamo.getText().trim();
+        int personas = formT.cantidadP;
+        LocalDateTime fechaHoraSalida = formT.inicio;
+        LocalDateTime fechaHoraRegreso = formT.fin;
+        boolean disponibilidad = true;
+        VehiculoDTO vehiculos = obtenerVehiculoSeleccionado();
         
         //instanciamos el vehiculo entregado
-        trasladoDTO.setVehiculoEntregado(crearEntregado(obtenerVehiculo(boxVehiculo)));
+        VehiculoEntregadoDTO vehiculoEntregado = crearEntregado(vehiculos);
         
-        trasladoDTO.setVehiculoDevuelto(null);
-        trasladoDTO.setCorreoEmpleado(empleado);
-        trasladoDTO.setEstado(false);
+        VehiculoDevueltoDTO vehiculoDevuelto = null;
+        String correoEmpleado = empleado;
+        boolean estado = false;
         
-
+        //formamos el nuevo traslado
+        TrasladoDTO trasladoDTO = new TrasladoDTO(folio, motivo, personas, 
+                fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculos, 
+                vehiculoEntregado, vehiculoDevuelto, correoEmpleado, estado);
+        
         // Crear una instancia de TrasladoFCD y solicitar el traslado
         TrasladoFCD trasladoFCD = new TrasladoFCD();
         try {
-            
             trasladoFCD.solicitarTraslado(trasladoDTO);
             JOptionPane.showMessageDialog(this, "Traslado solicitado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (fachadaException e) {
@@ -174,13 +177,10 @@ public class Traslado2 extends javax.swing.JFrame {
         
     }
     
-    public VehiculoDTO obtenerVehiculo(JComboBox combo){
-        VehiculoDTO vehiculo = (VehiculoDTO) combo.getSelectedItem();
-        return vehiculo;
-    }
+  
     
     public VehiculoEntregadoDTO crearEntregado(VehiculoDTO vehiculo){
-        VehiculoDTO beiculo = obtenerVehiculo(boxVehiculo);
+        VehiculoDTO beiculo = obtenerVehiculoSeleccionado();
         
         String carroceria = (String) cbxCarroceria.getSelectedItem();
         int combustible = eliminarCaracter((String) cbxCombustible.getSelectedItem());
