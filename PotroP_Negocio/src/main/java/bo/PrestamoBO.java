@@ -35,6 +35,8 @@ public class PrestamoBO implements IPrestamoBO {
     private final PrestamoCVR prestamoCVR; //instancia de la clase de convertidores
 
 
+    
+    
     public PrestamoBO() {
         this.prestamoDAO = new PrestamoDAO();
         this.prestamoCVR = new PrestamoCVR();
