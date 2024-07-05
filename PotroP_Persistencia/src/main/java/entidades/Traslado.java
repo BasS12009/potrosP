@@ -19,7 +19,6 @@ public class Traslado {
     private VehiculoEntregado vehiculoEntregado;
     private VehiculoDevuelto vehiculoDevuelto;
     private String correoEmpleado;
-    private String correoChofer;
     private boolean estado;
 
     public Traslado() {
@@ -29,7 +28,7 @@ public class Traslado {
             LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
             boolean disponibilidad, Vehiculo vehiculo, 
             VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, 
-            String correoEmpleado, String correoChofer, boolean estado) {
+            String correoEmpleado, boolean estado) {
         this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;
@@ -40,7 +39,6 @@ public class Traslado {
         this.vehiculoEntregado = vehiculoEntregado;
         this.vehiculoDevuelto = vehiculoDevuelto;
         this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
         this.estado = estado;
     }
 
@@ -48,7 +46,7 @@ public class Traslado {
             LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
             boolean disponibilidad, Vehiculo vehiculo, 
             VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, 
-            String correoEmpleado, String correoChofer, boolean estado) {
+            String correoEmpleado, boolean estado) {
         this.id = id;
         this.folio = folio;
         this.motivo = motivo;
@@ -60,7 +58,6 @@ public class Traslado {
         this.vehiculoEntregado = vehiculoEntregado;
         this.vehiculoDevuelto = vehiculoDevuelto;
         this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
         this.estado = estado;
     }
 
@@ -156,14 +153,6 @@ public class Traslado {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public String getCorreoChofer() {
-        return correoChofer;
-    }
-
-    public void setCorreoChofer(String correoChofer) {
-        this.correoChofer = correoChofer;
-    }
-
     public boolean isEstado() {
         return estado;
     }
@@ -186,7 +175,6 @@ public class Traslado {
                 ", vehiculoEntregado=" + vehiculoEntregado +
                 ", vehiculoDevuelto=" + vehiculoDevuelto +
                 ", correoEmpleado='" + correoEmpleado + '\'' +
-                ", correoChofer='" + correoChofer + '\'' +
                 ", estado=" + estado +
                 '}';
     }

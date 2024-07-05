@@ -22,7 +22,6 @@ public class TrasladoDTO {
     private VehiculoEntregadoDTO vehiculoEntregado;
     private VehiculoDevueltoDTO vehiculoDevuelto;
     private String correoEmpleado;
-    private String correoChofer;
     private boolean estado;
 
 
@@ -34,7 +33,7 @@ public class TrasladoDTO {
             boolean disponibilidad, VehiculoDTO vehiculo, 
             VehiculoEntregadoDTO vehiculoEntregado, 
             VehiculoDevueltoDTO vehiculoDevuelto, 
-            String correoEmpleado, String correoChofer, boolean estado) {
+            String correoEmpleado, boolean estado) {
         this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;
@@ -45,7 +44,6 @@ public class TrasladoDTO {
         this.vehiculoEntregado = vehiculoEntregado;
         this.vehiculoDevuelto = vehiculoDevuelto;
         this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
         this.estado = estado;
     }
 
@@ -127,14 +125,6 @@ public class TrasladoDTO {
 
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correoEmpleado = correoEmpleado;
-    }
-
-    public String getCorreoChofer() {
-        return correoChofer;
-    }
-
-    public void setCorreoChofer(String correoChofer) {
-        this.correoChofer = correoChofer;
     }
 
     public boolean isEstado() {

@@ -74,7 +74,6 @@ public class TrasladoDAO implements ITrasladoDAO {
                     Updates.set("vehiculoEntregado", traslado.getVehiculoEntregado()),
                     Updates.set("vehiculoDevuelto", traslado.getVehiculoDevuelto()),
                     Updates.set("correoEmpleado", traslado.getCorreoEmpleado()),
-                    Updates.set("correoChofer", traslado.getCorreoChofer()),
                     Updates.set("estado", traslado.isEstado())
                 )
             );

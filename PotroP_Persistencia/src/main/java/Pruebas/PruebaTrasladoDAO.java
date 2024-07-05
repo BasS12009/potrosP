@@ -71,7 +71,6 @@ public class PruebaTrasladoDAO {
                 vehiculoEntregado,
                 vehiculoDevuelto,
                 "profesor@universidad.edu",
-                "chofer@universidad.edu",
                 true
             );
 

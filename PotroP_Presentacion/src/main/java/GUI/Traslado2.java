@@ -134,7 +134,6 @@ public class Traslado2 extends javax.swing.JFrame {
         
         trasladoDTO.setVehiculoDevuelto(null);
         trasladoDTO.setCorreoEmpleado(empleado);
-        trasladoDTO.setCorreoChofer("asdasd");
         trasladoDTO.setEstado(false);
         
 

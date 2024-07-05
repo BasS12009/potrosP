@@ -31,7 +31,6 @@ public class TrasladoMapeo {
     private VehiculoEntregado vehiculoEntregado;
     private VehiculoDevuelto vehiculoDevuelto;
     private String correoEmpleado;
-    private String correoChofer;
     private boolean estado;
 
     
@@ -41,7 +40,11 @@ public class TrasladoMapeo {
     public TrasladoMapeo() {
     }
 
-    public TrasladoMapeo(String folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, String correoEmpleado, String correoChofer, boolean estado) {
+    public TrasladoMapeo(String folio, String motivo, int personas, 
+            LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, 
+            boolean disponibilidad, Vehiculo vehiculo, 
+            VehiculoEntregado vehiculoEntregado, 
+            VehiculoDevuelto vehiculoDevuelto, String correoEmpleado,  boolean estado) {
         this.folio = folio;
         this.motivo = motivo;
         this.personas = personas;
@@ -52,11 +55,14 @@ public class TrasladoMapeo {
         this.vehiculoEntregado = vehiculoEntregado;
         this.vehiculoDevuelto = vehiculoDevuelto;
         this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
         this.estado = estado;
     }
 
-    public TrasladoMapeo(ObjectId id, String folio, String motivo, int personas, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraRegreso, boolean disponibilidad, Vehiculo vehiculo, VehiculoEntregado vehiculoEntregado, VehiculoDevuelto vehiculoDevuelto, String correoEmpleado, String correoChofer, boolean estado) {
+    public TrasladoMapeo(ObjectId id, String folio, String motivo, 
+            int personas, LocalDateTime fechaHoraSalida, 
+            LocalDateTime fechaHoraRegreso, boolean disponibilidad, 
+            Vehiculo vehiculo, VehiculoEntregado vehiculoEntregado, 
+            VehiculoDevuelto vehiculoDevuelto, String correoEmpleado, boolean estado) {
         this.id = id;
         this.folio = folio;
         this.motivo = motivo;
@@ -68,7 +74,6 @@ public class TrasladoMapeo {
         this.vehiculoEntregado = vehiculoEntregado;
         this.vehiculoDevuelto = vehiculoDevuelto;
         this.correoEmpleado = correoEmpleado;
-        this.correoChofer = correoChofer;
         this.estado = estado;
     }
 
@@ -158,14 +163,6 @@ public class TrasladoMapeo {
 
     public void setCorreoEmpleado(String correoEmpleado) {
         this.correoEmpleado = correoEmpleado;
-    }
-
-    public String getCorreoChofer() {
-        return correoChofer;
-    }
-
-    public void setCorreoChofer(String correoChofer) {
-        this.correoChofer = correoChofer;
     }
 
     public boolean isEstado() {

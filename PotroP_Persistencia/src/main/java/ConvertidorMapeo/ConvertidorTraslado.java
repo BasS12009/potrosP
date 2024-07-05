@@ -31,7 +31,6 @@ public class ConvertidorTraslado {
                 traslado.getVehiculoEntregado(),
                 traslado.getVehiculoDevuelto(),
                 traslado.getCorreoEmpleado(),
-                traslado.getCorreoChofer(),
                 traslado.isEstado()
             );
         }
@@ -46,7 +45,6 @@ public class ConvertidorTraslado {
             traslado.getVehiculoEntregado(),
             traslado.getVehiculoDevuelto(),
             traslado.getCorreoEmpleado(),
-            traslado.getCorreoChofer(),
             traslado.isEstado()
         );
     }
@@ -72,7 +70,6 @@ public class ConvertidorTraslado {
                 trasladoMapeo.getVehiculoEntregado(),
                 trasladoMapeo.getVehiculoDevuelto(),
                 trasladoMapeo.getCorreoEmpleado(),
-                trasladoMapeo.getCorreoChofer(),
                 trasladoMapeo.isEstado()
             );
         }
