@@ -1,5 +1,0 @@
-interfaz\ITablaFCD.class
-excepciones\ControlException.class
-excepciones\FachadaException.class
-fachada\TablaFCD.class
-control\TablaCTL.class
