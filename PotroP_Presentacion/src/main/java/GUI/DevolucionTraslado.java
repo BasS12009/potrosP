@@ -558,7 +558,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         jLabel12.setText("Estado general:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dañado", "Sin daños", "Sin combustible" }));
         jPanel1.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

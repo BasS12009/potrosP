@@ -9,6 +9,7 @@ import bo.TrasladoBO;
 import dtos.EmpleadoDTO;
 import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
+import dtos.VehiculoEntregadoDTO;
 import entidades.VehiculoEntregado;
 import excepciones.NegocioException;
 import excepciones.fachadaException;
@@ -18,6 +19,7 @@ import interfaz.IVehiculoFCD;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import negocio.EmpleadoBO;
@@ -33,6 +35,8 @@ public class Traslado2 extends javax.swing.JFrame {
     Traslado formT;
     private IVehiculoFCD vehiculo;
     private TrasladoBO fachada;
+    
+    private String empleado;
 
     /**
      * 
@@ -115,22 +119,28 @@ public class Traslado2 extends javax.swing.JFrame {
         }
 
         
-        
         // Crear una instancia de TrasladoDTO y llenar sus campos
         TrasladoDTO trasladoDTO = new TrasladoDTO();
-        trasladoDTO.setMotivo(txtPrestamo.getText().trim());
         
-        trasladoDTO.setDisponibilidad(true); // O el valor que corresponda
+        trasladoDTO.setFolio(txtFolio.getText());
+        trasladoDTO.setMotivo(txtPrestamo.getText().trim());
+        trasladoDTO.setPersonas(formT.cantidadP);
+        trasladoDTO.setFechaHoraSalida(formT.inicio);
+        trasladoDTO.setFechaHoraRegreso(formT.fin);
+        trasladoDTO.setDisponibilidad(true);
+        trasladoDTO.setVehiculo(obtenerVehiculo(boxVehiculo));
+        
+        //instanciamos el vehiculo entregado
         VehiculoEntregado vehiculoEntregado = new VehiculoEntregado();
         vehiculoEntregado.setEstadoVehiculo(cbxVehiculo.getSelectedItem().toString());
         vehiculoEntregado.setLlantas(cbxLlantas.getSelectedItem().toString());
         vehiculoEntregado.setCarroceria(cbxCarroceria.getSelectedItem().toString());
-        trasladoDTO.setPersonas(formT.cantidadP);
-        
-        trasladoDTO.setFechaHoraSalida(formT.inicio);
-        trasladoDTO.setFechaHoraRegreso(formT.fin);
         String combustibleSeleccionado = cbxCombustible.getSelectedItem().toString();
         
+        trasladoDTO.setVehiculoDevuelto(null);
+        trasladoDTO.setCorreoEmpleado(empleado);
+        trasladoDTO.setCorreoChofer("asdasd");
+        trasladoDTO.setEstado(false);
         
         
         // Remover el símbolo '%' del valor seleccionado
@@ -180,7 +190,20 @@ public class Traslado2 extends javax.swing.JFrame {
         // Si no se puede obtener el objeto seleccionado, retornar un nuevo VehiculoDTO vacío o manejar según la lógica de tu aplicación
         return new VehiculoDTO();
         
-      
+    }
+    
+    public VehiculoDTO obtenerVehiculo(JComboBox combo){
+        VehiculoDTO vehiculo = (VehiculoDTO) combo.getSelectedItem();
+        return vehiculo;
+    }
+    
+    public VehiculoEntregadoDTO crearEntregado(VehiculoDTO vehiculo){
+        VehiculoDTO beiculo = obtenerVehiculo(boxVehiculo);
+        
+        String estado = cbxVehiculo.getSelectedItem().toString();
+        String llantas = cbxLlantas.getSelectedItem().toString();
+        String carroceria = cbxCarroceria.getSelectedItem().toString();
+        String combustible = cbxCombustible.getSelectedItem().toString();
     }
 
     /**
@@ -214,7 +237,7 @@ public class Traslado2 extends javax.swing.JFrame {
         cbxLlantas = new javax.swing.JComboBox<>();
         cbxVehiculo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtFolio = new javax.swing.JTextField();
         btnDisponibilidad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -307,7 +330,7 @@ public class Traslado2 extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Folio:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 140, 30));
+        jPanel1.add(txtFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 140, 30));
 
         btnDisponibilidad.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
         btnDisponibilidad.setText("Confirmar Traslado");
@@ -353,6 +376,7 @@ public class Traslado2 extends javax.swing.JFrame {
         try {
             int id = Integer.parseInt(empleadoId);
             EmpleadoDTO empleadoDTO = empleadoBO.buscarEmpleado(id);
+            this.empleado = empleadoDTO.getCorreo();
 
             // Verificar si el tipo de empleado es "empleado"
             if ("empleado".equalsIgnoreCase(empleadoDTO.getTipo())) {
@@ -436,10 +460,10 @@ public class Traslado2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblID1;
     private javax.swing.JTextField txtDestino;
+    private javax.swing.JTextField txtFolio;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPrestamo;
     // End of variables declaration//GEN-END:variables
