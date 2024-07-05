@@ -182,10 +182,10 @@ public class Traslado2 extends javax.swing.JFrame {
     public VehiculoEntregadoDTO crearEntregado(VehiculoDTO vehiculo){
         VehiculoDTO beiculo = obtenerVehiculo(boxVehiculo);
         
-        String carroceria = cbxCarroceria.getSelectedItem().toString();
-        int combustible = eliminarCaracter(cbxCombustible.getSelectedItem().toString());
-        String estado = cbxVehiculo.getSelectedItem().toString();
-        String llantas = cbxLlantas.getSelectedItem().toString();
+        String carroceria = (String) cbxCarroceria.getSelectedItem();
+        int combustible = eliminarCaracter((String) cbxCombustible.getSelectedItem());
+        String estado = (String)cbxVehiculo.getSelectedItem();
+        String llantas = (String)cbxLlantas.getSelectedItem();
         
         
         int numVehiculo = beiculo.getNumVehiculo();
