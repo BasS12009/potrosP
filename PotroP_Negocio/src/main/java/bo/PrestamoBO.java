@@ -95,7 +95,7 @@ public class PrestamoBO implements IPrestamoBO {
     }
 
     @Override
-    public List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException {
+    public  List<PrestamoDTO> listaPorFechas(LocalDate begin, LocalDate end) throws BisnessException {
         try{
             List<Prestamo> lista = prestamoDAO.listaPorFechas(begin, end);
             List<PrestamoDTO> listaDTO = new ArrayList<>();

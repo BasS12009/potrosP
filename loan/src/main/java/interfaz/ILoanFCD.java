@@ -6,6 +6,8 @@ package interfaz;
 
 import dtos.PrestamoDTO;
 import excepcion.FachadaException;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Interfaz ILoanFCD que define la operación de la fachada relacionada con los préstamos.
@@ -21,5 +23,7 @@ public interface ILoanFCD {
      * @throws FachadaException Si ocurre un error en la capa de fachada.
      */
     public void agregar(PrestamoDTO prestamoDTO) throws FachadaException;
+    
+   
 }
 
