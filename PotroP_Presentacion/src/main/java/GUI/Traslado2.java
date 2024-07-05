@@ -204,6 +204,7 @@ public class Traslado2 extends javax.swing.JFrame {
         String llantas = cbxLlantas.getSelectedItem().toString();
         String carroceria = cbxCarroceria.getSelectedItem().toString();
         String combustible = cbxCombustible.getSelectedItem().toString();
+        return null;
     }
 
     /**

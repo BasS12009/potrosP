@@ -109,6 +109,10 @@ public class Prestamo extends javax.swing.JFrame {
         String placa = vehiculo.getPlaca();
         return placa;
     }
+    
+    
+    
+    
 
     /**
      * 

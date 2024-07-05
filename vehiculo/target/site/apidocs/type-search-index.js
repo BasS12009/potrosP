@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"excepciones","l":"ControlException"},{"p":"excepciones","l":"FachadaException"},{"p":"interfaz","l":"IVehiculoFCD"},{"p":"control","l":"VehiculoCTL"},{"p":"fachada","l":"VehiculoFCD"}];updateSearchResults();
