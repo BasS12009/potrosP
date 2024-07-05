@@ -46,10 +46,10 @@ public class TrasladoBO implements ITrasladoBO{
     }
 
     @Override
-    public boolean existe(int numTraslado) throws BisnessException {
+    public boolean existe(String folio) throws BisnessException {
         try {
         
-            return trasladoDAO.existe(numTraslado);
+            return trasladoDAO.existe(folio);
     
         } catch (DAOException ex) {
         
@@ -58,9 +58,9 @@ public class TrasladoBO implements ITrasladoBO{
     }
 
     @Override
-    public TrasladoDTO buscar(int Folio) throws BisnessException {
+    public TrasladoDTO buscar(String folio) throws BisnessException {
         try {
-        return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(Folio));
+        return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(folio));
     } catch (DAOException ex) {
         throw new BisnessException("Error al buscar el traslado: " + ex.getMessage(), ex);
     }

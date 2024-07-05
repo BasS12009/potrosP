@@ -19,9 +19,9 @@ public interface ITrasladoDAO {
     
     public void agregar(Traslado traslado) throws DAOException;
     
-    public boolean existe(int numTraslado) throws DAOException;
+    public boolean existe(String folio) throws DAOException;
     
-    public Traslado buscar(int Folio) throws DAOException;
+    public Traslado buscar(String folio) throws DAOException;
     
     public void actualizar(Traslado trasladoDTO) throws DAOException;
     

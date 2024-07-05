@@ -19,15 +19,15 @@ package guardar;
 public class Guardar {
 
     private static int idEmpleado;
-    private static int numDevolucion;
+    private static String folio;
     private static String correoAdmin;
 
-    public int getNumDevolucion() {
-        return numDevolucion;
+    public String getFolio() {
+        return folio;
     }
 
-    public void setNumDevolucion(int numDevolucion) {
-        Guardar.numDevolucion = numDevolucion;
+    public void setFolio(String folio) {
+        Guardar.folio = folio;
     }
 
     public String getCorreoAdmin() {

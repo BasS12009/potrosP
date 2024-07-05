@@ -17,20 +17,20 @@ public interface IDevolucionFCD {
     /**
      * Verifica si existe un traslado con el número especificado.
      * 
-     * @param numTraslado el número del traslado a verificar.
+     * @param folio el número del traslado a verificar.
      * @return true si el traslado existe, false en caso contrario.
      * @throws FachadaException si ocurre un error durante la verificación.
      */
-    public boolean existe(int numTraslado) throws FachadaException;
+    public boolean existe(String folio) throws FachadaException;
     
     /**
      * Busca y retorna el traslado con el número especificado.
      * 
-     * @param numTraslado el número del traslado a buscar.
+     * @param folio el número del traslado a buscar.
      * @return el objeto TrasladoDTO correspondiente al número de traslado.
      * @throws FachadaException si ocurre un error durante la búsqueda.
      */
-    public TrasladoDTO buscar(int numTraslado) throws FachadaException;
+    public TrasladoDTO buscar(String folio) throws FachadaException;
     
     /**
      * Agrega un nuevo traslado de devolución.

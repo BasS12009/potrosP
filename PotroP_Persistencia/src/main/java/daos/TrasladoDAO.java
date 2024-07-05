@@ -41,16 +41,16 @@ public class TrasladoDAO implements ITrasladoDAO {
     }
 
     @Override
-    public boolean existe(int numTraslado) throws DAOException {
+    public boolean existe(String folio) throws DAOException {
        try {
-            return trasladoCollection.find(Filters.eq("numTraslado", numTraslado)).first() != null;
+            return trasladoCollection.find(Filters.eq("numTraslado", folio)).first() != null;
         } catch (Exception e) {
             throw new DAOException("Error al verificar la existencia del traslado: " + e.getMessage(), e);
         }
     }
 
     @Override
-    public Traslado buscar(int folio) throws DAOException {
+    public Traslado buscar(String folio) throws DAOException {
         try {
             return trasladoCollection.find(Filters.eq("folio", folio)).first();
         } catch (Exception e) {

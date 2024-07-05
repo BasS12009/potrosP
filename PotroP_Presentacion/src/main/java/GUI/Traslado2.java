@@ -10,7 +10,6 @@ import dtos.EmpleadoDTO;
 import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
 import dtos.VehiculoEntregadoDTO;
-import entidades.VehiculoEntregado;
 import excepciones.NegocioException;
 import excepciones.fachadaException;
 import fachada.VehiculoFCD;
@@ -131,29 +130,13 @@ public class Traslado2 extends javax.swing.JFrame {
         trasladoDTO.setVehiculo(obtenerVehiculo(boxVehiculo));
         
         //instanciamos el vehiculo entregado
-        VehiculoEntregado vehiculoEntregado = new VehiculoEntregado();
-        vehiculoEntregado.setEstadoVehiculo(cbxVehiculo.getSelectedItem().toString());
-        vehiculoEntregado.setLlantas(cbxLlantas.getSelectedItem().toString());
-        vehiculoEntregado.setCarroceria(cbxCarroceria.getSelectedItem().toString());
-        String combustibleSeleccionado = cbxCombustible.getSelectedItem().toString();
+        trasladoDTO.setVehiculoEntregado(crearEntregado(obtenerVehiculo(boxVehiculo)));
         
         trasladoDTO.setVehiculoDevuelto(null);
         trasladoDTO.setCorreoEmpleado(empleado);
         trasladoDTO.setCorreoChofer("asdasd");
         trasladoDTO.setEstado(false);
         
-        
-        // Remover el símbolo '%' del valor seleccionado
-        String combustibleSinPorcentaje = combustibleSeleccionado.replace("%", "").trim();
-
-        try {
-            // Convertir a entero
-            int nivelCombustible = Integer.parseInt(combustibleSinPorcentaje);
-            vehiculoEntregado.setCombustible(nivelCombustible);
-        } catch (NumberFormatException e) {
-            // Manejo de error si no se puede convertir a entero
-            JOptionPane.showMessageDialog(this, "Error en el nivel de combustible seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
 
         // Crear una instancia de TrasladoFCD y solicitar el traslado
         TrasladoFCD trasladoFCD = new TrasladoFCD();
@@ -200,12 +183,39 @@ public class Traslado2 extends javax.swing.JFrame {
     public VehiculoEntregadoDTO crearEntregado(VehiculoDTO vehiculo){
         VehiculoDTO beiculo = obtenerVehiculo(boxVehiculo);
         
+        String carroceria = cbxCarroceria.getSelectedItem().toString();
+        int combustible = eliminarCaracter(cbxCombustible.getSelectedItem().toString());
         String estado = cbxVehiculo.getSelectedItem().toString();
         String llantas = cbxLlantas.getSelectedItem().toString();
-        String carroceria = cbxCarroceria.getSelectedItem().toString();
-        String combustible = cbxCombustible.getSelectedItem().toString();
+        
+        
+        int numVehiculo = beiculo.getNumVehiculo();
+        String marca = beiculo.getMarca();
+        String modelo = beiculo.getModelo();
+        int año = beiculo.getAño();
+        String tipo = beiculo.getTipo();
+        String placa = beiculo.getPlaca();
+        String capacidad = beiculo.getCapacidad();
+        
+        return new VehiculoEntregadoDTO(carroceria, combustible, estado, 
+              llantas, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
     }
 
+    /**
+     * Método que elimina un carácter específico de una cadena y lo convierte 
+     * a int
+     * 
+     * @param cadena cadena de la cual deseamos eliminar el caracter
+     * @param caracter caracter que se desaea eliminar
+     * @return retorna un String sin el caracter deseado
+     */
+    private int eliminarCaracter(String cadena) {
+        // Reemplazar todas las ocurrencias del carácter con una cadena vacía
+        String gasolina = cadena.replace(String.valueOf("%"), "");
+        int gasolina2 = Integer.parseInt(gasolina);
+        return gasolina2;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

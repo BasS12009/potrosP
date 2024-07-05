@@ -46,12 +46,12 @@ public class DevolucionCTL {
     /**
      * Método que verifica si un traslado con el número especificado existe.
      * 
-     * @param numTraslado El número del traslado a verificar.
+     * @param folio El número del traslado a verificar.
      * @return true si el traslado existe, false en caso contrario.
      * @throws BisnessException si ocurre un error en la capa de negocio.
      */
-    public boolean existe(int numTraslado) throws BisnessException {
-        return traslado.existe(numTraslado);
+    public boolean existe(String folio) throws BisnessException {
+        return traslado.existe(folio);
     }
 
     /**
@@ -61,7 +61,7 @@ public class DevolucionCTL {
      * @return El objeto TrasladoDTO correspondiente al número de traslado especificado.
      * @throws BisnessException si ocurre un error en la capa de negocio.
      */
-    public TrasladoDTO buscar(int folio) throws BisnessException {
+    public TrasladoDTO buscar(String folio) throws BisnessException {
         return traslado.buscar(folio);
     }
 

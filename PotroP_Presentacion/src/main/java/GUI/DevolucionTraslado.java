@@ -51,7 +51,7 @@ public class DevolucionTraslado extends javax.swing.JFrame {
         
         //inicializamos el traslado original con a partir de una busqueda
         try{
-           this.trasladoDTO = devolucionFCD.buscar(guardar.getNumDevolucion()); 
+           this.trasladoDTO = devolucionFCD.buscar(guardar.getFolio()); 
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());

@@ -38,9 +38,9 @@ public class DevolucionFCD implements IDevolucionFCD {
      * @throws FachadaException si ocurre un error en la capa de negocio.
      */
     @Override
-    public boolean existe(int numTraslado) throws FachadaException {
+    public boolean existe(String folio) throws FachadaException {
         try {
-             return devolucion.existe(numTraslado);
+             return devolucion.existe(folio);
         } catch (BisnessException ex) {
             throw new FachadaException(ex.getMessage());
         }
@@ -49,16 +49,16 @@ public class DevolucionFCD implements IDevolucionFCD {
     /**
      * Método que busca y retorna un traslado con el número especificado.
      * 
-     * @param numTraslado El número del traslado a buscar.
+     * @param folio El número del traslado a buscar.
      * @return El objeto TrasladoDTO correspondiente al número de traslado 
      *         especificado.
      * @throws FachadaException si ocurre un error en la capa de negocio.
      */
     @Override
-    public TrasladoDTO buscar(int numTraslado) throws FachadaException {
+    public TrasladoDTO buscar(String folio) throws FachadaException {
         try {
             // Buscar el traslado con el número especificado
-            return devolucion.buscar(numTraslado);
+            return devolucion.buscar(folio);
         } catch (BisnessException ex) {
             // Capturar la excepción de negocio y lanzar una FachadaException
             throw new FachadaException(ex.getMessage());

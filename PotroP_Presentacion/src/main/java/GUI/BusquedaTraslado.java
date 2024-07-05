@@ -6,7 +6,6 @@
  */
 package GUI;
 
-import GUI.*;
 import excepcion.FachadaException;
 import fachada.DevolucionFCD;
 import guardar.Guardar;
@@ -98,7 +97,7 @@ public class BusquedaTraslado extends javax.swing.JFrame {
      * @param evt El evento que desencadenó esta acción.
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+ 
         try{
         //instanciamos las clases que necesitamos    
         IDevolucionFCD devolucionFCD = new DevolucionFCD();
@@ -109,11 +108,11 @@ public class BusquedaTraslado extends javax.swing.JFrame {
         Menu menu = new Menu();
             
         //convertimos el campo de el numero de traslado a un interger
-        int numeroTraslado = Integer.parseInt(txfTraslado.getText());
+        String folio = txfTraslado.getText();
         
-        if(devolucionFCD.existe(numeroTraslado)){
+        if(devolucionFCD.existe(folio)){
             //guardamos el numero de traslado
-            guardar.setNumDevolucion(numeroTraslado);
+            guardar.setFolio(folio);
 
             //hacemos visible el frame de devolucion
             devolucion.setVisible(true);
