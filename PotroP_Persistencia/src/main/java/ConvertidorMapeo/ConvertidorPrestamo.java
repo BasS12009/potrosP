@@ -4,28 +4,23 @@
  */
 package ConvertidorMapeo;
 
-import EntidadesMapeo.PrestamoMapeo;
-import entidades.Prestamo;
 
 /**
  *
  * @author diana
  */
-/**
- * Clase encargada de convertir entre Entidad Prestamo y PrestamoMapeo.
- */
+
+
+
+
+import EntidadesMapeo.PrestamoMapeo;
+import entidades.Prestamo;
+import org.bson.types.ObjectId;
+
 public class ConvertidorPrestamo {
     
-    // Instancia de ConvertidorVehiculo para realizar conversiones de Vehiculo y VehiculoMapeo. 
     private ConvertidorVehiculo convertidorVehiculo = new ConvertidorVehiculo();
     
-    
-    /**
-     * Convierte un objeto Prestamo a un objeto PrestamoMapeo.
-     * 
-     * @param prestamo el objeto Prestamo a convertir.
-     * @return el objeto PrestamoMapeo resultante de la conversión, o null si el objeto Prestamo es null.
-     */
     public PrestamoMapeo convertirEntidadAMapeo(Prestamo prestamo) {
         if (prestamo == null) {
             return null;
@@ -41,13 +36,6 @@ public class ConvertidorPrestamo {
         );
     }
     
-    
-     /**
-     * Convierte un objeto PrestamoMapeo a un objeto Prestamo.
-     * 
-     * @param prestamoMapeo el objeto PrestamoMapeo a convertir.
-     * @return el objeto Prestamo resultante de la conversión, o null si el objeto PrestamoMapeo es null.
-     */
     public Prestamo convertirMapeoAEntidad(PrestamoMapeo prestamoMapeo) {
         if (prestamoMapeo == null) {
             return null;

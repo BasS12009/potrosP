@@ -71,16 +71,7 @@ public class PrestamoDAO implements IPrestamoDAO {
             throw new DAOException("Error al obtener el préstamo por ID: " + e.getMessage(), e);
         }
     }
-    /**
-     * Método que obtiene una lista paginada de préstamos desde la base de
-     * datos.
-     *
-     * @param offset el desplazamiento desde donde empezar a listar los
-     * préstamos.
-     * @param limit la cantidad máxima de préstamos a retornar.
-     * @return una lista de préstamos paginados.
-     * @throws DAOException si ocurre un error al acceder a la base de datos.
-     */
+
     @Override
     public List<Prestamo> listaPaginda(int offset, int limit) throws DAOException {
       try {
@@ -99,16 +90,6 @@ public class PrestamoDAO implements IPrestamoDAO {
         }
     }
 
-    /**
-     * Método que obtiene una lista de préstamos que se encuentran dentro de un
-     * rango de fechas específico.
-     *
-     * @param begin la fecha de inicio del rango.
-     * @param end la fecha de fin del rango.
-     * @return una lista de préstamos que se encuentran dentro del rango de
-     * fechas.
-     * @throws DAOException si ocurre un error al acceder a la base de datos.
-     */
     @Override
     public List<Prestamo> listaPorFechas(LocalDate begin, LocalDate end) throws DAOException {
        try {

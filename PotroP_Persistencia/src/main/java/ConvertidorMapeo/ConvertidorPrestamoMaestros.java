@@ -7,22 +7,10 @@ package ConvertidorMapeo;
 import EntidadesMapeo.PrestamoMaestrosMapeo;
 import entidades.PrestamoMaestros;
 
-
-/**
- * Clase encargada de convertir entre Entidad PrestamoMaestros y PrestamoMaestrosMapeo.
- */
 public class ConvertidorPrestamoMaestros {
 
-    // Instancia de ConvertidorVehiculo para realizar conversiones de Vehiculo y VehiculoMapeo.
     private ConvertidorVehiculo convertidorVehiculo = new ConvertidorVehiculo();
 
-    
-    /**
-     * Convierte una entidad de tipo PrestamoMaestros a una entidad de mapeo PrestamoMaestrosMapeo.
-     * 
-     * @param prestamoMaestros la entidad PrestamoMaestros a convertir.
-     * @return la entidad de mapeo PrestamoMaestrosMapeo, o null si la entidad PrestamoMaestros es null.
-     */
     public PrestamoMaestrosMapeo convertirEntidadAMapeo(PrestamoMaestros prestamoMaestros) {
         if (prestamoMaestros == null) {
             return null;
@@ -41,12 +29,6 @@ public class ConvertidorPrestamoMaestros {
         );
     }
 
-    /**
-     * Convierte una entidad de mapeo PrestamoMaestrosMapeo a una entidad de tipo PrestamoMaestros.
-     * 
-     * @param prestamoMaestrosMapeo la entidad de mapeo PrestamoMaestrosMapeo a convertir.
-     * @return la entidad PrestamoMaestros, o null si la entidad de mapeo PrestamoMaestrosMapeo es null.
-     */
     public PrestamoMaestros convertirMapeoAEntidad(PrestamoMaestrosMapeo prestamoMaestrosMapeo) {
         if (prestamoMaestrosMapeo == null) {
             return null;

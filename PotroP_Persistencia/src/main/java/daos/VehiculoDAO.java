@@ -9,35 +9,23 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.ConexionBDM;
 import entidades.Vehiculo;
+import entidades.VehiculoEntregado;
+import entidades.VehiculoDevuelto;
 import excepciones.DAOException;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehiculoDAO implements IVehiculoDAO {
 
-    /**
-     * Colección de MongoDB para almacenar documentos de Vehiculo.
-     */
     private final MongoCollection<Document> vehiculoCollection;
 
-    
-     /**
-     * Constructor que inicializa la colección de Vehiculo utilizando la instancia de conexión a la base de datos.
-     */
     public VehiculoDAO() {
         this.vehiculoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Vehiculo");
     }
 
-    
-    
-    /**
-     * Agrega un nuevo vehículo a la base de datos.
-     * 
-     * @param vehiculo el objeto Vehiculo a agregar.
-     * @throws DAOException si ocurre un error al ingresar el vehículo.
-     */
     @Override
     public void agregar(Vehiculo vehiculo) throws DAOException {
         try {
@@ -56,13 +44,6 @@ public class VehiculoDAO implements IVehiculoDAO {
         }
     }
 
-    
-     /**
-     * Obtiene todos los vehículos almacenados en la base de datos.
-     * 
-     * @return una lista de objetos Vehiculo.
-     * @throws DAOException si ocurre un error al obtener todos los vehículos.
-     */
     @Override
     public List<Vehiculo> obtenerTodos() throws DAOException {
         try {
@@ -76,15 +57,6 @@ public class VehiculoDAO implements IVehiculoDAO {
         }
     }
 
-    
-    
-    /**
-     * Busca un vehículo por su placa en la base de datos.
-     * 
-     * @param placa la placa del vehículo a buscar.
-     * @return el objeto Vehiculo encontrado, o null si no se encuentra.
-     * @throws DAOException si ocurre un error al buscar el vehículo por placa.
-     */
     public Vehiculo buscarPorPlaca(String placa) throws DAOException {
         try {
             Document doc = vehiculoCollection.find(Filters.eq("placa", placa)).first();
@@ -97,13 +69,6 @@ public class VehiculoDAO implements IVehiculoDAO {
         }
     }
 
-    
-     /**
-     * Convierte un documento MongoDB a un objeto Vehiculo.
-     * 
-     * @param doc el documento MongoDB que representa un Vehiculo.
-     * @return el objeto Vehiculo convertido.
-     */
     private Vehiculo convertirDocumentoAVehiculo(Document doc) {
         return new Vehiculo(
             doc.getObjectId("_id"),

@@ -15,7 +15,10 @@ import excepciones.DAOException;
 import org.bson.types.ObjectId;
 
 public class TrasladoDAO implements ITrasladoDAO {
+<<<<<<< HEAD
     
+=======
+>>>>>>> parent of 7512708 (Persistencia)
     private final MongoCollection<Traslado> trasladoCollection;
 
     public TrasladoDAO() {
