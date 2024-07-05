@@ -17,17 +17,32 @@ import org.bson.types.ObjectId;
  */
 public class PrestamoMapeo {
     
-     private ObjectId id;
-    private String motivo;
-    private LocalDate inicio;
-    private LocalDate fin;
-    private String placaVehiculo;
-    private String correoEmpleado;
-    private VehiculoMapeo vehiculo;
+    private ObjectId id;              // Identificador único del préstamo
+    private String motivo;            // Motivo del préstamo
+    private LocalDate inicio;         // Fecha de inicio del préstamo
+    private LocalDate fin;            // Fecha de fin del préstamo
+    private String placaVehiculo;     // Placa del vehículo asociado al préstamo
+    private String correoEmpleado;    // Correo del empleado responsable del préstamo
+    private VehiculoMapeo vehiculo;   // Objeto VehiculoMapeo asociado al préstamo
 
+    
+    /**
+     * Constructor vacío de la clase PrestamoMapeo.
+     */
     public PrestamoMapeo() {
     }
 
+     /**
+     * Constructor con todos los atributos de la clase PrestamoMapeo.
+     * 
+     * @param id el identificador único del préstamo
+     * @param motivo el motivo del préstamo
+     * @param inicio la fecha de inicio del préstamo
+     * @param fin la fecha de fin del préstamo
+     * @param placaVehiculo la placa del vehículo asociado al préstamo
+     * @param correoEmpleado el correo del empleado responsable del préstamo
+     * @param vehiculo el objeto VehiculoMapeo asociado al préstamo
+     */
     public PrestamoMapeo(ObjectId id, String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, VehiculoMapeo vehiculo) {
         this.id = id;
         this.motivo = motivo;
@@ -38,6 +53,17 @@ public class PrestamoMapeo {
         this.vehiculo = vehiculo;
     }
 
+    
+     /**
+     * Constructor sin el identificador del préstamo.
+     * 
+     * @param motivo el motivo del préstamo
+     * @param inicio la fecha de inicio del préstamo
+     * @param fin la fecha de fin del préstamo
+     * @param placaVehiculo la placa del vehículo asociado al préstamo
+     * @param correoEmpleado el correo del empleado responsable del préstamo
+     * @param vehiculo el objeto VehiculoMapeo asociado al préstamo
+     */
     public PrestamoMapeo(String motivo, LocalDate inicio, LocalDate fin, String placaVehiculo, String correoEmpleado, VehiculoMapeo vehiculo) {
         this.motivo = motivo;
         this.inicio = inicio;
@@ -47,17 +73,27 @@ public class PrestamoMapeo {
         this.vehiculo = vehiculo;
     }
 
+    
+      /**
+     * Obtiene el objeto VehiculoMapeo asociado al préstamo.
+     * 
+     * @return el objeto VehiculoMapeo asociado al préstamo
+     */
     public VehiculoMapeo getVehiculo() {
         return vehiculo;
     }
 
+    
+    /**
+     * Establece el objeto VehiculoMapeo asociado al préstamo.
+     * 
+     * @param vehiculo el objeto VehiculoMapeo a establecer
+     */
     public void setVehiculo(VehiculoMapeo vehiculo) {
         this.vehiculo = vehiculo;
     }
 
-    
-
-    
+     
     /**
      * Obtiene el identificador único del préstamo.
      * 

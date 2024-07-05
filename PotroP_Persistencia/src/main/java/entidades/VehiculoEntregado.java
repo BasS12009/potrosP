@@ -25,18 +25,35 @@ import org.bson.types.ObjectId;
  */
 public class VehiculoEntregado extends Vehiculo {
     
-   private String carroceria;
-    private int combustible;
-    private String estadoVehiculo;
-    private String llantas;
+    private String carroceria;      // Tipo de carrocería del vehículo devuelto
+    private int combustible;        // Nivel de combustible del vehículo devuelto
+    private String estadoVehiculo;  // Estado general del vehículo devuelto
+    private String llantas;         // Estado de las llantas del vehículo devuelto
 
+    /**
+     * Constructor vacío de la clase VehiculoDevuelto.
+     */
     public VehiculoEntregado() {
     }
 
-    public VehiculoEntregado(String carroceria, int combustible, 
-            String estadoVehiculo, String llantas, int numVehiculo, 
-            String marca, String modelo, int año, String tipo, String placa,
-            String capacidad) {
+    /**
+     * Constructor con parámetros para inicializar todos los atributos de la
+     * clase, incluyendo los de la clase padre Vehiculo.
+     *
+     * @param carroceria Tipo de carrocería del vehículo devuelto.
+     * @param combustible Nivel de combustible del vehículo devuelto.
+     * @param estadoVehiculo Estado general del vehículo devuelto.
+     * @param llantas Estado de las llantas del vehículo devuelto.
+     * @param numVehiculo Número de identificación del vehículo.
+     * @param marca Marca del vehículo.
+     * @param modelo Modelo del vehículo.
+     * @param año Año de fabricación del vehículo.
+     * @param tipo Tipo de vehículo.
+     * @param placa Placa del vehículo.
+     * @param capacidad Capacidad del vehículo.
+     */
+    public VehiculoEntregado(String carroceria, int combustible, String estadoVehiculo, String llantas, int numVehiculo,
+            String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         super(null, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
         this.carroceria = carroceria;
         this.combustible = combustible;
@@ -44,19 +61,36 @@ public class VehiculoEntregado extends Vehiculo {
         this.llantas = llantas;
     }
 
-    public VehiculoEntregado(String carroceria, int combustible, 
-            String estadoVehiculo, String llantas, ObjectId id, int numVehiculo, 
-            String marca, String modelo, int año, String tipo, String placa, 
-            String capacidad) {
+    
+    
+    /**
+     * Constructor con parámetros para inicializar todos los atributos de la clase,
+     * incluyendo los de la clase padre Vehiculo y el identificador ObjectId.
+     * 
+     * @param carroceria Tipo de carrocería del vehículo devuelto.
+     * @param combustible Nivel de combustible del vehículo devuelto.
+     * @param estadoVehiculo Estado general del vehículo devuelto.
+     * @param llantas Estado de las llantas del vehículo devuelto.
+     * @param id Identificador único del vehículo.
+     * @param numVehiculo Número de identificación del vehículo.
+     * @param marca Marca del vehículo.
+     * @param modelo Modelo del vehículo.
+     * @param año Año de fabricación del vehículo.
+     * @param tipo Tipo de vehículo.
+     * @param placa Placa del vehículo.
+     * @param capacidad Capacidad del vehículo.
+     */
+
+    public VehiculoEntregado(String carroceria, int combustible, String estadoVehiculo, String llantas, ObjectId id, int numVehiculo,
+            String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         super(id, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
         this.carroceria = carroceria;
         this.combustible = combustible;
         this.estadoVehiculo = estadoVehiculo;
         this.llantas = llantas;
     }
-    
+
     // Getters y setters
-    
     public String getCarroceria() {
         return carroceria;
     }
@@ -90,14 +124,13 @@ public class VehiculoEntregado extends Vehiculo {
     }
 
     // No es necesario sobrescribir los getters y setters de la clase padre
-
     @Override
     public String toString() {
-        return super.toString() + ", VehiculoEntregado{" +
-               "carroceria='" + carroceria + '\'' +
-               ", combustible=" + combustible +
-               ", estadoVehiculo='" + estadoVehiculo + '\'' +
-               ", llantas='" + llantas + '\'' +
-               '}';
+        return super.toString() + ", VehiculoEntregado{"
+                + "carroceria='" + carroceria + '\''
+                + ", combustible=" + combustible
+                + ", estadoVehiculo='" + estadoVehiculo + '\''
+                + ", llantas='" + llantas + '\''
+                + '}';
     }
 }

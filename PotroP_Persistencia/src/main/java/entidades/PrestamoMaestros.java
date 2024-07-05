@@ -11,20 +11,39 @@ import org.bson.types.ObjectId;
  */
 public class PrestamoMaestros {
     
-    private ObjectId id;
-    private LocalDate fechaPrestamo;
-    private String departamento;
-    private int cantidadPersonas;
-    private String motivo;
-    private String plantelOrigen;
-    private String plantelDestino;
-    private Vehiculo vehiculo;  // Cambiado de String a Vehiculo
-    private String correoResponsable;
-    private List<String> acompaniantes;
+    private ObjectId id;                 // Identificador único del préstamo
+    private LocalDate fechaPrestamo;     // Fecha del préstamo
+    private String departamento;         // Departamento solicitante del préstamo
+    private int cantidadPersonas;        // Cantidad de personas involucradas en el préstamo
+    private String motivo;               // Motivo del préstamo
+    private String plantelOrigen;        // Plantel de origen del préstamo
+    private String plantelDestino;       // Plantel de destino del préstamo
+    private Vehiculo vehiculo;           // Vehículo asignado para el préstamo
+    private String correoResponsable;    // Correo electrónico del responsable del préstamo
+    private List<String> acompaniantes;  // Lista de acompañantes en el préstamo
 
+
+     /**
+     * Constructor vacío de la clase PrestamoMaestros.
+     */
     public PrestamoMaestros() {
     }
 
+    
+    /**
+     * Constructor con parámetros para inicializar todos los atributos de la clase.
+     * 
+     * @param id Identificador único del préstamo.
+     * @param fechaPrestamo Fecha del préstamo.
+     * @param departamento Departamento solicitante del préstamo.
+     * @param cantidadPersonas Cantidad de personas involucradas en el préstamo.
+     * @param motivo Motivo del préstamo.
+     * @param plantelOrigen Plantel de origen del préstamo.
+     * @param plantelDestino Plantel de destino del préstamo.
+     * @param vehiculo Vehículo asignado para el préstamo.
+     * @param correoResponsable Correo electrónico del responsable del préstamo.
+     * @param acompaniantes Lista de acompañantes en el préstamo.
+     */
     public PrestamoMaestros(ObjectId id, LocalDate fechaPrestamo, String departamento, int cantidadPersonas, String motivo, String plantelOrigen, String plantelDestino, Vehiculo vehiculo, String correoResponsable, List<String> acompaniantes) {
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
@@ -38,20 +57,39 @@ public class PrestamoMaestros {
         this.acompaniantes = acompaniantes;
     }
 
-
+    /**
+     * Obtiene el identificador único del préstamo.
+     * 
+     * @return Identificador único del préstamo.
+     */
     public ObjectId getId() {
         return id;
     }
 
+    
+    /**
+     * Establece el identificador único del préstamo.
+     * 
+     * @param id Identificador único del préstamo.
+     */
     public void setId(ObjectId id) {
         this.id = id;
     }
 
-
+     /**
+     * Obtiene el vehículo asignado para el préstamo.
+     * 
+     * @return Vehículo asignado para el préstamo.
+     */
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-
+    
+    /**
+     * Establece el vehículo asignado para el préstamo.
+     * 
+     * @param vehiculo Vehículo asignado para el préstamo.
+     */
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }

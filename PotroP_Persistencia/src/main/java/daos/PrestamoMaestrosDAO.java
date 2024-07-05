@@ -28,6 +28,12 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
         this.vehiculoDAO = new VehiculoDAO();
     }
 
+    /**
+     * Método para agregar un nuevo préstamo de maestros a la base de datos.
+     *
+     * @param prestamoMaestros el objeto PrestamoMaestros a agregar.
+     * @throws DAOException si ocurre un error al agregar el préstamo.
+     */
     @Override
     public void agregar(PrestamoMaestros prestamoMaestros) throws DAOException {
         try {
@@ -47,6 +53,13 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
         }
     }
 
+    /**
+     * Método para buscar un préstamo de maestros por su ID.
+     *
+     * @param id el ID del préstamo a buscar.
+     * @return el objeto PrestamoMaestros encontrado, o null si no se encuentra.
+     * @throws DAOException si ocurre un error al buscar el préstamo.
+     */
     @Override
     public PrestamoMaestros buscarPorId(String id) throws DAOException {
         try {
@@ -57,6 +70,12 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
         }
     }
 
+    /**
+     * Método para obtener una lista de todos los préstamos de maestros.
+     *
+     * @return una lista de objetos PrestamoMaestros.
+     * @throws DAOException si ocurre un error al obtener la lista de préstamos.
+     */
     @Override
     public List<PrestamoMaestros> listaPrestamosMaestros() throws DAOException {
         try {
@@ -66,6 +85,13 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
         }
     }
 
+    
+    /**
+     * Método para eliminar un préstamo de maestros de la base de datos.
+     *
+     * @param prestamoMaestros el objeto PrestamoMaestros a eliminar.
+     * @throws DAOException si ocurre un error al eliminar el préstamo.
+     */
     @Override
     public void eliminar(PrestamoMaestros prestamoMaestros) throws DAOException {
         try {
@@ -77,7 +103,12 @@ public class PrestamoMaestrosDAO implements IPrestamoMaestrosDAO {
             throw new DAOException("Error al eliminar el préstamo de maestros: " + e.getMessage(), e);
         }
     }
-
+    /**
+     * Método para actualizar un préstamo de maestros en la base de datos.
+     *
+     * @param prestamoMaestros el objeto PrestamoMaestros a actualizar.
+     * @throws DAOException si ocurre un error al actualizar el préstamo.
+     */
     @Override
     public void actualizar(PrestamoMaestros prestamoMaestros) throws DAOException {
         try {

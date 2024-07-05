@@ -26,17 +26,36 @@ import org.bson.types.ObjectId;
  */
 public class VehiculoDevuelto extends Vehiculo {
     
-   private String carroceria;
-    private int combustible;
-    private String estadoVehiculo;
-    private String llantas;
+   
+      
+    private String carroceria;      // Tipo de carrocería del vehículo devuelto
+    private int combustible;        // Nivel de combustible del vehículo devuelto
+    private String estadoVehiculo;  // Estado general del vehículo devuelto
+    private String llantas;         // Estado de las llantas del vehículo devuelto
     
+     /**
+     * Constructor vacío de la clase VehiculoDevuelto.
+     */
     public VehiculoDevuelto() {
     }
 
-    public VehiculoDevuelto(String carroceria, int combustible, 
-            String estadoVehiculo, String llantas, int numVehiculo, 
-            String marca, String modelo, int año, String tipo, 
+    /**
+     * Constructor con parámetros para inicializar todos los atributos de la clase,
+     * incluyendo los de la clase padre Vehiculo.
+     * 
+     * @param carroceria Tipo de carrocería del vehículo devuelto.
+     * @param combustible Nivel de combustible del vehículo devuelto.
+     * @param estadoVehiculo Estado general del vehículo devuelto.
+     * @param llantas Estado de las llantas del vehículo devuelto.
+     * @param numVehiculo Número de identificación del vehículo.
+     * @param marca Marca del vehículo.
+     * @param modelo Modelo del vehículo.
+     * @param año Año de fabricación del vehículo.
+     * @param tipo Tipo de vehículo.
+     * @param placa Placa del vehículo.
+     * @param capacidad Capacidad del vehículo.
+     */
+    public VehiculoDevuelto(String carroceria, int combustible, String estadoVehiculo, String llantas, int numVehiculo, String marca, String modelo, int año, String tipo, 
             String placa, String capacidad) {
         super(null, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
         this.carroceria = carroceria;
@@ -45,10 +64,25 @@ public class VehiculoDevuelto extends Vehiculo {
         this.llantas = llantas;
     }
 
-    public VehiculoDevuelto(String carroceria, int combustible, 
-            String estadoVehiculo, String llantas, ObjectId id, 
-            int numVehiculo, String marca, String modelo, int año, 
-            String tipo, String placa, String capacidad) {
+    /**
+     * Constructor con parámetros para inicializar todos los atributos de la clase,
+     * incluyendo los de la clase padre Vehiculo y el identificador ObjectId.
+     * 
+     * @param carroceria Tipo de carrocería del vehículo devuelto.
+     * @param combustible Nivel de combustible del vehículo devuelto.
+     * @param estadoVehiculo Estado general del vehículo devuelto.
+     * @param llantas Estado de las llantas del vehículo devuelto.
+     * @param id Identificador único del vehículo.
+     * @param numVehiculo Número de identificación del vehículo.
+     * @param marca Marca del vehículo.
+     * @param modelo Modelo del vehículo.
+     * @param año Año de fabricación del vehículo.
+     * @param tipo Tipo de vehículo.
+     * @param placa Placa del vehículo.
+     * @param capacidad Capacidad del vehículo.
+     */
+    public VehiculoDevuelto(String carroceria, int combustible, String estadoVehiculo, String llantas, ObjectId id, 
+            int numVehiculo, String marca, String modelo, int año, String tipo, String placa, String capacidad) {
         super(id, numVehiculo, marca, modelo, año, tipo, placa, capacidad);
         this.carroceria = carroceria;
         this.combustible = combustible;
