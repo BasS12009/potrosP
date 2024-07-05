@@ -68,12 +68,4 @@ public class Reporte {
     public void setMotivo(String motivo) {
         this.motivo= motivo;
     }
-
-    @Override
-    
-    public String toString() {
-        return "Reporte{" + "original=" + original + ", motivo=" + motivo + '}';
-    }
-    
-    
 }

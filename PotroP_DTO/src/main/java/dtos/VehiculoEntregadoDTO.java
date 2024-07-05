@@ -136,13 +136,6 @@ public class VehiculoEntregadoDTO extends VehiculoDTO {
     public void setCapacidad(String capacidad) {
         this.capacidad = capacidad;
     }
-
-    @Override
-    public String toString() {
-        return "VehiculoEntregadoDTO{" + "carroceria=" + carroceria + 
-                ", combustible=" + combustible + ", estadoVehiculo=" + 
-                estadoVehiculo + ", llantas=" + llantas + '}';
-    }
     
     
 }

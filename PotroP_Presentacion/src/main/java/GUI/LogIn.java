@@ -30,7 +30,7 @@ public class LogIn extends javax.swing.JFrame {
      */
     public LogIn(){
                 
-        
+            ConexionBDM.getInstance();
         initComponents();
         this.setLocationRelativeTo(this);
         this.setSize(670, 550);
