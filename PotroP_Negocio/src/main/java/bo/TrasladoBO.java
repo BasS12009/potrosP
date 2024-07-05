@@ -28,7 +28,6 @@ public class TrasladoBO implements ITrasladoBO{
         this.trasladoDAO = new TrasladoDAO();
         this.trasladoCVR = new TrasladoCVR();
     }
-
    
     
     // Implementación del método agregar que pertenece a la interfaz que TrasladoBO implementa (suponiendo ITrasladoBO)
@@ -38,7 +37,7 @@ public class TrasladoBO implements ITrasladoBO{
             // Convierte el objeto TrasladoDTO a un objeto de dominio utilizando el conversor (CVR)
             // y lo pasa al DAO para ser agregado a la base de datos
             trasladoDAO.agregar(trasladoCVR.convetir_Traslado(traslado));
-            System.out.println("Traslado agregado correctamente.");
+            
         } catch (DAOException e) {
             // Manejo de excepciones: Si ocurre un error en la operación DAO, se lanza una excepción BO con el mensaje de error original
             throw new BisnessException(e.getMessage(), e);
@@ -48,35 +47,30 @@ public class TrasladoBO implements ITrasladoBO{
     @Override
     public boolean existe(String folio) throws BisnessException {
         try {
-        
-            return trasladoDAO.existe(folio);
-    
+            return trasladoDAO.existe(folio); 
         } catch (DAOException ex) {
-        
             throw new BisnessException("Error al verificar la existencia del traslado: " + ex.getMessage(), ex);
-    }
+        }
     }
 
     @Override
     public TrasladoDTO buscar(String folio) throws BisnessException {
         try {
-        return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(folio));
-    } catch (DAOException ex) {
-        throw new BisnessException("Error al buscar el traslado: " + ex.getMessage(), ex);
-    }
+            return trasladoCVR.convertir_TrasladoDTO(trasladoDAO.buscar(folio));
+        } catch (DAOException ex) {
+            throw new BisnessException("Error al buscar el traslado: " + ex.getMessage(), ex);
+        }
     }
 
     
     @Override
     public void actualizar(TrasladoDTO trasladoDTO) throws BisnessException {
-         try {
-        trasladoDAO.actualizar(trasladoCVR.convetir_Traslado(trasladoDTO));
-    } catch (DAOException ex) {
-        throw new BisnessException("Error al actualizar el traslado: " + ex.getMessage(), ex);
+        try {
+             trasladoDAO.actualizar(trasladoCVR.convetir_Traslado(trasladoDTO));
+        } catch (DAOException ex) {
+            throw new BisnessException("Error al actualizar el traslado: " + ex.getMessage(), ex);
+        }
     }
-    }
-    
-    
-    
+     
     
 }

@@ -70,4 +70,11 @@ public class ReporteDTO {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
+
+    @Override
+    public String toString() {
+        return "ReporteDTO{" + "original=" + original + ", motivo=" + motivo + '}';
+    }
+    
+    
 }

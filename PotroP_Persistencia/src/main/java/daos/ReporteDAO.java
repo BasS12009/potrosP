@@ -31,13 +31,12 @@ public class ReporteDAO implements IReporteDAO {
     // Método para agregar un reporte a la base de datos
     @Override
     public void agregar(Reporte reporte) throws DAOException {
-//        try {
-//            // Insertar un nuevo documento reporte en la colección
-//            reporteCollection.insertOne(reporte);
-//        } catch (Exception e) {
-//            // Capturar cualquier excepción y lanzarla como DAOException
-//            throw new DAOException("Error al agregar reporte: " + e.getMessage(), e);
-//        }
-         System.out.println("reporte agregado con exito");
+        try {
+            // Insertar un nuevo documento reporte en la colección
+            reporteCollection.insertOne(reporte);
+        } catch (Exception e) {
+            // Capturar cualquier excepción y lanzarla como DAOException
+            throw new DAOException("Error al agregar reporte: " + e.getMessage(), e);
+        }
     }
 }
