@@ -18,13 +18,13 @@ import interfaz.IVehiculoFCD;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import negocio.EmpleadoBO;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import dtos.VehiculoDevueltoDTO;
+import excepciones.FachadaException;
 import java.io.*;
 import java.awt.Desktop;
 import java.time.LocalDateTime;
@@ -52,6 +52,7 @@ public class Traslado2 extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setSize(780, 580);
         this.vehiculo = new VehiculoFCD();
+        
         try {
 
             // Inicializar JLabel
@@ -62,7 +63,7 @@ public class Traslado2 extends javax.swing.JFrame {
             btnDisponibilidad.enable(false);
 
             vehiculo.llenarCBX(boxVehiculo);
-        } catch (Exception ex) {
+        } catch (FachadaException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
@@ -122,6 +123,8 @@ public class Traslado2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el estado del 'Vehículo'.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+       
+    
 
         
         // Crear una instancia de TrasladoDTO y llenar sus campos
@@ -220,6 +223,64 @@ public class Traslado2 extends javax.swing.JFrame {
         return gasolina2;
     }
     
+
+
+
+    
+
+
+private void generarYAbrirPDF() {
+    Document document = new Document(PageSize.A4);
+    try {
+        PdfWriter.getInstance(document, new FileOutputStream("ReporteTraslado.pdf"));
+        document.open();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+        Font fontContenido = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
+
+        // Título del reporte
+        Paragraph titulo = new Paragraph("Reporte de Traslado", fontTitulo);
+        titulo.setAlignment(Element.ALIGN_CENTER);
+        document.add(titulo);
+        document.add(new Paragraph(" ")); // Espacio en blanco
+
+        // Información del traslado
+        PdfPTable table = new PdfPTable(2);
+        table.setWidthPercentage(100);
+
+        addTableRow(table, "Folio:", txtFolio.getText(), fontContenido);
+        addTableRow(table, "Motivo de Préstamo:", txtPrestamo.getText(), fontContenido);
+        addTableRow(table, "Destino:", txtDestino.getText(), fontContenido);
+        addTableRow(table, "Vehículo:", boxVehiculo.getSelectedItem().toString(), fontContenido);
+        addTableRow(table, "Carrocería:", cbxCarroceria.getSelectedItem().toString(), fontContenido);
+        addTableRow(table, "Combustible:", cbxCombustible.getSelectedItem().toString(), fontContenido);
+        addTableRow(table, "Llantas:", cbxLlantas.getSelectedItem().toString(), fontContenido);
+        addTableRow(table, "Estado del vehículo:", cbxVehiculo.getSelectedItem().toString(), fontContenido);
+        addTableRow(table, "ID de Empleado:", txtID.getText(), fontContenido);
+
+        document.add(table);
+
+        document.close();
+
+        // Abrir el archivo PDF
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().open(new File("ReporteTraslado.pdf"));
+        } else {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler ReporteTraslado.pdf");
+        }
+
+        JOptionPane.showMessageDialog(null, "Se ha generado y abierto el archivo 'ReporteTraslado.pdf'");
+
+    } catch (DocumentException | IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error al generar o abrir el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+private void addTableRow(PdfPTable table, String key, String value, Font font) {
+    table.addCell(new Phrase(key, font));
+    table.addCell(new Phrase(value, font));
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,7 +314,6 @@ public class Traslado2 extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtFolio = new javax.swing.JTextField();
         btnDisponibilidad = new javax.swing.JButton();
-        btnGenerarPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -354,16 +414,7 @@ public class Traslado2 extends javax.swing.JFrame {
                 btnDisponibilidadActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, -1, -1));
-
-        btnGenerarPDF.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
-        btnGenerarPDF.setText("GenerarPDF");
-        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarPDFActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, -1, -1));
+        jPanel1.add(btnDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 510, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -428,63 +479,9 @@ public class Traslado2 extends javax.swing.JFrame {
 
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
         traslado();
+        generarYAbrirPDF();
+       
     }//GEN-LAST:event_btnDisponibilidadActionPerformed
-
-    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
-     Document document = new Document(PageSize.A4);
-    try {
-        PdfWriter.getInstance(document, new FileOutputStream("ReporteTraslado.pdf"));
-        document.open();
-        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-        Font fontSubTitulo = new Font(Font.FontFamily.HELVETICA, 12, Font.ITALIC);
-        Font fontContenido = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
-
-        // Título del reporte
-        Paragraph titulo = new Paragraph("Reporte de Traslado", fontTitulo);
-        titulo.setAlignment(Element.ALIGN_CENTER);
-        document.add(titulo);
-        document.add(new Paragraph(" ")); // Espacio en blanco
-
-        // Información del traslado
-        PdfPTable table = new PdfPTable(2);
-        table.setWidthPercentage(100);
-
-        addTableRow(table, "Folio:", txtFolio.getText(), fontContenido);
-        addTableRow(table, "Motivo de Préstamo:", txtPrestamo.getText(), fontContenido);
-        addTableRow(table, "Destino:", txtDestino.getText(), fontContenido);
-        addTableRow(table, "Vehículo:", boxVehiculo.getSelectedItem().toString(), fontContenido);
-        addTableRow(table, "Carrocería:", cbxCarroceria.getSelectedItem().toString(), fontContenido);
-        addTableRow(table, "Combustible:", cbxCombustible.getSelectedItem().toString(), fontContenido);
-        addTableRow(table, "Llantas:", cbxLlantas.getSelectedItem().toString(), fontContenido);
-        addTableRow(table, "Estado del vehículo:", cbxVehiculo.getSelectedItem().toString(), fontContenido);
-        addTableRow(table, "ID de Empleado:", txtID.getText(), fontContenido);
-
-        document.add(table);
-
-        document.close();
-        JOptionPane.showMessageDialog(null, "Se creó el archivo 'ReporteTraslado.pdf' en la carpeta del proyecto");
-
-        // Abrir el archivo PDF
-        try {
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File("ReporteTraslado.pdf"));
-            } else {
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler ReporteTraslado.pdf");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (DocumentException | IOException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Error al generar el PDF: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
-
-private void addTableRow(PdfPTable table, String key, String value, Font font) {
-    table.addCell(new Phrase(key, font));
-    table.addCell(new Phrase(value, font));
-    }//GEN-LAST:event_btnGenerarPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -525,7 +522,6 @@ private void addTableRow(PdfPTable table, String key, String value, Font font) {
     private javax.swing.JComboBox<String> boxVehiculo;
     private javax.swing.JButton btnComprobar;
     private javax.swing.JButton btnDisponibilidad;
-    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JComboBox<String> cbxCarroceria;
     private javax.swing.JComboBox<String> cbxCombustible;
     private javax.swing.JComboBox<String> cbxLlantas;
