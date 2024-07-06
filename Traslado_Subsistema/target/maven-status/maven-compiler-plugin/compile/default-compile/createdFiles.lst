@@ -1,5 +1,0 @@
-com\mycompany\traslado_subsistema\Traslado_Subsistema.class
-Control\TrasladoCTL.class
-Fachada\TrasladoFCD.class
-Interfaz\ITrasladoo.class
-excepciones\fachadaException.class
