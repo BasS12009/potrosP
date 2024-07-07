@@ -6,6 +6,7 @@ package Interfaces;
 
 import entidades.Vehiculo;
 import excepciones.DAOException;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -34,5 +35,7 @@ public interface IVehiculoDAO {
      * @throws DAOException Si ocurre algún error durante la obtención de la lista de vehículos
      */
     public List<Vehiculo> obtenerTodos() throws DAOException;
+    
+    boolean isVehiculoPrestado(String placa) throws DAOException;
    
 }

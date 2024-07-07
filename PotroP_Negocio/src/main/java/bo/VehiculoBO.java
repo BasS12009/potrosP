@@ -46,4 +46,13 @@ public class VehiculoBO implements IVehiculoBO{
         }
     }
     
+    @Override
+    public boolean isVehiculoDisponible(String placa) throws BisnessException {
+        try {
+            return !((VehiculoDAO)vehiculo).isVehiculoPrestado(placa);
+        } catch (DAOException ex) {
+            throw new BisnessException("Error al verificar la disponibilidad del vehículo: " + ex.getMessage());
+        }
+    }
+    
 }

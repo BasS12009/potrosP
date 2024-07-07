@@ -6,13 +6,16 @@
  */
 package GUI;
 
+import bo.VehiculoBO;
 import dtos.PrestamoDTO;
 import dtos.VehiculoDTO;
 import com.toedter.calendar.JDateChooser;
+import exceptions.BisnessException;
 import fachada.LoanFCD;
 import fachada.TablaFCD;
 import fachada.VehiculoFCD;
 import guardar.Guardar;
+import interfaces.IVehiculoBO;
 import interfaz.ILoanFCD;
 import interfaz.ITablaFCD;
 import interfaz.IVehiculoFCD;
@@ -293,26 +296,35 @@ public class Prestamo extends javax.swing.JFrame {
 
         //primero instanciamos las clases que necesitemos
         //como las clases 
-        ILoanFCD prestamo = new LoanFCD();
+        // Instanciamos las clases necesarias
+    ILoanFCD prestamo = new LoanFCD();
+    IVehiculoBO vehiculoBO = new VehiculoBO();
 
-        //declaremos las variables necesarias que obtendremos de las pantallas
-        try {
+    try {
+        String motivo = txfMotivo.getText();
+        LocalDate inicio = convertir(dcInicio);
+        LocalDate fin = convertir(dcFin);
+        String placa = obtenerPlaca(cbxVehiculo);
+        String correo = obtenerCorreo();
 
-            String motivo = txfMotivo.getText();
-            LocalDate inicio = convertir(dcInicio);
-            LocalDate fin = convertir(dcFin);
-            String placa = obtenerPlaca(cbxVehiculo);
-            String correo = obtenerCorreo();
-
+        // Verificar disponibilidad del vehículo antes de proceder
+        if (vehiculoBO.isVehiculoDisponible(placa)) {
             PrestamoDTO loan = new PrestamoDTO(motivo, inicio, fin, placa, correo);
 
-            //agregamos el prestamo
+            // Agregamos el préstamo
             prestamo.agregar(loan);
             
-
-        } catch (excepcion.FachadaException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Préstamo registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Aquí puedes agregar código para limpiar los campos o cerrar la ventana
+        } else {
+            JOptionPane.showMessageDialog(this, "El vehículo con placa " + placa + " no está disponible para las fechas seleccionadas.", "Vehículo No Disponible", JOptionPane.WARNING_MESSAGE);
         }
+    } catch (BisnessException ex) {
+        JOptionPane.showMessageDialog(this, "Error al verificar la disponibilidad del vehículo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (excepcion.FachadaException ex) {
+        JOptionPane.showMessageDialog(this, "Error al registrar el préstamo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
     }//GEN-LAST:event_btnSolicitarActionPerformed
     /**

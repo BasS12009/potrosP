@@ -1,13 +1,16 @@
 package GUI;
 
 
+import bo.VehiculoBO;
 import conexion.ConexionBDM;
 import dtos.PrestamoMaestrosDTO;
 import dtos.VehiculoDTO;
 import excepcion.FachadaException;
+import exceptions.BisnessException;
 import fachada.PrestamoMaestrosFCD;
 import fachada.ResumenFCD;
 import fachada.VehiculoFCD;
+import interfaces.IVehiculoBO;
 import interfaz.IPrestamoMaestrosFCD;
 import interfaz.IVehiculoFCD;
 import java.awt.BorderLayout;
@@ -579,10 +582,24 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
     private void btnSolicitar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitar1ActionPerformed
                                           
     try {
-        PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
+       PrestamoMaestrosDTO nuevoPrestamo = obtenerDatosFormulario();
+        
+        // Verificar la disponibilidad del vehículo
+        IVehiculoBO vehiculoBO = new VehiculoBO();
+        String placa = nuevoPrestamo.getVehiculo(); // Asumiendo que getVehiculo() devuelve un objeto con getPlaca()
+        LocalDate fechaPrestamo = nuevoPrestamo.getFechaPrestamo();
+        
+        if (!vehiculoBO.isVehiculoDisponible(placa)) {
+            JOptionPane.showMessageDialog(this, 
+                "El vehículo seleccionado no está disponible para la fecha indicada.", 
+                "Vehículo no disponible", 
+                JOptionPane.WARNING_MESSAGE);
+            return; // Salir del método si el vehículo no está disponible
+        }
         
         // Crear un mensaje con los detalles del préstamo
         StringBuilder mensaje = new StringBuilder();
+        mensaje.append("Detalles del préstamo:\n\n");
         mensaje.append("Detalles del préstamo:\n\n");
         mensaje.append("Fecha: ").append(nuevoPrestamo.getFechaPrestamo()).append("\n");
         mensaje.append("Departamento: ").append(nuevoPrestamo.getDepartamento()).append("\n");
@@ -631,6 +648,8 @@ private void validarDisponibilidadVehiculo(String placa, LocalDate fecha) throws
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
     } catch (FachadaException e) {
         JOptionPane.showMessageDialog(this, "Error al agregar el préstamo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (BisnessException ex) {
+        Logger.getLogger(frmPrestampTrasladoProfes.class.getName()).log(Level.SEVERE, null, ex);
     } 
     
 }

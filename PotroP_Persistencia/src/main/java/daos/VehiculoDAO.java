@@ -8,8 +8,12 @@ import Interfaces.IVehiculoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.ConexionBDM;
+import entidades.Prestamo;
+import entidades.PrestamoMaestros;
+import entidades.Traslado;
 import entidades.Vehiculo;
 import excepciones.DAOException;
+import java.time.LocalDate;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import java.util.ArrayList;
@@ -21,6 +25,9 @@ public class VehiculoDAO implements IVehiculoDAO {
      * Colección de MongoDB para almacenar documentos de Vehiculo.
      */
     private final MongoCollection<Document> vehiculoCollection;
+    private final MongoCollection<Prestamo> prestamoCollection;
+    private final MongoCollection<PrestamoMaestros> prestamoMaestrosCollection;
+    private final MongoCollection<Traslado> trasladoCollection;
 
     
      /**
@@ -28,8 +35,10 @@ public class VehiculoDAO implements IVehiculoDAO {
      */
     public VehiculoDAO() {
         this.vehiculoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Vehiculo");
+    this.prestamoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Prestamos", Prestamo.class);
+        this.prestamoMaestrosCollection = ConexionBDM.getInstance().getDatabase().getCollection("PrestamosMaestros", PrestamoMaestros.class);
+        this.trasladoCollection = ConexionBDM.getInstance().getDatabase().getCollection("Traslado", Traslado.class);
     }
-
     
     
     /**
@@ -115,5 +124,24 @@ public class VehiculoDAO implements IVehiculoDAO {
             doc.getString("placa"),
             doc.getString("capacidad")
         );
+    }
+    
+    @Override
+     public boolean isVehiculoPrestado(String placa) throws DAOException {
+        try {
+            // Verificar en la colección de Prestamo
+            long prestamoCount = prestamoCollection.countDocuments(Filters.eq("placaVehiculo", placa));
+
+            // Verificar en la colección de PrestamoMaestros
+            long prestamoMaestrosCount = prestamoMaestrosCollection.countDocuments(Filters.eq("vehiculo.placa", placa));
+
+            // Verificar en la colección de Traslado
+            long trasladoCount = trasladoCollection.countDocuments(Filters.eq("vehiculo.placa", placa));
+
+            // El vehículo está prestado si se encuentra en alguna de las colecciones
+            return (prestamoCount > 0 || prestamoMaestrosCount > 0 || trasladoCount > 0);
+        } catch (Exception e) {
+            throw new DAOException("Error al verificar si el vehículo está prestado: " + e.getMessage(), e);
+        }
     }
 }
