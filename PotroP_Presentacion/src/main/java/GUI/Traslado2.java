@@ -6,6 +6,7 @@ package GUI;
 
 import Fachada.TrasladoFCD;
 import bo.TrasladoBO;
+import bo.VehiculoBO;
 import dtos.EmpleadoDTO;
 import dtos.TrasladoDTO;
 import dtos.VehiculoDTO;
@@ -25,8 +26,11 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import dtos.VehiculoDevueltoDTO;
 import excepciones.FachadaException;
+import exceptions.BisnessException;
+import interfaces.IVehiculoBO;
 import java.io.*;
 import java.awt.Desktop;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -93,60 +97,72 @@ public class Traslado2 extends javax.swing.JFrame {
         }
     }
 
-    public void traslado() {
+    public boolean traslado() {
+    try {
         // Validaciones de los campos obligatorios
         if (txtPrestamo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo 'Motivo de Préstamo' es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         if (txtDestino.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo 'Destino' es obligatorio.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         if (boxVehiculo.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un 'Vehículo'.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         if (cbxCarroceria.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el estado de 'Carrocería'.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         if (cbxCombustible.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el nivel de 'Combustible'.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         if (cbxLlantas.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el estado de las 'Llantas'.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         if (cbxVehiculo.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el estado del 'Vehículo'.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
-       
-    
-
+        
+        // Nueva validación: Verificar la disponibilidad del vehículo
+        IVehiculoBO vehiculoBO = new VehiculoBO();
+        VehiculoDTO vehiculoSeleccionado = obtenerVehiculoSeleccionado();
+        String placa = vehiculoSeleccionado.getPlaca();
+        LocalDate fechaPrestamo = formT.inicio.toLocalDate();
+        
+        if (!vehiculoBO.isVehiculoDisponible(placa)) {
+            JOptionPane.showMessageDialog(this,
+                    "El vehículo seleccionado no está disponible para la fecha indicada.",
+                    "Vehículo no disponible",
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         
         // Crear una instancia de TrasladoDTO y llenar sus campos
-        String id= "" ;
+        String id = "";
         String folio = txtFolio.getText();
         String motivo = txtPrestamo.getText().trim();
         int personas = formT.cantidadP;
         LocalDateTime fechaHoraSalida = formT.inicio;
         LocalDateTime fechaHoraRegreso = formT.fin;
         boolean disponibilidad = true;
-        VehiculoDTO vehiculos = obtenerVehiculoSeleccionado();
+        VehiculoDTO vehiculos = vehiculoSeleccionado;
         
-        //instanciamos el vehiculo entregado
+        // Instanciamos el vehiculo entregado
         VehiculoEntregadoDTO vehiculoEntregado = crearEntregado(vehiculos);
         
         VehiculoDevueltoDTO vehiculoDevuelto = null;
         String correoEmpleado = empleado;
         boolean estado = false;
         
-        //formamos el nuevo traslado
-        TrasladoDTO trasladoDTO = new TrasladoDTO(id,folio, motivo, personas, 
-                fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculos, 
+        // Formamos el nuevo traslado
+        TrasladoDTO trasladoDTO = new TrasladoDTO(id, folio, motivo, personas,
+                fechaHoraSalida, fechaHoraRegreso, disponibilidad, vehiculos,
                 vehiculoEntregado, vehiculoDevuelto, correoEmpleado, estado);
         
         // Crear una instancia de TrasladoFCD y solicitar el traslado
@@ -154,10 +170,26 @@ public class Traslado2 extends javax.swing.JFrame {
         try {
             trasladoFCD.solicitarTraslado(trasladoDTO);
             JOptionPane.showMessageDialog(this, "Traslado solicitado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            return true; // El traslado se completó exitosamente
         } catch (fachadaException e) {
             JOptionPane.showMessageDialog(this, "Error al solicitar el traslado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false; // Hubo un error al solicitar el traslado
         }
+        
+    } catch (BisnessException ex) {
+            Logger.getLogger(Traslado2.class.getName()).log(Level.SEVERE, null, ex);
     }
+        return false;
+
+    }
+
+        
+        
+
+       
+    
+
+    
 
     private VehiculoDTO obtenerVehiculoSeleccionado() {
         // Obtener el índice seleccionado en el combobox
@@ -478,8 +510,10 @@ private void addTableRow(PdfPTable table, String key, String value, Font font) {
     }//GEN-LAST:event_btnComprobarActionPerformed
 
     private void btnDisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisponibilidadActionPerformed
-        traslado();
+       
+      if (traslado()) {
         generarYAbrirPDF();
+    }
        
     }//GEN-LAST:event_btnDisponibilidadActionPerformed
 
